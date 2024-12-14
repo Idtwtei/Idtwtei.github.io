@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>各省省选</title>
+      <link href="/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/"/>
+      <url>/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/list?tag=48%7C61,60,59,58,37,36,35">luogu</a></p><p><a href="../I">I</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Burnside</title>
       <link href="/Burnside/"/>
       <url>/Burnside/</url>
@@ -31,8 +44,8 @@
     
     <entry>
       <title>AGC</title>
-      <link href="/AGC/AGC/"/>
-      <url>/AGC/AGC/</url>
+      <link href="/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/AGC/AGC/"/>
+      <url>/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/AGC/AGC/</url>
       
         <content type="html"><![CDATA[<p>希望不鸽。</p><p><a href="../AGC001/">AGC001</a> <a href="../AGC002/">AGC002</a> <a href="../AGC003/">AGC003</a></p>]]></content>
       
@@ -47,7 +60,7 @@
       <link href="/Probability_and_Computing/Probability_and_Computing/"/>
       <url>/Probability_and_Computing/Probability_and_Computing/</url>
       
-        <content type="html"><![CDATA[<p>希望不鸽</p><p><a href="../Notes/1">第一章 事件与概率</a> <a href="../Exercises/1">部分习题</a></p><p><a href="../Notes/2">第二章 离散型随机变量与期望</a> 习题没答案，摆了。</p>]]></content>
+        <content type="html"><![CDATA[<p>希望不鸽</p><p><a href="../Notes/1">第一章 事件与概率</a> <a href="../Exercises/1">部分习题</a></p><p><a href="../Notes/2">第二章 离散型随机变量与期望</a> 习题摆了。</p><p><a href="../Notes/3">第三章 矩与离差</a> <a href="../Exercises/3">部分习题</a></p>]]></content>
       
       
       
