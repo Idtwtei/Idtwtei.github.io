@@ -2,7 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://idtwtei.github.com/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/</loc>
+    <loc>http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/</loc>
+    
+    <lastmod>2024-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/</loc>
+    
+    <lastmod>2024-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/</loc>
+    
+    <lastmod>2024-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/hash/</loc>
+    
+    <lastmod>2024-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/KMP/</loc>
+    
+    <lastmod>2024-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/Probability_and_Computing/Probability_and_Computing/</loc>
+    
+    <lastmod>2024-12-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/AGC/AGC/</loc>
     
     <lastmod>2024-12-14</lastmod>
     
@@ -11,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://idtwtei.github.com/Probability_and_Computing/Probability_and_Computing/</loc>
+    <loc>http://idtwtei.github.com/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/</loc>
     
     <lastmod>2024-12-14</lastmod>
     
@@ -23,15 +77,6 @@
     <loc>http://idtwtei.github.com/Burnside/</loc>
     
     <lastmod>2024-12-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://idtwtei.github.com/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/AGC/AGC/</loc>
-    
-    <lastmod>2024-12-12</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,7 +103,7 @@
 
   <url>
     <loc>http://idtwtei.github.com/</loc>
-    <lastmod>2024-12-14</lastmod>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

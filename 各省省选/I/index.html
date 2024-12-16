@@ -9,13 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta property="og:type" content="article">
+    <meta name="description" content="HAOI2018[HAOI2018] 奇怪的背包猜测选择 $S$ 能在 $P$ 的意义下表示出 $w$ 当且仅当 $\gcd\{S_i,P\} | w$。证明若没有选择个数的限制，那么根据裴蜀定理可证。若选择某个 $S_i$ 的个数 $&lt;1$，将其加上 $P$ 即可。 直接暴力 DP，时间复杂度 $O(nd(P)\log P)$。数 $a_i$ 与 $\gcd(a_i,P)$ 等价，那么时间">
+<meta property="og:type" content="article">
 <meta property="og:title" content="I">
 <meta property="og:url" content="http://idtwtei.github.com/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/I/index.html">
 <meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="HAOI2018[HAOI2018] 奇怪的背包猜测选择 $S$ 能在 $P$ 的意义下表示出 $w$ 当且仅当 $\gcd\{S_i,P\} | w$。证明若没有选择个数的限制，那么根据裴蜀定理可证。若选择某个 $S_i$ 的个数 $&lt;1$，将其加上 $P$ 即可。 直接暴力 DP，时间复杂度 $O(nd(P)\log P)$。数 $a_i$ 与 $\gcd(a_i,P)$ 等价，那么时间">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-13T08:29:17.199Z">
-<meta property="article:modified_time" content="2024-12-13T08:29:28.806Z">
+<meta property="article:modified_time" content="2024-12-15T00:22:27.080Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -128,6 +130,10 @@
     </div>
     
     
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HAOI2018"><span class="toc-number">1.</span> <span class="toc-text">HAOI2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E5%A5%87%E6%80%AA%E7%9A%84%E8%83%8C%E5%8C%85"><span class="toc-number">1.1.</span> <span class="toc-text">[HAOI2018] 奇怪的背包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E5%8F%8D%E8%89%B2%E6%B8%B8%E6%88%8F"><span class="toc-number">1.2.</span> <span class="toc-text">[HAOI2018] 反色游戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E5%AD%97%E4%B8%B2%E8%A6%86%E7%9B%96"><span class="toc-number">1.3.</span> <span class="toc-text">[HAOI2018] 字串覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E8%8B%B9%E6%9E%9C%E6%A0%91"><span class="toc-number">1.4.</span> <span class="toc-text">[HAOI2018] 苹果树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E6%9F%93%E8%89%B2"><span class="toc-number">1.5.</span> <span class="toc-text">[HAOI2018] 染色</span></a></li></ol></li></ol>
+      </div>
+    
   </span>
 </div>
 
@@ -165,7 +171,15 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <!-- flag of hidden posts -->
+    <h2 id="HAOI2018"><a href="#HAOI2018" class="headerlink" title="HAOI2018"></a>HAOI2018</h2><h3 id="HAOI2018-奇怪的背包"><a href="#HAOI2018-奇怪的背包" class="headerlink" title="[HAOI2018] 奇怪的背包"></a>[HAOI2018] 奇怪的背包</h3><p>猜测选择 $S$ 能在 $P$ 的意义下表示出 $w$ 当且仅当 $\gcd\{S_i,P\} | w$。<br><strong>证明</strong><br>若没有选择个数的限制，那么根据裴蜀定理可证。<br>若选择某个 $S_i$ 的个数 $&lt;1$，将其加上 $P$ 即可。</p>
+<p>直接暴力 DP，时间复杂度 $O(nd(P)\log P)$。<br>数 $a_i$ 与 $\gcd(a_i,P)$ 等价，那么时间复杂度优化为 $O(d^2(P)\log P)$。</p>
+<p>回答询问时可以将 $w$ 变为 $\gcd(P,w)$，将 $P$ 的约数的答案预处理好即可。</p>
+<h3 id="HAOI2018-反色游戏"><a href="#HAOI2018-反色游戏" class="headerlink" title="[HAOI2018] 反色游戏"></a>[HAOI2018] 反色游戏</h3><p>若图不连通则对多个连通块分别考虑，将方案数乘起来。<br>每次黑点的个数变化为偶数，所以若图无解，那么当且仅当黑点的个数为奇数，否则可以用 dfs 生成树构造。<br>可以将限制写为异或方程组，那么答案为 $2^{自由元的个数}$。<br>建圆方树，对删掉的点分讨判断即可。</p>
+<h3 id="HAOI2018-字串覆盖"><a href="#HAOI2018-字串覆盖" class="headerlink" title="[HAOI2018] 字串覆盖"></a>[HAOI2018] 字串覆盖</h3><p>不会字符串，该学学了。</p>
+<h3 id="HAOI2018-苹果树"><a href="#HAOI2018-苹果树" class="headerlink" title="[HAOI2018] 苹果树"></a>[HAOI2018] 苹果树</h3><p>方案数为 $n!$。<br>考虑拆贡献，枚举 $i$ 表示考虑 $i \to fa_i$ 这条边，枚举 $j$ 表示 $i$ 子树的大小。<br>答案为</p>
+<script type="math/tex; mode=display">
+\sum_{i=2}^{n} \sum_{j=1}^{n-i+1} \binom{n-i}{j-1} j! j(n-j) i(i-1)(n-j-1)!</script><h3 id="HAOI2018-染色"><a href="#HAOI2018-染色" class="headerlink" title="[HAOI2018] 染色"></a>[HAOI2018] 染色</h3><p>二项式反演，出现次数恰好为 $S$ 的颜色至少为 $k$ 个是好计算的。那么就可以 $O(n^2)$。<br>可以用 NTT 优化，不会啊。</p>
+<!-- flag of hidden posts -->
   </div>
 </article>
 
@@ -191,6 +205,10 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HAOI2018"><span class="toc-number">1.</span> <span class="toc-text">HAOI2018</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E5%A5%87%E6%80%AA%E7%9A%84%E8%83%8C%E5%8C%85"><span class="toc-number">1.1.</span> <span class="toc-text">[HAOI2018] 奇怪的背包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E5%8F%8D%E8%89%B2%E6%B8%B8%E6%88%8F"><span class="toc-number">1.2.</span> <span class="toc-text">[HAOI2018] 反色游戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E5%AD%97%E4%B8%B2%E8%A6%86%E7%9B%96"><span class="toc-number">1.3.</span> <span class="toc-text">[HAOI2018] 字串覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E8%8B%B9%E6%9E%9C%E6%A0%91"><span class="toc-number">1.4.</span> <span class="toc-text">[HAOI2018] 苹果树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HAOI2018-%E6%9F%93%E8%89%B2"><span class="toc-number">1.5.</span> <span class="toc-text">[HAOI2018] 染色</span></a></li></ol></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -211,6 +229,8 @@
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
