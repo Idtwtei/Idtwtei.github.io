@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>分块</title>
+      <link href="/block/"/>
+      <url>/block/</url>
+      
+        <content type="html"><![CDATA[<h2 id="分块写法"><a href="#分块写法" class="headerlink" title="分块写法"></a>分块写法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> st(i) ((i-1)*len+1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ed(i) min(i*len,n)</span></span><br><span class="line">len=...; <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) bk[i]=(i<span class="number">-1</span>)/len<span class="number">+1</span>;</span><br></pre></td></tr></table></figure><p>块的编号：$1$ 到 $bk[n]$。</p><h2 id="序列分块"><a href="#序列分块" class="headerlink" title="序列分块"></a>序列分块</h2><h3 id="1-数列分块入门1-9"><a href="#1-数列分块入门1-9" class="headerlink" title="1.数列分块入门1-9"></a><a href="https://loj.ac/p?keyword=%E5%88%86%E5%9D%97">1.数列分块入门1-9</a></h3><h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4><p>区间加法，区间求和。</p><p>懒标记。<br>时间复杂度 $O(m\sqrt{n})$。</p><p>可以树状数组/线段树。</p><h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><p>区间加法，询问区间 $\le x$ 的元素个数。</p><p>块内排序，查询时二分。<br>时间复杂度 $O(m\sqrt{n}\log n)$。<br>归并排序+条块长可以做到 $O(m\sqrt{n\log n})$。</p><h4 id="6"><a href="#6" class="headerlink" title="6"></a>6</h4><p>单点插入，单点询问。</p><p>定期重构。</p><p>可以平衡树。</p><h4 id="9"><a href="#9" class="headerlink" title="9"></a>9</h4><p>区间众数。</p><p>一段区间的众数可能是中间块内的众数或两边散块的众数。</p><p>可以回滚莫队。</p><p><a href="/数列分块入门">code</a></p><h3 id="2-HNOI2010-弹飞绵羊"><a href="#2-HNOI2010-弹飞绵羊" class="headerlink" title="2.[HNOI2010] 弹飞绵羊"></a><a href="https://www.luogu.com.cn/problem/P3203">2.[HNOI2010] 弹飞绵羊</a></h3><p>每个块预处理每个元素走出本块需要的步数和到达的点。</p><h3 id="3-简单的数列题"><a href="#3-简单的数列题" class="headerlink" title="3.简单的数列题"></a><a href="https://loj.ac/p/6546">3.简单的数列题</a></h3><p>块内维护下凸壳。</p><h3 id="4-作诗"><a href="#4-作诗" class="headerlink" title="4.作诗"></a><a href="https://www.luogu.com.cn/problem/P4135">4.作诗</a></h3><p>维护前缀和，散块暴力判断。时间复杂度 $O(m\sqrt{n})$。</p><h3 id="5-Ynoi2019-模拟赛-Yuno-loves-sqrt-technology-III"><a href="#5-Ynoi2019-模拟赛-Yuno-loves-sqrt-technology-III" class="headerlink" title="5.[Ynoi2019 模拟赛] Yuno loves sqrt technology III"></a><a href="https://www.luogu.com.cn/problem/P5048">5.[Ynoi2019 模拟赛] Yuno loves sqrt technology III</a></h3><p>需要判断一个数在区间中出现次数是否 $&gt; k$，记录所有同类数的位置，判断即可。</p><h3 id="6-Ynoi2019-模拟赛-Yuno-loves-sqrt-technology-I"><a href="#6-Ynoi2019-模拟赛-Yuno-loves-sqrt-technology-I" class="headerlink" title="6.[Ynoi2019 模拟赛] Yuno loves sqrt technology I"></a><a href="https://www.luogu.com.cn/problem/P5046">6.[Ynoi2019 模拟赛] Yuno loves sqrt technology I</a></h3><p>归并。</p><h3 id="7-Chef-and-Churu"><a href="#7-Chef-and-Churu" class="headerlink" title="7.Chef and Churu"></a>7.Chef and Churu</h3><p>给你一个长为 $n$ 的序列和 $m$ 个区间，支持序列单点修改，查询范围区间和。</p><p>将区间分块，统计序列每个元素在每个块内的出现次数。块内的区间和可以简单维护。<br>对于散块，需要 $O(\sqrt{m})$ 次区间求和。对序列分块，维护序列前缀和。</p><h3 id="8-带插入区间K小值"><a href="#8-带插入区间K小值" class="headerlink" title="8.带插入区间K小值"></a><a href="https://www.luogu.com.cn/problem/P4278">8.带插入区间K小值</a></h3><p>aaa！！！</p><h2 id="树分块"><a href="#树分块" class="headerlink" title="树分块"></a>树分块</h2><h3 id="随机撒点"><a href="#随机撒点" class="headerlink" title="随机撒点"></a>随机撒点</h3><p><a href="https://www.luogu.com.cn/problem/P6177">1.Count on a tree II/【模板】树分块</a></p><h3 id="王室联邦分块"><a href="#王室联邦分块" class="headerlink" title="王室联邦分块"></a>王室联邦分块</h3><p><a href="https://www.luogu.com.cn/problem/P2325">1.[SCOI2005] 王室联邦</a></p><h3 id="基于-top-cluster-的树分块"><a href="#基于-top-cluster-的树分块" class="headerlink" title="基于 top cluster 的树分块"></a>基于 top cluster 的树分块</h3><p>。。。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.luogu.com/article/funv5guk">分块</a><br><a href="https://www.cnblogs.com/IzayoiMiku/p/14691521.html">树分块</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DLX</title>
       <link href="/DLX/"/>
       <url>/DLX/</url>
@@ -138,7 +151,7 @@
       <link href="/Probability_and_Computing/Probability_and_Computing/"/>
       <url>/Probability_and_Computing/Probability_and_Computing/</url>
       
-        <content type="html"><![CDATA[<p>希望不鸽</p><p><a href="../Notes/1">第一章 事件与概率</a> <a href="../Exercises/1">部分习题</a></p><p><a href="../Notes/2">第二章 离散型随机变量与期望</a> 习题摆了。</p><p><a href="../Notes/3">第三章 矩与离差</a></p><p><a href="../Notes/4">第四章 切尔诺夫界和霍夫丁界</a></p>]]></content>
+        <content type="html"><![CDATA[<p>希望不鸽。</p><p>进行一个书的抄。<del>甚至会抄错</del></p><p><a href="../Notes/1">第一章 事件与概率</a> <a href="../Exercises/1">部分习题</a></p><p><a href="../Notes/2">第二章 离散型随机变量与期望</a> 习题摆了。</p><p><a href="../Notes/3">第三章 矩与离差</a></p><p><a href="../Notes/4">第四章 切尔诺夫界和霍夫丁界</a></p>]]></content>
       
       
       
