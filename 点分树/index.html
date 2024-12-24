@@ -17,7 +17,7 @@
 <meta property="og:description" content="概述将点分治的过程离线下来，即将重心相连，可以形成一棵树，称作点分树。它有很好的性质  树的深度为 $O(\log n)$。 所有点子树大小为 $O(n\log n)$。 点分树上 $lca(u,v)$ 一定在原树 $u \leadsto v$ 上。  对于任意点 $u$，一般会用数据结构维护 $u$ 的子树的对 $u$ 信息，$u$ 的子树对 $fa_u$ 的信息。后者用于容斥。 例题1.【模板">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-20T00:04:47.746Z">
-<meta property="article:modified_time" content="2024-12-20T12:55:33.900Z">
+<meta property="article:modified_time" content="2024-12-24T17:06:04.011Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -201,8 +201,7 @@ ans &= \sum_{i}siz_i^2 \\
 <h3 id="5-Ynoi2011-成都七中"><a href="#5-Ynoi2011-成都七中" class="headerlink" title="5.[Ynoi2011] 成都七中"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5311">5.[Ynoi2011] 成都七中</a></h3><p>对于询问 $(l,r,u)$，可以将每个点到 $u$ 路径上的最大/小编号预处理出来，记为 $(x,y)$。<br>那么点 $(x,y)$ 与 $u$ 在同一个连通块当且仅当 $l \le x,y \le r$。扫一遍求解，时间复杂度 $O(mn)$。<br>只要 $u,v$ 在同一连通块中，那么 $(l,r,u)$ 与 $(l,r,v)$ 答案相同。<br>建出点分树，求出点分树上与 $u$ 在同一连通块的最浅点 $v$，此时询问变为 $(l,r,v)$，好处是点分树的子树和为 $O(n\log n)$。<br>对于 $v$ 的求解可以在点分树上暴力往上跳，用倍增维护路径最大/小编号，还可以预处理点分树上每个点到祖先节点路径的最大/小编号。<br>一个点会挂多个询问，离线树状数组求解，时间复杂度 $O(n\log^2n)$。</p>
 <h3 id="6-Iqea"><a href="#6-Iqea" class="headerlink" title="6.Iqea"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF936E">6.Iqea</a></h3><p>保证剩余部分也连通。<br>考虑将极长行连通块缩成一个点，将相邻点连边，形成一棵树。<br>树上动态加点，求距离最小点，考虑点分树。<br>考虑如何通过中间点计算答案，需要计算某点到特定连通块的距离，用 bfs。<br>拆式子，需要对连通块每个点维护前后缀最小值。</p>
 <h3 id="7-WC2014-紫荆花之恋"><a href="#7-WC2014-紫荆花之恋" class="headerlink" title="7.[WC2014] 紫荆花之恋"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3920">7.[WC2014] 紫荆花之恋</a></h3><p>需要每加入一个点时将与它相关的点对的数量求出来，再加入该点。<br>如果不强制在线，那么可以先建出点分树。需要支持加入，查询比 $v$ 小的数的个数。可以用平衡树。<br>还有一种根号分治的做法。维护两个 ‘vector’ A、B，在 $A$ 中暴力加入点 $v$，若 $|A| &gt; S$ 那么对 A,B 进行归并排序，将 A 清空。查询时在 A,B 中二分即可。<br>由于强制在线，考虑设计一个平衡因子 $\alpha$，若存在 $siz_u &gt; \alpha siz_{fa_u}$，那么将 $fa_u$ 的子树重构，这样来维持点分树的高度为 $O(\log n)$。取 $\alpha=0.9$ 较优。<br>取 $S=\sqrt{n}$ 可以做到 $O(n\sqrt{n}\log n)$。<br>实现上一堆细节，具体看代码。<br><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/84yw15yw">code</a></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/bscuomom">点分树</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/78277">ffffyc 的点分树学习题单</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/bscuomom">点分树</a><br><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/78277">ffffyc 的点分树学习题单</a></p>
 
   </div>
 </article>
