@@ -2,6 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://idtwtei.github.com/Probability_and_Computing/Probability_and_Computing/</loc>
+    
+    <lastmod>2024-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/AGC/AGC/</loc>
+    
+    <lastmod>2024-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/%E6%A8%A1%E6%8B%9F%E8%B4%B9%E7%94%A8%E6%B5%81/</loc>
+    
+    <lastmod>2024-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/%E8%89%B9/</loc>
+    
+    <lastmod>2024-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/</loc>
+    
+    <lastmod>2024-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://idtwtei.github.com/%E7%BD%91%E7%BB%9C%E6%B5%81/</loc>
     
     <lastmod>2024-12-24</lastmod>
@@ -164,24 +209,6 @@
   </url>
   
   <url>
-    <loc>http://idtwtei.github.com/AGC/AGC/</loc>
-    
-    <lastmod>2024-12-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://idtwtei.github.com/Probability_and_Computing/Probability_and_Computing/</loc>
-    
-    <lastmod>2024-12-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://idtwtei.github.com/block/</loc>
     
     <lastmod>2024-12-19</lastmod>
@@ -229,7 +256,7 @@
 
   <url>
     <loc>http://idtwtei.github.com/</loc>
-    <lastmod>2024-12-24</lastmod>
+    <lastmod>2024-12-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
