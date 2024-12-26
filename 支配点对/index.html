@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="概述有用的点对？ 例题1.Tree Distance点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。考虑对于每个点找到以其为 $d$ 最大值的点对。对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。先按编号排序，对于每个点找到前面&#x2F;后面第一个 $d$ 比它小的点">
+    <meta name="description" content="概述有用的点对？ 例题1.Tree Distance点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。 考虑对于每个点找到以其为 $d$ 最大值的点对。 对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。 先按编号排序，对于每个点找到前面&#x2F;后面第一个 $d$ 比它">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支配点对">
 <meta property="og:url" content="http://idtwtei.github.com/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="概述有用的点对？ 例题1.Tree Distance点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。考虑对于每个点找到以其为 $d$ 最大值的点对。对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。先按编号排序，对于每个点找到前面&#x2F;后面第一个 $d$ 比它小的点">
+<meta property="og:description" content="概述有用的点对？ 例题1.Tree Distance点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。 考虑对于每个点找到以其为 $d$ 最大值的点对。 对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。 先按编号排序，对于每个点找到前面&#x2F;后面第一个 $d$ 比它">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-22T01:32:31.378Z">
-<meta property="article:modified_time" content="2024-12-22T09:00:19.308Z">
+<meta property="article:modified_time" content="2024-12-26T01:53:12.161Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -135,7 +135,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Tree-Distance"><span class="toc-number">2.1.</span> <span class="toc-text">1.Tree Distance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Ynoi2008-rdCcot"><span class="toc-number">2.2.</span> <span class="toc-text">2.[Ynoi2008] rdCcot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Ynoi2003-%E9%93%83%E5%8E%9F%E9%9C%B2%E9%9C%B2"><span class="toc-number">2.3.</span> <span class="toc-text">3.[Ynoi2003] 铃原露露</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Tree-Distance"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.Tree Distance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Ynoi2008-rdCcot"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.[Ynoi2008] rdCcot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Ynoi2003-%E9%93%83%E5%8E%9F%E9%9C%B2%E9%9C%B2"><span class="toc-number">2.0.3.</span> <span class="toc-text">3.[Ynoi2003] 铃原露露</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
   </span>
@@ -176,16 +176,28 @@
 
   <div class="content e-content" itemprop="articleBody">
     <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>有用的点对？</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="1-Tree-Distance"><a href="#1-Tree-Distance" class="headerlink" title="1.Tree Distance"></a><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1053/problem/5148">1.Tree Distance</a></h3><p>点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。<br>考虑对于每个点找到以其为 $d$ 最大值的点对。<br>对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。<br>先按编号排序，对于每个点找到前面/后面第一个 $d$ 比它小的点，组成点对。<br>总共 $O(n\log n)$ 个支配点对。询问相当于二维偏序，扫描线+线段树即可，时间复杂度 $O(n\log^2n)$。</p>
-<h3 id="2-Ynoi2008-rdCcot"><a href="#2-Ynoi2008-rdCcot" class="headerlink" title="2.[Ynoi2008] rdCcot"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7126">2.[Ynoi2008] rdCcot</a></h3><p>每个 C-块 取 bfs 序最小点作为代表元。<br>按编号排序，对每个点求出 $L_i,R_i$ 分别为其左右两边第一个 bfs 序比它小且能与它 C 连通的点。<br>询问 $[l,r]$ 的答案为 $\sum_{i=l}^{r} [L_i&lt;l][r&lt;R_i]$，扫描线解决。<br>对于 $L,R$ 的求解，由于与距离有关，用点分治，将子树节点按 bfs 序扫描线，线段树二分求出 $L_i,R_i$ 即可。</p>
-<h3 id="3-Ynoi2003-铃原露露"><a href="#3-Ynoi2003-铃原露露" class="headerlink" title="3.[Ynoi2003] 铃原露露"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8528">3.[Ynoi2003] 铃原露露</a></h3><p>将节点编号按 $a$ 排序。若区间满足题面中 $[L,R]$ 的限制，那么它是合法的。对于 $(x,y,lca(x,y))$</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-Tree-Distance"><a href="#1-Tree-Distance" class="headerlink" title="1.Tree Distance"></a><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1053/problem/5148">1.Tree Distance</a></h4><p>点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。</p>
+<p>考虑对于每个点找到以其为 $d$ 最大值的点对。</p>
+<p>对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。</p>
+<p>先按编号排序，对于每个点找到前面/后面第一个 $d$ 比它小的点，组成点对。</p>
+<p>总共 $O(n\log n)$ 个支配点对。询问相当于二维偏序，扫描线+线段树即可，时间复杂度 $O(n\log^2n)$。</p>
+<h4 id="2-Ynoi2008-rdCcot"><a href="#2-Ynoi2008-rdCcot" class="headerlink" title="2.[Ynoi2008] rdCcot"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7126">2.[Ynoi2008] rdCcot</a></h4><p>每个 C-块 取 bfs 序最小点作为代表元。</p>
+<p>按编号排序，对每个点求出 $L_i,R_i$ 分别为其左右两边第一个 bfs 序比它小且能与它 C 连通的点。</p>
+<p>询问 $[l,r]$ 的答案为 $\sum_{i=l}^{r} [L_i&lt;l][r&lt;R_i]$，扫描线解决。</p>
+<p>对于 $L,R$ 的求解，由于与距离有关，用点分治，将子树节点按 bfs 序扫描线，线段树二分求出 $L_i,R_i$ 即可。</p>
+<h4 id="3-Ynoi2003-铃原露露"><a href="#3-Ynoi2003-铃原露露" class="headerlink" title="3.[Ynoi2003] 铃原露露"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8528">3.[Ynoi2003] 铃原露露</a></h4><p>将节点编号按 $a$ 排序。若区间满足题面中 $[L,R]$ 的限制，那么它是合法的。对于 $(x,y,lca(x,y))$</p>
 <ul>
-<li>若 $lca(x,y) \in [x,y]$ 无影响。</li>
-<li>若 $lca(x,y)&lt;x$ 那么区间 $[l,r] (l \in (lca(x,y),x],r \in [y,n])$ 是不合法的。</li>
-<li>若 $y&lt;lca(x,y)$ 那么区间 $[l,r] (l \in [1,x],r \in [y,lca(x,y)))$ 是不合法的。</li>
+<li><p>若 $lca(x,y) \in [x,y]$ 无影响。</p>
+</li>
+<li><p>若 $lca(x,y)&lt;x$ 那么区间 $[l,r] (l \in (lca(x,y),x],r \in [y,n])$ 是不合法的。</p>
+</li>
+<li><p>若 $y&lt;lca(x,y)$ 那么区间 $[l,r] (l \in [1,x],r \in [y,lca(x,y)))$ 是不合法的。</p>
+</li>
 </ul>
-<p>相当于二维区间加，查询二维区间 $=0$ 的元素个数。<br>扫描线，线段树维护区间最小值及其个数，历史 $=0$ 的元素个数，查询区间历史和。</p>
-<p>对于这种与 lca 有关的点对求解，一般用 dsu on tree 钦定 lca 求解。<br>对于特定的 $x$，取前驱后继作为 $y$ 即可，总共 $O(n\log n)$ 个支配点对。</p>
+<p>相当于二维区间加，查询二维区间 $=0$ 的元素个数。</p>
+<p>扫描线，线段树维护区间最小值及其个数，历史 $=0$ 的元素个数，查询区间历史和。</p>
+<p>对于这种与 lca 有关的点对求解，一般用 dsu on tree 钦定 lca 求解。</p>
+<p>对于特定的 $x$，取前驱后继作为 $y$ 即可，总共 $O(n\log n)$ 个支配点对。</p>
 <p>时间复杂度 $O(n\log^2n)$。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/TetrisCandy/p/18095815">支配点对</a></p>
 
@@ -215,7 +227,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Tree-Distance"><span class="toc-number">2.1.</span> <span class="toc-text">1.Tree Distance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Ynoi2008-rdCcot"><span class="toc-number">2.2.</span> <span class="toc-text">2.[Ynoi2008] rdCcot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Ynoi2003-%E9%93%83%E5%8E%9F%E9%9C%B2%E9%9C%B2"><span class="toc-number">2.3.</span> <span class="toc-text">3.[Ynoi2003] 铃原露露</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Tree-Distance"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.Tree Distance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Ynoi2008-rdCcot"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.[Ynoi2008] rdCcot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Ynoi2003-%E9%93%83%E5%8E%9F%E9%9C%B2%E9%9C%B2"><span class="toc-number">2.0.3.</span> <span class="toc-text">3.[Ynoi2003] 铃原露露</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
 

@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[AGC004E] Salvage Robots考虑移动 E 和边界。记录 E 向左右上下移动的最大距离即可，每次向四个方向转移。将第一维滚掉，时间复杂度 $O(n^4)$，空间复杂度 $O(n^3)$。 [AGC004F] Namori所给图是树或者基环树。 树将树黑白染色，那么每次操作后黑白点的数量不变。最终要使得黑白点的位置互换。将黑白点分别视为 $1,-1$，每个节点计算子树和 $a_i$">
+    <meta name="description" content="[AGC004E] Salvage Robots考虑移动 E 和边界。 记录 E 向左右上下移动的最大距离即可，每次向四个方向转移。 将第一维滚掉，时间复杂度 $O(n^4)$，空间复杂度 $O(n^3)$。 [AGC004F] Namori所给图是树或者基环树。 树将树黑白染色，那么每次操作后黑白点的数量不变。最终要使得黑白点的位置互换。 将黑白点分别视为 $1,-1$，每个节点计算子树和 $a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AGC004">
 <meta property="og:url" content="http://idtwtei.github.com/AGC/AGC004/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="[AGC004E] Salvage Robots考虑移动 E 和边界。记录 E 向左右上下移动的最大距离即可，每次向四个方向转移。将第一维滚掉，时间复杂度 $O(n^4)$，空间复杂度 $O(n^3)$。 [AGC004F] Namori所给图是树或者基环树。 树将树黑白染色，那么每次操作后黑白点的数量不变。最终要使得黑白点的位置互换。将黑白点分别视为 $1,-1$，每个节点计算子树和 $a_i$">
+<meta property="og:description" content="[AGC004E] Salvage Robots考虑移动 E 和边界。 记录 E 向左右上下移动的最大距离即可，每次向四个方向转移。 将第一维滚掉，时间复杂度 $O(n^4)$，空间复杂度 $O(n^3)$。 [AGC004F] Namori所给图是树或者基环树。 树将树黑白染色，那么每次操作后黑白点的数量不变。最终要使得黑白点的位置互换。 将黑白点分别视为 $1,-1$，每个节点计算子树和 $a">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-14T09:10:14.752Z">
-<meta property="article:modified_time" content="2024-12-14T11:55:14.658Z">
+<meta property="article:modified_time" content="2024-12-26T02:03:03.592Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -171,10 +171,16 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="AGC004E-Salvage-Robots"><a href="#AGC004E-Salvage-Robots" class="headerlink" title="[AGC004E] Salvage Robots"></a>[AGC004E] Salvage Robots</h2><p>考虑移动 E 和边界。<br>记录 E 向左右上下移动的最大距离即可，每次向四个方向转移。<br>将第一维滚掉，时间复杂度 $O(n^4)$，空间复杂度 $O(n^3)$。</p>
+    <h2 id="AGC004E-Salvage-Robots"><a href="#AGC004E-Salvage-Robots" class="headerlink" title="[AGC004E] Salvage Robots"></a>[AGC004E] Salvage Robots</h2><p>考虑移动 E 和边界。</p>
+<p>记录 E 向左右上下移动的最大距离即可，每次向四个方向转移。</p>
+<p>将第一维滚掉，时间复杂度 $O(n^4)$，空间复杂度 $O(n^3)$。</p>
 <h2 id="AGC004F-Namori"><a href="#AGC004F-Namori" class="headerlink" title="[AGC004F] Namori"></a>[AGC004F] Namori</h2><p>所给图是树或者基环树。</p>
-<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>将树黑白染色，那么每次操作后黑白点的数量不变。最终要使得黑白点的位置互换。<br>将黑白点分别视为 $1,-1$，每个节点计算子树和 $a_i$。<br>需要满足 $a_1=0$ 否则不合法。<br>答案的下界为 $\sum_{i=2}^{n} |a_i|$，这也是可以达到的。</p>
-<h3 id="偶环基环树"><a href="#偶环基环树" class="headerlink" title="偶环基环树"></a>偶环基环树</h3><p>取出环上一边 $(u,v)$，设 $u \to v$ 使用了 $x$ 次（负数就是 $v \to u$）。<br>考虑对 $a$ 的贡献，$a$ 形如 $|x+c|$，$x$ 取中位数得到答案的最小值。</p>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>将树黑白染色，那么每次操作后黑白点的数量不变。最终要使得黑白点的位置互换。</p>
+<p>将黑白点分别视为 $1,-1$，每个节点计算子树和 $a_i$。</p>
+<p>需要满足 $a_1=0$ 否则不合法。</p>
+<p>答案的下界为 $\sum_{i=2}^{n} |a_i|$，这也是可以达到的。</p>
+<h3 id="偶环基环树"><a href="#偶环基环树" class="headerlink" title="偶环基环树"></a>偶环基环树</h3><p>取出环上一边 $(u,v)$，设 $u \to v$ 使用了 $x$ 次（负数就是 $v \to u$）。</p>
+<p>考虑对 $a$ 的贡献，$a$ 形如 $|x+c|$，$x$ 取中位数得到答案的最小值。</p>
 <h3 id="奇环基环树"><a href="#奇环基环树" class="headerlink" title="奇环基环树"></a>奇环基环树</h3><p>取出染色后端点同色的边，对它操作会改变黑白点的数量，那么对它的操作次数是定值，将其删掉用树的做法即可。</p>
 <!-- flag of hidden posts -->
   </div>

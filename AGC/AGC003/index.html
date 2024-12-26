@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[AGC003E] Sequential operations on Sequence有用的操作形成了一个单调递增的序列。每次操作会将前面的序列复制几遍再加上一个取模的结果。考虑记录每个序列被复制几遍，对于剩下的，找到前面第一个比它小的操作，与前面类似，没有比它小的就区间加上一个值，用差分实现。时间复杂度 $O(n\log^2 n)$。 [AGC003F] Fraction of Fractal能">
+    <meta name="description" content="[AGC003E] Sequential operations on Sequence有用的操作形成了一个单调递增的序列。 每次操作会将前面的序列复制几遍再加上一个取模的结果。 考虑记录每个序列被复制几遍，对于剩下的，找到前面第一个比它小的操作，与前面类似，没有比它小的就区间加上一个值，用差分实现。 时间复杂度 $O(n\log^2 n)$。 [AGC003F] Fraction of Fract">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AGC003">
 <meta property="og:url" content="http://idtwtei.github.com/AGC/AGC003/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="[AGC003E] Sequential operations on Sequence有用的操作形成了一个单调递增的序列。每次操作会将前面的序列复制几遍再加上一个取模的结果。考虑记录每个序列被复制几遍，对于剩下的，找到前面第一个比它小的操作，与前面类似，没有比它小的就区间加上一个值，用差分实现。时间复杂度 $O(n\log^2 n)$。 [AGC003F] Fraction of Fractal能">
+<meta property="og:description" content="[AGC003E] Sequential operations on Sequence有用的操作形成了一个单调递增的序列。 每次操作会将前面的序列复制几遍再加上一个取模的结果。 考虑记录每个序列被复制几遍，对于剩下的，找到前面第一个比它小的操作，与前面类似，没有比它小的就区间加上一个值，用差分实现。 时间复杂度 $O(n\log^2 n)$。 [AGC003F] Fraction of Fract">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-12T02:07:34.105Z">
-<meta property="article:modified_time" content="2024-12-13T08:18:48.200Z">
+<meta property="article:modified_time" content="2024-12-26T02:02:47.982Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -171,9 +171,15 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="AGC003E-Sequential-operations-on-Sequence"><a href="#AGC003E-Sequential-operations-on-Sequence" class="headerlink" title="[AGC003E] Sequential operations on Sequence"></a>[AGC003E] Sequential operations on Sequence</h2><p>有用的操作形成了一个单调递增的序列。<br>每次操作会将前面的序列复制几遍再加上一个取模的结果。<br>考虑记录每个序列被复制几遍，对于剩下的，找到前面第一个比它小的操作，与前面类似，没有比它小的就区间加上一个值，用差分实现。<br>时间复杂度 $O(n\log^2 n)$。</p>
+    <h2 id="AGC003E-Sequential-operations-on-Sequence"><a href="#AGC003E-Sequential-operations-on-Sequence" class="headerlink" title="[AGC003E] Sequential operations on Sequence"></a>[AGC003E] Sequential operations on Sequence</h2><p>有用的操作形成了一个单调递增的序列。</p>
+<p>每次操作会将前面的序列复制几遍再加上一个取模的结果。</p>
+<p>考虑记录每个序列被复制几遍，对于剩下的，找到前面第一个比它小的操作，与前面类似，没有比它小的就区间加上一个值，用差分实现。</p>
+<p>时间复杂度 $O(n\log^2 n)$。</p>
 <h2 id="AGC003F-Fraction-of-Fractal"><a href="#AGC003F-Fraction-of-Fractal" class="headerlink" title="[AGC003F] Fraction of Fractal"></a>[AGC003F] Fraction of Fractal</h2><p>能不能自己好好想想，别天天看题解。</p>
-<p>对于上下左右都不能连通的图形，答案为 $(\#个数)^{K-1}$。<br>对于上下左右都能连通的图形，答案为 $1$。<br>对于剩下的，发现每次分形后的连通块个数为 $(原\#个数-原对应方向相邻的\#个数)$。<br>这两个用矩阵快速幂计算即可，时间复杂度 $O(nm+2^3\log K)$。</p>
+<p>对于上下左右都不能连通的图形，答案为 $(\#个数)^{K-1}$。</p>
+<p>对于上下左右都能连通的图形，答案为 $1$。</p>
+<p>对于剩下的，发现每次分形后的连通块个数为 $(原\#个数-原对应方向相邻的\#个数)$。</p>
+<p>这两个用矩阵快速幂计算即可，时间复杂度 $O(nm+2^3\log K)$。</p>
 <!-- flag of hidden posts -->
   </div>
 </article>

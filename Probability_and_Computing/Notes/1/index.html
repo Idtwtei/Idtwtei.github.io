@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="验证多项式恒等式想要验证 $\prod_{i&#x3D;1}^{n} (x-a_i) &#x3D; \prod_{i&#x3D;0}^{n} b_ix$ 是否成立。 显然可以将左式求出，然后逐位比较，时间复杂度 $O(n^2)$。 考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后给">
+    <meta name="description" content="验证多项式恒等式想要验证 $\prod_{i&#x3D;1}^{n} (x-a_i) &#x3D; \prod_{i&#x3D;0}^{n} b_ix$ 是否成立。 显然可以将左式求出，然后逐位比较，时间复杂度 $O(n^2)$。 考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。 由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第一章 事件与概率">
 <meta property="og:url" content="http://idtwtei.github.com/Probability_and_Computing/Notes/1/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="验证多项式恒等式想要验证 $\prod_{i&#x3D;1}^{n} (x-a_i) &#x3D; \prod_{i&#x3D;0}^{n} b_ix$ 是否成立。 显然可以将左式求出，然后逐位比较，时间复杂度 $O(n^2)$。 考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后给">
+<meta property="og:description" content="验证多项式恒等式想要验证 $\prod_{i&#x3D;1}^{n} (x-a_i) &#x3D; \prod_{i&#x3D;0}^{n} b_ix$ 是否成立。 显然可以将左式求出，然后逐位比较，时间复杂度 $O(n^2)$。 考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。 由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-10T12:40:23.850Z">
-<meta property="article:modified_time" content="2024-12-11T12:28:01.681Z">
+<meta property="article:modified_time" content="2024-12-26T02:05:32.225Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -173,19 +173,28 @@
   <div class="content e-content" itemprop="articleBody">
     <h2 id="验证多项式恒等式"><a href="#验证多项式恒等式" class="headerlink" title="验证多项式恒等式"></a>验证多项式恒等式</h2><p>想要验证 $\prod_{i=1}^{n} (x-a_i) = \prod_{i=0}^{n} b_ix$ 是否成立。</p>
 <p>显然可以将左式求出，然后逐位比较，时间复杂度 $O(n^2)$。</p>
-<p>考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。<br>由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后给出错误结果的概率 $\le \frac{1}{100}$。</p>
+<p>考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。</p>
+<p>由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后给出错误结果的概率 $\le \frac{1}{100}$。</p>
 <h2 id="验证矩阵乘法"><a href="#验证矩阵乘法" class="headerlink" title="验证矩阵乘法"></a>验证矩阵乘法</h2><p><a target="_blank" rel="noopener" href="https://hydro.ac/p/bzoj-P2396">神奇的矩阵</a></p>
 <p>显然可以 $O(n^3)$。</p>
-<p>考虑每次随机一个向量 $v$，判断 $ABv = Cv$ 是否成立。<br>若在 $\mod V$ 意义下进行，可以证明一次测试得到错误答案的概率 $\le \frac{1}{V}$。</p>
-<p><strong>证明：</strong><br>考虑计算测试成立但原式不成立的概率。<br>设 $D = AB - C$，那么 $ABv = Cv$ 等价于 $Dv = 0$。<br>不妨设 $d_{1,1} \ne 0$，有 $v_1 = -\frac{\sum_{i=2}^{n} d_{1,i}v_{i}}{d_{1,1}}$。由于值域为 $V$，故该式成立的概率为 $\frac{1}{V}$。</p>
+<p>考虑每次随机一个向量 $v$，判断 $ABv = Cv$ 是否成立。</p>
+<p>若在 $\mod V$ 意义下进行，可以证明一次测试得到错误答案的概率 $\le \frac{1}{V}$。</p>
+<p><strong>证明</strong></p>
+<p>考虑计算测试成立但原式不成立的概率。</p>
+<p>设 $D = AB - C$，那么 $ABv = Cv$ 等价于 $Dv = 0$。</p>
+<p>不妨设 $d_{1,1} \ne 0$，有 $v_1 = -\frac{\sum_{i=2}^{n} d_{1,i}v_{i}}{d_{1,1}}$。由于值域为 $V$，故该式成立的概率为 $\frac{1}{V}$。</p>
 <h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>设 $E_1,E_2,…,E_n$ 是样本空间中互不相交的事件，且 $\cup_{i=1}^{n} E_i = \Omega$，则有</p>
 <script type="math/tex; mode=display">
 \begin{align}
 Pr(E_{i}|B) &= \frac{Pr(E_i \cap B)}{Pr(B)} \\
 &= \frac{Pr(B|E_i)Pr(E_i)}{\sum_{j=1}^{n} Pr(B|E_j)Pr(E_j)}
 \end{align}</script><h2 id="最小割随机算法"><a href="#最小割随机算法" class="headerlink" title="最小割随机算法"></a>最小割随机算法</h2><p>给你一张无向图，求其最小割。</p>
-<p>考虑每次随机缩掉一条边，随机 $n-2$ 次后，图中只剩两个点集，一个割集就是端点在不同集合的边的集合。<br>可以证明算法输出正确结果的概率 $\ge \frac{2}{n(n-1)}$。</p>
-<p><strong>证明</strong><br>重要事实是若最小割集的大小为 $k$，那么所有点的度数 $\ge k$。<br>记 $C$ 为最小割集，将 $C$ 删去后形成 $S$ 和 $T$ 两个点集，$E_{i}$ 为第 $i$ 次缩边不在 $C$ 中，需要计算 $Pr(E_1,E_2,…,E_{n-2})$。<br>根据重要事实，有</p>
+<p>考虑每次随机缩掉一条边，随机 $n-2$ 次后，图中只剩两个点集，一个割集就是端点在不同集合的边的集合。</p>
+<p>可以证明算法输出正确结果的概率 $\ge \frac{2}{n(n-1)}$。</p>
+<p><strong>证明</strong></p>
+<p>重要事实是若最小割集的大小为 $k$，那么所有点的度数 $\ge k$。</p>
+<p>记 $C$ 为最小割集，将 $C$ 删去后形成 $S$ 和 $T$ 两个点集，$E_{i}$ 为第 $i$ 次缩边不在 $C$ 中，需要计算 $Pr(E_1,E_2,…,E_{n-2})$。</p>
+<p>根据重要事实，有</p>
 <script type="math/tex; mode=display">
 \begin{align}
 Pr(E_{i}|E_{1},E_{2},...,E_{i-1}) &\ge 1-\frac{k}{k(n-i+1)/2} \\

@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[AGC009C] Division into Two排序，可以简单 $O(n^2)$。需要第二维区间赋值，区间求和，用线段树维护。时间复杂度 $O(n\log n)$。 不妨设 $A \le B$，若答案不为 $0$，那么一定有 $a_{i+2}-a_{i} \ge A$。考虑枚举 $Y$ 集合的元素转移，因为 $A$ 的限制只体现在相邻元素。动态维护前缀和即可，时间复杂度 $O(n)$。 [A">
+    <meta name="description" content="[AGC009C] Division into Two排序，可以简单 $O(n^2)$。需要第二维区间赋值，区间求和，用线段树维护。时间复杂度 $O(n\log n)$。 不妨设 $A \le B$，若答案不为 $0$，那么一定有 $a_{i+2}-a_{i} \ge A$。 考虑枚举 $Y$ 集合的元素转移，因为 $A$ 的限制只体现在相邻元素。动态维护前缀和即可，时间复杂度 $O(n)$。 [">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AGC009">
 <meta property="og:url" content="http://idtwtei.github.com/AGC/AGC009/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="[AGC009C] Division into Two排序，可以简单 $O(n^2)$。需要第二维区间赋值，区间求和，用线段树维护。时间复杂度 $O(n\log n)$。 不妨设 $A \le B$，若答案不为 $0$，那么一定有 $a_{i+2}-a_{i} \ge A$。考虑枚举 $Y$ 集合的元素转移，因为 $A$ 的限制只体现在相邻元素。动态维护前缀和即可，时间复杂度 $O(n)$。 [A">
+<meta property="og:description" content="[AGC009C] Division into Two排序，可以简单 $O(n^2)$。需要第二维区间赋值，区间求和，用线段树维护。时间复杂度 $O(n\log n)$。 不妨设 $A \le B$，若答案不为 $0$，那么一定有 $a_{i+2}-a_{i} \ge A$。 考虑枚举 $Y$ 集合的元素转移，因为 $A$ 的限制只体现在相邻元素。动态维护前缀和即可，时间复杂度 $O(n)$。 [">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-25T14:17:53.167Z">
-<meta property="article:modified_time" content="2024-12-25T14:59:34.746Z">
+<meta property="article:modified_time" content="2024-12-26T02:03:40.390Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -172,8 +172,10 @@
 
   <div class="content e-content" itemprop="articleBody">
     <h2 id="AGC009C-Division-into-Two"><a href="#AGC009C-Division-into-Two" class="headerlink" title="[AGC009C] Division into Two"></a>[AGC009C] Division into Two</h2><p>排序，可以简单 $O(n^2)$。需要第二维区间赋值，区间求和，用线段树维护。时间复杂度 $O(n\log n)$。</p>
-<p>不妨设 $A \le B$，若答案不为 $0$，那么一定有 $a_{i+2}-a_{i} \ge A$。<br>考虑枚举 $Y$ 集合的元素转移，因为 $A$ 的限制只体现在相邻元素。动态维护前缀和即可，时间复杂度 $O(n)$。</p>
-<h2 id="AGC009D-Uninity"><a href="#AGC009D-Uninity" class="headerlink" title="[AGC009D] Uninity"></a>[AGC009D] Uninity</h2><p>求点分树深度的最小值。对每个点填一个数表示点分树上到叶子节点的最大距离。填数合法当且仅当对于值相同的两个点 $u,v$，$u \to v$ 上存在值更大的点。<br>考虑从叶子贪心，每次填能填的最小值。答案为 $O(\log n)$，计个桶表示每个值的是否剩下未匹配的点来判断是否合法即可。时间复杂度 $O(n\log n)$。</p>
+<p>不妨设 $A \le B$，若答案不为 $0$，那么一定有 $a_{i+2}-a_{i} \ge A$。</p>
+<p>考虑枚举 $Y$ 集合的元素转移，因为 $A$ 的限制只体现在相邻元素。动态维护前缀和即可，时间复杂度 $O(n)$。</p>
+<h2 id="AGC009D-Uninity"><a href="#AGC009D-Uninity" class="headerlink" title="[AGC009D] Uninity"></a>[AGC009D] Uninity</h2><p>求点分树深度的最小值。对每个点填一个数表示点分树上到叶子节点的最大距离。填数合法当且仅当对于值相同的两个点 $u,v$，$u \to v$ 上存在值更大的点。</p>
+<p>考虑从叶子贪心，每次填能填的最小值。答案为 $O(\log n)$，计个桶表示每个值的是否剩下未匹配的点来判断是否合法即可。时间复杂度 $O(n\log n)$。</p>
 <h2 id="AGC009E-Eternal-Average"><a href="#AGC009E-Eternal-Average" class="headerlink" title="[AGC009E] Eternal Average"></a>[AGC009E] Eternal Average</h2><p>转化为 k 叉树，又转化为 k 进制数。</p>
 <!-- flag of hidden posts -->
   </div>
