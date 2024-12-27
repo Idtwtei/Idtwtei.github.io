@@ -12,7 +12,7 @@
     <meta name="description" content="概述图上游走问题。 邻接矩阵的 $k$ 次幂为图上通过 $k$ 条边到达的方案数。 矩阵乘向量的时间复杂度为 $O(n^2)$。对于求 $\vec vA^k$，可以预处理  A^1,A^2,...,A^{B} \\ A^{B},A^{B^2},...,A^{B^{\log_B k}}时间复杂度 $O(n^3(B+\log_B k))-O(n^2\log_B k)$。 参考矩阵加速图上问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵加速图上问题">
-<meta property="og:url" content="http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="概述图上游走问题。 邻接矩阵的 $k$ 次幂为图上通过 $k$ 条边到达的方案数。 矩阵乘向量的时间复杂度为 $O(n^2)$。对于求 $\vec vA^k$，可以预处理  A^1,A^2,...,A^{B} \\ A^{B},A^{B^2},...,A^{B^{\log_B k}}时间复杂度 $O(n^3(B+\log_B k))-O(n^2\log_B k)$。 参考矩阵加速图上问题">
 <meta property="og:locale" content="zh_CN">
@@ -118,17 +118,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&text=矩阵加速图上问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&is_video=false&description=矩阵加速图上问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=矩阵加速图上问题&body=Check out this article: http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&name=矩阵加速图上问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&t=矩阵加速图上问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&text=矩阵加速图上问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&is_video=false&description=矩阵加速图上问题"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=矩阵加速图上问题&body=Check out this article: http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&name=矩阵加速图上问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&t=矩阵加速图上问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -215,17 +215,17 @@ A^{B},A^{B^2},...,A^{B^{\log_B k}}</script><p>时间复杂度 $O(n^3(B+\log_B k)
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&text=矩阵加速图上问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&is_video=false&description=矩阵加速图上问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=矩阵加速图上问题&body=Check out this article: http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&name=矩阵加速图上问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&t=矩阵加速图上问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&text=矩阵加速图上问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&is_video=false&description=矩阵加速图上问题"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=矩阵加速图上问题&body=Check out this article: http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&name=矩阵加速图上问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&t=矩阵加速图上问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

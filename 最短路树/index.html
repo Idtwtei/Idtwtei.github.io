@@ -12,7 +12,7 @@
     <meta name="description" content="概述原图的一棵生成树，满足每个点到源点的最短路长度等于生成树中每个点到根节点的距离。 在 dij 过程中找每个点的前驱即可。 将所有满足 $dis_v&#x3D;dis_u+w$ 的边 $(u \to v)$ 加入，得到最短路 DAG，最短路 DAG 的生成树为最短路树。 例题1.Paths and Trees直接贪心。 2.Edge Deletion。。。 3.Berland and the Shorte">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最短路树">
-<meta property="og:url" content="http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="概述原图的一棵生成树，满足每个点到源点的最短路长度等于生成树中每个点到根节点的距离。 在 dij 过程中找每个点的前驱即可。 将所有满足 $dis_v&#x3D;dis_u+w$ 的边 $(u \to v)$ 加入，得到最短路 DAG，最短路 DAG 的生成树为最短路树。 例题1.Paths and Trees直接贪心。 2.Edge Deletion。。。 3.Berland and the Shorte">
 <meta property="og:locale" content="zh_CN">
@@ -118,17 +118,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&text=最短路树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&is_video=false&description=最短路树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=最短路树&body=Check out this article: http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&name=最短路树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&t=最短路树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&text=最短路树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&is_video=false&description=最短路树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=最短路树&body=Check out this article: http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&name=最短路树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&t=最短路树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -220,17 +220,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&text=最短路树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&is_video=false&description=最短路树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=最短路树&body=Check out this article: http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&name=最短路树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&t=最短路树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&text=最短路树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&is_video=false&description=最短路树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=最短路树&body=Check out this article: http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&title=最短路树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&name=最短路树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/&t=最短路树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

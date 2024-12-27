@@ -12,7 +12,7 @@
     <meta name="description" content="二分答案转化为判定性问题。 若没有不能回头走的限制，那么可以维护所有已经经过的点，选择 $a$ 最小的邻点扩展。 加上限制后我们仍维护已经遍历到的节点，记节点集合为 $S$，此时力量值为 $初值+\sum_{i \in S} b_i$，考虑怎样进行扩展。  存在合法路径 $x \to p_1 \to p_2 \to … \to p_k \to y$ 满足 $x,y \in S,p_i \notin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF1558E Down Below 题解">
-<meta property="og:url" content="http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="二分答案转化为判定性问题。 若没有不能回头走的限制，那么可以维护所有已经经过的点，选择 $a$ 最小的邻点扩展。 加上限制后我们仍维护已经遍历到的节点，记节点集合为 $S$，此时力量值为 $初值+\sum_{i \in S} b_i$，考虑怎样进行扩展。  存在合法路径 $x \to p_1 \to p_2 \to … \to p_k \to y$ 满足 $x,y \in S,p_i \notin">
 <meta property="og:locale" content="zh_CN">
@@ -118,17 +118,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&text=CF1558E Down Below 题解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&is_video=false&description=CF1558E Down Below 题解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CF1558E Down Below 题解&body=Check out this article: http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&name=CF1558E Down Below 题解&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&t=CF1558E Down Below 题解"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&text=CF1558E Down Below 题解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&is_video=false&description=CF1558E Down Below 题解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1558E Down Below 题解&body=Check out this article: http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&name=CF1558E Down Below 题解&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&t=CF1558E Down Below 题解"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -211,17 +211,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&text=CF1558E Down Below 题解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&is_video=false&description=CF1558E Down Below 题解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CF1558E Down Below 题解&body=Check out this article: http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&name=CF1558E Down Below 题解&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E9%A2%98%E8%A7%A3/CF1558E/&t=CF1558E Down Below 题解"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&text=CF1558E Down Below 题解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&is_video=false&description=CF1558E Down Below 题解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1558E Down Below 题解&body=Check out this article: http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&title=CF1558E Down Below 题解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&name=CF1558E Down Below 题解&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1558E/&t=CF1558E Down Below 题解"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

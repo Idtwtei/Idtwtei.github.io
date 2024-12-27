@@ -12,7 +12,7 @@
     <meta name="description" content="楼房重建转化为单点修改，求前缀最大值的数量。 分块可以做到 $O(n\sqrt{n\log n})$。 建线段树，对于每个节点维护区间前缀最大值的数量 $len$ 和区间最大值 $mx$。考虑节点的合并，只要能快速求出 $calc(id,v)$ 表示在节点 $id$ 中，以 $v$ 开始的前缀最大值的数量即可。  若 $id$ 为叶子节点，判断 $mx$ 与 $v$ 的大小即可。 若 $id$ 不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单侧递归线段树">
-<meta property="og:url" content="http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="楼房重建转化为单点修改，求前缀最大值的数量。 分块可以做到 $O(n\sqrt{n\log n})$。 建线段树，对于每个节点维护区间前缀最大值的数量 $len$ 和区间最大值 $mx$。考虑节点的合并，只要能快速求出 $calc(id,v)$ 表示在节点 $id$ 中，以 $v$ 开始的前缀最大值的数量即可。  若 $id$ 为叶子节点，判断 $mx$ 与 $v$ 的大小即可。 若 $id$ 不">
 <meta property="og:locale" content="zh_CN">
@@ -114,17 +114,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&text=单侧递归线段树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&is_video=false&description=单侧递归线段树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=单侧递归线段树&body=Check out this article: http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&name=单侧递归线段树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&t=单侧递归线段树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&text=单侧递归线段树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&is_video=false&description=单侧递归线段树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=单侧递归线段树&body=Check out this article: http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&name=单侧递归线段树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&t=单侧递归线段树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -261,17 +261,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&text=单侧递归线段树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&is_video=false&description=单侧递归线段树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=单侧递归线段树&body=Check out this article: http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&name=单侧递归线段树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&t=单侧递归线段树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&text=单侧递归线段树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&is_video=false&description=单侧递归线段树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=单侧递归线段树&body=Check out this article: http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&title=单侧递归线段树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&name=单侧递归线段树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91/&t=单侧递归线段树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

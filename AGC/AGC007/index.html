@@ -12,7 +12,7 @@
     <meta name="description" content="[AGC007C] Pushing Balls转化一下，变为有 $2n$ 个点，点有权值，初始权值为等差数列。 每次随机选择一个点计入贡献，若点为左右端点则将该点和相邻点删除，否则将该点和相邻共 $2$ 个点合并，权值相加。 由于初始为等差数列，发现左右对称的点被计入贡献的次数相等，且左右对称的点的权值和为定值 $2d+(2n-1)x$。 于是只需求出 $d&#x3D;1,x&#x3D;0$ 时的答案即可。 每次每个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AGC007">
-<meta property="og:url" content="http://idtwtei.github.com/AGC/AGC007/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/AGC/AGC007/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="[AGC007C] Pushing Balls转化一下，变为有 $2n$ 个点，点有权值，初始权值为等差数列。 每次随机选择一个点计入贡献，若点为左右端点则将该点和相邻点删除，否则将该点和相邻共 $2$ 个点合并，权值相加。 由于初始为等差数列，发现左右对称的点被计入贡献的次数相等，且左右对称的点的权值和为定值 $2d+(2n-1)x$。 于是只需求出 $d&#x3D;1,x&#x3D;0$ 时的答案即可。 每次每个">
 <meta property="og:locale" content="zh_CN">
@@ -114,17 +114,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/AGC/AGC007/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/AGC/AGC007/&text=AGC007"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/AGC/AGC007/&is_video=false&description=AGC007"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=AGC007&body=Check out this article: http://idtwtei.github.com/AGC/AGC007/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/AGC/AGC007/&name=AGC007&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/AGC/AGC007/&t=AGC007"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/AGC/AGC007/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/AGC/AGC007/&text=AGC007"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/AGC/AGC007/&is_video=false&description=AGC007"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AGC007&body=Check out this article: http://idtwtei.github.io/AGC/AGC007/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/AGC/AGC007/&name=AGC007&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/AGC/AGC007/&t=AGC007"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -215,17 +215,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/AGC/AGC007/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/AGC/AGC007/&text=AGC007"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/AGC/AGC007/&is_video=false&description=AGC007"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=AGC007&body=Check out this article: http://idtwtei.github.com/AGC/AGC007/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/AGC/AGC007/&title=AGC007"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/AGC/AGC007/&name=AGC007&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/AGC/AGC007/&t=AGC007"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/AGC/AGC007/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/AGC/AGC007/&text=AGC007"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/AGC/AGC007/&is_video=false&description=AGC007"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AGC007&body=Check out this article: http://idtwtei.github.io/AGC/AGC007/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/AGC/AGC007/&title=AGC007"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/AGC/AGC007/&name=AGC007&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/AGC/AGC007/&t=AGC007"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

@@ -12,7 +12,7 @@
     <meta name="description" content="概述使关键点连通的最小树。 【模板】最小斯坦纳树 考虑状压 DP，记 $f(u,S)$ 为以 $u$ 为根，包含 $S$ 集合的特殊点的最小树。 将最终的树找出来，对于度数为 $1$ 的点，需要加边，即 $f(u,S) \gets f(v,S) + w$。还需要合并，即 $f(u,S) \gets f(u,S’)+f(u,S \oplus S’)(S’ \subset S)$。 第一种转移用最短路">
 <meta property="og:type" content="article">
 <meta property="og:title" content="斯坦纳树">
-<meta property="og:url" content="http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="概述使关键点连通的最小树。 【模板】最小斯坦纳树 考虑状压 DP，记 $f(u,S)$ 为以 $u$ 为根，包含 $S$ 集合的特殊点的最小树。 将最终的树找出来，对于度数为 $1$ 的点，需要加边，即 $f(u,S) \gets f(v,S) + w$。还需要合并，即 $f(u,S) \gets f(u,S’)+f(u,S \oplus S’)(S’ \subset S)$。 第一种转移用最短路">
 <meta property="og:locale" content="zh_CN">
@@ -118,17 +118,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&text=斯坦纳树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&is_video=false&description=斯坦纳树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=斯坦纳树&body=Check out this article: http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&name=斯坦纳树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&t=斯坦纳树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&text=斯坦纳树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&is_video=false&description=斯坦纳树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=斯坦纳树&body=Check out this article: http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&name=斯坦纳树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&t=斯坦纳树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -217,17 +217,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&text=斯坦纳树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&is_video=false&description=斯坦纳树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=斯坦纳树&body=Check out this article: http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&name=斯坦纳树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&t=斯坦纳树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&text=斯坦纳树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&is_video=false&description=斯坦纳树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=斯坦纳树&body=Check out this article: http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&title=斯坦纳树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&name=斯坦纳树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E6%96%AF%E5%9D%A6%E7%BA%B3%E6%A0%91/&t=斯坦纳树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

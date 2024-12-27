@@ -12,7 +12,7 @@
     <meta name="description" content="概述二叉堆额外维护一个 $dis$，表示到空节点的最短长度，保证 $dis_{lc} &gt; dis_{rc}$ 即可保证根节点的 $dis$ 为 $O(\log n)$。 合并时跳右儿子即可，时间复杂度 $O(\log n)$。 1.【模板】左偏树&#x2F;可并堆 123456789101112131415161718192021222324252627282930313233343536373839">
 <meta property="og:type" content="article">
 <meta property="og:title" content="左偏树">
-<meta property="og:url" content="http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="概述二叉堆额外维护一个 $dis$，表示到空节点的最短长度，保证 $dis_{lc} &gt; dis_{rc}$ 即可保证根节点的 $dis$ 为 $O(\log n)$。 合并时跳右儿子即可，时间复杂度 $O(\log n)$。 1.【模板】左偏树&#x2F;可并堆 123456789101112131415161718192021222324252627282930313233343536373839">
 <meta property="og:locale" content="zh_CN">
@@ -118,17 +118,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&text=左偏树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&is_video=false&description=左偏树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=左偏树&body=Check out this article: http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&name=左偏树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&t=左偏树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&text=左偏树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&is_video=false&description=左偏树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=左偏树&body=Check out this article: http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&name=左偏树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&t=左偏树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -226,17 +226,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&text=左偏树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&is_video=false&description=左偏树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=左偏树&body=Check out this article: http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&name=左偏树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.com/%E5%B7%A6%E5%81%8F%E6%A0%91/&t=左偏树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&text=左偏树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&is_video=false&description=左偏树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=左偏树&body=Check out this article: http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&title=左偏树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&name=左偏树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E5%B7%A6%E5%81%8F%E6%A0%91/&t=左偏树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
