@@ -4,6 +4,45 @@
   
     
     <entry>
+      <title>exKMP</title>
+      <link href="/exKMP/"/>
+      <url>/exKMP/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>对于字符串 $s$，记 $z_i$ 为 $i$ 后缀与 $s$ 的最长公共前缀。exKMP 算法可以 $O(n)$ 求 $z$。</p><p>记 $[i,i+z_i-1]$ 为匹配段，在求解过程中维护最靠右的匹配段 $[l,r]$，当求解 $z_i$ 时。</p><ul><li><p>$r &lt; i$ 暴力匹配。</p></li><li><p>$i \le r$ 令 $z_i=\min(r-i+1,z_{i-l+1})$，再暴力匹配。</p></li></ul><p>均摊线性。</p><p>$[1,z_1]$ 是没有意义的，不要计入 $[l,r]$。</p><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】扩展-KMP-exKMP（Z-函数）"><a href="#1-【模板】扩展-KMP-exKMP（Z-函数）" class="headerlink" title="1.【模板】扩展 KMP/exKMP（Z 函数）"></a><a href="https://www.luogu.com.cn/problem/P5410">1.【模板】扩展 KMP/exKMP（Z 函数）</a></h4><p>构造 $b+!+a$。需要特判 $z_1$。</p><h4 id="2-Prefixes-and-Suffixes"><a href="#2-Prefixes-and-Suffixes" class="headerlink" title="2.Prefixes and Suffixes"></a><a href="https://www.luogu.com.cn/problem/CF432D">2.Prefixes and Suffixes</a></h4><p>完美字串是好找的，需要计算每个前缀的出现次数，计算 $z$，每次 $[1,z_i]$ 区间加 $1$。时间复杂度 $O(n)$。</p><h4 id="3-Om-Nom-and-Necklace"><a href="#3-Om-Nom-and-Necklace" class="headerlink" title="3.Om Nom and Necklace"></a><a href="https://www.luogu.com.cn/problem/CF526D">3.Om Nom and Necklace</a></h4><p>相当于 $S=AA…AB$，$A$ 有 $k$ 个，$B$ 为 $A$ 的前缀。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/alex-wei/p/Basic_String_Theory.html">字符串基础</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>超现实数</title>
+      <link href="/%E8%B6%85%E7%8E%B0%E5%AE%9E%E6%95%B0/"/>
+      <url>/%E8%B6%85%E7%8E%B0%E5%AE%9E%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>浅谈超现实数与不平等博弈 2021</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ACAM</title>
+      <link href="/ACAM/"/>
+      <url>/ACAM/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>This blog is about how to use  ACAM.</p><p>用于解决多模式串匹配问题。</p><p>将模式串插入 trie 中，对每个点构造 $fail$ 指向模式串中与其后缀匹配的最长前缀。</p><p>以每个点的 $fail$ 为父节点构建 fail 树，满足节点 $x$ 对应的串为节点 $y$ 对应的串的后缀当且仅当 $y \in T(x)$。</p><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-AC-自动机（简单版）"><a href="#1-AC-自动机（简单版）" class="headerlink" title="1.AC 自动机（简单版）"></a><a href="https://www.luogu.com.cn/problem/P3808">1.AC 自动机（简单版）</a></h4><p>出现过，遍历后就赋值为 $-1$，遇到 $-1$ 则停止，查询时间复杂度线性。</p><h4 id="2-【模板】AC-自动机"><a href="#2-【模板】AC-自动机" class="headerlink" title="2.【模板】AC 自动机"></a><a href="https://www.luogu.com.cn/problem/P5357">2.【模板】AC 自动机</a></h4><p>将文本串对应的所有节点标记，相当于查询子树和。</p><h4 id="3-HNOI2004-L-语言"><a href="#3-HNOI2004-L-语言" class="headerlink" title="3.[HNOI2004] L 语言"></a><a href="https://www.luogu.com.cn/problem/P2292">3.[HNOI2004] L 语言</a></h4><p>DP，记 $f_i$ 为 $i$ 前缀是否合法，转移形如 $f_i|=f_j([j+1,i] \in D)$，由于 $|s| \le 20$，对 trie 上每个节点维护二进制状态表示长为 $k$ 的模式串是否出现即可 $O(1)$ 转移。</p><h4 id="4-COCI2015-Divljak"><a href="#4-COCI2015-Divljak" class="headerlink" title="4.[COCI2015] Divljak"></a><a href="https://www.luogu.com.cn/problem/P5840">4.[COCI2015] Divljak</a></h4><p>将 $S$ 插入 trie 中，建立 ACAM。相当于单点加颜色，查询子树中颜色种类数。对每个点维护子树中颜色种类数，每次是链并的加，按 dfs 序排序后，容斥一下即可。可以再差分用树状数组维护。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/alex-wei/p/Common_String_Theory_Theory_automaton_related.html">常见字符串算法 II：自动机相关</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>万能欧几里得</title>
       <link href="/%E4%B8%87%E8%83%BD%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/"/>
       <url>/%E4%B8%87%E8%83%BD%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/</url>
@@ -164,7 +203,7 @@
       <link href="/trick/"/>
       <url>/trick/</url>
       
-        <content type="html"><![CDATA[<h2 id="1-不定长-bitset"><a href="#1-不定长-bitset" class="headerlink" title="1.不定长 bitset"></a>1.不定长 bitset</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="type">int</span> len</span>=<span class="number">1</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(n&gt;len) <span class="keyword">return</span> solve&lt;<span class="built_in">min</span>(len&lt;&lt;<span class="number">1</span>,N)&gt;();</span><br><span class="line">bitset&lt;len&gt; a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在函数中使用。</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="1-不定长-bitset"><a href="#1-不定长-bitset" class="headerlink" title="1.不定长 bitset"></a>1.不定长 bitset</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="type">int</span> len</span>=<span class="number">1</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(n&gt;len) <span class="keyword">return</span> solve&lt;<span class="built_in">min</span>(len&lt;&lt;<span class="number">1</span>,N)&gt;();</span><br><span class="line">bitset&lt;len&gt; a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在函数中使用。</p><h2 id="2-反向-ST-表"><a href="#2-反向-ST-表" class="headerlink" title="2.反向 ST 表"></a>2.反向 ST 表</h2><p>$st(i,k)$ 维护 $[i-2^k+1,i]$ 的信息。这样可以支持每次末尾修改，区间查询。 <a href="https://www.luogu.com.cn/problem/P7456">[CERC2018] The ABCD Murderer</a></p><p>还有说区间下放的是反向 ST 表？</p>]]></content>
       
       
       
@@ -359,7 +398,7 @@
       <link href="/AGC/AGC/"/>
       <url>/AGC/AGC/</url>
       
-        <content type="html"><![CDATA[<p>希望不鸽。</p><p><a href="../AGC001">AGC001</a> <a href="../AGC002">AGC002</a> <a href="../AGC003">AGC003</a> <a href="../AGC004">AGC004</a> <a href="../AGC005">AGC005</a> <a href="../AGC006">AGC006</a> <a href="../AGC007">AGC007</a> <a href="../AGC008">AGC008</a> <a href="../AGC009">AGC009</a> <a href="../AGC010">AGC010</a></p>]]></content>
+        <content type="html"><![CDATA[<p>希望不鸽。</p><p><a href="../AGC001">AGC001</a> <a href="../AGC002">AGC002</a> <a href="../AGC003">AGC003</a> <a href="../AGC004">AGC004</a> <a href="../AGC005">AGC005</a> <a href="../AGC006">AGC006</a> <a href="../AGC007">AGC007</a> <a href="../AGC008">AGC008</a> <a href="../AGC009">AGC009</a> <a href="../AGC010">AGC010</a></p><p><a href="../AGC011">AGC011</a></p>]]></content>
       
       
       
