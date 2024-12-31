@@ -1139,56 +1139,55 @@ article .content .video-container embed {
   width: 100%;
   height: 100%;
 }
-article .content blockquote {
-  margin: 1rem 10px;
-  padding: 0.5em 10px;
-  background: inherit;
-  color: #2bbc8a;
-  quotes: "\201C" "\201D" "\2018" "\2019";
-  font-weight: bold;
+blockquote {
+  margin: 1rem 10px; /* 设置外边距，使引用块与其他元素有间距 */
+  padding: 0.1em 1px; /* 设置内边距，确保内容与边缘有一定的距离 */
+  background: inherit; /* 背景继承，通常是透明 */
+  color: rgba(85,85,85,0.8); /* 设置文本颜色为淡灰色，rgba 格式表示透明度 */
+  border-left: 2px solid #2bbc8a; /* 设置左侧竖线，宽度为 2px，颜色为绿色 (#2bbc8a) */
+  padding-left: 10px; /* 添加左侧内边距，确保竖线与文本之间有间隔 */
+  quotes: "" ""; /* 删除引用的引号 */
 }
-article .content blockquote p {
-  margin: 0;
+blockquote p {
+  margin: 0; /* 去除段落的外边距，避免默认的段落外边距 */
 }
-article .content blockquote:before {
-  margin-right: 0.25em;
-  color: #2bbc8a;
-  content: "\201C";
-  vertical-align: -0.4em;
-  font-size: 2em;
-  line-height: 0.1em;
+blockquote footer {
+  margin-top: 0; /* 设置页脚顶部外边距为 0，确保紧贴引用内容 */
+  color: rgba(153,153,153,0.8); /* 设置页脚文本颜色为淡灰色 */
+  font-size: 12px; /* 设置页脚文字的字体大小为 12px */
 }
-article .content blockquote footer {
-  margin: line-height 0;
-  color: #666;
-  font-size: 12px;
+blockquote footer a {
+  background-image: linear-gradient(transparent, transparent 5px, rgba(153,153,153,0.8) 5px);
+/* 创建线性渐变背景，表示链接的底部有一条灰色的底边 */
+  color: rgba(153,153,153,0.8); /* 设置链接文字颜色为淡灰色 */
 }
-article .content blockquote footer a {
-  background-image: linear-gradient(transparent, transparent 5px, #666 5px, #666);
-  color: #666;
+blockquote footer a:hover {
+  background-image: linear-gradient(transparent, transparent 4px, rgba(173,173,173,0.8) 4px);
+/* 悬停时改变底边颜色，使其变得更浅 */
+  color: rgba(173,173,173,0.8); /* 悬停时改变文字颜色，变得更浅 */
 }
-article .content blockquote footer a:hover {
-  background-image: linear-gradient(transparent, transparent 4px, #858585 4px, #858585);
-  color: #858585;
+blockquote footer cite:before {
+  padding: 0 0.5em; /* 设置破折号左右的内边距 */
+  content: "—"; /* 在引用部分添加破折号 */
 }
-article .content blockquote footer cite:before {
-  padding: 0 0.5em;
-  content: "—";
+blockquote p,
+blockquote footer {
+  line-height: 1.5; /* 设置段落和页脚的行高，使其更易读 */
 }
-article .content .pullquote {
+.pullquote {
   margin: 0;
   width: 45%;
   text-align: left;
 }
-article .content .pullquote.left {
+.pullquote.left {
   margin-right: 1em;
   margin-left: 0.5em;
 }
-article .content .pullquote.right {
+.pullquote.right {
   margin-right: 0.5em;
   margin-left: 1em;
 }
-article .content .caption {
+.caption {
   position: relative;
   display: block;
   margin-top: 0.5em;

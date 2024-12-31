@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>生成函数</title>
+      <link href="/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"/>
+      <url>/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>[生成函数](<a href="https://www.c">https://www.c</a></p><p>nblogs.com/Appleblue17/p/14337965.html)</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DP</title>
+      <link href="/DP/"/>
+      <url>/DP/</url>
+      
+        <content type="html"><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://littlereuben.github.io/study/dp-problems/">dp 题方法总汇</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>长链剖分</title>
+      <link href="/%E9%95%BF%E9%93%BE%E5%89%96%E5%88%86/"/>
+      <url>/%E9%95%BF%E9%93%BE%E5%89%96%E5%88%86/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>以子树中最大深度最大的儿子为重儿子。</p><ul><li><p>链的长度和为 $n$。</p></li><li><p>若链 $L_1$ 向上跳到 $L_2$，那么 $L_2 \ge L_1+1$。</p></li><li><p>点到根节点路径上有 $O(\sqrt{n})$ 条链。</p></li></ul><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】树上-K-级祖先"><a href="#1-【模板】树上-K-级祖先" class="headerlink" title="1.【模板】树上 K 级祖先"></a><a href="https://www.luogu.com.cn/problem/P5903">1.【模板】树上 K 级祖先</a></h4><p>$k$ 级祖先所在链的长度 $\ge k+1$。考虑找到 $k’ \ge \frac{k}{2}$ 级祖先 $x$，那么 $k$ 级祖先到 $x$ 的距离不超过 $x$ 所在链长。</p><p>对每个链头维护所在链的集合和向上跳不超过链长的集合。取 $k’$ 为 $k$ 的二进制最高位。时间复杂度 $O(n\log n)-O(1)$。</p><p><a href="https://www.luogu.com.cn/paste/7rdq0fum">code</a></p><h4 id="2-Dominant-Indices"><a href="#2-Dominant-Indices" class="headerlink" title="2.Dominant Indices"></a><a href="https://www.luogu.com.cn/problem/CF1009F">2.Dominant Indices</a></h4><p>实现时用指针，时空复杂度均为 $O(n)$。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt; </span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define pb push_back</span><br><span class="line">const int N=1e6+100;</span><br><span class="line">#define gc getchar()</span><br><span class="line">#define rd read()</span><br><span class="line">inline int read()&#123;</span><br><span class="line">int x=0,f=0; char c=gc;</span><br><span class="line">for(;c&lt;&#x27;0&#x27;||c&gt;&#x27;9&#x27;;c=gc) f|=(c==&#x27;-&#x27;);</span><br><span class="line">for(;c&gt;=&#x27;0&#x27;&amp;&amp;c&lt;=&#x27;9&#x27;;c=gc) x=(x&lt;&lt;1)+(x&lt;&lt;3)+(c^48);</span><br><span class="line">return f?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int n,ans[N],*f[N],tmp[N],*cur=tmp+1;</span><br><span class="line">vector&lt;int&gt; G[N];</span><br><span class="line"></span><br><span class="line">int dep[N],mx[N],son[N];</span><br><span class="line">void dfs0(int u,int fu)&#123;</span><br><span class="line">mx[u]=dep[u]=dep[fu]+1;</span><br><span class="line">for(int v:G[u])&#123;</span><br><span class="line">if(v==fu) continue;</span><br><span class="line">dfs0(v,u),mx[u]=max(mx[u],mx[v]);</span><br><span class="line">if(mx[v]&gt;mx[son[u]]) son[u]=v;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">inline void assign(int u)&#123; f[u]=cur,cur+=mx[u]-dep[u]+1; &#125;</span><br><span class="line"></span><br><span class="line">void dfs1(int u,int fu)&#123;</span><br><span class="line">if(son[u]) f[son[u]]=f[u]+1,dfs1(son[u],u),ans[u]=ans[son[u]]+1;</span><br><span class="line">f[u][0]=1; if(f[u][0]&gt;=f[u][ans[u]]) ans[u]=0;</span><br><span class="line">for(int v:G[u])&#123;</span><br><span class="line">if(v==fu||v==son[u]) continue; assign(v),dfs1(v,u);</span><br><span class="line">for(int i=0;i&lt;=mx[v]-dep[v];++i)&#123;</span><br><span class="line">f[u][i+1]+=f[v][i];</span><br><span class="line">if(f[u][i+1]&gt;f[u][ans[u]]||(f[u][i+1]==f[u][ans[u]]&amp;&amp;i+1&lt;ans[u])) ans[u]=i+1;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line"></span><br><span class="line">n=rd; for(int i=1,x,y;i&lt;n;i++) G[x=rd].pb(y=rd),G[y].pb(x);</span><br><span class="line"></span><br><span class="line">dfs0(1,0),assign(1),dfs1(1,0);</span><br><span class="line"></span><br><span class="line">for(int i=1;i&lt;=n;i++) printf(&quot;%d\n&quot;, ans[i]);</span><br><span class="line"></span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="3-WC2010-重建计划"><a href="#3-WC2010-重建计划" class="headerlink" title="3.[WC2010] 重建计划"></a><a href="https://www.luogu.com.cn/problem/P4292">3.[WC2010] 重建计划</a></h4><p>二分，长链剖分优化 DP，合并需要查询区间长度，用线段树维护即可，时间复杂度 $O(n\log^2n)$。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.luogu.com.cn/article/522npqp1">长链剖分</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SAM</title>
+      <link href="/SAM/"/>
+      <url>/SAM/</url>
+      
+        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>增量法构造。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TREE</span>&#123; <span class="type">int</span> ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;<span class="number">1</span>]; <span class="type">int</span> las=<span class="number">1</span>,tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ins</span><span class="params">(<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p=las,np=++tot,v,nv; las=np,t[np].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;!t[p].ne[c];p=t[p].fa) t[p].ne[c]=np;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> t[np].fa=<span class="number">1</span>,<span class="built_in">void</span>(); v=t[p].ne[c];</span><br><span class="line">    <span class="keyword">if</span>(t[v].len==t[p].len<span class="number">+1</span>) <span class="keyword">return</span> t[np].fa=v,<span class="built_in">void</span>();</span><br><span class="line">    t[nv=++tot]=t[v],t[nv].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;t[p].ne[c]==v;p=t[p].fa) t[p].ne[c]=nv;</span><br><span class="line">    t[v].fa=t[np].fa=nv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】后缀自动机（SAM）"><a href="#1-【模板】后缀自动机（SAM）" class="headerlink" title="1.【模板】后缀自动机（SAM）"></a><a href="https://www.luogu.com.cn/problem/P3804">1.【模板】后缀自动机（SAM）</a></h4><p>艹艹艹，学 nm。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/alex-wei/p/Common_String_Theory_Theory_automaton_related.html">常见字符串算法 II：自动机相关</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>exKMP</title>
       <link href="/exKMP/"/>
       <url>/exKMP/</url>
@@ -398,7 +450,7 @@
       <link href="/AGC/AGC/"/>
       <url>/AGC/AGC/</url>
       
-        <content type="html"><![CDATA[<p>希望不鸽。</p><p><a href="../AGC001">AGC001</a> <a href="../AGC002">AGC002</a> <a href="../AGC003">AGC003</a> <a href="../AGC004">AGC004</a> <a href="../AGC005">AGC005</a> <a href="../AGC006">AGC006</a> <a href="../AGC007">AGC007</a> <a href="../AGC008">AGC008</a> <a href="../AGC009">AGC009</a> <a href="../AGC010">AGC010</a></p><p><a href="../AGC011">AGC011</a></p>]]></content>
+        <content type="html"><![CDATA[<p>希望不鸽。</p><p><a href="../AGC001">AGC001</a> <a href="../AGC002">AGC002</a> <a href="../AGC003">AGC003</a> <a href="../AGC004">AGC004</a> <a href="../AGC005">AGC005</a> <a href="../AGC006">AGC006</a> <a href="../AGC007">AGC007</a> <a href="../AGC008">AGC008</a> <a href="../AGC009">AGC009</a> <a href="../AGC010">AGC010</a></p><p><a href="../AGC011">AGC011</a> <a href="../AGC012">AGC012</a></p>]]></content>
       
       
       

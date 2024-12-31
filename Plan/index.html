@@ -17,7 +17,7 @@
 <meta property="og:description" content="题已经很多了，你做都做不完，不要怕浪费。 AGC,JOISC,Div 1,真题,洛谷省选计划。 200+30+？+200+？ AGC 以口胡为主，JOISC,div 1,真题要写代码  Probablity and Computing  AGC，起码一天一场  一周一场模拟赛，没有就做真题  DS  segment tree beats  LCT  全局平衡二叉树  线段树  分块  毛毛虫剖分">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-13T06:05:15.435Z">
-<meta property="article:modified_time" content="2024-12-26T05:41:46.445Z">
+<meta property="article:modified_time" content="2024-12-29T16:09:54.502Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -131,7 +131,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">总的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">图论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6"><span class="toc-number">4.</span> <span class="toc-text">数学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">5.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">6.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-number">7.</span> <span class="toc-text">杂项</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">总的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">图论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6"><span class="toc-number">4.</span> <span class="toc-text">数学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">5.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">6.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-number">7.</span> <span class="toc-text">杂项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E5%85%A8%E9%83%A8%E5%AE%8C%E6%88%90%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="toc-number">8.</span> <span class="toc-text">无法全部完成的任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E7%9A%84"><span class="toc-number">9.</span> <span class="toc-text">详细的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">9.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B7%E9%A2%98"><span class="toc-number">9.2.</span> <span class="toc-text">刷题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6"><span class="toc-number">9.3.</span> <span class="toc-text">读书</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92"><span class="toc-number">10.</span> <span class="toc-text">总体时间安排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%A4%A9%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92"><span class="toc-number">11.</span> <span class="toc-text">单天时间安排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%A1%E5%AD%A6%E8%BF%87%E7%9A%84%E6%9D%82%E6%96%87"><span class="toc-number">12.</span> <span class="toc-text">没学过的杂文</span></a></li></ol>
       </div>
     
   </span>
@@ -234,6 +234,163 @@
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/35algk92">插头 DP</a> 3</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/oizz6tms">回文自动机</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/C202044zxy/p/15126199.html">zxy的思维技巧</a></p>
+<hr>
+<p>制定一个真正好的详细的计划吧！</p>
+<h2 id="无法全部完成的任务"><a href="#无法全部完成的任务" class="headerlink" title="无法全部完成的任务"></a>无法全部完成的任务</h2><ul>
+<li><p>长链剖分，DP 汇总，生成函数，测评系统，zxy 的思维技巧及其他 trick 汇总。</p>
+</li>
+<li><p>AGC，JOISC，THU/PKU SC/WC，WC，省选真题，洛谷题单，洛谷模拟赛，水表，CF，ICPC，（nfls），other 模拟赛。</p>
+</li>
+<li><p>概率与计算，surreal number</p>
+</li>
+<li><p>CF 上 GM。</p>
+</li>
+</ul>
+<h2 id="详细的"><a href="#详细的" class="headerlink" title="详细的"></a>详细的</h2><h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li><p>长链剖分</p>
+</li>
+<li><p>DP 汇总</p>
+</li>
+<li><p>生成函数</p>
+</li>
+<li><p>测评系统。</p>
+</li>
+<li><p>trick</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com/paste/8hnex65m">各种套路</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com/article/2buhtf2w">一些常见套路</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Zaunese/p/20230807--taolu.html">一些套路</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com/article/xz8gvlhk">一些（可能？）有用的东西 &amp; 思想和二级结论</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/C202044zxy/p/15126199.html">zxy的思维技巧</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="刷题"><a href="#刷题" class="headerlink" title="刷题"></a>刷题</h3><ul>
+<li><p>AGC</p>
+<p>  口胡。</p>
+<p>  还差近 $60$ 场，每场 $3/4$ 道题目，<strong>共计 $210$ 道题目</strong>。</p>
+</li>
+<li><p>JOISC</p>
+<p>  代码。</p>
+<p>  loj 上有，每年不到 $12$ 道题目，共 $5$ 年，<strong>共计 $55$ 道题目</strong>。</p>
+<ul>
+<li><p>2024</p>
+</li>
+<li><p>2023</p>
+</li>
+<li><p>2022</p>
+</li>
+<li><p>2021</p>
+</li>
+<li><p>2020</p>
+</li>
+</ul>
+</li>
+<li><p>THUWC2024</p>
+<p>  代码</p>
+<p>  主要为参赛准备。</p>
+<p>  <a target="_blank" rel="noopener" href="https://www.luogu.com/article/prboor7o">THUWC2024 T1-T4 题解</a></p>
+<p>  <a target="_blank" rel="noopener" href="https://acoipp.github.io/2024/01/28/THUWC2024%E6%B8%B8%E8%AE%B0/">THUWC2024 题面</a></p>
+<p>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/candy0014/p/17990780">THUWC2024 题面</a></p>
+<p>  <strong>共计 $4$ 题</strong>。</p>
+</li>
+<li><p>省选真题</p>
+<p>  代码。</p>
+<p>  <strong>共计 $194$ 题</strong>。</p>
+</li>
+<li><p>洛谷模拟赛</p>
+<p>  代码。</p>
+</li>
+<li><p>题单</p>
+<p>  杂。</p>
+<ul>
+<li><p>洛谷题单。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/DaiRuiChen007">DaiRuiChen007</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cwhfy">grass8woc</a></p>
+</li>
+</ul>
+</li>
+<li><p>CF</p>
+<p>  vp div 1</p>
+</li>
+<li><p>ICPC</p>
+<p>  vp</p>
+<p>  EC-F,WF…</p>
+</li>
+</ul>
+<h3 id="读书"><a href="#读书" class="headerlink" title="读书"></a>读书</h3><ul>
+<li><p>Probablity and Computing</p>
+<ul>
+<li><p>五</p>
+</li>
+<li><p>六</p>
+</li>
+<li><p>七</p>
+</li>
+<li><p>十</p>
+</li>
+<li><p>十一</p>
+</li>
+<li><p>十二</p>
+</li>
+<li><p>十三</p>
+</li>
+<li><p>十四</p>
+</li>
+<li><p>十六</p>
+</li>
+</ul>
+</li>
+<li><p>Surreal Numbers</p>
+<p>  超现实数的学习。</p>
+<p>  <a target="_blank" rel="noopener" href="https://www.luogu.com/article/5by11qh3">Surreal Numbers：《研究之美》读书笔记暨超现实数学习笔记</a></p>
+</li>
+</ul>
+<h2 id="总体时间安排"><a href="#总体时间安排" class="headerlink" title="总体时间安排"></a>总体时间安排</h2><p>感觉每周日制定计划比较好。</p>
+<p>12.30 长链剖分+测评系统<br>12.31 DP+生成函数（疑似放假）<br>1.1 DP+生成函数（疑似放假）<br>1.2 DP+生成函数<br>1.3 DP+生成函数<br>1.4 DP+生成函数<br>1.5 DP+生成函数<br>1.6 DP+生成函数</p>
+<h2 id="单天时间安排"><a href="#单天时间安排" class="headerlink" title="单天时间安排"></a>单天时间安排</h2><p>早上进点面包、饼干、方便面，火腿肠、奶。</p>
+<ul>
+<li><p>7:00 起，7:40 - 12:00</p>
+</li>
+<li><p>1:25 起，1:40 - 5:20</p>
+</li>
+<li><p>5:50 - 11:00 - ???</p>
+</li>
+<li><p>10:20-11:00 不好说。及时活动 $\ge 10min$</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>AGC 一天一场</p>
+</li>
+<li><p>读书 $\ge 2h$</p>
+</li>
+<li><p>晚上 vp div1</p>
+</li>
+</ul>
+<h2 id="没学过的杂文"><a href="#没学过的杂文" class="headerlink" title="没学过的杂文"></a>没学过的杂文</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com/article/5mqcfm19">Math Theorem</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/15eeroth">Qt快速上手指南 程序图形化</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shiys22/p/17621215.html">sys.dp</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/35algk92">插头 DP</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/oizz6tms">回文自动机</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/apjifengc">APJifengc</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Hs-black/p/14519135.html">Hs-black</a></p>
+</li>
+</ul>
 <!-- flag of hidden posts -->
   </div>
 </article>
@@ -261,7 +418,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">总的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">图论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6"><span class="toc-number">4.</span> <span class="toc-text">数学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">5.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">6.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-number">7.</span> <span class="toc-text">杂项</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text">总的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">图论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6"><span class="toc-number">4.</span> <span class="toc-text">数学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">5.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">6.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A1%B9"><span class="toc-number">7.</span> <span class="toc-text">杂项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E5%85%A8%E9%83%A8%E5%AE%8C%E6%88%90%E7%9A%84%E4%BB%BB%E5%8A%A1"><span class="toc-number">8.</span> <span class="toc-text">无法全部完成的任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E7%9A%84"><span class="toc-number">9.</span> <span class="toc-text">详细的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">9.1.</span> <span class="toc-text">知识点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B7%E9%A2%98"><span class="toc-number">9.2.</span> <span class="toc-text">刷题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E4%B9%A6"><span class="toc-number">9.3.</span> <span class="toc-text">读书</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92"><span class="toc-number">10.</span> <span class="toc-text">总体时间安排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%A4%A9%E6%97%B6%E9%97%B4%E5%AE%89%E6%8E%92"><span class="toc-number">11.</span> <span class="toc-text">单天时间安排</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%A1%E5%AD%A6%E8%BF%87%E7%9A%84%E6%9D%82%E6%96%87"><span class="toc-number">12.</span> <span class="toc-text">没学过的杂文</span></a></li></ol>
       </div>
     
 
