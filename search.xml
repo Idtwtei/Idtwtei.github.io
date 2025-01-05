@@ -4,24 +4,11 @@
   
     
     <entry>
-      <title>生成函数</title>
-      <link href="/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/"/>
-      <url>/%E7%94%9F%E6%88%90%E5%87%BD%E6%95%B0/</url>
+      <title>刷题记录</title>
+      <link href="/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+      <url>/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
       
-        <content type="html"><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/Appleblue17/p/14337965.html">生成函数</a></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>DP</title>
-      <link href="/DP/"/>
-      <url>/DP/</url>
-      
-        <content type="html"><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://littlereuben.github.io/study/dp-problems/">dp 题方法总汇</a></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/list?tag=48%7C61,60,59,58,37,36,35">各省省选</a></p><p><a href="../I">I</a></p>]]></content>
       
       
       
@@ -47,7 +34,7 @@
       <link href="/SAM/"/>
       <url>/SAM/</url>
       
-        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>增量法构造。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TREE</span>&#123; <span class="type">int</span> ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;<span class="number">1</span>]; <span class="type">int</span> las=<span class="number">1</span>,tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ins</span><span class="params">(<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p=las,np=++tot,v,nv; las=np,t[np].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;!t[p].ne[c];p=t[p].fa) t[p].ne[c]=np;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> t[np].fa=<span class="number">1</span>,<span class="built_in">void</span>(); v=t[p].ne[c];</span><br><span class="line">    <span class="keyword">if</span>(t[v].len==t[p].len<span class="number">+1</span>) <span class="keyword">return</span> t[np].fa=v,<span class="built_in">void</span>();</span><br><span class="line">    t[nv=++tot]=t[v],t[nv].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;t[p].ne[c]==v;p=t[p].fa) t[p].ne[c]=nv;</span><br><span class="line">    t[v].fa=t[np].fa=nv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】后缀自动机（SAM）"><a href="#1-【模板】后缀自动机（SAM）" class="headerlink" title="1.【模板】后缀自动机（SAM）"></a><a href="https://www.luogu.com.cn/problem/P3804">1.【模板】后缀自动机（SAM）</a></h4><p>艹艹艹，学 nm。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/alex-wei/p/Common_String_Theory_Theory_automaton_related.html">常见字符串算法 II：自动机相关</a></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>增量法构造。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TREE</span>&#123; <span class="type">int</span> ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;<span class="number">1</span>]; <span class="type">int</span> las=<span class="number">1</span>,tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ins</span><span class="params">(<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p=las,np=++tot,v,nv; las=np,t[np].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;!t[p].ne[c];p=t[p].fa) t[p].ne[c]=np;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> t[np].fa=<span class="number">1</span>,<span class="built_in">void</span>(); v=t[p].ne[c];</span><br><span class="line">    <span class="keyword">if</span>(t[v].len==t[p].len<span class="number">+1</span>) <span class="keyword">return</span> t[np].fa=v,<span class="built_in">void</span>();</span><br><span class="line">    t[nv=++tot]=t[v],t[nv].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;t[p].ne[c]==v;p=t[p].fa) t[p].ne[c]=nv;</span><br><span class="line">    t[v].fa=t[np].fa=nv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】后缀自动机（SAM）"><a href="#1-【模板】后缀自动机（SAM）" class="headerlink" title="1.【模板】后缀自动机（SAM）"></a><a href="https://www.luogu.com.cn/problem/P3804">1.【模板】后缀自动机（SAM）</a></h4><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/alex-wei/p/Common_String_Theory_Theory_automaton_related.html">常见字符串算法 II：自动机相关</a></p>]]></content>
       
       
       
@@ -251,19 +238,6 @@
     
     
     <entry>
-      <title>trick</title>
-      <link href="/trick/"/>
-      <url>/trick/</url>
-      
-        <content type="html"><![CDATA[<h2 id="1-不定长-bitset"><a href="#1-不定长-bitset" class="headerlink" title="1.不定长 bitset"></a>1.不定长 bitset</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="type">int</span> len</span>=<span class="number">1</span>&gt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(n&gt;len) <span class="keyword">return</span> solve&lt;<span class="built_in">min</span>(len&lt;&lt;<span class="number">1</span>,N)&gt;();</span><br><span class="line">bitset&lt;len&gt; a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在函数中使用。</p><h2 id="2-反向-ST-表"><a href="#2-反向-ST-表" class="headerlink" title="2.反向 ST 表"></a>2.反向 ST 表</h2><p>$st(i,k)$ 维护 $[i-2^k+1,i]$ 的信息。这样可以支持每次末尾修改，区间查询。 <a href="https://www.luogu.com.cn/problem/P7456">[CERC2018] The ABCD Murderer</a></p><p>还有说区间下放的是反向 ST 表？</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>左偏树</title>
       <link href="/%E5%B7%A6%E5%81%8F%E6%A0%91/"/>
       <url>/%E5%B7%A6%E5%81%8F%E6%A0%91/</url>
@@ -407,37 +381,11 @@
     
     
     <entry>
-      <title>各省省选</title>
-      <link href="/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/"/>
-      <url>/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/%E5%90%84%E7%9C%81%E7%9C%81%E9%80%89/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/problem/list?tag=48%7C61,60,59,58,37,36,35">luogu</a></p><p><a href="../I">I</a></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Burnside</title>
       <link href="/Burnside/"/>
       <url>/Burnside/</url>
       
         <content type="html"><![CDATA[<p>只是一些定义，具体例子去看组合数学。</p><h2 id="置换"><a href="#置换" class="headerlink" title="置换"></a>置换</h2><p>对于排列 $X$，将函数 $f:X \to X$ 称为置换。也可以记作</p><script type="math/tex; mode=display">\begin{pmatrix}1 & 2 & ... & n \\i_1 & i_2 & ... & i_n\end{pmatrix}</script><p>定义置换的合成 $f \circ g$，有 $(f \circ g)(k) = f(g(k))$。</p><p>定义置换群 $G$ 满足</p><ul><li><p>$\forall f,g \in G, f \circ g \in G$。</p></li><li><p>存在单位元。</p></li><li><p>$\forall f \in G, f^{-1} \in G$。</p></li></ul><h2 id="着色"><a href="#着色" class="headerlink" title="着色"></a>着色</h2><p>记 $C$ 为颜色集合，将函数 $c:X \to C$ 称为着色。</p><p>定义颜色的置换 $f*c$ ，有 $(f*c)(i_k)=c(k)$。</p><p>$c_1$ 与 $c_2$ 等价当且仅当 $\exists f \in G, f*c = c$，记作 $c_1 \sim c_2$。</p><p>定义着色集 $\mathcal{C}$ 满足</p><ul><li>$\forall f \in G,c \in \mathcal{C}, f*c \in \mathcal{C}$。</li></ul><h2 id="Burnside-定理"><a href="#Burnside-定理" class="headerlink" title="Burnside 定理"></a>Burnside 定理</h2><p>定义 $G(c) = \{f|f \in G,f*c=c\},\mathcal{C}(f) = \{c|c \in \mathcal{C},f*c=c\}$ 也称为不动点。</p><blockquote><p>与 $c$ 等价的着色个数 = $\frac{|G|}{|G(c)|}$。</p></blockquote><p><strong>证明</strong></p><p>$\forall f \in G,g \in G(c)$ 有 $(f \circ g)*c = f*(g*c) = f*c$。</p><p>而每个 $f \circ g$ 是不同的，因此对 $c$ 作用与 $f$ 相同的置换个数为 $|G(c)|$，总置换个数为 $|G|$，所以与 $c$ 等价的不同的着色有 $\frac{|G|}{|G(c)|}$ 种。</p><blockquote><p>Burnside 定理：$非等价着色数 = \frac{1}{|G|} \sum_{f \in G} |\mathcal{f}|$</p><p>用人话将就是，本质不同的着色个数为所有置换不动点个数的平均值。</p></blockquote><p><strong>证明</strong></p><script type="math/tex; mode=display">\begin{align}\sum_{f \in G} |\mathcal{C}(f)| &= \sum_{c \in \mathcal{c}} |G(c)| \\\sum_{f \in G} |\mathcal{C}(f)| &= \sum_{c \in \mathcal{c}} \frac{|G|}{与 c 等价的着色的个数} \\\sum_{f \in G} |\mathcal{C}(f)| &= |G|(非等价着色数) \\(非等价着色数) &= \frac{1}{|G|} \sum_{f \in G} |\mathcal{C}(f)|\end{align}</script><h2 id="Polya-定理"><a href="#Polya-定理" class="headerlink" title="Polya 定理"></a>Polya 定理</h2><p>浅浅写一下。</p><p>置换可以被几个循环的合并代替。例</p><script type="math/tex; mode=display">\begin{pmatrix}1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\4 & 9 & 1 & 7 & 6 & 5 & 3 & 8 & 2\end{pmatrix} = [1 \ 4 \ 7 \ 3] \circ [2 \ 9] \circ [5 \ 6] \circ [8]</script><p>计算着色方案数时，我们只关心大小一定的循环有多少个，因此一个置换群可以被一个生成函数代替。</p><p>该方法的优势在于可以限定颜色的个数。</p><h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><h4 id="1-【模板】Polya-定理"><a href="#1-【模板】Polya-定理" class="headerlink" title="1.【模板】Polya 定理"></a><a href="https://www.luogu.com.cn/problem/P4980">1.【模板】Polya 定理</a></h4><p>有 $n$ 种置换，即旋转 $[1,n]$ 次（这里将 $0$ 归为 $n$ 方便计算）。</p><p>对于旋转 $k$ 次的，其不动点个数为 $n^{\gcd(n,k)}$。所以答案为</p><script type="math/tex; mode=display">\begin{align}\frac{1}{n} \sum_{k=1}^{n} n^{\gcd(n,k)} &= \frac{1}{n} \sum_{d|n} n^d \sum_{k=1}^{n} [\gcd(n,k)=d] \\&= \sum_{d|n} n^d \varphi(\frac{n}{d})\end{align}</script><p>单点求 $\varphi$，时间复杂度 $O(n\sqrt{n}\log n)$（可以通过预处理将 $\log n$ 去掉）。</p><h4 id="2-JSOI2012-爱之项链"><a href="#2-JSOI2012-爱之项链" class="headerlink" title="2.[JSOI2012] 爱之项链"></a><a href="https://www.luogu.com.cn/problem/P5233">2.[JSOI2012] 爱之项链</a></h4><p><del>搬题人的 id 提示了此题的做法。</del></p><p>求一个戒指的方案数同上，记方案数为 $k$。考虑容斥，答案为</p><script type="math/tex; mode=display">\begin{align}\sum_{i=0}^{n-2} (-1)^{i} k(k-1)^{n-1-i} &= (-1)^{n-1} k \sum_{i=1}^{n-1} (1-k)^{i} \\&= (-1)^{n-1} k \frac{(1-k)^{n}-(1-k)}{-k} \\&= (k-1)^{n} + (-1)^{n} (k-1)\end{align}</script><p>$n=1$ 要特判？</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>组合数学（第五版）</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>洛谷省选计划</title>
-      <link href="/luogu/luogu/"/>
-      <url>/luogu/luogu/</url>
-      
-        <content type="html"><![CDATA[<h2 id="模拟赛"><a href="#模拟赛" class="headerlink" title="模拟赛"></a>模拟赛</h2><h2 id="题单"><a href="#题单" class="headerlink" title="题单"></a>题单</h2><p><a href="../problemlist/1">【学习 1】基础优化技巧 1</a></p><p><a href="../problemlist/2">【学习 2】数据结构 1</a></p>]]></content>
       
       
       

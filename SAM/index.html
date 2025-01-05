@@ -17,7 +17,7 @@
 <meta property="og:description" content="概述增量法构造。 12345678910struct TREE&#123; int ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;1]; int las&#x3D;1,tot&#x3D;1;void ins(int c)&#123;    int p&#x3D;las,np&#x3D;++tot,v,nv; las&#x3D;np,t[np].len&#x3D;t[p].len+1;    for(;p&amp;&amp;!t[p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-29T00:28:58.761Z">
-<meta property="article:modified_time" content="2024-12-29T13:10:59.835Z">
+<meta property="article:modified_time" content="2025-01-03T23:45:31.132Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -177,8 +177,7 @@
   <div class="content e-content" itemprop="articleBody">
     <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>增量法构造。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TREE</span>&#123; <span class="type">int</span> ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;<span class="number">1</span>]; <span class="type">int</span> las=<span class="number">1</span>,tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ins</span><span class="params">(<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p=las,np=++tot,v,nv; las=np,t[np].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;!t[p].ne[c];p=t[p].fa) t[p].ne[c]=np;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> t[np].fa=<span class="number">1</span>,<span class="built_in">void</span>(); v=t[p].ne[c];</span><br><span class="line">    <span class="keyword">if</span>(t[v].len==t[p].len<span class="number">+1</span>) <span class="keyword">return</span> t[np].fa=v,<span class="built_in">void</span>();</span><br><span class="line">    t[nv=++tot]=t[v],t[nv].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;t[p].ne[c]==v;p=t[p].fa) t[p].ne[c]=nv;</span><br><span class="line">    t[v].fa=t[np].fa=nv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】后缀自动机（SAM）"><a href="#1-【模板】后缀自动机（SAM）" class="headerlink" title="1.【模板】后缀自动机（SAM）"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3804">1.【模板】后缀自动机（SAM）</a></h4><p>艹艹艹，学 nm。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-wei/p/Common_String_Theory_Theory_automaton_related.html">常见字符串算法 II：自动机相关</a></p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】后缀自动机（SAM）"><a href="#1-【模板】后缀自动机（SAM）" class="headerlink" title="1.【模板】后缀自动机（SAM）"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3804">1.【模板】后缀自动机（SAM）</a></h4><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-wei/p/Common_String_Theory_Theory_automaton_related.html">常见字符串算法 II：自动机相关</a></p>
 
   </div>
 </article>
@@ -245,7 +244,7 @@
     Copyright &copy;
     
     
-    2024
+    2024-2025
     Idtwtei
   </div>
   <div class="footer-right">
