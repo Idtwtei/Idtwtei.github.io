@@ -108,16 +108,17 @@
         <li><a class="icon" aria-label="下一篇" href="/%E8%89%B9/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
       </ul>
       <span id="i-prev" class="info" style="display:none;">上一篇</span>
       <span id="i-next" class="info" style="display:none;">下一篇</span>
       <span id="i-top" class="info" style="display:none;">返回顶部</span>
-      <span id="i-share" class="info" style="display:none;">分享文章</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
     </span>
     <br/>
     <div id="share" style="display: none">
-      <ul>
+      
+<!-- <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&text=矩阵加速图上问题"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
@@ -129,7 +130,8 @@
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&name=矩阵加速图上问题&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&t=矩阵加速图上问题"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
-</ul>
+</ul> -->
+
 
     </div>
     
@@ -214,7 +216,8 @@ A^{B},A^{B^2},...,A^{B^{\log_B k}}</script><p>时间复杂度 $O(n^3(B+\log_B k)
     
 
     <div id="share-footer" style="display: none">
-      <ul>
+      
+<!-- <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&text=矩阵加速图上问题"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
@@ -226,7 +229,8 @@ A^{B},A^{B^2},...,A^{B^{\log_B k}}</script><p>时间复杂度 $O(n^3(B+\log_B k)
   <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&title=矩阵加速图上问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&name=矩阵加速图上问题&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/&t=矩阵加速图上问题"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
-</ul>
+</ul> -->
+
 
     </div>
 
