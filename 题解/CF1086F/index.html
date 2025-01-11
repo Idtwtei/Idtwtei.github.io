@@ -12,7 +12,7 @@
     <meta name="description" content="无限大的网格，第 $0$ 秒有 $n$ 个点燃烧，每一秒正燃烧的点会使与其八连通的点燃烧，每个点的权值为其最早燃烧的时间，求 $t$ 秒后的权值和。 $1 \le n \le 2000,1 \le t \le 10^8,-10^8 \le x,y \le 10^8$。  记 $f_i$ 为 $i$ 秒后燃烧格子的数量，那么答案为  tf_t - \sum_{i&#x3D;0}^{t-1} f_i$f_i$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF1086F Forest Fires 题解">
-<meta property="og:url" content="http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="无限大的网格，第 $0$ 秒有 $n$ 个点燃烧，每一秒正燃烧的点会使与其八连通的点燃烧，每个点的权值为其最早燃烧的时间，求 $t$ 秒后的权值和。 $1 \le n \le 2000,1 \le t \le 10^8,-10^8 \le x,y \le 10^8$。  记 $f_i$ 为 $i$ 秒后燃烧格子的数量，那么答案为  tf_t - \sum_{i&#x3D;0}^{t-1} f_i$f_i$">
 <meta property="og:locale" content="zh_CN">
@@ -117,17 +117,17 @@
     <div id="share" style="display: none">
       
 <!-- <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&text=CF1086F Forest Fires 题解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&is_video=false&description=CF1086F Forest Fires 题解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CF1086F Forest Fires 题解&body=Check out this article: http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&name=CF1086F Forest Fires 题解&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&t=CF1086F Forest Fires 题解"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&text=CF1086F Forest Fires 题解"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&is_video=false&description=CF1086F Forest Fires 题解"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1086F Forest Fires 题解&body=Check out this article: http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&name=CF1086F Forest Fires 题解&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&t=CF1086F Forest Fires 题解"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul> -->
 
 
@@ -218,17 +218,17 @@ g_{S,i} = \max(0,2i+1-dx) \times \max(0,2i+1-dy)</script><p>通过推式子，$(
     <div id="share-footer" style="display: none">
       
 <!-- <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&text=CF1086F Forest Fires 题解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&is_video=false&description=CF1086F Forest Fires 题解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=CF1086F Forest Fires 题解&body=Check out this article: http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&title=CF1086F Forest Fires 题解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&name=CF1086F Forest Fires 题解&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086/&t=CF1086F Forest Fires 题解"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&text=CF1086F Forest Fires 题解"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&is_video=false&description=CF1086F Forest Fires 题解"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF1086F Forest Fires 题解&body=Check out this article: http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&title=CF1086F Forest Fires 题解"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&name=CF1086F Forest Fires 题解&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E9%A2%98%E8%A7%A3/CF1086F/&t=CF1086F Forest Fires 题解"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
 
