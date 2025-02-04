@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="势能分析1.基础数据结构练习题判断区间中的数是否都相等，相等就可以打标记，特殊情况是 $x^2,x^2-1$，特判即可。 2.「雅礼集训 2017 Day1」市场判断区间的数除 $d$ 的差值是否相等即可。 定义势能为 $\sum \lg |a_i-a_{i-1}|$。 区间最值操作板子1.Gorgeous Sequence给你一个序列，支持区间取 $min$，查询区间最大值，查询区间和。 考虑维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="segment tree beats">
+<meta property="og:url" content="http://idtwtei.github.io/seg_beats/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="势能分析1.基础数据结构练习题判断区间中的数是否都相等，相等就可以打标记，特殊情况是 $x^2,x^2-1$，特判即可。 2.「雅礼集训 2017 Day1」市场判断区间的数除 $d$ 的差值是否相等即可。 定义势能为 $\sum \lg |a_i-a_{i-1}|$。 区间最值操作板子1.Gorgeous Sequence给你一个序列，支持区间取 $min$，查询区间最大值，查询区间和。 考虑维">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-16T22:30:03.318Z">
+<meta property="article:modified_time" content="2024-12-26T02:01:12.055Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>segment tree beats</title><meta name="robots" content="noindex">
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/seg_beats/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/seg_beats/&text=segment tree beats"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/seg_beats/&is_video=false&description=segment tree beats"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=segment tree beats&body=Check out this article: http://idtwtei.github.io/seg_beats/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/seg_beats/&name=segment tree beats&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/seg_beats/&t=segment tree beats"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%BF%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">势能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.基础数据结构练习题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E3%80%8C%E9%9B%85%E7%A4%BC%E9%9B%86%E8%AE%AD-2017-Day1%E3%80%8D%E5%B8%82%E5%9C%BA"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.「雅礼集训 2017 Day1」市场</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E6%9C%80%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">区间最值操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%BF%E5%AD%90"><span class="toc-number">2.1.</span> <span class="toc-text">板子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Gorgeous-Sequence"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.Gorgeous Sequence</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Pick-loves-segment-tree"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.Pick loves segment tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%80%E5%81%87%E5%A5%B3%E9%80%89%E6%89%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">3.最假女选手</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%92%E5%88%86%E6%95%B0%E5%9F%9F"><span class="toc-number">2.2.</span> <span class="toc-text">划分数域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Mzl-loves-segment-tree"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.Mzl loves segment tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ChiTuShaoNian-loves-segment-tree"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.ChiTuShaoNian loves segment tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-Dzy-loves-segment-tree"><span class="toc-number">2.2.3.</span> <span class="toc-text">6.Dzy loves segment tree</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">历史问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-CPU-%E7%9B%91%E6%8E%A7"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.CPU 监控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E3%80%90%E6%B8%85%E5%8D%8E%E9%9B%86%E8%AE%AD2015%E3%80%91V"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.【清华集训2015】V</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Rikka-with-Sequences"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.Rikka with Sequences</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91-3"><span class="toc-number">3.0.4.</span> <span class="toc-text">4.【模板】线段树 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-NOIP2022-%E6%AF%94%E8%B5%9B"><span class="toc-number">3.0.5.</span> <span class="toc-text">5.[NOIP2022] 比赛</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">杂题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Julia-the-snail"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.Julia the snail</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        segment tree beats
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-16T22:30:03.318Z" class="dt-published" itemprop="datePublished">2024-12-17</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="势能分析"><a href="#势能分析" class="headerlink" title="势能分析"></a>势能分析</h2><h4 id="1-基础数据结构练习题"><a href="#1-基础数据结构练习题" class="headerlink" title="1.基础数据结构练习题"></a><a target="_blank" rel="noopener" href="https://uoj.ac/problem/228">1.基础数据结构练习题</a></h4><p>判断区间中的数是否都相等，相等就可以打标记，特殊情况是 $x^2,x^2-1$，特判即可。</p>
+<h4 id="2-「雅礼集训-2017-Day1」市场"><a href="#2-「雅礼集训-2017-Day1」市场" class="headerlink" title="2.「雅礼集训 2017 Day1」市场"></a><a target="_blank" rel="noopener" href="https://loj.ac/p/6029">2.「雅礼集训 2017 Day1」市场</a></h4><p>判断区间的数除 $d$ 的差值是否相等即可。</p>
+<p>定义势能为 $\sum \lg |a_i-a_{i-1}|$。</p>
+<h2 id="区间最值操作"><a href="#区间最值操作" class="headerlink" title="区间最值操作"></a>区间最值操作</h2><h3 id="板子"><a href="#板子" class="headerlink" title="板子"></a>板子</h3><h4 id="1-Gorgeous-Sequence"><a href="#1-Gorgeous-Sequence" class="headerlink" title="1.Gorgeous Sequence"></a><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/showproblem.php?pid=5306">1.Gorgeous Sequence</a></h4><p>给你一个序列，支持区间取 $min$，查询区间最大值，查询区间和。</p>
+<p>考虑维护 $mx,cnt,se$ 分别代表区间最大值，区间最大值的个数，区间次大值。</p>
+<p>区间对 $x$ 取 $min$ 时，分讨一下：</p>
+<ul>
+<li><p>$mx \le x$ 时，无需操作。</p>
+</li>
+<li><p>$se &lt; x &lt; mx$ 时，此时可以 $O(1)$ 更新信息，打个标记即可。</p>
+</li>
+<li><p>$x \le se$ 时，暴力递归子节点。</p>
+</li>
+</ul>
+<p>时间复杂度为 $O(mlogn)$。</p>
+<p><strong>证明</strong></p>
+<p>记每个节点的标记为 $mx$，并将与父亲节点标记相同的删去。</p>
+<p>这样每个节点的次大值为其子树（不包含该节点）的标记的最大值。</p>
+<p>定义一类标记为一次修改及懒标记下传得到的标记，记一类标记的权值为子树中包含该标记的节点数量，记势能函数 $\Phi(x)$ 为所有标记的权值和。</p>
+<p>将区间取 $min$ 操作分为两种：常规操作与暴力递归。</p>
+<p>常规操作复杂度肯定是对的。</p>
+<p>每次暴力递归相当于回收标记，每次遍历到一个节点则子树中一定会有一个标记被回收，即 $\Phi(x)$ 减 $1$。</p>
+<p>势能总和是 $O((n+m)\log n)$ 级别的，所以总时间复杂度为 $O((n+m)\log n)$。</p>
+<p>实现时可以将取 $\min$ 标记换为 $mx$，也是对的。</p>
+<h4 id="2-Pick-loves-segment-tree"><a href="#2-Pick-loves-segment-tree" class="headerlink" title="2.Pick loves segment tree"></a>2.Pick loves segment tree</h4><p>给你一个序列，支持区间取 $min$，区间加减，区间求和。</p>
+<p>加入区间加减后，上述信息仍可维护，直接套用即可。</p>
+<p>重点是时间复杂度。</p>
+<p>修改势能函数的定义：记 $\Phi(x)$ 为每个标记的深度和。</p>
+<p>每次区间加减相当于增加 $O(logn)$ 个标记，那么 $\Phi(x)$ 增加 $O(log^2n)$。</p>
+<p>每次暴力递归均摊就是每遍历一个节点 $\Phi(x)$ 减少 $1$。</p>
+<p>这样时间复杂度为 $O((n+m)\log^2n)$。</p>
+<p>实际时间复杂度接近单 $\log$。</p>
+<h4 id="3-最假女选手"><a href="#3-最假女选手" class="headerlink" title="3.最假女选手"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P10639">3.最假女选手</a></h4><p>给你一个序列，支持区间加减，区间取 $\max \&amp; \min$，查询区间和，区间 $\max \&amp; \min$。</p>
+<h3 id="划分数域"><a href="#划分数域" class="headerlink" title="划分数域"></a>划分数域</h3><h4 id="1-Mzl-loves-segment-tree"><a href="#1-Mzl-loves-segment-tree" class="headerlink" title="1.Mzl loves segment tree"></a>1.Mzl loves segment tree</h4><p>给你一个序列，支持区间取 $\min \&amp; \max$，区间加减，查询区间历史变动次数。</p>
+<p>划分数域，将数拆为：最大值、最小值、其他。</p>
+<p>发现区间取 $\min/\max$ 相当于对于最大值最小值的区间加减。</p>
+<p>下传标记时顺便更新历史变动次数即可。</p>
+<h4 id="2-ChiTuShaoNian-loves-segment-tree"><a href="#2-ChiTuShaoNian-loves-segment-tree" class="headerlink" title="2.ChiTuShaoNian loves segment tree"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U180387">2.ChiTuShaoNian loves segment tree</a></h4><p>给你两个序列 $a,b$，支持对 $a,b$ 区间取 $\min$，区间加，查询区间 $a+b$ 的最大值。</p>
+<p>划分数域，分为同时为 $a,b$ 最大值的，只 $a$ 不 $b$ 的，…，四类。分别维护标记、答案。</p>
+<p>时间复杂度 $O((n+m)\log^2n)$。</p>
+<p>对于 $k$ 个序列的，可以做到 $O(2^k(n+m)\log^2n)$。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/hxoo5d9a">code &amp; maker</a></p>
+<h4 id="6-Dzy-loves-segment-tree"><a href="#6-Dzy-loves-segment-tree" class="headerlink" title="6.Dzy loves segment tree"></a>6.Dzy loves segment tree</h4><p>给你一个序列，支持区间取 $\min$，区间加减，查询区间 $\gcd$。</p>
+<p>将最大值和其他值分开维护，其他值进行差分。</p>
+<p>合并时对于差分的 $\gcd$ 区间拼接的顺序是不重要的。</p>
+<h2 id="历史问题"><a href="#历史问题" class="headerlink" title="历史问题"></a>历史问题</h2><p>将每次操作后得到的序列（或其他）视为一个新版本，那么历史问题就是针对历史版本的询问。主要有：历史最大/最小值，历史和。</p>
+<h4 id="1-CPU-监控"><a href="#1-CPU-监控" class="headerlink" title="1.CPU 监控"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4314">1.CPU 监控</a></h4><p>可以用懒标记实现。</p>
+<p>最原始的，将标记看作一个队列，但是不能直接维护这个队列。</p>
+<p>考虑化简为 $atag+ctag$</p>
+<p>也可以矩阵，用 $(+,\max)$ 广义矩阵乘法。 </p>
+<p>每个节点维护 $\begin{bmatrix} his \\ a \\ 0 \end{bmatrix}$。</p>
+<p>区间加 $k$ 的标记矩阵为：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    0   &    k    & -\infty \\
+-\infty &    k    & -\infty \\
+-\infty & -\infty &    0
+\end{bmatrix}</script><p>区间赋值为 $k$ 的标记矩阵为：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+    0   & -\infty & k \\
+-\infty & -\infty & k \\
+-\infty & -\infty & 0
+\end{bmatrix}</script><p>矩阵满足结合律，这样就不用考虑标记的合并了。</p>
+<p>缺点是常数太大，可以拆矩阵优化。</p>
+<h4 id="2-【清华集训2015】V"><a href="#2-【清华集训2015】V" class="headerlink" title="2.【清华集训2015】V"></a><a target="_blank" rel="noopener" href="https://uoj.ac/problem/164">2.【清华集训2015】V</a></h4><p>标记形如 $(a,b)$ 表示 $x \gets \max(x+a,b)$。</p>
+<p>标记的合并即为 $(a,b)+(c,d)=(a+c,\max(b+c,d))$。</p>
+<p>考虑历史标记最大值的合并 $(a,b)+(c,d)=(\max(a,c),\max(b,d))$，可以画图理解。</p>
+<h4 id="3-Rikka-with-Sequences"><a href="#3-Rikka-with-Sequences" class="headerlink" title="3.Rikka with Sequences"></a>3.Rikka with Sequences</h4><p>给你一个的序列 $a$，记 $b_{l,r}=\sum_{i=l}^{r}a_i$，对 $a$ 单点修改，对 $b$ 单点查询，每次操作后会更新 $b_{l,r}=\min(b_{l,r},\sum_{i=l}^{r}a_i)$。</p>
+<p>相当于二维平面上区间加，单点查询历史最小值，用 KDT 维护，时间复杂度 $O(m\sqrt{n})$。</p>
+<h4 id="4-【模板】线段树-3"><a href="#4-【模板】线段树-3" class="headerlink" title="4.【模板】线段树 3"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6242">4.【模板】线段树 3</a></h4><p>将最大值和非最大值分开维护。</p>
+<p>下方标记时，最大值来自哪个节点，最大值的标记就下方到哪个节点。</p>
+<h4 id="5-NOIP2022-比赛"><a href="#5-NOIP2022-比赛" class="headerlink" title="5.[NOIP2022] 比赛"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8868">5.[NOIP2022] 比赛</a></h4><p>扫描线，转化为区间历史和问题。</p>
+<p>每次线段树二分找到要区间覆盖的区间。</p>
+<p>需要维护$his,\sum ab,\sum a,\sum b$，用矩阵实现。</p>
+<p>具体转移矩阵就不写了。</p>
+<p>直接做过不去，拆矩阵即可。</p>
+<p>具体做法就是输个大样例，看哪个位置不为 $0$，然后预处理矩阵乘法，都写下来。</p>
+<p>应该不卡常，我多维护了 $2$ 个信息还跑的挺快的。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/mi0f64jm">code</a></p>
+<h2 id="杂题"><a href="#杂题" class="headerlink" title="杂题"></a>杂题</h2><h4 id="1-Julia-the-snail"><a href="#1-Julia-the-snail" class="headerlink" title="1.Julia the snail"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF793F">1.Julia the snail</a></h4><p>扫描线，这是经典的吉司机线段树。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>2016 年 jry 的集训队论文</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/CDOI-24374/p/17246482.html">Segment Tree Beats! 初步和其他</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/SoyTony/p/Learning_Notes_about_Segment_Tree_Beats.html">【学习笔记】Segment Tree Beats</a></p>
+<!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%BF%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">势能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.基础数据结构练习题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E3%80%8C%E9%9B%85%E7%A4%BC%E9%9B%86%E8%AE%AD-2017-Day1%E3%80%8D%E5%B8%82%E5%9C%BA"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.「雅礼集训 2017 Day1」市场</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BA%E9%97%B4%E6%9C%80%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">区间最值操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%BF%E5%AD%90"><span class="toc-number">2.1.</span> <span class="toc-text">板子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Gorgeous-Sequence"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.Gorgeous Sequence</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Pick-loves-segment-tree"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.Pick loves segment tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%80%E5%81%87%E5%A5%B3%E9%80%89%E6%89%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">3.最假女选手</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%92%E5%88%86%E6%95%B0%E5%9F%9F"><span class="toc-number">2.2.</span> <span class="toc-text">划分数域</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Mzl-loves-segment-tree"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.Mzl loves segment tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ChiTuShaoNian-loves-segment-tree"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.ChiTuShaoNian loves segment tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-Dzy-loves-segment-tree"><span class="toc-number">2.2.3.</span> <span class="toc-text">6.Dzy loves segment tree</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">历史问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-CPU-%E7%9B%91%E6%8E%A7"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.CPU 监控</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E3%80%90%E6%B8%85%E5%8D%8E%E9%9B%86%E8%AE%AD2015%E3%80%91V"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.【清华集训2015】V</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Rikka-with-Sequences"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.Rikka with Sequences</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91-3"><span class="toc-number">3.0.4.</span> <span class="toc-text">4.【模板】线段树 3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-NOIP2022-%E6%AF%94%E8%B5%9B"><span class="toc-number">3.0.5.</span> <span class="toc-text">5.[NOIP2022] 比赛</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">杂题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Julia-the-snail"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.Julia the snail</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/seg_beats/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/seg_beats/&text=segment tree beats"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/seg_beats/&is_video=false&description=segment tree beats"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=segment tree beats&body=Check out this article: http://idtwtei.github.io/seg_beats/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/seg_beats/&title=segment tree beats"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/seg_beats/&name=segment tree beats&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/seg_beats/&t=segment tree beats"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

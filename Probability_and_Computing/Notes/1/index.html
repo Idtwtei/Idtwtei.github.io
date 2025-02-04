@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="验证多项式恒等式想要验证 $\prod_{i&#x3D;1}^{n} (x-a_i) &#x3D; \prod_{i&#x3D;0}^{n} b_ix$ 是否成立。 显然可以将左式求出，然后逐位比较，时间复杂度 $O(n^2)$。 考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。 由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一章 事件与概率">
+<meta property="og:url" content="http://idtwtei.github.io/Probability_and_Computing/Notes/1/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="验证多项式恒等式想要验证 $\prod_{i&#x3D;1}^{n} (x-a_i) &#x3D; \prod_{i&#x3D;0}^{n} b_ix$ 是否成立。 显然可以将左式求出，然后逐位比较，时间复杂度 $O(n^2)$。 考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。 由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-10T12:40:23.850Z">
+<meta property="article:modified_time" content="2024-12-26T02:05:32.225Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>第一章 事件与概率</title><meta name="robots" content="noindex">
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/Probability_and_Computing/Notes/1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&text=第一章 事件与概率"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&is_video=false&description=第一章 事件与概率"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=第一章 事件与概率&body=Check out this article: http://idtwtei.github.io/Probability_and_Computing/Notes/1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&name=第一章 事件与概率&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&t=第一章 事件与概率"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%81%92%E7%AD%89%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">验证多项式恒等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">验证矩阵乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">贝叶斯公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">最小割随机算法</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        第一章 事件与概率
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-10T12:40:23.850Z" class="dt-published" itemprop="datePublished">2024-12-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="验证多项式恒等式"><a href="#验证多项式恒等式" class="headerlink" title="验证多项式恒等式"></a>验证多项式恒等式</h2><p>想要验证 $\prod_{i=1}^{n} (x-a_i) = \prod_{i=0}^{n} b_ix$ 是否成立。</p>
+<p>显然可以将左式求出，然后逐位比较，时间复杂度 $O(n^2)$。</p>
+<p>考虑随机抽取一个数，将其带入两式，判断结果是否相同，这样单次时间复杂度 $O(n)$。</p>
+<p>由于 $n$ 次多项式最多只有 $n$ 个不同的根，那么若抽取范围为 ${1,2,…,100n}$，抽取一次后给出错误结果的概率 $\le \frac{1}{100}$。</p>
+<h2 id="验证矩阵乘法"><a href="#验证矩阵乘法" class="headerlink" title="验证矩阵乘法"></a>验证矩阵乘法</h2><p><a target="_blank" rel="noopener" href="https://hydro.ac/p/bzoj-P2396">神奇的矩阵</a></p>
+<p>显然可以 $O(n^3)$。</p>
+<p>考虑每次随机一个向量 $v$，判断 $ABv = Cv$ 是否成立。</p>
+<p>若在 $\mod V$ 意义下进行，可以证明一次测试得到错误答案的概率 $\le \frac{1}{V}$。</p>
+<p><strong>证明</strong></p>
+<p>考虑计算测试成立但原式不成立的概率。</p>
+<p>设 $D = AB - C$，那么 $ABv = Cv$ 等价于 $Dv = 0$。</p>
+<p>不妨设 $d_{1,1} \ne 0$，有 $v_1 = -\frac{\sum_{i=2}^{n} d_{1,i}v_{i}}{d_{1,1}}$。由于值域为 $V$，故该式成立的概率为 $\frac{1}{V}$。</p>
+<h2 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h2><p>设 $E_1,E_2,…,E_n$ 是样本空间中互不相交的事件，且 $\cup_{i=1}^{n} E_i = \Omega$，则有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Pr(E_{i}|B) &= \frac{Pr(E_i \cap B)}{Pr(B)} \\
+&= \frac{Pr(B|E_i)Pr(E_i)}{\sum_{j=1}^{n} Pr(B|E_j)Pr(E_j)}
+\end{align}</script><h2 id="最小割随机算法"><a href="#最小割随机算法" class="headerlink" title="最小割随机算法"></a>最小割随机算法</h2><p>给你一张无向图，求其最小割。</p>
+<p>考虑每次随机缩掉一条边，随机 $n-2$ 次后，图中只剩两个点集，一个割集就是端点在不同集合的边的集合。</p>
+<p>可以证明算法输出正确结果的概率 $\ge \frac{2}{n(n-1)}$。</p>
+<p><strong>证明</strong></p>
+<p>重要事实是若最小割集的大小为 $k$，那么所有点的度数 $\ge k$。</p>
+<p>记 $C$ 为最小割集，将 $C$ 删去后形成 $S$ 和 $T$ 两个点集，$E_{i}$ 为第 $i$ 次缩边不在 $C$ 中，需要计算 $Pr(E_1,E_2,…,E_{n-2})$。</p>
+<p>根据重要事实，有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Pr(E_{i}|E_{1},E_{2},...,E_{i-1}) &\ge 1-\frac{k}{k(n-i+1)/2} \\
+&\ge 1-\frac{2}{n-i+1}
+\end{align}</script><p>那么有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Pr(E_1,E_2,...,E_{n-2}) &= Pr(E_1)Pr(E_2|E_1)...Pr(E_{n-2}|E_{1},E_{2},...,E_{n-3}) \\
+&\ge \prod_{i=1}^{n-2} (1-\frac{2}{n-i+1}) \\
+&= \prod_{i=1}^{n-2} \frac{n-i-1}{n-i+1} \\
+&= \frac{2}{n(n-1)}
+\end{align}</script><!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E6%81%92%E7%AD%89%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">验证多项式恒等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">验证矩阵乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%85%AC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">贝叶斯公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">最小割随机算法</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/Probability_and_Computing/Notes/1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&text=第一章 事件与概率"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&is_video=false&description=第一章 事件与概率"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=第一章 事件与概率&body=Check out this article: http://idtwtei.github.io/Probability_and_Computing/Notes/1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&title=第一章 事件与概率"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&name=第一章 事件与概率&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/Probability_and_Computing/Notes/1/&t=第一章 事件与概率"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

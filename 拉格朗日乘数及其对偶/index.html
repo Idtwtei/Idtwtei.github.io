@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="概述求多元函数 $f(x)$ 在满足 $g_i(x)&#x3D;0$ 的极值。设一个乘数 $\lambda$，求下面多元函数的极值  f(x,\lambda)&#x3D;f(x)+\sum_{i} \lambda_ig_i(x) 例 求 $y&#x3D;\frac{1}{x}$ 到原点最近的点。 即在满足 $g(x,y)&#x3D;xy-1&#x3D;0$ 的条件下，最小化 $f(x,y)&#x3D;x^2+y^2$。 设乘数 $\lambda$，最小化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="拉格朗日乘数及其对偶">
+<meta property="og:url" content="http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="概述求多元函数 $f(x)$ 在满足 $g_i(x)&#x3D;0$ 的极值。设一个乘数 $\lambda$，求下面多元函数的极值  f(x,\lambda)&#x3D;f(x)+\sum_{i} \lambda_ig_i(x) 例 求 $y&#x3D;\frac{1}{x}$ 到原点最近的点。 即在满足 $g(x,y)&#x3D;xy-1&#x3D;0$ 的条件下，最小化 $f(x,y)&#x3D;x^2+y^2$。 设乘数 $\lambda$，最小化">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-08T00:30:16.869Z">
+<meta property="article:modified_time" content="2025-01-09T07:24:51.743Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>拉格朗日乘数及其对偶</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/%E9%A2%98%E8%A7%A3/QOJ171/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&text=拉格朗日乘数及其对偶"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&is_video=false&description=拉格朗日乘数及其对偶"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=拉格朗日乘数及其对偶&body=Check out this article: http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&name=拉格朗日乘数及其对偶&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&t=拉格朗日乘数及其对偶"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-NOI2012-%E9%AA%91%E8%A1%8C%E5%B7%9D%E8%97%8F"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.[NOI2012] 骑行川藏</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        拉格朗日乘数及其对偶
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-01-08T00:30:16.869Z" class="dt-published" itemprop="datePublished">2025-01-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>求多元函数 $f(x)$ 在满足 $g_i(x)=0$ 的极值。设一个乘数 $\lambda$，求下面多元函数的极值</p>
+<script type="math/tex; mode=display">
+f(x,\lambda)=f(x)+\sum_{i} \lambda_ig_i(x)</script><blockquote>
+<p><strong>例</strong> 求 $y=\frac{1}{x}$ 到原点最近的点。</p>
+<p>即在满足 $g(x,y)=xy-1=0$ 的条件下，最小化 $f(x,y)=x^2+y^2$。</p>
+<p>设乘数 $\lambda$，最小化 $f(x,y,\lambda)=f(x,y)+\lambda g(x,y)=x^2+y^2+\lambda xy-\lambda$。</p>
+<p>分别对 $x,y,\lambda$ 求导，令导数为 $0$，得到</p>
+<script type="math/tex; mode=display">
+\left \{
+\begin{matrix}
+2x+\lambda y = 0 \\
+2y+\lambda x = 0 \\
+xy-1 = 0
+\end{matrix}
+\right.</script><p>解得</p>
+<script type="math/tex; mode=display">
+\left \{
+\begin{matrix}
+x = 1 \\
+y = 1 \\
+\lambda = -2
+\end{matrix}
+\right.
+或\
+\left \{
+\begin{matrix}
+x = -1 \\
+y = -1 \\
+\lambda = -2
+\end{matrix}
+\right.</script></blockquote>
+<p>线性规划对偶可以得到方便的机械化方法。不会证明，下面只讲方法。</p>
+<ul>
+<li><p>将线性约束转化为 $… \le 0$ 的形式。</p>
+</li>
+<li><p>对每个约束设一个乘数 $\lambda$，若求 $\min$ 那么限制 $\lambda \ge 0$，否则限制 $\lambda \le 0$。</p>
+</li>
+<li><p>将约束乘乘数写入最优化函数，即求 $L(x,\lambda)$ 的最值。将 $L(x,\lambda)$ 转化为以 $x$ 为主元的形式，通过限制系数使得 $L(x,\lambda)$ 不会取到 $\infty/-\infty$。</p>
+</li>
+<li><p>将 $\min/\max$ 取反，将带 $x$ 的项删去得到新的最优化函数。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>例</strong> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_icpc2015autumn_j">Longest Shortest Path</a></p>
+<p>需要将下式对偶</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\max \quad & p_t-p_s \\ 
+\texttt{s.t.} \quad
+& p_v-p_u \le d_e+x_e \\
+& \sum_{e} c_ex_e \le P \\
+& x_e,p_u \ge 0 
+\end{align}</script><p>改写为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\max \quad & p_t-p_s \\ 
+\texttt{s.t.} \quad
+& p_v-p_u-x_e-d_e \le 0 \\
+& \sum_{e} c_ex_e-P \le 0 \\
+& x_e,p_u \ge 0 
+\end{align}</script><p>设乘数 $f_e,F$ 得到</p>
+<script type="math/tex; mode=display">
+(\sum_{e \in in_s} f_e - \sum_{e \in out_s} f_e - 1) p_s \\ + (\sum_{e \in in_s} f_e - \sum_{e \in out_s} f_e + 1) p_t \\ + \sum_{u \in V \setminus \{s,t\}} (\sum_{e \in in_s} f_e - \sum_{e \in out_s}) p_u \\ + \sum_{e} (c_eF-f_e)x_e - \sum_{e} f_ed_e - FP</script><p>为防止取到 $\infty$，将系数限制为 $\le 0$，得到对偶</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\min \quad & \sum_{e} -d_ef_e - PF \\
+\texttt{s.t.} \quad
+& \sum_{e \in in_s} f_e - \sum_{e \in out_s} f_e \le 1 \\
+& \sum_{e \in in_t} f_e - \sum_{e \in out_t} f_e \le -1 \\
+& \sum_{e \in in_u} f_e - \sum_{e \in out_u} f_e \le 0 \quad u \in V \setminus \{s,t\} \\
+& c_eF - f_e \le 0 \\
+& F,f_e \le 0
+\end{align}</script><p>将 $f_e,F$ 取反得到</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\min \quad & \sum_{e} d_ef_e + PF \\
+\texttt{s.t.} \quad
+& \sum_{e \in in_s} f_e - \sum_{e \in out_s} f_e \ge -1 \\
+& \sum_{e \in in_t} f_e - \sum_{e \in out_t} f_e \ge 1 \\
+& \sum_{e \in in_u} f_e - \sum_{e \in out_u} f_e \ge 0 \quad u \in V \setminus \{s,t\} \\
+& c_eF - f_e \ge 0 \\
+& F,f_e \ge 0
+\end{align}</script></blockquote>
+<p>对于一般的拉格朗日对偶，最优化函数满足凸优化和 slater 条件是强对偶的充分条件。</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-NOI2012-骑行川藏"><a href="#1-NOI2012-骑行川藏" class="headerlink" title="1.[NOI2012] 骑行川藏"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2179">1.[NOI2012] 骑行川藏</a></h4><script type="math/tex; mode=display">
+\begin{align}
+\min \quad & \sum_{i} \frac{s_i}{v_i} \\
+\texttt{s.t.} \quad
+& \sum_{i} s_ik_i(v_i-v'_i)^2 \le E \\
+& v_i \ge v'_i \\
+& v_i > 0
+\end{align}</script><p>贪心，令 $\sum_{i} s_ik_i(v_i-v’_i)^2=E$ 即可。</p>
+<p>用拉格朗日乘数法，得到</p>
+<script type="math/tex; mode=display">
+\begin{align}
+2 \lambda k_iv_i^2(v_i-v'_i) &= 1 \tag{1} \\
+\sum_{i} s_ik_i(v_i-v'_i)^2 &= E \tag{2}
+\end{align}</script><p>对于给定的 $\lambda$，通过 $(1)$ 式计算 $v_i$ 并带入 $(2)$ 式判断即可。发现 $\lambda$ 递增时 $v_i$ 递减，二分 $\lambda$ 即可。时间复杂度 $O(n\log^2V)$。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/4xdbun0b">[OI笔记]利用拉格朗日乘数法求函数的最值</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yyyyxh/p/17939643/LPdual">在 OI 中更易上手的线性规划对偶</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-NOI2012-%E9%AA%91%E8%A1%8C%E5%B7%9D%E8%97%8F"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.[NOI2012] 骑行川藏</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&text=拉格朗日乘数及其对偶"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&is_video=false&description=拉格朗日乘数及其对偶"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=拉格朗日乘数及其对偶&body=Check out this article: http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&title=拉格朗日乘数及其对偶"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&name=拉格朗日乘数及其对偶&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/&t=拉格朗日乘数及其对偶"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="概述有用的点对？ 例题1.Tree Distance点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。 考虑对于每个点找到以其为 $d$ 最大值的点对。 对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。 先按编号排序，对于每个点找到前面&#x2F;后面第一个 $d$ 比它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支配点对">
+<meta property="og:url" content="http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="概述有用的点对？ 例题1.Tree Distance点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。 考虑对于每个点找到以其为 $d$ 最大值的点对。 对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。 先按编号排序，对于每个点找到前面&#x2F;后面第一个 $d$ 比它">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-22T01:32:31.378Z">
+<meta property="article:modified_time" content="2024-12-26T01:53:12.161Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>支配点对</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/%E7%BD%91%E7%BB%9C%E6%B5%81/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/%E8%8E%AB%E9%98%9F/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&text=支配点对"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&is_video=false&description=支配点对"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=支配点对&body=Check out this article: http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&name=支配点对&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&t=支配点对"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Tree-Distance"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.Tree Distance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Ynoi2008-rdCcot"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.[Ynoi2008] rdCcot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Ynoi2003-%E9%93%83%E5%8E%9F%E9%9C%B2%E9%9C%B2"><span class="toc-number">2.0.3.</span> <span class="toc-text">3.[Ynoi2003] 铃原露露</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        支配点对
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-22T01:32:31.378Z" class="dt-published" itemprop="datePublished">2024-12-22</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>有用的点对？</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-Tree-Distance"><a href="#1-Tree-Distance" class="headerlink" title="1.Tree Distance"></a><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1053/problem/5148">1.Tree Distance</a></h4><p>点分治，记 $d_u$ 为 $u$ 到分治中心的距离，两点间的距离 $\le d_i + d_j$。</p>
+<p>考虑对于每个点找到以其为 $d$ 最大值的点对。</p>
+<p>对于 $i &lt; j &lt; k$，若 $d_i \ge d_j,d_k$ 那么 $(i,k)$ 会被 $(j,k)$ 完全包含。</p>
+<p>先按编号排序，对于每个点找到前面/后面第一个 $d$ 比它小的点，组成点对。</p>
+<p>总共 $O(n\log n)$ 个支配点对。询问相当于二维偏序，扫描线+线段树即可，时间复杂度 $O(n\log^2n)$。</p>
+<h4 id="2-Ynoi2008-rdCcot"><a href="#2-Ynoi2008-rdCcot" class="headerlink" title="2.[Ynoi2008] rdCcot"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7126">2.[Ynoi2008] rdCcot</a></h4><p>每个 C-块 取 bfs 序最小点作为代表元。</p>
+<p>按编号排序，对每个点求出 $L_i,R_i$ 分别为其左右两边第一个 bfs 序比它小且能与它 C 连通的点。</p>
+<p>询问 $[l,r]$ 的答案为 $\sum_{i=l}^{r} [L_i&lt;l][r&lt;R_i]$，扫描线解决。</p>
+<p>对于 $L,R$ 的求解，由于与距离有关，用点分治，将子树节点按 bfs 序扫描线，线段树二分求出 $L_i,R_i$ 即可。</p>
+<h4 id="3-Ynoi2003-铃原露露"><a href="#3-Ynoi2003-铃原露露" class="headerlink" title="3.[Ynoi2003] 铃原露露"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8528">3.[Ynoi2003] 铃原露露</a></h4><p>将节点编号按 $a$ 排序。若区间满足题面中 $[L,R]$ 的限制，那么它是合法的。对于 $(x,y,lca(x,y))$</p>
+<ul>
+<li><p>若 $lca(x,y) \in [x,y]$ 无影响。</p>
+</li>
+<li><p>若 $lca(x,y)&lt;x$ 那么区间 $[l,r] (l \in (lca(x,y),x],r \in [y,n])$ 是不合法的。</p>
+</li>
+<li><p>若 $y&lt;lca(x,y)$ 那么区间 $[l,r] (l \in [1,x],r \in [y,lca(x,y)))$ 是不合法的。</p>
+</li>
+</ul>
+<p>相当于二维区间加，查询二维区间 $=0$ 的元素个数。</p>
+<p>扫描线，线段树维护区间最小值及其个数，历史 $=0$ 的元素个数，查询区间历史和。</p>
+<p>对于这种与 lca 有关的点对求解，一般用 dsu on tree 钦定 lca 求解。</p>
+<p>对于特定的 $x$，取前驱后继作为 $y$ 即可，总共 $O(n\log n)$ 个支配点对。</p>
+<p>时间复杂度 $O(n\log^2n)$。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/TetrisCandy/p/18095815">支配点对</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Tree-Distance"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.Tree Distance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Ynoi2008-rdCcot"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.[Ynoi2008] rdCcot</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Ynoi2003-%E9%93%83%E5%8E%9F%E9%9C%B2%E9%9C%B2"><span class="toc-number">2.0.3.</span> <span class="toc-text">3.[Ynoi2003] 铃原露露</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&text=支配点对"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&is_video=false&description=支配点对"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=支配点对&body=Check out this article: http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&title=支配点对"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&name=支配点对&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/&t=支配点对"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="概述对于统计 $S$ 在 $T$ 中的出现次数的问题。称 $S$ 为模板串，$T$ 为文本串。KMP 算法可以解决单模板串匹配问题。 先对模板串预处理 nxt 数组，代表 $[1,i]$ 的最长相等真前后缀的长度。也可以理解为在模板串上建立自动机。 然后遍历文本串进行匹配，时间复杂度均摊为 $O(n+m)$。 【模板】KMP code 应用最短循环节最短循环节存在当且仅当 $(n-nxt_n) |">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KMP">
+<meta property="og:url" content="http://idtwtei.github.io/KMP/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="概述对于统计 $S$ 在 $T$ 中的出现次数的问题。称 $S$ 为模板串，$T$ 为文本串。KMP 算法可以解决单模板串匹配问题。 先对模板串预处理 nxt 数组，代表 $[1,i]$ 的最长相等真前后缀的长度。也可以理解为在模板串上建立自动机。 然后遍历文本串进行匹配，时间复杂度均摊为 $O(n+m)$。 【模板】KMP code 应用最短循环节最短循环节存在当且仅当 $(n-nxt_n) |">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-15T05:56:22.919Z">
+<meta property="article:modified_time" content="2024-12-27T23:42:50.683Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>KMP</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/hash/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/Burnside/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/KMP/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/KMP/&text=KMP"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/KMP/&is_video=false&description=KMP"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=KMP&body=Check out this article: http://idtwtei.github.io/KMP/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/KMP/&name=KMP&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/KMP/&t=KMP"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E5%BE%AA%E7%8E%AF%E8%8A%82"><span class="toc-number">2.1.</span> <span class="toc-text">最短循环节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Prefix-Function-Queries"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.Prefix Function Queries</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-CERC2019-ABB"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.[CERC2019] ABB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-POI2005-SZA-Template"><span class="toc-number">2.1.3.</span> <span class="toc-text">3.[POI2005] SZA-Template</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%A4%B1%E9%85%8D%E6%A0%91"><span class="toc-number">2.1.4.</span> <span class="toc-text">4.【模板】失配树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-NOI2014-%E5%8A%A8%E7%89%A9%E5%9B%AD"><span class="toc-number">2.1.5.</span> <span class="toc-text">5.[NOI2014] 动物园</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        KMP
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-15T05:56:22.919Z" class="dt-published" itemprop="datePublished">2024-12-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>对于统计 $S$ 在 $T$ 中的出现次数的问题。称 $S$ 为模板串，$T$ 为文本串。KMP 算法可以解决单模板串匹配问题。</p>
+<p>先对模板串预处理 nxt 数组，代表 $[1,i]$ 的最长相等真前后缀的长度。也可以理解为在模板串上建立自动机。</p>
+<p>然后遍历文本串进行匹配，时间复杂度均摊为 $O(n+m)$。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3375">【模板】KMP</a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/190450329">code</a></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="最短循环节"><a href="#最短循环节" class="headerlink" title="最短循环节"></a>最短循环节</h3><p>最短循环节存在当且仅当 $(n-nxt_n) | n$，此时最短循环节长度为 $n-nxt_n$。</p>
+<h4 id="1-Prefix-Function-Queries"><a href="#1-Prefix-Function-Queries" class="headerlink" title="1.Prefix Function Queries"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1721E">1.Prefix Function Queries</a></h4><p>可以每次加入 $\text{t}$ 后从 $\text{t}$ 开始跑 KMP，但这样时间复杂度不对（因为时间复杂度是均摊的）。</p>
+<p>可以对于 $\text{s}$ 预处理出从 $i$ 开始，与 $\text{c}$ 匹配跳 fail 最终跳到的节点，这样当 $p \le n$ 时就可以 $O(1)$ 转移了。</p>
+<p>时间复杂度 $O(SZ|\text{s}| + \sum |\text{t}|)$。</p>
+<p>用可持久化线段树可以优化至 $O(|\text{s}| \log SZ)$</p>
+<h4 id="2-CERC2019-ABB"><a href="#2-CERC2019-ABB" class="headerlink" title="2.[CERC2019] ABB"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9606">2.[CERC2019] ABB</a></h4><p>一个串最少加入 $n-最长回文后缀$ 个字符形成一个回文串。</p>
+<p>求最长回文后缀可以求 $\overline{s} + “!” + s$ 的 $border$</p>
+<h4 id="3-POI2005-SZA-Template"><a href="#3-POI2005-SZA-Template" class="headerlink" title="3.[POI2005] SZA-Template"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3426">3.[POI2005] SZA-Template</a></h4><p>印章一定是原串的一段前缀。</p>
+<p>考虑 DP，记 $f_i$ 为 $[1,i]$ 需要的最短长度。</p>
+<p>发现 $f_i$ 只有 $i$ 和 $f_{nxt_i}$ 两种取值。最起码要能覆盖 $[1,nxt_i]$，再多了就不能覆盖 $[i-nxt_i+1,i]$ 了。</p>
+<p>只有当 $[i-nxt_i,i]$ 中存在 $j$ 使得 $f_j = f_{nxt_i}$ 时，$f_i$ 才取 $f_{nxt_i}$。用个桶记录最大位置。</p>
+<h4 id="4-【模板】失配树"><a href="#4-【模板】失配树" class="headerlink" title="4.【模板】失配树"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5829">4.【模板】失配树</a></h4><p>建出 $\text{fail}$ 树，找两个点父节点的 $\text{LCA}$。</p>
+<h4 id="5-NOI2014-动物园"><a href="#5-NOI2014-动物园" class="headerlink" title="5.[NOI2014] 动物园"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2375">5.[NOI2014] 动物园</a></h4><p>建出失配树，维护 $f_{u}$ 表示 $u$ 的答案，每次对子节点取 $\min$ 再往上跳即可。最后答案为深度。</p>
+<p>也可以维护一个栈，中间维护一个指针，个数即为指针的位置。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%9F%AD%E5%BE%AA%E7%8E%AF%E8%8A%82"><span class="toc-number">2.1.</span> <span class="toc-text">最短循环节</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Prefix-Function-Queries"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.Prefix Function Queries</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-CERC2019-ABB"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.[CERC2019] ABB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-POI2005-SZA-Template"><span class="toc-number">2.1.3.</span> <span class="toc-text">3.[POI2005] SZA-Template</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%A4%B1%E9%85%8D%E6%A0%91"><span class="toc-number">2.1.4.</span> <span class="toc-text">4.【模板】失配树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-NOI2014-%E5%8A%A8%E7%89%A9%E5%9B%AD"><span class="toc-number">2.1.5.</span> <span class="toc-text">5.[NOI2014] 动物园</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/KMP/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/KMP/&text=KMP"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/KMP/&is_video=false&description=KMP"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=KMP&body=Check out this article: http://idtwtei.github.io/KMP/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/KMP/&title=KMP"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/KMP/&name=KMP&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/KMP/&t=KMP"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

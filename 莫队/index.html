@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="概述将询问离线，按特定方式排序，使得询问之间移动的代价较小。 求所属块代码 1for(int i&#x3D;1;i&lt;&#x3D;n;i++) bk[i]&#x3D;(i-1)&#x2F;LEN; 常见常数优化  左端点所在块相同时，按块编号的奇偶将右端点小到大或大到小排序   1bool cmp0(Q a,Q b)&#123; return bk[a.l]!&#x3D;bk[b.l]?bk[a.l]&lt;bk[b.l]:bk[a.l]&amp;a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="莫队">
+<meta property="og:url" content="http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="概述将询问离线，按特定方式排序，使得询问之间移动的代价较小。 求所属块代码 1for(int i&#x3D;1;i&lt;&#x3D;n;i++) bk[i]&#x3D;(i-1)&#x2F;LEN; 常见常数优化  左端点所在块相同时，按块编号的奇偶将右端点小到大或大到小排序   1bool cmp0(Q a,Q b)&#123; return bk[a.l]!&#x3D;bk[b.l]?bk[a.l]&lt;bk[b.l]:bk[a.l]&amp;a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-22T01:32:23.291Z">
+<meta property="article:modified_time" content="2024-12-26T01:48:36.889Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>莫队</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/%E9%A2%98%E8%A7%A3/CF1558E/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&text=莫队"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&is_video=false&description=莫队"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=莫队&body=Check out this article: http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&name=莫队&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&t=莫队"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F"><span class="toc-number">2.</span> <span class="toc-text">普通莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E5%B0%8F-Z-%E7%9A%84%E8%A2%9C%E5%AD%90"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.[国家集训队] 小 Z 的袜子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F"><span class="toc-number">3.</span> <span class="toc-text">带修莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E6%95%B0%E9%A2%9C%E8%89%B2-%E7%BB%B4%E6%8A%A4%E9%98%9F%E5%88%97"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.[国家集训队] 数颜色 &#x2F; 维护队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Machine-Learning"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.Machine Learning</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E8%8E%AB%E9%98%9F"><span class="toc-number">4.</span> <span class="toc-text">回滚莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%9B%9E%E6%BB%9A%E8%8E%AB%E9%98%9F-amp-%E4%B8%8D%E5%88%A0%E9%99%A4%E8%8E%AB%E9%98%9F"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.【模板】回滚莫队&amp;不删除莫队</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F"><span class="toc-number">5.</span> <span class="toc-text">树上莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-WC2013-%E7%B3%96%E6%9E%9C%E5%85%AC%E5%9B%AD"><span class="toc-number">5.0.1.</span> <span class="toc-text">1.[WC2013] 糖果公园</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Ynoi2016-%E8%BF%99%E6%98%AF%E6%88%91%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E6%98%8E"><span class="toc-number">5.0.2.</span> <span class="toc-text">2.[Ynoi2016] 这是我自己的发明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF"><span class="toc-number">6.</span> <span class="toc-text">莫队二次离线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">杂题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-permu"><span class="toc-number">7.0.1.</span> <span class="toc-text">1.permu</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">8.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        莫队
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-22T01:32:23.291Z" class="dt-published" itemprop="datePublished">2024-12-22</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>将询问离线，按特定方式排序，使得询问之间移动的代价较小。</p>
+<p>求所属块代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++) bk[i]=(i<span class="number">-1</span>)/LEN;</span><br></pre></td></tr></table></figure>
+<p>常见常数优化</p>
+<ul>
+<li><p>左端点所在块相同时，按块编号的奇偶将右端点小到大或大到小排序</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp0</span><span class="params">(Q a,Q b)</span></span>&#123; <span class="keyword">return</span> bk[a.l]!=bk[b.l]?bk[a.l]&lt;bk[b.l]:bk[a.l]&amp;<span class="number">1</span>?a.r&lt;b.r:a.r&gt;b.r; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将简单的 add/del 写入 while 循环内</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(ql&lt;dl) dans+=<span class="number">2</span>*cnt[col[--dl]],cnt[col[dl]]++;</span><br><span class="line"><span class="keyword">while</span>(qr&gt;dr) dans+=<span class="number">2</span>*cnt[col[++dr]],cnt[col[dr]]++;</span><br><span class="line"><span class="keyword">while</span>(ql&gt;dl) cnt[col[dl]]--,dans-=<span class="number">2</span>*cnt[col[dl++]];</span><br><span class="line"><span class="keyword">while</span>(qr&lt;dr) cnt[col[dr]]--,dans-=<span class="number">2</span>*cnt[col[dr--]];</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="普通莫队"><a href="#普通莫队" class="headerlink" title="普通莫队"></a>普通莫队</h2><h4 id="1-国家集训队-小-Z-的袜子"><a href="#1-国家集训队-小-Z-的袜子" class="headerlink" title="1.[国家集训队] 小 Z 的袜子"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1494">1.[国家集训队] 小 Z 的袜子</a></h4><p>记区间中有 $n$ 种颜色，颜色为 $i$ 的有 $a_i$ 个，则概率为</p>
+<script type="math/tex; mode=display">
+\frac{\sum_{i=1}^{n}a_i(a_i-1)}{(r-l+1)(r-l)}</script><p>将询问离线，用莫队即可，时间复杂度 $O(n\sqrt{n})$</p>
+<h2 id="带修莫队"><a href="#带修莫队" class="headerlink" title="带修莫队"></a>带修莫队</h2><h4 id="1-国家集训队-数颜色-维护队列"><a href="#1-国家集训队-数颜色-维护队列" class="headerlink" title="1.[国家集训队] 数颜色 / 维护队列"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1903">1.[国家集训队] 数颜色 / 维护队列</a></h4><p>将时间看作一维，即可变成三维问题 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/8937lvmc">code</a><br>。</p>
+<p>分析时间复杂度，将一次操作看作一个点 $(t,x,y)$，将点按某一顺序排序，那么三个指针移动的总距离就是相邻点曼哈顿距离之和。分别考虑三个指针的移动即可，一般取块长为 $n^{\frac{2}{3}}$，时间复杂度为 $O(n^{\frac{3}{5}})$。</p>
+<h4 id="2-Machine-Learning"><a href="#2-Machine-Learning" class="headerlink" title="2.Machine Learning"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF940F">2.Machine Learning</a></h4><p>如果没有修改可以用只减不加的回滚莫队。</p>
+<p>此题 mex 是出现个数的，最大为 $\sqrt{n}$。</p>
+<p>所以每次移动完，直接暴力求解即可。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/mbw2kj1q">code</a></p>
+<h2 id="回滚莫队"><a href="#回滚莫队" class="headerlink" title="回滚莫队"></a>回滚莫队</h2><h4 id="1-【模板】回滚莫队-amp-不删除莫队"><a href="#1-【模板】回滚莫队-amp-不删除莫队" class="headerlink" title="1.【模板】回滚莫队&amp;不删除莫队"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5906">1.【模板】回滚莫队&amp;不删除莫队</a></h4><p>一些题目删除操作并不好做，可以将其避免。</p>
+<p>考虑计算复杂度的过程，每次 $l$ 指针的移动我们都是按 $\sqrt{n}$ 的次数计算。</p>
+<p>这给了我们很大的操作空间：对于每次询问我们都可以将 $l$ 指针移动 $\sqrt{n}$ 次，而不改变时间复杂度。</p>
+<p>每个块内右指针都是增加操作，左指针暴力计算即可。这样就只有增加操作了。</p>
+<p>对于 $l$ 和 $r$ 在一个块内的，需要直接暴力计算。</p>
+<h2 id="树上莫队"><a href="#树上莫队" class="headerlink" title="树上莫队"></a>树上莫队</h2><p>将树拍扁转化为序列问题。一般可处理子树问题（ dfs 序）、链问题（欧拉序）。</p>
+<h4 id="1-WC2013-糖果公园"><a href="#1-WC2013-糖果公园" class="headerlink" title="1.[WC2013] 糖果公园"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4074">1.[WC2013] 糖果公园</a></h4><p>先求出欧拉序。对于 $(x,y)(dep[x]&lt;dep[y])$ 路径，分讨一下</p>
+<ul>
+<li><p>$lca = x$ 时，区间为 $[in_x,in_y]$。</p>
+</li>
+<li><p>$lca \ne x$ 时，区间为 $[out_x,in_y] \cup \{lca\}$。</p>
+</li>
+</ul>
+<p>出现两次的点不计入答案，可以用异或实现。</p>
+<h4 id="2-Ynoi2016-这是我自己的发明"><a href="#2-Ynoi2016-这是我自己的发明" class="headerlink" title="2.[Ynoi2016] 这是我自己的发明"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4689">2.[Ynoi2016] 这是我自己的发明</a></h4><p>先求出 dfs 序，可以转化为区间查询（对于换根，分讨一下）。</p>
+<p>差分一下，可以转化为双关键点问题，使用莫队求解。</p>
+<p>但这样最多每次有 16 个查询</p>
+<p>发现形如 $[1,x] \cup [y,n]$ 的询问可以拆为 $[1,n]-[x+1,y-1]$，有关 $[1,n]$ 的可以预处理一下</p>
+<p>具体地，以 $[1,x] \cup [y,n] \times [1,x’] \cup [y’,n]$ 为例</p>
+<p>对某一颜色，它的贡献即为</p>
+<script type="math/tex; mode=display">
+(cnt_{[1,n]}-cnt_{[x+1,y-1]})*(cnt_{[1,n]}-cnt_{[x'+1,y'-1]}) \\
+=cnt_{[1,n]} \times cnt_{[1,n]}-cnt_{[1,n]} \times (cnt_{[x+1,y-1]}+cnt_{[x'+1,y'-1]})+cnt_{[x+1,y-1]} \times cnt_{x'+1,y'-1}</script><p>左一预处理一下。左二是一维问题，排序求解。右一用莫队解。</p>
+<p>这样每个询问只需拆成 4 个查询，可过。</p>
+<h2 id="莫队二次离线"><a href="#莫队二次离线" class="headerlink" title="莫队二次离线"></a>莫队二次离线</h2><p>。。。</p>
+<h2 id="杂题"><a href="#杂题" class="headerlink" title="杂题"></a>杂题</h2><h4 id="1-permu"><a href="#1-permu" class="headerlink" title="1.permu"></a><a target="_blank" rel="noopener" href="https://hydro.ac/d/bzoj/p/4358">1.permu</a></h4><p>一个排列，一堆询问，求区间最长值域连续段，可离线</p>
+<p>对于区间询问，考虑莫队。将存在的数看作 $1$，查询即为最长的连续 $1$。</p>
+<p>每次需要将 $0$ 变 $1$ 和将 $1$ 变 $0$，或只需要其中一个并支持撤销。</p>
+<p>明显要用并查集，变 $0$ 为 $1$ 是好做的，撤销用可撤销并查集即可。</p>
+<p>按深度合并，答案为最大 $siz$，每次合并时记录一下即可。</p>
+<p>初始时每个点都为 $0$，可以记一个 $vis$ 记录每个节点是否为 $1$，当合并时特判一下。</p>
+<p>时间复杂度 $O(n\sqrt n\log n)$。</p>
+<p>也可以观察最长连续 $1$ 性质。当加入 $x$ 时，更新 $x$ 点与当前段左右端点，因为中间不会再加数，不比 $x$ 点更优。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ubj5vw0y">code</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/WAMonster/p/10118934.html">莫队算法——从入门到黑题</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/psut3omr">莫队二次离线</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%99%AE%E9%80%9A%E8%8E%AB%E9%98%9F"><span class="toc-number">2.</span> <span class="toc-text">普通莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E5%B0%8F-Z-%E7%9A%84%E8%A2%9C%E5%AD%90"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.[国家集训队] 小 Z 的袜子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F"><span class="toc-number">3.</span> <span class="toc-text">带修莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F-%E6%95%B0%E9%A2%9C%E8%89%B2-%E7%BB%B4%E6%8A%A4%E9%98%9F%E5%88%97"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.[国家集训队] 数颜色 &#x2F; 维护队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Machine-Learning"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.Machine Learning</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E8%8E%AB%E9%98%9F"><span class="toc-number">4.</span> <span class="toc-text">回滚莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%9B%9E%E6%BB%9A%E8%8E%AB%E9%98%9F-amp-%E4%B8%8D%E5%88%A0%E9%99%A4%E8%8E%AB%E9%98%9F"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.【模板】回滚莫队&amp;不删除莫队</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F"><span class="toc-number">5.</span> <span class="toc-text">树上莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-WC2013-%E7%B3%96%E6%9E%9C%E5%85%AC%E5%9B%AD"><span class="toc-number">5.0.1.</span> <span class="toc-text">1.[WC2013] 糖果公园</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Ynoi2016-%E8%BF%99%E6%98%AF%E6%88%91%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E6%98%8E"><span class="toc-number">5.0.2.</span> <span class="toc-text">2.[Ynoi2016] 这是我自己的发明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF"><span class="toc-number">6.</span> <span class="toc-text">莫队二次离线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A2%98"><span class="toc-number">7.</span> <span class="toc-text">杂题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-permu"><span class="toc-number">7.0.1.</span> <span class="toc-text">1.permu</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">8.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&text=莫队"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&is_video=false&description=莫队"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=莫队&body=Check out this article: http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&title=莫队"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&name=莫队&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E8%8E%AB%E9%98%9F/&t=莫队"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

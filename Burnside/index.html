@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="只是一些定义，具体例子去看组合数学。 置换对于排列 $X$，将函数 $f:X \to X$ 称为置换。也可以记作  \begin{pmatrix} 1 &amp; 2 &amp; ... &amp; n \\ i_1 &amp; i_2 &amp; ... &amp; i_n \end{pmatrix}定义置换的合成 $f \circ g$，有 $(f \circ g)(k) &#x3D; f(g(k))$。 定义置换群 $G$ 满足  $\forall">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Burnside">
+<meta property="og:url" content="http://idtwtei.github.io/Burnside/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="只是一些定义，具体例子去看组合数学。 置换对于排列 $X$，将函数 $f:X \to X$ 称为置换。也可以记作  \begin{pmatrix} 1 &amp; 2 &amp; ... &amp; n \\ i_1 &amp; i_2 &amp; ... &amp; i_n \end{pmatrix}定义置换的合成 $f \circ g$，有 $(f \circ g)(k) &#x3D; f(g(k))$。 定义置换群 $G$ 满足  $\forall">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-11T23:08:44.693Z">
+<meta property="article:modified_time" content="2024-12-26T01:56:33.325Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>Burnside</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/KMP/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/AGC/AGC/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/Burnside/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/Burnside/&text=Burnside"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/Burnside/&is_video=false&description=Burnside"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Burnside&body=Check out this article: http://idtwtei.github.io/Burnside/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/Burnside/&name=Burnside&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/Burnside/&t=Burnside"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">置换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9D%80%E8%89%B2"><span class="toc-number">2.</span> <span class="toc-text">着色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Burnside-%E5%AE%9A%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">Burnside 定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polya-%E5%AE%9A%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">Polya 定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">习题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91Polya-%E5%AE%9A%E7%90%86"><span class="toc-number">5.0.1.</span> <span class="toc-text">1.【模板】Polya 定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-JSOI2012-%E7%88%B1%E4%B9%8B%E9%A1%B9%E9%93%BE"><span class="toc-number">5.0.2.</span> <span class="toc-text">2.[JSOI2012] 爱之项链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Burnside
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-11T23:08:44.693Z" class="dt-published" itemprop="datePublished">2024-12-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>只是一些定义，具体例子去看组合数学。</p>
+<h2 id="置换"><a href="#置换" class="headerlink" title="置换"></a>置换</h2><p>对于排列 $X$，将函数 $f:X \to X$ 称为置换。也可以记作</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}
+1 & 2 & ... & n \\
+i_1 & i_2 & ... & i_n
+\end{pmatrix}</script><p>定义置换的合成 $f \circ g$，有 $(f \circ g)(k) = f(g(k))$。</p>
+<p>定义置换群 $G$ 满足</p>
+<ul>
+<li><p>$\forall f,g \in G, f \circ g \in G$。</p>
+</li>
+<li><p>存在单位元。</p>
+</li>
+<li><p>$\forall f \in G, f^{-1} \in G$。</p>
+</li>
+</ul>
+<h2 id="着色"><a href="#着色" class="headerlink" title="着色"></a>着色</h2><p>记 $C$ 为颜色集合，将函数 $c:X \to C$ 称为着色。</p>
+<p>定义颜色的置换 $f*c$ ，有 $(f*c)(i_k)=c(k)$。</p>
+<p>$c_1$ 与 $c_2$ 等价当且仅当 $\exists f \in G, f*c = c$，记作 $c_1 \sim c_2$。</p>
+<p>定义着色集 $\mathcal{C}$ 满足</p>
+<ul>
+<li>$\forall f \in G,c \in \mathcal{C}, f*c \in \mathcal{C}$。</li>
+</ul>
+<h2 id="Burnside-定理"><a href="#Burnside-定理" class="headerlink" title="Burnside 定理"></a>Burnside 定理</h2><p>定义 $G(c) = \{f|f \in G,f*c=c\},\mathcal{C}(f) = \{c|c \in \mathcal{C},f*c=c\}$ 也称为不动点。</p>
+<blockquote>
+<p>与 $c$ 等价的着色个数 = $\frac{|G|}{|G(c)|}$。</p>
+</blockquote>
+<p><strong>证明</strong></p>
+<p>$\forall f \in G,g \in G(c)$ 有 $(f \circ g)*c = f*(g*c) = f*c$。</p>
+<p>而每个 $f \circ g$ 是不同的，因此对 $c$ 作用与 $f$ 相同的置换个数为 $|G(c)|$，总置换个数为 $|G|$，所以与 $c$ 等价的不同的着色有 $\frac{|G|}{|G(c)|}$ 种。</p>
+<blockquote>
+<p>Burnside 定理：$非等价着色数 = \frac{1}{|G|} \sum_{f \in G} |\mathcal{f}|$</p>
+<p>用人话将就是，本质不同的着色个数为所有置换不动点个数的平均值。</p>
+</blockquote>
+<p><strong>证明</strong></p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum_{f \in G} |\mathcal{C}(f)| &= \sum_{c \in \mathcal{c}} |G(c)| \\
+\sum_{f \in G} |\mathcal{C}(f)| &= \sum_{c \in \mathcal{c}} \frac{|G|}{与 c 等价的着色的个数} \\
+\sum_{f \in G} |\mathcal{C}(f)| &= |G|(非等价着色数) \\
+(非等价着色数) &= \frac{1}{|G|} \sum_{f \in G} |\mathcal{C}(f)|
+\end{align}</script><h2 id="Polya-定理"><a href="#Polya-定理" class="headerlink" title="Polya 定理"></a>Polya 定理</h2><p>浅浅写一下。</p>
+<p>置换可以被几个循环的合并代替。例</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+4 & 9 & 1 & 7 & 6 & 5 & 3 & 8 & 2
+\end{pmatrix} = [1 \ 4 \ 7 \ 3] \circ [2 \ 9] \circ [5 \ 6] \circ [8]</script><p>计算着色方案数时，我们只关心大小一定的循环有多少个，因此一个置换群可以被一个生成函数代替。</p>
+<p>该方法的优势在于可以限定颜色的个数。</p>
+<h2 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h2><h4 id="1-【模板】Polya-定理"><a href="#1-【模板】Polya-定理" class="headerlink" title="1.【模板】Polya 定理"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4980">1.【模板】Polya 定理</a></h4><p>有 $n$ 种置换，即旋转 $[1,n]$ 次（这里将 $0$ 归为 $n$ 方便计算）。</p>
+<p>对于旋转 $k$ 次的，其不动点个数为 $n^{\gcd(n,k)}$。所以答案为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{1}{n} \sum_{k=1}^{n} n^{\gcd(n,k)} &= \frac{1}{n} \sum_{d|n} n^d \sum_{k=1}^{n} [\gcd(n,k)=d] \\
+&= \sum_{d|n} n^d \varphi(\frac{n}{d})
+\end{align}</script><p>单点求 $\varphi$，时间复杂度 $O(n\sqrt{n}\log n)$（可以通过预处理将 $\log n$ 去掉）。</p>
+<h4 id="2-JSOI2012-爱之项链"><a href="#2-JSOI2012-爱之项链" class="headerlink" title="2.[JSOI2012] 爱之项链"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5233">2.[JSOI2012] 爱之项链</a></h4><p><del>搬题人的 id 提示了此题的做法。</del></p>
+<p>求一个戒指的方案数同上，记方案数为 $k$。考虑容斥，答案为</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\sum_{i=0}^{n-2} (-1)^{i} k(k-1)^{n-1-i} &= (-1)^{n-1} k \sum_{i=1}^{n-1} (1-k)^{i} \\
+&= (-1)^{n-1} k \frac{(1-k)^{n}-(1-k)}{-k} \\
+&= (k-1)^{n} + (-1)^{n} (k-1)
+\end{align}</script><p>$n=1$ 要特判？</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>组合数学（第五版）</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E6%8D%A2"><span class="toc-number">1.</span> <span class="toc-text">置换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9D%80%E8%89%B2"><span class="toc-number">2.</span> <span class="toc-text">着色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Burnside-%E5%AE%9A%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">Burnside 定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polya-%E5%AE%9A%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text">Polya 定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%A0%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">习题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91Polya-%E5%AE%9A%E7%90%86"><span class="toc-number">5.0.1.</span> <span class="toc-text">1.【模板】Polya 定理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-JSOI2012-%E7%88%B1%E4%B9%8B%E9%A1%B9%E9%93%BE"><span class="toc-number">5.0.2.</span> <span class="toc-text">2.[JSOI2012] 爱之项链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/Burnside/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/Burnside/&text=Burnside"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/Burnside/&is_video=false&description=Burnside"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Burnside&body=Check out this article: http://idtwtei.github.io/Burnside/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/Burnside/&title=Burnside"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/Burnside/&name=Burnside&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/Burnside/&t=Burnside"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

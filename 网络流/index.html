@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="算法有个建反向边的反悔思想。 FF 算法（指用 dfs 实现的 FF）dfs 找增广路。 每次增广当前流量至少加 $1$，单次增广时间复杂度 $O(m)$。记 $F$ 为最大流，时间复杂度为 $O(Fm)$。 EK 算法bfs 找到增广路。 时间复杂度为 $O(nm^2)$。 下面是证明。  每次增广后 $s$ 到除 $s$ 外每个点的最短路单调不降。  反证法，记 $d_u$ 为原最短路，$d’">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流">
+<meta property="og:url" content="http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="算法有个建反向边的反悔思想。 FF 算法（指用 dfs 实现的 FF）dfs 找增广路。 每次增广当前流量至少加 $1$，单次增广时间复杂度 $O(m)$。记 $F$ 为最大流，时间复杂度为 $O(Fm)$。 EK 算法bfs 找到增广路。 时间复杂度为 $O(nm^2)$。 下面是证明。  每次增广后 $s$ 到除 $s$ 外每个点的最短路单调不降。  反证法，记 $d_u$ 为原最短路，$d’">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-22T23:24:54.194Z">
+<meta property="article:modified_time" content="2025-01-25T00:47:59.585Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>网络流</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/%E6%94%AF%E9%85%8D%E7%82%B9%E5%AF%B9/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&text=网络流"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&is_video=false&description=网络流"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络流&body=Check out this article: http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&name=网络流&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&t=网络流"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FF-%E7%AE%97%E6%B3%95%EF%BC%88%E6%8C%87%E7%94%A8-dfs-%E5%AE%9E%E7%8E%B0%E7%9A%84-FF%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">FF 算法（指用 dfs 实现的 FF）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EK-%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">EK 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dinic"><span class="toc-number">1.3.</span> <span class="toc-text">dinic</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81%E6%9C%80%E5%B0%8F%E5%89%B2%E5%AE%9A%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">最大流最小割定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.二分图最大匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Matrix-Decompressing"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.Matrix Decompressing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%89%E8%B4%9F%E5%9C%88%E7%9A%84%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.有负圈的费用流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="toc-number">3.0.4.</span> <span class="toc-text">4.有源汇上下界最大流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%96%87%E7%90%86%E5%88%86%E7%A7%91"><span class="toc-number">3.0.5.</span> <span class="toc-text">5.文理分科</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E9%AA%91%E5%A3%AB%E5%85%B1%E5%AD%98%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.6.</span> <span class="toc-text">6.骑士共存问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E5%A4%AA%E7%A9%BA%E9%A3%9E%E8%A1%8C%E8%AE%A1%E5%88%92%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.7.</span> <span class="toc-text">7.太空飞行计划问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-Hard-Life"><span class="toc-number">3.0.8.</span> <span class="toc-text">8.Hard Life</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.9.</span> <span class="toc-text">9.最小路径覆盖问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-CTSC2008-%E7%A5%AD%E7%A5%80"><span class="toc-number">3.0.10.</span> <span class="toc-text">10.[CTSC2008] 祭祀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E6%9C%80%E9%95%BFk%E5%8F%AF%E9%87%8D%E5%8C%BA%E9%97%B4%E9%9B%86%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.11.</span> <span class="toc-text">11.最长k可重区间集问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-CTSC1999-%E5%AE%B6%E5%9B%AD-%E6%98%9F%E9%99%85%E8%BD%AC%E7%A7%BB%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.12.</span> <span class="toc-text">12.[CTSC1999] 家园&#x2F;星际转移问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-NOI2010-%E6%B5%B7%E6%8B%94"><span class="toc-number">3.0.13.</span> <span class="toc-text">13.[NOI2010] 海拔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-AHOI2009-%E6%9C%80%E5%B0%8F%E5%89%B2"><span class="toc-number">3.0.14.</span> <span class="toc-text">14.[AHOI2009] 最小割</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">杂题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-A-Plug-for-UNIX"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.A Plug for UNIX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%96%B9%E6%A0%BC%E5%8F%96%E6%95%B0%E5%8A%A0%E5%BC%BA%E7%89%88"><span class="toc-number">4.0.2.</span> <span class="toc-text">2.方格取数加强版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SCOI2007-%E4%BF%AE%E8%BD%A6"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.[SCOI2007] 修车</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-NOI2008-%E5%BF%97%E6%84%BF%E8%80%85%E6%8B%9B%E5%8B%9F"><span class="toc-number">4.0.4.</span> <span class="toc-text">4.[NOI2008] 志愿者招募</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Help-Little-Laura"><span class="toc-number">4.0.5.</span> <span class="toc-text">5.Help Little Laura</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-Euler-Circuit"><span class="toc-number">4.0.6.</span> <span class="toc-text">6.Euler Circuit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-Chips-Challenge"><span class="toc-number">4.0.7.</span> <span class="toc-text">7.Chips Challenge</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-ZJOI2011-%E8%90%A5%E6%95%91%E7%9A%AE%E5%8D%A1%E4%B8%98"><span class="toc-number">4.0.8.</span> <span class="toc-text">8.[ZJOI2011] 营救皮卡丘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E6%97%A0%E9%99%90%E4%B9%8B%E7%8E%AF"><span class="toc-number">4.0.9.</span> <span class="toc-text">9.无限之环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-WC2007-%E5%89%AA%E5%88%80%E7%9F%B3%E5%A4%B4%E5%B8%83"><span class="toc-number">4.0.10.</span> <span class="toc-text">10.[WC2007] 剪刀石头布</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zkw-%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="toc-number">5.</span> <span class="toc-text">zkw 费用流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81%E5%94%AF%E4%B8%80%E6%80%A7%E5%88%A4%E5%AE%9A"><span class="toc-number">6.</span> <span class="toc-text">最大流唯一性判定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        网络流
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-22T23:24:54.194Z" class="dt-published" itemprop="datePublished">2024-12-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>有个建反向边的反悔思想。</p>
+<h3 id="FF-算法（指用-dfs-实现的-FF）"><a href="#FF-算法（指用-dfs-实现的-FF）" class="headerlink" title="FF 算法（指用 dfs 实现的 FF）"></a>FF 算法（指用 dfs 实现的 FF）</h3><p>dfs 找增广路。</p>
+<p>每次增广当前流量至少加 $1$，单次增广时间复杂度 $O(m)$。记 $F$ 为最大流，时间复杂度为 $O(Fm)$。</p>
+<h3 id="EK-算法"><a href="#EK-算法" class="headerlink" title="EK 算法"></a>EK 算法</h3><p>bfs 找到增广路。</p>
+<p>时间复杂度为 $O(nm^2)$。</p>
+<p>下面是证明。</p>
+<blockquote>
+<p>每次增广后 $s$ 到除 $s$ 外每个点的最短路单调不降。</p>
+</blockquote>
+<p>反证法，记 $d_u$ 为原最短路，$d’_u$ 为增广后的最短路，假设存在点 $u$ 满足 $d’_u&lt;d_u$ 取 $d’_u$ 最小的点作为 $u$。</p>
+<p>设增广后的最短路径形如 $s \leadsto x \to u$。那么 $d’u=d’x+1$。</p>
+<p>此时 $(x,u) \notin E$，否则 $d_u \le d_x+1 \le d’_x+1 = d’_u$ 矛盾。</p>
+<p>那么 $(x,u)$ 是增广后的反向边，即 $(u,x) \in E$。有 $d_u+1=d_x \le d’_x = d’_u-1$，即 $d_u \le d’_u-2$ 矛盾。</p>
+<blockquote>
+<p>记一次增广流量等于增广流量的边为关键边，那么每条边最多成为 $\frac{n}{2}-1$ 次关键边。</p>
+</blockquote>
+<p>若 $(u,v)$ 作为关键边，其再次出现需要 $(v,u)$ 作为关键边。那么 $ d_u = d_v-1 \le d’_v-1 = d’_u-2 $，而 $d$ 最小为 $1$ 最大为 $n-1$，最多出现 $\frac{n}{2}-1$ 次。</p>
+<p>那么总增广次数为 $O(nm)$，单次增广时间复杂度 $O(m)$，总时间复杂度 $O(nm^2)$。</p>
+<h3 id="dinic"><a href="#dinic" class="headerlink" title="dinic"></a>dinic</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3376">1.【模板】网络最大流</a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/n5dv07nc">dinic</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3381">2.【模板】最小费用最大流</a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/dcnzzkwo">dinic</a></p>
+<ul>
+<li><p>对于一般网络，时间复杂度为 $O(n^2m)$。</p>
+</li>
+<li><p>对于容量为 $1$ 的网络，时间复杂度为 $O(m\min(n^{\frac{2}{3}},\sqrt{m}))$。</p>
+</li>
+<li><p>对于单位网络，即满足 $\min(d_i^{in},d_i^{out}) \le 1$ 且容量为 $1$ 的网络，时间复杂度为 $O(m\sqrt{n})$。</p>
+</li>
+<li><p>增广轮数为 $O(\sqrt{\sum_{i}\min(d_i^{in},d_i^{out})})$。</p>
+</li>
+</ul>
+<p>下面是证明。</p>
+<blockquote>
+<p>每次增广后到 $t$ 的最短路单调不减。</p>
+</blockquote>
+<p>同理可证。</p>
+<blockquote>
+<p>dinic 算法每次增广后 $s$ 到 $t$ 的最短路单调递增。</p>
+</blockquote>
+<p>只需证明不相等，反证法，假设增广后最短路单调递增。</p>
+<p>那么一定存在一条边 $e \notin E$，否则会被增广。那么 $d \ge d’+2$ 矛盾。</p>
+<blockquote>
+<p>对于一般图，dinic 算法时间复杂度为 $O(n^2m)$。</p>
+</blockquote>
+<p>会增广 $O(n)$ 轮，每轮增广会增广 $O(m)$ 次，每次增广时间复杂度 $O(n)$（分层图），总时间复杂度 $O(n^2m)$。</p>
+<blockquote>
+<p>记 $S=\sum_{i}\min(d_i^{in},d_i^{out})$，那么增广轮数为 $O(\sqrt{S})$。</p>
+</blockquote>
+<p>若增广超过 $O(\sqrt{S})$ 轮，那么之后的增广路长度 $&gt;\sqrt{S}$。</p>
+<p>将达到终态需要增广的路径提出来，对每个点分别考虑可得其总长度 $\le S$，那么路径数为 $O(\sqrt{S})$，则接下来至多增广 $O(\sqrt{S})$ 轮。</p>
+<blockquote>
+<p>边容量为 $1$ 的网络，增广轮数为 $O(\sqrt{m})$。</p>
+</blockquote>
+<p>$S=m$。</p>
+<blockquote>
+<p>边容量为 $1$ 的网络，增广轮数为 $O(n^{\frac{2}{3}})$。</p>
+</blockquote>
+<p>记 $s_i$ 为与 $s$ 最短距离为 $i$ 的点的个数，记 $d$ 为 $s$ 到 $t$ 的最短距离，记 $F$ 为最大流，有 $F \le s_is_{i+1} \le (\frac{s_i+s_{i+1}}{2})^2(i=0,1,…,d-1)$。</p>
+<p>而 $\sum_{i=0}^{d-1} \frac{s_i+s_{i+1}}{2} &lt; n$，故 $F &lt; \frac{n^2}{d^2}$。</p>
+<p>还有个增广轮数 $\le d$ 的限制，那么当 $d \le n^{\frac{2}{3}}$ 时，增广轮数为 $O(n^{\frac{2}{3}})$，当 $d &gt; n^{\frac{2}{3}}$ 时，增广轮数为 $O(n^{\frac{2}{3}})$。</p>
+<blockquote>
+<p>边容量为 $1$ 的网络，单次增广的时间复杂度为 $O(m)$。</p>
+</blockquote>
+<p>每条边至多遍历一次。</p>
+<blockquote>
+<p>单位网络的增广轮数为 $O(\sqrt{n})$。</p>
+</blockquote>
+<p>$S=O(n)$。</p>
+<h2 id="最大流最小割定理"><a href="#最大流最小割定理" class="headerlink" title="最大流最小割定理"></a>最大流最小割定理</h2><p>即 最大流 $=$ 最小割。</p>
+<p>最大流 $\le$ 最小割，只需证明最大流 $\ge$ 最小割。</p>
+<p>只需证明存在一个流等于一个割即可，最终的残余网络显然符合条件。</p>
+<p>其实是对偶。</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-二分图最大匹配"><a href="#1-二分图最大匹配" class="headerlink" title="1.二分图最大匹配"></a>1.二分图最大匹配</h4><p>记 $X,Y$ 分别为左右部点。</p>
+<ul>
+<li><p>$\forall x \in X,(s,x,1)$。</p>
+</li>
+<li><p>$\forall y \in Y,(y,t,1)$。</p>
+</li>
+<li><p>$\forall (x,y) \in E,(x,y,1)$。</p>
+</li>
+</ul>
+<h4 id="2-Matrix-Decompressing"><a href="#2-Matrix-Decompressing" class="headerlink" title="2.Matrix Decompressing"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA11082">2.Matrix Decompressing</a></h4><p>求出每行每列的和。将每个点的初始值设为 $1$，范围转化为 $0-19$。</p>
+<p>将每行每列视为一个点。对原图中点 $(x,y)$ 建 $(x,y,19)$。从 $s$ 向每行连容量为当前行的和的边，列向 $t$ 连边。</p>
+<p>跑最大流即可保证行和列均满足和的条件。</p>
+<p>每个点的值即为边的流量 $+1$。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/4m006v0m">code</a></p>
+<h4 id="3-有负圈的费用流"><a href="#3-有负圈的费用流" class="headerlink" title="3.有负圈的费用流"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7173">3.有负圈的费用流</a></h4><p>由于有负环，基于最短路的费用流无法直接处理。</p>
+<p>强制让负权边满流，但是这样会使有的点的入流与出流不等。</p>
+<p>若点的入流大于出流，则需要流出一些流，反之则需要流入一些流。用网络流处理。</p>
+<p>建立虚拟源汇点 $s,t$。记 $in_i$ 为点 $i$ 的入流减出流，</p>
+<ul>
+<li><p>$in_i &gt; 0$ 连边 $(s,i,in_i,0)$。</p>
+</li>
+<li><p>$in_i &lt; 0$ 连边 $(i,t,-in_i,0)$。</p>
+</li>
+</ul>
+<p>以虚拟源点跑一次费用流那么原图流量平衡（这叫做可行流），再跑费用流求解。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/aewu4k9t">code</a></p>
+<h4 id="4-有源汇上下界最大流"><a href="#4-有源汇上下界最大流" class="headerlink" title="4.有源汇上下界最大流"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5192">4.有源汇上下界最大流</a></h4><p>先强制流满每条边的下界，跑可行流。若不存在可行流（没有满流）则无解。</p>
+<p>特别的，由于原图中的源点、汇点入流不一定等于出流，所以连边 $(t,s,\infty)$。</p>
+<p>跑出可行流后，将 $t$ 到 $s$ 的边删去，再跑一次最大流。可行流加最大流即为答案。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/2rs524un">code</a></p>
+<h4 id="5-文理分科"><a href="#5-文理分科" class="headerlink" title="5.文理分科"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4313">5.文理分科</a></h4><p>每个同学要么选文科要么选理科，该问题为划分问题，用最小割来解决。</p>
+<p>对于每个同学，从 $s$ 连一条容量为选文科所得满意值的边，向 $t$ 连一条容量为选理科所得满意值的边，该同学最终与 $s$ 相连即为选了文科，反之理科。</p>
+<p>对于选相同科目的满意值（举都选文科为例），新建一个节点 $i$ 代表以 $i$ 为中心的五位同学</p>
+<p>从 $s$ 连一条容量为全选文科所得满意值的边，向五位同学分别连一条容量为 $\infty$ 的边。</p>
+<p>表示若要获得全选文科所得的满意值，则五位同学的理科边（容量为选理科所得满意值的边）都要割断。</p>
+<p>最大满意值即为剩下的边的边权，用满意度之和减去最小割即可。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/s1vbg5f8">code</a></p>
+<h4 id="6-骑士共存问题"><a href="#6-骑士共存问题" class="headerlink" title="6.骑士共存问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3355">6.骑士共存问题</a></h4><p>仍可看成划分问题，即每个位置选或不选。限制为选择某个点则周围的点强制不选。</p>
+<p>为了加边满足该限制，一个点与相邻的点的方向应是相反的，即被划分到 $s$ 的含义不同。</p>
+<p>没有奇环，点被合法地分成了两类，对应原图黑白染色的结果。</p>
+<p>建图时流量为 $0$ 的边可以省去，这样就是主流的建图方式了。</p>
+<p>此题的 $\infty$ 可以视为 $1$，发现建图与二分图最大匹配相同，事实上本题就是求二分图最大独立集。</p>
+<h4 id="7-太空飞行计划问题"><a href="#7-太空飞行计划问题" class="headerlink" title="7.太空飞行计划问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2762">7.太空飞行计划问题</a></h4><p>考虑一般的问题，即最大权闭合子图。</p>
+<p>看成划分问题，需要满足一个点被选，那么它的邻点强制被选。</p>
+<p>由于点权有负数，不能直接建图，先加上点权的绝对值即可。</p>
+<p>详细解释。</p>
+<p>对于点权为正的，连边为 $val,0$，答案为 $val-割$（最小割满足保留边的权值最大）。</p>
+<p>对于点权为负的，开始连边 $val,0$，答案为 $val-割$，由于 $val$ 为负，考虑连边 $0,-val$，答案为 $val-(割+val)=0-割$。</p>
+<h4 id="8-Hard-Life"><a href="#8-Hard-Life" class="headerlink" title="8.Hard Life"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA1389">8.Hard Life</a></h4><p>通过01分数规划求解。二分 $\frac{|E|}{|V|}$（记为$g$）。要判断是否有</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\frac{|E|}{|V|} &> g \\
+|E|-g|V| &> 0
+\end{align}</script><p>即求出当前 $|E|-g|V|$ 的最大值。</p>
+<p>二分的下限为 $\frac{1}{n}$ ，上限为 $m$ ，两个不同的密度差最少为 $\frac{1}{n^2}$ 这决定了精度。</p>
+<p>我们使用最小割求解$\left|E\right|-g\left|V\right |$ 的最大值。</p>
+<p>将无向边拆为两条有向边。</p>
+<p>记 $V$ 为与 $s$ 相连的点集，其补集为 $V’$，$C[V,V’]$ 为起点在 $V$，终点在 $V’$ 的边的个数。则</p>
+<script type="math/tex; mode=display">
+|E|=\frac{\sum_{u \in V}out_u-C[V,V']}{2}</script><p>这样就将边的信息转化为点的信息了。</p>
+<p>考虑如何凑出原式。最小割为下面三种边的容量和</p>
+<ul>
+<li><p>$s \to V’$</p>
+</li>
+<li><p>$V \to t$</p>
+</li>
+<li><p>$V \to V’$</p>
+</li>
+</ul>
+<p>对于边三，可以将原图中的边的容量设为 $1$，得到 $C[V,V’]$。对于边二，设容量为 $2g-out_i$，但是这样会使有的容量为负，加一个 $\Delta$ 即可（用 $m$）。这样会多算 $|V|m$，让边一容量为 $m$。</p>
+<p>最小割即为</p>
+<script type="math/tex; mode=display">
+
+mn+C[V,V']+2g|V|-\sum_{u \in V}out_u = mn+2gn-2m</script><p>所以 $m-gn=\frac{(mn-\texttt{maxflow})}{2}$。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/epvrztkw">code</a></p>
+<h4 id="9-最小路径覆盖问题"><a href="#9-最小路径覆盖问题" class="headerlink" title="9.最小路径覆盖问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2764">9.最小路径覆盖问题</a></h4><p>将每个点看作一条路径，每次可以首尾合并两条路径。</p>
+<p>将每个点拆为 $in,out$，对于边 $u \to v$，连边 $(out_u,in_v,1)$。</p>
+<p>跑二分图最大匹配即可。</p>
+<p>对于允许链相交的问题，先跑传递闭包，再跑二分图最大匹配。</p>
+<h4 id="10-CTSC2008-祭祀"><a href="#10-CTSC2008-祭祀" class="headerlink" title="10.[CTSC2008] 祭祀"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4298">10.[CTSC2008] 祭祀</a></h4><blockquote>
+<p>一个 DAG 中最长反链的大小，等于最小链覆盖的大小。</p>
+</blockquote>
+<p>由鸽巢原理可知，最长反链 $\le$ 最小链覆盖。只需构造方案即可。</p>
+<p>将原图传递闭包后拆点建出二分图，标记最大独立集中的点，若原图中点的入点与出点均被标记，则该点属于最长反链。</p>
+<p>一个点的入点与出点均在独立集中，反映到原图上，则它与其他反链上的点均未直接相连，所以选出的点一定为反链。</p>
+<p>由于最小链覆盖 $=n-$ 最大匹配数、最大独立集 $=2n-$ 最大匹配数，所以最小链覆盖 $=$ 最大独立集 $-n$。</p>
+<p>那么只要每个点至少有一个入点或出点被标记，则选出的方案为最大反链。可以反证法证明。</p>
+<p>若点 $i$ 的入点（$i’$）与出点（ $i’’$ ）均未被标记，则必有 $j’’$ 与 $i’$ 相连，$k’$ 与 $i’’$ 相连，且 $j’’,k’$ 均被标记。</p>
+<p>由于原图为 DAG 所以 $j,k$ 不为同一点。</p>
+<p>由于先进行了传递闭包，所以若 $j \to i$ 且 $i \to k$ ，则必有 $j \to k$ ，即 $j’’$ 与 $k’$ 相连，此时不满足独立集的条件，故该情况不成立。</p>
+<p>对于第三问，枚举每个点，将与它相连的点删去，再计算最长反链。若此时的最长反链 $=ans-1$，则该点可选，反之不可选。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/uog5xvyx">code</a></p>
+<h4 id="11-最长k可重区间集问题"><a href="#11-最长k可重区间集问题" class="headerlink" title="11.最长k可重区间集问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3358">11.最长k可重区间集问题</a></h4><p>限制是 $\le k$ 考虑网络流，建图看看得了，感觉就是妙手偶得啊，不会讲。</p>
+<h4 id="12-CTSC1999-家园-星际转移问题"><a href="#12-CTSC1999-家园-星际转移问题" class="headerlink" title="12.[CTSC1999] 家园/星际转移问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2754">12.[CTSC1999] 家园/星际转移问题</a></h4><p>太空船只可容纳 $h$ 个人，即太空船最多容纳 $h$ 个人，可以发现是容量的定义，用网络流求解</p>
+<p>由于太空船移动的特殊性和极小的数据范围，我们可以想到枚举答案、动态加边，直到 $k$ 个人运出输出此时的答案。</p>
+<p>每次在可以上一次的残量网络上跑最大流。</p>
+<p>对于无解的判断，如果地球和月球无法通过太空船相连即无解，用并查集判断。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/cl4n46ve">code</a></p>
+<h4 id="13-NOI2010-海拔"><a href="#13-NOI2010-海拔" class="headerlink" title="13.[NOI2010] 海拔"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2046">13.[NOI2010] 海拔</a></h4><p>先贪心一下，最后的图一定为一片 $1$ 与一片 $0$。</p>
+<p>所以该题就转化为了最小割问题，但是用最大流求最小割会超时。</p>
+<p>图为平面图，我们可以将平面图最小割转化为对偶图最短路。</p>
+<p>具体地，将平面图中每一个平面看作一个节点，将两个平面之间的邻边转化为两个节点之间的边。</p>
+<p>对于最上侧和最右侧的边，将它看作 $s$ 与所在平面的边。</p>
+<p>对于最下侧和最左侧的边，将它看作 $t$ 与所在平面的边。</p>
+<p>例如，$i$ 与 $j$ 平面上下相邻，对于中间从西到东的邻边，将其转化为 $i \to j$。</p>
+<p>因为若该边计入答案，则西边的节点为 $0$ ，东边的节点为 $1$，所以转化为从上到下的边</p>
+<p>将其他情况都推一遍，可以发现是将原图中的边顺时针旋转 $90$ 度。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/pssi03u7">code</a></p>
+<h4 id="14-AHOI2009-最小割"><a href="#14-AHOI2009-最小割" class="headerlink" title="14.[AHOI2009] 最小割"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4126">14.[AHOI2009] 最小割</a></h4><ul>
+<li><p>满流且两端点不在同一连通分量的边为可行边。</p>
+</li>
+<li><p>满流且两端点分别在 $s,t$ 的强连通分量的边为必须边。</p>
+</li>
+</ul>
+<p>将跑任意最大流后得到的残量网络缩点，得到一张 DAG，DAG 上任意紧的割都是原图的最小割。</p>
+<h2 id="杂题"><a href="#杂题" class="headerlink" title="杂题"></a>杂题</h2><h4 id="1-A-Plug-for-UNIX"><a href="#1-A-Plug-for-UNIX" class="headerlink" title="1.A Plug for UNIX"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA753">1.A Plug for UNIX</a></h4><p>类似于二分图最大匹配建图</p>
+<ul>
+<li><p>对于插座 $i$ 连 $(i,t,1)$。</p>
+</li>
+<li><p>对于插头 $i$ 连 $(s,i,1)$。</p>
+</li>
+<li><p>对于转换器 $u \to v$ 连 $(u,v,\infty)$。</p>
+</li>
+</ul>
+<p>跑最大流即可。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/smekujoo">code</a></p>
+<h4 id="2-方格取数加强版"><a href="#2-方格取数加强版" class="headerlink" title="2.方格取数加强版"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2045">2.方格取数加强版</a></h4><h4 id="3-SCOI2007-修车"><a href="#3-SCOI2007-修车" class="headerlink" title="3.[SCOI2007] 修车"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2053">3.[SCOI2007] 修车</a></h4><p>等待相当于每次从头开始走一遍。费用流解决。</p>
+<h4 id="4-NOI2008-志愿者招募"><a href="#4-NOI2008-志愿者招募" class="headerlink" title="4.[NOI2008] 志愿者招募"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3980">4.[NOI2008] 志愿者招募</a></h4><p>类似最小路径覆盖问题，容量为 $\infty-a_i$ 即可。</p>
+<h4 id="5-Help-Little-Laura"><a href="#5-Help-Little-Laura" class="headerlink" title="5.Help Little Laura"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA1659">5.Help Little Laura</a></h4><p>给你一个有向图，每条边的权值为 $len \times x-y$ ，找一些不相交的环，使得权值和最大。</p>
+<p>若将每条边的流量定为 $1$ ，则一个合法的涂色方式中每个点的入流与出流相等，跑可行流即可。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/8e71oeqk">code</a></p>
+<p>还可以每次用 spfa 找一个负环增广。</p>
+<h4 id="6-Euler-Circuit"><a href="#6-Euler-Circuit" class="headerlink" title="6.Euler Circuit"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA10735">6.Euler Circuit</a></h4><p>由于欧拉回路中每条边只能经过一次，所以不能简单地将无向边拆为有向边。</p>
+<p>我们需要找一个将无向边定向的方案，使原图存在欧拉回路。那么需要满足每个点的入度减出度为 $0$。</p>
+<p>先随意将无向边定向，记 $in_i$ 为点i的入度减出度。</p>
+<p>将 $u \to v$ 的无向边取反则 $in_u+=2,in_v-=2$，相当于流量从 $u$ 流入 $v$。</p>
+<p>按残量网络建图，再跑欧拉回路即可。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/820sgya9">code</a></p>
+<h4 id="7-Chips-Challenge"><a href="#7-Chips-Challenge" class="headerlink" title="7.Chips Challenge"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/UVA1104">7.Chips Challenge</a></h4><p>由于每一行与每一列的芯片数相同，可以将行与列看成一个点。</p>
+<p>对于 $.(i,j)$，连 $(i,j,1,1)$。</p>
+<p>对于 $C(i,j)$，由于要强制选择，连 $(i,j,1,\infty)$。</p>
+<p>所以题目就转化为一个最大费用可行流问题，除去 $\infty$ 的费用和即为添加的部件个数。</p>
+<p>再考虑 $A/B$ 这个限制。由于 $N$ 较小，可以考虑枚举行或列最多的部件数 $k$。拆点，连 $(i’,i’’,k,0)$。 </p>
+<p>如果 $当前C的个数 \times A&gt;=Bk$ 则合法，取最大值即为 $ans$。</p>
+<p>对于最大费用可行流问题，我们先将边权取反，转化为最小费用可行流。</p>
+<p>自己推一下即可得到如下连边方式</p>
+<ul>
+<li><p>$(i’,i’’,k,0)$。</p>
+</li>
+<li><p>$(s,i’,maxl_i,0)$。</p>
+</li>
+<li><p>$(i’’,t,maxh_i,0)$。</p>
+</li>
+</ul>
+<p>对于$.(i,j)$，连 $(j’,i’’,1,1)$，此处连边是为了删边，由于 $C$ 连的边不需要删，所以可不连该边。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/6votwsa6">code</a></p>
+<h4 id="8-ZJOI2011-营救皮卡丘"><a href="#8-ZJOI2011-营救皮卡丘" class="headerlink" title="8.[ZJOI2011] 营救皮卡丘"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4542">8.[ZJOI2011] 营救皮卡丘</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/wrbsbni5">code</a></p>
+<h4 id="9-无限之环"><a href="#9-无限之环" class="headerlink" title="9.无限之环"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4003">9.无限之环</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/js4jzhd0">code</a></p>
+<h4 id="10-WC2007-剪刀石头布"><a href="#10-WC2007-剪刀石头布" class="headerlink" title="10.[WC2007] 剪刀石头布"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4249">10.[WC2007] 剪刀石头布</a></h4><p>每个点的贡献可以写成等差数列形式，依次连边即可。</p>
+<h2 id="zkw-费用流"><a href="#zkw-费用流" class="headerlink" title="zkw 费用流"></a>zkw 费用流</h2><p>貌似就是倒着跑 spfa 的 dinic？</p>
+<h2 id="最大流唯一性判定"><a href="#最大流唯一性判定" class="headerlink" title="最大流唯一性判定"></a>最大流唯一性判定</h2><p>跑出残量网络，相当于判断混合图是否有环，将无向边缩点跑拓扑排序即可。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/uid001/p/10465580.html">EK 时间复杂度证明</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/myee/p/dinic-algorithm.html">Dinic的几种复杂度</a></p>
+<p><a target="_blank" rel="noopener" href="https://web.eecs.umich.edu/~pettie/matching/Karzanov-unit-flow-msqrtm-mntwothirds-msqrtn-matching-ENGLISH.pdf">On finding a maximum flow in a network with special structureand some applications 1</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/li2xfw2r">EK不够快？再学个Dinic吧</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/k2hh2bok">网络流</a></p>
+<p>某课件</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FF-%E7%AE%97%E6%B3%95%EF%BC%88%E6%8C%87%E7%94%A8-dfs-%E5%AE%9E%E7%8E%B0%E7%9A%84-FF%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">FF 算法（指用 dfs 实现的 FF）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EK-%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">EK 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dinic"><span class="toc-number">1.3.</span> <span class="toc-text">dinic</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81%E6%9C%80%E5%B0%8F%E5%89%B2%E5%AE%9A%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">最大流最小割定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.二分图最大匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Matrix-Decompressing"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.Matrix Decompressing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%89%E8%B4%9F%E5%9C%88%E7%9A%84%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.有负圈的费用流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%A4%A7%E6%B5%81"><span class="toc-number">3.0.4.</span> <span class="toc-text">4.有源汇上下界最大流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%96%87%E7%90%86%E5%88%86%E7%A7%91"><span class="toc-number">3.0.5.</span> <span class="toc-text">5.文理分科</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E9%AA%91%E5%A3%AB%E5%85%B1%E5%AD%98%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.6.</span> <span class="toc-text">6.骑士共存问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E5%A4%AA%E7%A9%BA%E9%A3%9E%E8%A1%8C%E8%AE%A1%E5%88%92%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.7.</span> <span class="toc-text">7.太空飞行计划问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-Hard-Life"><span class="toc-number">3.0.8.</span> <span class="toc-text">8.Hard Life</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.9.</span> <span class="toc-text">9.最小路径覆盖问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-CTSC2008-%E7%A5%AD%E7%A5%80"><span class="toc-number">3.0.10.</span> <span class="toc-text">10.[CTSC2008] 祭祀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E6%9C%80%E9%95%BFk%E5%8F%AF%E9%87%8D%E5%8C%BA%E9%97%B4%E9%9B%86%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.11.</span> <span class="toc-text">11.最长k可重区间集问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-CTSC1999-%E5%AE%B6%E5%9B%AD-%E6%98%9F%E9%99%85%E8%BD%AC%E7%A7%BB%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.12.</span> <span class="toc-text">12.[CTSC1999] 家园&#x2F;星际转移问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-NOI2010-%E6%B5%B7%E6%8B%94"><span class="toc-number">3.0.13.</span> <span class="toc-text">13.[NOI2010] 海拔</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-AHOI2009-%E6%9C%80%E5%B0%8F%E5%89%B2"><span class="toc-number">3.0.14.</span> <span class="toc-text">14.[AHOI2009] 最小割</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">杂题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-A-Plug-for-UNIX"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.A Plug for UNIX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%96%B9%E6%A0%BC%E5%8F%96%E6%95%B0%E5%8A%A0%E5%BC%BA%E7%89%88"><span class="toc-number">4.0.2.</span> <span class="toc-text">2.方格取数加强版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SCOI2007-%E4%BF%AE%E8%BD%A6"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.[SCOI2007] 修车</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-NOI2008-%E5%BF%97%E6%84%BF%E8%80%85%E6%8B%9B%E5%8B%9F"><span class="toc-number">4.0.4.</span> <span class="toc-text">4.[NOI2008] 志愿者招募</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-Help-Little-Laura"><span class="toc-number">4.0.5.</span> <span class="toc-text">5.Help Little Laura</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-Euler-Circuit"><span class="toc-number">4.0.6.</span> <span class="toc-text">6.Euler Circuit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-Chips-Challenge"><span class="toc-number">4.0.7.</span> <span class="toc-text">7.Chips Challenge</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-ZJOI2011-%E8%90%A5%E6%95%91%E7%9A%AE%E5%8D%A1%E4%B8%98"><span class="toc-number">4.0.8.</span> <span class="toc-text">8.[ZJOI2011] 营救皮卡丘</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E6%97%A0%E9%99%90%E4%B9%8B%E7%8E%AF"><span class="toc-number">4.0.9.</span> <span class="toc-text">9.无限之环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-WC2007-%E5%89%AA%E5%88%80%E7%9F%B3%E5%A4%B4%E5%B8%83"><span class="toc-number">4.0.10.</span> <span class="toc-text">10.[WC2007] 剪刀石头布</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zkw-%E8%B4%B9%E7%94%A8%E6%B5%81"><span class="toc-number">5.</span> <span class="toc-text">zkw 费用流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81%E5%94%AF%E4%B8%80%E6%80%A7%E5%88%A4%E5%AE%9A"><span class="toc-number">6.</span> <span class="toc-text">最大流唯一性判定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&text=网络流"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&is_video=false&description=网络流"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络流&body=Check out this article: http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&title=网络流"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&name=网络流&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E7%BD%91%E7%BB%9C%E6%B5%81/&t=网络流"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

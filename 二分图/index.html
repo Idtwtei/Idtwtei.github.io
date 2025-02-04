@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="匈牙利算法【模板】二分图最大匹配 12345678int dfs(int u)&#123;	for(int i&#x3D;head[u];i;i&#x3D;ne[i])&#123;		if(vis[v[i]]) continue; vis[v[i]]&#x3D;1;		if(!mat[v[i]]||dfs(mat[v[i]]))			return mat[v[i]]&#x3D;u,vis[v[i]]&#x3D;0,1;	&#125;	return">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分图">
+<meta property="og:url" content="http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="匈牙利算法【模板】二分图最大匹配 12345678int dfs(int u)&#123;	for(int i&#x3D;head[u];i;i&#x3D;ne[i])&#123;		if(vis[v[i]]) continue; vis[v[i]]&#x3D;1;		if(!mat[v[i]]||dfs(mat[v[i]]))			return mat[v[i]]&#x3D;u,vis[v[i]]&#x3D;0,1;	&#125;	return">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-23T13:34:17.970Z">
+<meta property="article:modified_time" content="2024-12-26T01:45:42.651Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>二分图</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/Pollard_Rho/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&text=二分图"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&is_video=false&description=二分图"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=二分图&body=Check out this article: http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&name=二分图&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&t=二分图"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">匈牙利算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hall-%E5%AE%9A%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">hall 定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8D%9A%E5%BC%88"><span class="toc-number">4.</span> <span class="toc-text">二分图博弈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%85%E7%BB%8F%E5%8F%AF%E8%A1%8C%E7%82%B9%E8%BE%B9"><span class="toc-number">5.</span> <span class="toc-text">必经可行点边</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%93%E8%89%B2"><span class="toc-number">6.</span> <span class="toc-text">染色</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        二分图
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-23T13:34:17.970Z" class="dt-published" itemprop="datePublished">2024-12-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="匈牙利算法"><a href="#匈牙利算法" class="headerlink" title="匈牙利算法"></a>匈牙利算法</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3386">【模板】二分图最大匹配</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=head[u];i;i=ne[i])&#123;</span><br><span class="line">		<span class="keyword">if</span>(vis[v[i]]) <span class="keyword">continue</span>; vis[v[i]]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(!mat[v[i]]||<span class="built_in">dfs</span>(mat[v[i]]))</span><br><span class="line">			<span class="keyword">return</span> mat[v[i]]=u,vis[v[i]]=<span class="number">0</span>,<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度 $O(nm)$。</p>
+<h2 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h2><blockquote>
+<p>$二分图最小覆盖点数=二分图最大匹配$。</p>
+</blockquote>
+<p>就是 menger 定理的点形式。</p>
+<p>求出最大匹配，遍历每一个未匹配的左部点，将增广路标记。</p>
+<p>取未标记的左部点和标记的右部点作为点覆盖。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/C202202chenkelin/p/14437260.html">证明</a></p>
+<blockquote>
+<p>$二分图最大独立集=n-二分图最大匹配$。</p>
+</blockquote>
+<p>最小点覆盖的补集。</p>
+<blockquote>
+<p>补图的最大独立集为原图的最大团。</p>
+</blockquote>
+<h2 id="hall-定理"><a href="#hall-定理" class="headerlink" title="hall 定理"></a>hall 定理</h2><p>对于点数分别为 $x,y(x \le y)$ 的二分图，若其最大匹配为 $x$ 那么称其有完备匹配。</p>
+<blockquote>
+<p>二分图存在完备匹配当且仅当 $\forall |S| \le |N(S)|$。</p>
+</blockquote>
+<p>归纳法，每次删掉一对。</p>
+<blockquote>
+<p>二分图最大匹配为 $x - \max\{|S|-|N(S)|\}$。</p>
+</blockquote>
+<p>归纳法，每次删掉一对。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3679">[CERC2016] 二分毯 Bipartite Blanket</a></p>
+<p>存在匹配同时覆盖 $X,Y$，当且仅当存在匹配覆盖左部点集 $X$，且存在匹配覆盖右部点集 $Y$。</p>
+<p>证明考虑将两个匹配拼起来，对于偶环/奇链，间隔选择即可。对于偶链，假设左部点多于右部点，一定存在一个左部点 $\notin X$，删去即可。</p>
+<h2 id="二分图博弈"><a href="#二分图博弈" class="headerlink" title="二分图博弈"></a>二分图博弈</h2><p>在二分图上两个人轮流移动一个棋子，不能经过重复节点，不能动者输。</p>
+<p>那么先手必胜当且仅当初始位置为必须点。</p>
+<h2 id="必经可行点边"><a href="#必经可行点边" class="headerlink" title="必经可行点边"></a>必经可行点边</h2><p>跑二分图最大匹配，在残量网络上跑强连通分量（包括 $s,t$）。</p>
+<ul>
+<li><p>若一条边为匹配边且两个端点不属于同一个强连通分量，那么它为必须边。</p>
+</li>
+<li><p>若一条边为匹配边或两个端点属于同一个强连通分量，那么它为可行边。</p>
+</li>
+<li><p>从 $s$ 开始标记能达到的左部点，从 $t$ 开始标记能达到的右部点，那么被标记的点均为非必须点，其补集为必须点。</p>
+</li>
+<li><p>若一个点存在一条相邻的可行边，那么它是可行点。</p>
+</li>
+</ul>
+<h2 id="染色"><a href="#染色" class="headerlink" title="染色"></a>染色</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF600F">Edge coloring of bipartite graph</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/Content/">目录</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">匈牙利算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hall-%E5%AE%9A%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">hall 定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8D%9A%E5%BC%88"><span class="toc-number">4.</span> <span class="toc-text">二分图博弈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%85%E7%BB%8F%E5%8F%AF%E8%A1%8C%E7%82%B9%E8%BE%B9"><span class="toc-number">5.</span> <span class="toc-text">必经可行点边</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%93%E8%89%B2"><span class="toc-number">6.</span> <span class="toc-text">染色</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&text=二分图"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&is_video=false&description=二分图"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=二分图&body=Check out this article: http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&title=二分图"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&name=二分图&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/%E4%BA%8C%E5%88%86%E5%9B%BE/&t=二分图"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/Content/">目录</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
