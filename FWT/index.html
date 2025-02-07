@@ -17,7 +17,7 @@
 <meta property="og:description" content="概述 (x \oplus y) \&amp; z &#x3D; (x \&amp; z) \oplus (y \&amp; z) \frac{1}{2^{n}} \sum_{T &lt; 2^n} (-1)^{|S \&amp; T|} &#x3D; [S&#x3D;0]得到  \begin{aligned} h_{S} &amp;&#x3D; \sum_{L \oplus R &#x3D; S} f_{L}g_{R} \\ &amp;&#x3D; \sum [L \oplus R \oplus S &#x3D; 0]">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-03T09:48:08.826Z">
-<meta property="article:modified_time" content="2025-02-03T13:14:19.529Z">
+<meta property="article:modified_time" content="2025-02-04T14:12:38.394Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -201,7 +201,7 @@ f_{S} = \sum_{T < 2^n} (-1)^{|S \& T|} f_{T}</script><figure class="highlight cp
 <p>给你 $n$ 个节点的无向图 $G$，求连通生成子图个数，答案对 $10^9 + 7$ 取模。</p>
 <p>$1 \le n \le 20$。 </p>
 </blockquote>
-<p>记 $f$ 为连通生成子图的集合幂级数，$g$ 为生成子图的集合幂级数，令$f_{\empty}=g_{\empty}=0$，$g$ 是好求的。定义乘法为子集卷积，那么 $g = \sum_{i \ge 1} \frac{f^{i}}{i!} = e^f -1$，即 $f = \ln(g+1)$。</p>
+<p>记 $f$ 为连通生成子图的集合幂级数，$g$ 为生成子图的集合幂级数，令$f_{\emptyset}=g_{\emptyset}=0$，$g$ 是好求的。定义乘法为子集卷积，那么 $g = \sum_{i \ge 1} \frac{f^{i}}{i!} = e^f -1$，即 $f = \ln(g+1)$。</p>
 <h2 id="线性基"><a href="#线性基" class="headerlink" title="线性基"></a>线性基</h2><blockquote>
 <p>对每个 $S \in [0,2^n)$，求 $\sum [\bigoplus_{x \in T}x = S] \prod_{x \in T} a_x \prod_{x \notin T} b_x$。</p>
 <p>$1 \le n \le 20$。</p>

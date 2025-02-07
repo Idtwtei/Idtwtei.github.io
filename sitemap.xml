@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://idtwtei.github.io/dom/</loc>
+    
+    <lastmod>2025-02-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://idtwtei.github.io/luogu/</loc>
     
     <lastmod>2025-02-04</lastmod>
@@ -13,7 +22,7 @@
   <url>
     <loc>http://idtwtei.github.io/FWT/</loc>
     
-    <lastmod>2025-02-03</lastmod>
+    <lastmod>2025-02-04</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -400,7 +409,7 @@
 
   <url>
     <loc>http://idtwtei.github.io/</loc>
-    <lastmod>2025-02-04</lastmod>
+    <lastmod>2025-02-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
