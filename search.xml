@@ -4,19 +4,6 @@
   
     
     <entry>
-      <title>支配树</title>
-      <link href="/dom/"/>
-      <url>/dom/</url>
-      
-        <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>对于有向图 $G=(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，记作 $x=dom(y)$。</p><p>点 $u$ 支配其支配树上子树中所有节点。被支配同理。<br>支配边，定义与支配点类似，可以边化点求解，还有一种常数较小的做法（真的有用吗？）。<br>对于强连通分量，有桥和割点的定义，可以支配树求解（不太会，感觉没用）。</p><p><del>可以看出支配树用途广泛。</del>求解支配树尤为重要。</p><p>对于 DAG，有一个简单的算法。<br>拓扑排序，按拓扑序从小到大求解。对于点 $x$，以其未终点的边有 $(s_1,x),(s_2,x)…$。则其支配点为 $LCA(idom(s_1),idom(s_2),…)$，每次需动态添加一个叶子节点，可以用倍增求 LCA，动态维护。时间复杂度 $O((n+m)logn)$。</p><blockquote><p><a href="https://www.luogu.com.cn/problem/P2597">P2597 [ZJOI2012] 灾难</a></p></blockquote><p>建超级源点，求出以超级源点为根的支配树后，求一下子树和即可。</p><p>对于一般图。<br>引入半支配点的概念。<br>艹，好麻烦，不写了。。。</p><blockquote><p><a href="https://www.luogu.com.cn/problem/P5180#submit">P5180 【模板】支配树</a></p></blockquote><p><a href="https://www.luogu.com.cn/paste/f6a8b10d">代码</a></p><blockquote><p><a href="https://www.luogu.com.cn/problem/CF757F">Team Rocket Rises Again</a></p></blockquote><p>求一下最短路，加入边 $(u,v,w),dis_v=dis_u+w$，可以得到一个 DAG，求支配树即可。</p><blockquote><p><a href="https://www.luogu.com.cn/problem/P7520">P7520 [省选联考 2021 A 卷] 支配</a></p></blockquote><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>2020 集训队论文《浅谈支配树及其应用》</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>洛谷省选计划</title>
       <link href="/luogu/"/>
       <url>/luogu/</url>

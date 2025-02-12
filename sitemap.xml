@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://idtwtei.github.io/dom/</loc>
-    
-    <lastmod>2025-02-05</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://idtwtei.github.io/luogu/</loc>
     
     <lastmod>2025-02-04</lastmod>
