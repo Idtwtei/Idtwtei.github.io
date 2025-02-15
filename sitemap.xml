@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://idtwtei.github.io/SAM/</loc>
+    
+    <lastmod>2025-02-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.io/CFR1004/</loc>
+    
+    <lastmod>2025-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://idtwtei.github.io/luogu/</loc>
     
     <lastmod>2025-02-04</lastmod>
@@ -156,15 +174,6 @@
   
   <url>
     <loc>http://idtwtei.github.io/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
-    
-    <lastmod>2025-01-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://idtwtei.github.io/SAM/</loc>
     
     <lastmod>2025-01-03</lastmod>
     
@@ -344,15 +353,6 @@
   </url>
   
   <url>
-    <loc>http://idtwtei.github.io/%E6%A8%A1%E6%8B%9F%E8%B4%B9%E7%94%A8%E6%B5%81/</loc>
-    
-    <lastmod>2024-12-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://idtwtei.github.io/%E6%AF%9B%E6%AF%9B%E8%99%AB%E5%89%96%E5%88%86/</loc>
     
     <lastmod>2024-12-26</lastmod>
@@ -400,7 +400,7 @@
 
   <url>
     <loc>http://idtwtei.github.io/</loc>
-    <lastmod>2025-02-12</lastmod>
+    <lastmod>2025-02-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

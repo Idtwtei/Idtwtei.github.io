@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="概述增量法构造。 12345678910struct TREE&#123; int ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;1]; int las&#x3D;1,tot&#x3D;1;void ins(int c)&#123;    int p&#x3D;las,np&#x3D;++tot,v,nv; las&#x3D;np,t[np].len&#x3D;t[p].len+1;    for(;p&amp;&amp;!t[p">
+    <meta name="description" content="艹，我都第几次学了。 概述增量法构造。 12345678910struct TREE&#123; int ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;1]; int las&#x3D;1,tot&#x3D;1;void ins(int c)&#123;    int p&#x3D;las,np&#x3D;++tot,v,nv; las&#x3D;np,t[np].len&#x3D;t[p].len+1;    for(;p&amp;am">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SAM">
 <meta property="og:url" content="http://idtwtei.github.io/SAM/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="概述增量法构造。 12345678910struct TREE&#123; int ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;1]; int las&#x3D;1,tot&#x3D;1;void ins(int c)&#123;    int p&#x3D;las,np&#x3D;++tot,v,nv; las&#x3D;np,t[np].len&#x3D;t[p].len+1;    for(;p&amp;&amp;!t[p">
+<meta property="og:description" content="艹，我都第几次学了。 概述增量法构造。 12345678910struct TREE&#123; int ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;1]; int las&#x3D;1,tot&#x3D;1;void ins(int c)&#123;    int p&#x3D;las,np&#x3D;++tot,v,nv; las&#x3D;np,t[np].len&#x3D;t[p].len+1;    for(;p&amp;am">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-29T00:28:58.761Z">
-<meta property="article:modified_time" content="2025-01-03T23:45:31.132Z">
+<meta property="article:modified_time" content="2025-02-14T14:08:28.742Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -137,7 +137,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%88SAM%EF%BC%89"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.【模板】后缀自动机（SAM）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%88SAM%EF%BC%89"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.【模板】后缀自动机（SAM）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%8D%E5%90%8C%E5%AD%90%E4%B8%B2%E4%B8%AA%E6%95%B0"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.不同子串个数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
   </span>
@@ -177,9 +177,19 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>增量法构造。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TREE</span>&#123; <span class="type">int</span> ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;<span class="number">1</span>]; <span class="type">int</span> las=<span class="number">1</span>,tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ins</span><span class="params">(<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p=las,np=++tot,v,nv; las=np,t[np].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;!t[p].ne[c];p=t[p].fa) t[p].ne[c]=np;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> t[np].fa=<span class="number">1</span>,<span class="built_in">void</span>(); v=t[p].ne[c];</span><br><span class="line">    <span class="keyword">if</span>(t[v].len==t[p].len<span class="number">+1</span>) <span class="keyword">return</span> t[np].fa=v,<span class="built_in">void</span>();</span><br><span class="line">    t[nv=++tot]=t[v],t[nv].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;t[p].ne[c]==v;p=t[p].fa) t[p].ne[c]=nv;</span><br><span class="line">    t[v].fa=t[np].fa=nv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】后缀自动机（SAM）"><a href="#1-【模板】后缀自动机（SAM）" class="headerlink" title="1.【模板】后缀自动机（SAM）"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3804">1.【模板】后缀自动机（SAM）</a></h4><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-wei/p/Common_String_Theory_Theory_automaton_related.html">常见字符串算法 II：自动机相关</a></p>
+    <p>艹，我都第几次学了。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>增量法构造。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TREE</span>&#123; <span class="type">int</span> ne[SZ],fa,len,siz; &#125;t[N&lt;&lt;<span class="number">1</span>]; <span class="type">int</span> las=<span class="number">1</span>,tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ins</span><span class="params">(<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> p=las,np=++tot,v,nv; las=np,t[np].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;!t[p].ne[c];p=t[p].fa) t[p].ne[c]=np;</span><br><span class="line">    <span class="keyword">if</span>(!p) <span class="keyword">return</span> t[np].fa=<span class="number">1</span>,<span class="built_in">void</span>(); v=t[p].ne[c];</span><br><span class="line">    <span class="keyword">if</span>(t[v].len==t[p].len<span class="number">+1</span>) <span class="keyword">return</span> t[np].fa=v,<span class="built_in">void</span>();</span><br><span class="line">    t[nv=++tot]=t[v],t[nv].len=t[p].len<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p&amp;&amp;t[p].ne[c]==v;p=t[p].fa) t[p].ne[c]=nv;</span><br><span class="line">    t[v].fa=t[np].fa=nv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-【模板】后缀自动机（SAM）"><a href="#1-【模板】后缀自动机（SAM）" class="headerlink" title="1.【模板】后缀自动机（SAM）"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3804">1.【模板】后缀自动机（SAM）</a></h4><h4 id="2-不同子串个数"><a href="#2-不同子串个数" class="headerlink" title="2.不同子串个数"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2408">2.不同子串个数</a></h4><ul>
+<li><p>法一 DAG 上 DP</p>
+<p>性质：任意两个节点的表示集合没有交。</p>
+<p>记 $f_u$ 为从 $u$ 出发的路径条数即可。</p>
+</li>
+<li><p>法二 统计树上每个节点的字符串个数即可</p>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-wei/p/Common_String_Theory_Theory_automaton_related.html">常见字符串算法 II：自动机相关</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com/article/w967d5rp">后缀自动机学习笔记(应用篇)</a></p>
 
   </div>
 </article>
@@ -207,7 +217,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%88SAM%EF%BC%89"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.【模板】后缀自动机（SAM）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%90%8E%E7%BC%80%E8%87%AA%E5%8A%A8%E6%9C%BA%EF%BC%88SAM%EF%BC%89"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.【模板】后缀自动机（SAM）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%8D%E5%90%8C%E5%AD%90%E4%B8%B2%E4%B8%AA%E6%95%B0"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.不同子串个数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
 
