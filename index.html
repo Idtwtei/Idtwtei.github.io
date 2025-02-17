@@ -118,7 +118,7 @@
 	<title>Image</title>
 </head>
 <body>
-	<img id="randomImage" src="" alt="Random Image" style="max-width: 100%; height: auto;">
+	<img id="Image" src="" alt="Image" style="max-width: 100%; height: auto;">
 
 	<script>
 		const images = [
@@ -290,8 +290,8 @@
 		];
 
 		function generateRandomImage() {
-			const randomIndex = Math.floor(Math.random() * images.length);
-			document.getElementById('randomImage').src = images[randomIndex];
+			const Index = Math.floor(Math.random() * images.length);
+			document.getElementById('Image').src = images[Index];
 		}
 
 		generateRandomImage();
