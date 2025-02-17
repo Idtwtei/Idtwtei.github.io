@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="概述【模板】最小割树（Gomory-Hu Tree） 考虑建树，对于集合 $S$ 取出两个节点 $x,y$，求 $x \to y$ 的最小割，树上连边 $(x,y)$ 边权为最小割。划分为两个集合递归下去。 用 dinic 求解，时间复杂度 $O(n^3m)$。 12345678910111213141516171819202122232425262728293031323334353637383">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最小割树">
+<meta property="og:url" content="http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="概述【模板】最小割树（Gomory-Hu Tree） 考虑建树，对于集合 $S$ 取出两个节点 $x,y$，求 $x \to y$ 的最小割，树上连边 $(x,y)$ 边权为最小割。划分为两个集合递归下去。 用 dinic 求解，时间复杂度 $O(n^3m)$。 12345678910111213141516171819202122232425262728293031323334353637383">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-22T23:25:01.243Z">
+<meta property="article:modified_time" content="2025-02-17T15:52:08.321Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>最小割树</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categorier/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        <li><a class="icon" aria-label="上一篇" href="/notes/%E4%BA%8C%E5%88%86%E5%9B%BE/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/notes/%E7%BD%91%E7%BB%9C%E6%B5%81/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&text=最小割树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&is_video=false&description=最小割树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=最小割树&body=Check out this article: http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&name=最小割树&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&t=最小割树"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Pumping-Stations"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.Pumping Stations</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9B%BC%E5%93%88%E9%A1%BF%E8%AE%A1%E5%88%92EX"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.曼哈顿计划EX</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        最小割树
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-22T23:25:01.243Z" class="dt-published" itemprop="datePublished">2024-12-23</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/notes/">notes</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4897">【模板】最小割树（Gomory-Hu Tree）</a></p>
+<p>考虑建树，对于集合 $S$ 取出两个节点 $x,y$，求 $x \to y$ 的最小割，树上连边 $(x,y)$ 边权为最小割。划分为两个集合递归下去。</p>
+<p>用 dinic 求解，时间复杂度 $O(n^3m)$。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ar(x) array<span class="string">&lt;int,x&gt;</span></span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">500</span><span class="number">+10</span>,M=<span class="number">1500</span><span class="number">+10</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gc getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rd read()</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> x=<span class="number">0</span>,f=<span class="number">0</span>; <span class="type">char</span> c=gc;</span><br><span class="line">	<span class="keyword">for</span>(;c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>;c=gc) f|=(c==<span class="string">&#x27;-&#x27;</span>);</span><br><span class="line">	<span class="keyword">for</span>(;c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>;c=gc) x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+(c^<span class="number">48</span>);</span><br><span class="line">	<span class="keyword">return</span> f?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m,id[N],_id[N];</span><br><span class="line">vector&lt;ar(2)&gt; G[N];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> head[N],ne[M*<span class="number">4</span>],v[M*<span class="number">4</span>],fl[M*<span class="number">4</span>],tot=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> f)</span></span>&#123;</span><br><span class="line">	ne[++tot]=head[x],head[x]=tot,v[tot]=y,fl[tot]=f;</span><br><span class="line">	ne[++tot]=head[y],head[y]=tot,v[tot]=x,fl[tot]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> s,t,dis[N],cur[N]; queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) dis[i]=<span class="number">-1</span>,cur[i]=head[i];</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>()) q.<span class="built_in">pop</span>(); q.<span class="built_in">push</span>(s),dis[s]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];i;i=ne[i])&#123;</span><br><span class="line">			<span class="keyword">if</span>(dis[v[i]]==<span class="number">-1</span>&amp;&amp;fl[i])&#123;</span><br><span class="line">				dis[v[i]]=dis[u]<span class="number">+1</span>,q.<span class="built_in">push</span>(v[i]);</span><br><span class="line">				<span class="keyword">if</span>(v[i]==t) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dinic</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> df)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(u==t) <span class="keyword">return</span> df; <span class="type">int</span> res=df;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=cur[u];res&amp;&amp;i;i=ne[i])&#123;</span><br><span class="line">		cur[u]=i;</span><br><span class="line">		<span class="keyword">if</span>(dis[v[i]]==dis[u]<span class="number">+1</span>&amp;&amp;fl[i])&#123;</span><br><span class="line">			<span class="type">int</span> k=<span class="built_in">dinic</span>(v[i],<span class="built_in">min</span>(res,fl[i]));</span><br><span class="line">			<span class="keyword">if</span>(!k) dis[v[i]]=<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">else</span> res-=k,fl[i]-=k,fl[i^<span class="number">1</span>]+=k;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> df-res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sol</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l&gt;=r) <span class="keyword">return</span>;</span><br><span class="line">	<span class="type">int</span> dflow=<span class="number">0</span>,maxflow=<span class="number">0</span>,_l=l<span class="number">-1</span>,_r=r<span class="number">+1</span>; s=id[l],t=id[r];</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">bfs</span>()) <span class="keyword">while</span>(dflow=<span class="built_in">dinic</span>(s,INF)) maxflow+=dflow; <span class="built_in">bfs</span>();</span><br><span class="line">	G[id[l]].<span class="built_in">pb</span>(&#123;id[r],maxflow&#125;),G[id[r]].<span class="built_in">pb</span>(&#123;id[l],maxflow&#125;);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=tot;i+=<span class="number">2</span>) fl[i]+=fl[i^<span class="number">1</span>],fl[i^<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=l;i&lt;=r;++i)&#123;</span><br><span class="line">		<span class="keyword">if</span>(dis[id[i]]!=<span class="number">-1</span>) _id[++_l]=id[i];</span><br><span class="line">		<span class="keyword">else</span> _id[--_r]=id[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=l;i&lt;=r;++i) id[i]=_id[i];</span><br><span class="line">	<span class="built_in">sol</span>(l,_l),<span class="built_in">sol</span>(_r,r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> tmp[N],ans[N][N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fu,<span class="type">int</span> mn)</span></span>&#123; tmp[u]=mn; <span class="keyword">for</span>(<span class="keyword">auto</span> [v,w]:G[u]) <span class="keyword">if</span>(v!=fu) <span class="built_in">dfs</span>(v,u,<span class="built_in">min</span>(mn,w)); &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	n=rd<span class="number">+1</span>,m=rd;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) id[i]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,x,y,z;i&lt;=m;++i) x=rd<span class="number">+1</span>,y=rd<span class="number">+1</span>,z=rd,<span class="built_in">add</span>(x,y,z),<span class="built_in">add</span>(y,x,z);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">sol</span>(<span class="number">1</span>,n);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">dfs</span>(i,<span class="number">0</span>,INF),<span class="built_in">memcpy</span>(ans[i],tmp,<span class="number">4</span>*(n<span class="number">+1</span>));</span><br><span class="line">	m=rd; <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans[rd<span class="number">+1</span>][rd<span class="number">+1</span>]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-Pumping-Stations"><a href="#1-Pumping-Stations" class="headerlink" title="1.Pumping Stations"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF343E">1.Pumping Stations</a></h4><p>先建最小割树。</p>
+<p>取出最小边考虑，它一定会被计入答案一次，删掉它形成两棵树，两棵树可以随便选定起点，这样已经很自由了，所以分别遍历再拼起来即可。</p>
+<h4 id="2-曼哈顿计划EX"><a href="#2-曼哈顿计划EX" class="headerlink" title="2.曼哈顿计划EX"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3729">2.曼哈顿计划EX</a></h4><p>询问可以指针，但瓶颈不在这。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/cnyjwh6a">最小割树</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categorier/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Pumping-Stations"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.Pumping Stations</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%9B%BC%E5%93%88%E9%A1%BF%E8%AE%A1%E5%88%92EX"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.曼哈顿计划EX</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&text=最小割树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&is_video=false&description=最小割树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=最小割树&body=Check out this article: http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&title=最小割树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&name=最小割树&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91/&t=最小割树"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categorier/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

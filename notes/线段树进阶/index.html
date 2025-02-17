@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="板子1.【模板】线段树 1code 2.【模板】线段树 2code 线段树结构分析1.[THUPC2021 初赛] 线段树 $[1,n]$ 上的广义线段树内 $[l,r]$ 的最小拆分大小为 $2(r-l+1)-|S|$，其中 $S$ 为包含于 $[l,r]$ 的线段树节点。  证明 将包含于 $[l,r]$ 的线段树节点取出，形成满二叉树森林，根节点的个数为最小拆分大小。叶子节点的个数为 $r-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线段树进阶">
+<meta property="og:url" content="http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="板子1.【模板】线段树 1code 2.【模板】线段树 2code 线段树结构分析1.[THUPC2021 初赛] 线段树 $[1,n]$ 上的广义线段树内 $[l,r]$ 的最小拆分大小为 $2(r-l+1)-|S|$，其中 $S$ 为包含于 $[l,r]$ 的线段树节点。  证明 将包含于 $[l,r]$ 的线段树节点取出，形成满二叉树森林，根节点的个数为最小拆分大小。叶子节点的个数为 $r-">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-15T22:13:22.462Z">
+<meta property="article:modified_time" content="2025-02-17T15:51:54.110Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>线段树进阶</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categorier/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        <li><a class="icon" aria-label="上一篇" href="/notes/%E6%9C%80%E7%9F%AD%E8%B7%AF%E6%A0%91/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/notes/hash/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&text=线段树进阶"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&is_video=false&description=线段树进阶"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=线段树进阶&body=Check out this article: http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&name=线段树进阶&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&t=线段树进阶"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%BF%E5%AD%90"><span class="toc-number">1.</span> <span class="toc-text">板子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91-1"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.【模板】线段树 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91-2"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.【模板】线段树 2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">线段树结构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-THUPC2021-%E5%88%9D%E8%B5%9B-%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.[THUPC2021 初赛] 线段树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ZJOI2017-%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.[ZJOI2017] 线段树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-ZJOI2019-%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">2.0.3.</span> <span class="toc-text">3.[ZJOI2019] 线段树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-ZJOI2020-%E4%BC%A0%E7%BB%9F%E8%89%BA%E8%83%BD"><span class="toc-number">2.0.4.</span> <span class="toc-text">4.[ZJOI2020] 传统艺能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%BA%BF"><span class="toc-number">3.</span> <span class="toc-text">扫描线</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%89%AB%E6%8F%8F%E7%BA%BF"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.【模板】扫描线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-IOI1998-USACO5-5-%E7%9F%A9%E5%BD%A2%E5%91%A8%E9%95%BFPicture"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.[IOI1998] [USACO5.5] 矩形周长Picture</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SDOI2009-HH%E7%9A%84%E9%A1%B9%E9%93%BE"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.[SDOI2009] HH的项链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">4.</span> <span class="toc-text">可持久化线段树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91-2"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.【模板】可持久化线段树 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Rmq-Problem-mex"><span class="toc-number">4.0.2.</span> <span class="toc-text">2.Rmq Problem &#x2F; mex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-CQOI2015-%E4%BB%BB%E5%8A%A1%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.[CQOI2015] 任务查询系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Destiny"><span class="toc-number">4.0.4.</span> <span class="toc-text">4.Destiny</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%88%E5%B9%B6"><span class="toc-number">5.</span> <span class="toc-text">线段树合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.</span> <span class="toc-text">树上问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4"><span class="toc-number">5.1.1.</span> <span class="toc-text">1.雨天的尾巴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-NOIP2016-%E6%8F%90%E9%AB%98%E7%BB%84-%E5%A4%A9%E5%A4%A9%E7%88%B1%E8%B7%91%E6%AD%A5"><span class="toc-number">5.1.2.</span> <span class="toc-text">2.[NOIP2016 提高组] 天天爱跑步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93-DP"><span class="toc-number">5.2.</span> <span class="toc-text">整体 DP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-PKUWC2018-Minimax"><span class="toc-number">5.2.1.</span> <span class="toc-text">1.[PKUWC2018] Minimax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-NOI2020-%E5%91%BD%E8%BF%90"><span class="toc-number">5.2.2.</span> <span class="toc-text">2.[NOI2020] 命运</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E8%A3%82"><span class="toc-number">6.</span> <span class="toc-text">线段树分裂</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E8%A3%82"><span class="toc-number">6.0.1.</span> <span class="toc-text">1.【模板】线段树分裂</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E5%A5%97%E6%A0%91"><span class="toc-number">7.</span> <span class="toc-text">树套树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%8E%E8%B6%85%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">8.</span> <span class="toc-text">李超线段树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9D%8E%E8%B6%85%E7%BA%BF%E6%AE%B5%E6%A0%91-HEOI2013-Segment"><span class="toc-number">8.0.1.</span> <span class="toc-text">1.【模板】李超线段树 &#x2F; [HEOI2013] Segment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%9D%E4%B9%8B%E5%89%B2"><span class="toc-number">8.0.2.</span> <span class="toc-text">2.丝之割</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Escape-Through-Leaf"><span class="toc-number">8.0.3.</span> <span class="toc-text">3.Escape Through Leaf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Sum-of-Prefix-Sums"><span class="toc-number">8.0.4.</span> <span class="toc-text">4.Sum of Prefix Sums</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E7%9F%A9%E9%98%B5"><span class="toc-number">9.</span> <span class="toc-text">线段树维护矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98"><span class="toc-number">9.1.</span> <span class="toc-text">序列问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Bear-and-Cavalry"><span class="toc-number">9.1.1.</span> <span class="toc-text">1.Bear and Cavalry</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98-1"><span class="toc-number">9.2.</span> <span class="toc-text">树上问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E2%80%9D%E5%8A%A8%E6%80%81-DP%E2%80%9D-amp-%E5%8A%A8%E6%80%81%E6%A0%91%E5%88%86%E6%B2%BB"><span class="toc-number">9.2.1.</span> <span class="toc-text">1.【模板】”动态 DP”&amp;动态树分治</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ZJOI2019-Minimax%E6%90%9C%E7%B4%A2"><span class="toc-number">9.2.2.</span> <span class="toc-text">2.[ZJOI2019] Minimax搜索</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E6%A0%91%E4%B8%8A%E4%BF%A1%E6%81%AF"><span class="toc-number">10.</span> <span class="toc-text">线段树维护树上信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E7%9B%B4%E5%BE%84"><span class="toc-number">10.1.</span> <span class="toc-text">维护直径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-CEOI2019-Dynamic-Diameter"><span class="toc-number">10.1.1.</span> <span class="toc-text">1.[CEOI2019] Dynamic Diameter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Tree-Generator%E2%84%A2"><span class="toc-number">10.1.2.</span> <span class="toc-text">2.Tree Generator™</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E6%9C%80%E5%B0%8F%E8%BF%9E%E9%80%9A%E5%AD%90%E6%A0%91"><span class="toc-number">10.2.</span> <span class="toc-text">维护最小连通子树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SDOI2015-%E5%AF%BB%E5%AE%9D%E6%B8%B8%E6%88%8F"><span class="toc-number">10.2.1.</span> <span class="toc-text">1.[SDOI2015] 寻宝游戏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ZJOI2019-%E8%AF%AD%E8%A8%80"><span class="toc-number">10.2.2.</span> <span class="toc-text">2.[ZJOI2019] 语言</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%BC%98%E5%8C%96%E5%BB%BA%E5%9B%BE"><span class="toc-number">11.</span> <span class="toc-text">线段树优化建图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Legacy"><span class="toc-number">11.0.1.</span> <span class="toc-text">1.Legacy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E3%80%8CJOISC-2020-Day4%E3%80%8D%E6%B2%BB%E7%96%97%E8%AE%A1%E5%88%92"><span class="toc-number">11.0.2.</span> <span class="toc-text">2.「JOISC 2020 Day4」治疗计划</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">12.</span> <span class="toc-text">单侧递归线段树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB"><span class="toc-number">13.</span> <span class="toc-text">线段树分治</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BA%8C%E5%88%86%E5%9B%BE-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB"><span class="toc-number">13.0.1.</span> <span class="toc-text">1.二分图 &#x2F;【模板】线段树分治</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Painting-Edges"><span class="toc-number">13.0.2.</span> <span class="toc-text">2.Painting Edges</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E5%8E%86%E5%8F%B2%E5%80%BC-amp-segment-tree-beats"><span class="toc-number">14.</span> <span class="toc-text">线段树维护历史值 &amp; segment tree beats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KTT"><span class="toc-number">15.</span> <span class="toc-text">KTT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">16.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        线段树进阶
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-12-15T22:13:22.462Z" class="dt-published" itemprop="datePublished">2024-12-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/notes/">notes</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="板子"><a href="#板子" class="headerlink" title="板子"></a>板子</h2><h4 id="1-【模板】线段树-1"><a href="#1-【模板】线段树-1" class="headerlink" title="1.【模板】线段树 1"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">1.【模板】线段树 1</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/vwkwqr8x">code</a></p>
+<h4 id="2-【模板】线段树-2"><a href="#2-【模板】线段树-2" class="headerlink" title="2.【模板】线段树 2"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3373">2.【模板】线段树 2</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/aatmfvej">code</a></p>
+<h2 id="线段树结构分析"><a href="#线段树结构分析" class="headerlink" title="线段树结构分析"></a>线段树结构分析</h2><h4 id="1-THUPC2021-初赛-线段树"><a href="#1-THUPC2021-初赛-线段树" class="headerlink" title="1.[THUPC2021 初赛] 线段树"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7143">1.[THUPC2021 初赛] 线段树</a></h4><blockquote>
+<p>$[1,n]$ 上的广义线段树内 $[l,r]$ 的最小拆分大小为 $2(r-l+1)-|S|$，其中 $S$ 为包含于 $[l,r]$ 的线段树节点。</p>
+</blockquote>
+<p><strong>证明</strong></p>
+<p>将包含于 $[l,r]$ 的线段树节点取出，形成满二叉树森林，根节点的个数为最小拆分大小。<br>叶子节点的个数为 $r-l+1$，那么 $|S|=2(r-l+1)-根节点的个数$。</p>
+<h4 id="2-ZJOI2017-线段树"><a href="#2-ZJOI2017-线段树" class="headerlink" title="2.[ZJOI2017] 线段树"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5210">2.[ZJOI2017] 线段树</a></h4><blockquote>
+<p>$[l,r]$ 的拆分可以看成 $[l-1,l-1],[r+1,r+1]$ 与二者 lca，的路径的左/右儿子。</p>
+</blockquote>
+<p>不想写了。。。</p>
+<h4 id="3-ZJOI2019-线段树"><a href="#3-ZJOI2019-线段树" class="headerlink" title="3.[ZJOI2019] 线段树"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5280">3.[ZJOI2019] 线段树</a></h4><p>对点分类。。。</p>
+<h4 id="4-ZJOI2020-传统艺能"><a href="#4-ZJOI2020-传统艺能" class="headerlink" title="4.[ZJOI2020] 传统艺能"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6630">4.[ZJOI2020] 传统艺能</a></h4><h2 id="扫描线"><a href="#扫描线" class="headerlink" title="扫描线"></a>扫描线</h2><p>这是一种思想。狭义上更偏向于计算几何。</p>
+<h4 id="1-【模板】扫描线"><a href="#1-【模板】扫描线" class="headerlink" title="1.【模板】扫描线"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5490">1.【模板】扫描线</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ckicgynk">code</a> 这里也可以维护区间最小值及其个数。</p>
+<h4 id="2-IOI1998-USACO5-5-矩形周长Picture"><a href="#2-IOI1998-USACO5-5-矩形周长Picture" class="headerlink" title="2.[IOI1998] [USACO5.5] 矩形周长Picture"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1856">2.[IOI1998] [USACO5.5] 矩形周长Picture</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/572dp688">code</a></p>
+<h4 id="3-SDOI2009-HH的项链"><a href="#3-SDOI2009-HH的项链" class="headerlink" title="3.[SDOI2009] HH的项链"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1972">3.[SDOI2009] HH的项链</a></h4><p>区间 $[l,r]$ 转化为点 $(l,r)$，发现只需求每个点被覆盖个数，扫描线+树状数组实现。</p>
+<p>事实上单纯从左到右扫描，用线段树动态维护信息就是扫描线思想了。这题也可以这样理解。</p>
+<h2 id="可持久化线段树"><a href="#可持久化线段树" class="headerlink" title="可持久化线段树"></a>可持久化线段树</h2><h4 id="1-【模板】可持久化线段树-2"><a href="#1-【模板】可持久化线段树-2" class="headerlink" title="1.【模板】可持久化线段树 2"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3834">1.【模板】可持久化线段树 2</a></h4><p>对下标扫描线，构建可持久化权值线段树。</p>
+<h4 id="2-Rmq-Problem-mex"><a href="#2-Rmq-Problem-mex" class="headerlink" title="2.Rmq Problem / mex"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4137">2.Rmq Problem / mex</a></h4><p>权值线段树维护每个值最后出现的位置。离线扫描线或可持久化线段树均可。</p>
+<h4 id="3-CQOI2015-任务查询系统"><a href="#3-CQOI2015-任务查询系统" class="headerlink" title="3.[CQOI2015] 任务查询系统"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3168">3.[CQOI2015] 任务查询系统</a></h4><p>对时间扫描线，用权值线段树维护优先级，由于强制在线，用可持久化线段树即可。</p>
+<h4 id="4-Destiny"><a href="#4-Destiny" class="headerlink" title="4.Destiny"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF840D">4.Destiny</a></h4><p>类似绝对众数为排序后第 $\left \lceil \frac{n}{2} \right \rceil$ 个元素。</p>
+<p>记 $d=\left \lceil \frac{r-l+1}{k} \right \rceil$，查询区间第 $d,2d,…$ 大，判断次数是否符合即可。</p>
+<p>可持久化线段树维护，时间复杂度 $O(kn\log n)$。</p>
+<h2 id="线段树合并"><a href="#线段树合并" class="headerlink" title="线段树合并"></a>线段树合并</h2><p>需要考虑的是两个叶子节点的合并和如何只取一个节点。</p>
+<h3 id="树上问题"><a href="#树上问题" class="headerlink" title="树上问题"></a>树上问题</h3><h4 id="1-雨天的尾巴"><a href="#1-雨天的尾巴" class="headerlink" title="1.雨天的尾巴"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4556">1.雨天的尾巴</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/3y9u0025">code</a></p>
+<h4 id="2-NOIP2016-提高组-天天爱跑步"><a href="#2-NOIP2016-提高组-天天爱跑步" class="headerlink" title="2.[NOIP2016 提高组] 天天爱跑步"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1600">2.[NOIP2016 提高组] 天天爱跑步</a></h4><p>可以把玩家拆成向上和向下的两条链，两条链时间均递减/增，与深度联系一下就能转化为雨天的尾巴。</p>
+<h3 id="整体-DP"><a href="#整体-DP" class="headerlink" title="整体 DP"></a>整体 DP</h3><p>对于树上 DP 问题，可用线段树维护其中一维，加入子节点时用线段树合并转移，可以优化时间和空间。</p>
+<h4 id="1-PKUWC2018-Minimax"><a href="#1-PKUWC2018-Minimax" class="headerlink" title="1.[PKUWC2018] Minimax"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5298">1.[PKUWC2018] Minimax</a></h4><p>所有叶子节点都有概率被取到，先离散化一下，计算出根节点取第 $i$ 小权值的概率即可计算答案。</p>
+<p>记 $f[u][i]$ 为 $u$ 节点取 $i$ 号权值（即为第 $i$ 小）的概率。由于子节点数小于 $2$ ，可以分讨一下</p>
+<ul>
+<li>若 $u$ 为叶子节点，直接更新。</li>
+<li>若 $u$ 只有一个子节点，直接取子节点的值。</li>
+<li>若 $u$ 有两个子节点。<script type="math/tex; mode=display">
+  f[u][i]=f[lc][i](p[u]\sum_{j=1}^{i-1} f[rc][j]+(1-p[u])\sum_{j=i+1}^{m} f[rc][j])+f[rc][i](p[u]\sum_{j=1}^{i-1} f[lc][j]+(1-p[u])\sum_{j=i+1}^{m} f[lc][j])</script></li>
+</ul>
+<p>可以前缀和后缀和优化 $O(n^2)$ 暴力计算。</p>
+<p>考虑权值线段树维护第二维区间和（其实就是概率和）。需要合并两个子节点的值，考虑其中一个节点为空的情况，发现另一个节点的所有值都需要乘同一个值，写一个区间乘即可。具体实现时，一边合并，一边记录前缀后缀和。</p>
+<h4 id="2-NOI2020-命运"><a href="#2-NOI2020-命运" class="headerlink" title="2.[NOI2020] 命运"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6773">2.[NOI2020] 命运</a></h4><p>考虑树上 DP。在枚举 $u$ 点时，需要管的链肯定是下端点在子树中且未被满足的，此时应考虑 $u$ 到子节点的边的取值。</p>
+<p>不难发现只需要考虑上端点在 $u$ 上方且深度最大的链，如果它被满足，则其他所有链都被满足（在 $u$ 上方这个限制不用特意注意）。</p>
+<p>可以记 $f(u,i)$ 为下端点在 $u$ 的子树内且未被满足的链的上端点的最大深度为 $i$ 的方案数。每次加一个子节点转移</p>
+<script type="math/tex; mode=display">
+f(u,i)'=f(u,i)(sum(v,dep_u)+sum(v,i))+sum(u,i-1)f(v,i)</script><p>与前缀和有关，且开始有值的点很少，用线段树合并优化。具体实现时在 <code>merge</code> 中记录两棵线段树的前缀和可以减少查询的 $\log$。对于 $sum(u,i-1)$ 在有个节点为空时不需要管，因为空节点值为 $0$。当 $l=r$ 时，需要考虑，应该后更新该节点的前缀和。时间复杂度 $O(n\log n)$。</p>
+<h2 id="线段树分裂"><a href="#线段树分裂" class="headerlink" title="线段树分裂"></a>线段树分裂</h2><h4 id="1-【模板】线段树分裂"><a href="#1-【模板】线段树分裂" class="headerlink" title="1.【模板】线段树分裂"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5494">1.【模板】线段树分裂</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/iuk6h36n">code</a> 还可以平衡树合并。</p>
+<h2 id="树套树"><a href="#树套树" class="headerlink" title="树套树"></a>树套树</h2><p><a href="/树套树">详见</a></p>
+<h2 id="李超线段树"><a href="#李超线段树" class="headerlink" title="李超线段树"></a>李超线段树</h2><p>支持插入线段，查询某位置交点最值。</p>
+<h4 id="1-【模板】李超线段树-HEOI2013-Segment"><a href="#1-【模板】李超线段树-HEOI2013-Segment" class="headerlink" title="1.【模板】李超线段树 / [HEOI2013] Segment"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4097">1.【模板】李超线段树 / [HEOI2013] Segment</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/q18lbhyl">code</a></p>
+<h4 id="2-丝之割"><a href="#2-丝之割" class="headerlink" title="2.丝之割"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6047">2.丝之割</a></h4><p>为了方便，先将第一行反转一下，并将线的位置加 $1$。一些被包含的线是没用的将其去掉。剩下的按第一行的位置排序，第二行的位置是单减的。</p>
+<p>考虑 DP，记 $f(i)$ 为处理到第 $i$ 个的最小花费。转移显然可以斜率优化。用李超线段树即可，时间复杂度 $O(n\log n)$（是单 $\log$ 因为是插入直线）。</p>
+<h4 id="3-Escape-Through-Leaf"><a href="#3-Escape-Through-Leaf" class="headerlink" title="3.Escape Through Leaf"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF932F">3.Escape Through Leaf</a></h4><p>暴力树上 DP 显然，用李超线段树合并维护。线段树合并的时间复杂度是 $O(n\log n)$ 的，第一篇题解有势能分析。</p>
+<p>dsu on tree 可以做到 $O(n\log^2n)$。</p>
+<h4 id="4-Sum-of-Prefix-Sums"><a href="#4-Sum-of-Prefix-Sums" class="headerlink" title="4.Sum of Prefix Sums"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1303G">4.Sum of Prefix Sums</a></h4><p>有点类似直径，但是很复杂，不能 DP 或贪心。考虑点分治，合并路径时用李超线段树。时间复杂度 $O(n\log^2n)$。</p>
+<h2 id="线段树维护矩阵"><a href="#线段树维护矩阵" class="headerlink" title="线段树维护矩阵"></a>线段树维护矩阵</h2><h3 id="序列问题"><a href="#序列问题" class="headerlink" title="序列问题"></a>序列问题</h3><h4 id="1-Bear-and-Cavalry"><a href="#1-Bear-and-Cavalry" class="headerlink" title="1.Bear and Cavalry"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF573D">1.Bear and Cavalry</a></h4><h3 id="树上问题-1"><a href="#树上问题-1" class="headerlink" title="树上问题"></a>树上问题</h3><h4 id="1-【模板】”动态-DP”-amp-动态树分治"><a href="#1-【模板】”动态-DP”-amp-动态树分治" class="headerlink" title="1.【模板】”动态 DP”&amp;动态树分治"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4719">1.【模板】”动态 DP”&amp;动态树分治</a></h4><p>如果没有修改，我们可以简单用 DP 求解。记 $dp(u,0/1)$ 为 $u$ 的子树，$u$ 选或不选的最大独立集，有</p>
+<script type="math/tex; mode=display">
+dp(u,0)=\sum_{v}\max(dp(v,0),dp(v,1)) \\
+dp(u,1)=\sum_{v}dp(v,0)+a_u</script><p>对于每个点选出一个特殊的子节点 $x$，记 $f_u=\sum_{v \ne x} \max(dp(v,0),dp(v,1))$，$g_u=\sum_{v \ne x}dp(v,0)+a[u]$。那么有</p>
+<script type="math/tex; mode=display">
+dp(u,0)=\max(dp(x,0),dp(x,1))+f_u \\
+dp(u,1)=dp(x,0)+g_u</script><p>写成 $(\max,+)$ 广义矩阵乘法的形式就是</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+  dp[u][0] \\
+  dp[u][1]
+\end{bmatrix}
+=
+\begin{bmatrix}
+  f[u] & f[u] \\
+  g[u] & -\infty
+\end{bmatrix}
+
+\begin{bmatrix}
+  dp[x][0] \\
+  dp[x][1]
+\end{bmatrix}</script><p>令 $x$ 为 $u$ 的重儿子，用线段树维护矩阵乘法，那么修改一个点，只会对 $O(\log n)$ 条重链造成影响。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/jvns0zm5">code</a></p>
+<h4 id="2-ZJOI2019-Minimax搜索"><a href="#2-ZJOI2019-Minimax搜索" class="headerlink" title="2.[ZJOI2019] Minimax搜索"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5281">2.[ZJOI2019] Minimax搜索</a></h4><p>限制是取 $\max$ 的形式，考虑求出 $\max \le k$ 的方案数再差分。<br>考虑如何对单个 $k$ 快速求出答案。</p>
+<p>记 $dp_u$ 为没有变化时 $u$ 点的值。那么 $1 \to dp_1$ 形成了一条 $dp$ 值都为 $dp_1$ 的链，只要链上任意节点的 $dp$ 值改变，答案一定改变。</p>
+<p>对于叶子节点 $u$，若 $dep_{lca(u,dp_1)}$ 为奇数，那么若改变 $u$，则 $dp_u$ 变为 $dp_u + k$，偶数同理。</p>
+<p>记 $f_u$ 为可以使 $dp_u \le dp_1$ 的方案数（叶子节点需要特判）$cnt_u$ 为 $u$ 子树中总方案数。答案为</p>
+<script type="math/tex; mode=display">
+cnt_1 - \prod_{dp_u = dp_1} ([dep_u\%2=1]f_u + [dep_u\%2=0](cnt_u-f_u))</script><p>$f$ 也是好计算的，就可以 $O(n)$ 求出特定 $k$ 的答案了。随着 $k$ 的变化，变化的 DP 值为某几个叶子节点，考虑动态 DP。记</p>
+<script type="math/tex; mode=display">
+g_u = 
+\begin{cases}
+ cnt_u - f_u & \text{ if } dep_u\%2=1\\
+ f_u & \text{ if } dep_u\%2=0  
+\end{cases}</script><p>这样转移式子优化为一个形式，动态 DP，时间复杂度 $O(n\log^2n)$。</p>
+<h2 id="线段树维护树上信息"><a href="#线段树维护树上信息" class="headerlink" title="线段树维护树上信息"></a>线段树维护树上信息</h2><h3 id="维护直径"><a href="#维护直径" class="headerlink" title="维护直径"></a>维护直径</h3><h4 id="1-CEOI2019-Dynamic-Diameter"><a href="#1-CEOI2019-Dynamic-Diameter" class="headerlink" title="1.[CEOI2019] Dynamic Diameter"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6845">1.[CEOI2019] Dynamic Diameter</a></h4><p><strong>贪心</strong></p>
+<p>并集的直径端点一定在原四个端点中，线段树维护即可。时间复杂度 $O(n\log^2n)$，$O(1)$ 求 lca 可以优化到 $O(n\log n)$。</p>
+<p>注意：贪心只有在边权非负的情况下才是对的。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/i1ypk48w">code</a></p>
+<p><strong>dfs 序</strong></p>
+<p>一个节点无论访问还是回溯都记录下来，这样会得到一个长为 $2n-1$ 序列（ $rt$ 出现次数为$deg[rt]+1$ ，其他点出现的次数为 $deg[u]$ ），即为树的 dfs 序。</p>
+<p>它有一个很好的性质：将原节点记为第一次出现的位置，则 $\min_{i=u}^{v} dep[i] = dep[lca(u,v)]$ ，考虑 dfs 过程不难理解。那么 $dis(u,v)=dep[u]+dep[v]-2\min_{i=u}^{v} dep[i]$。</p>
+<p>用线段树维护直径 $s$，$\min_{u}dep[u]$，$\max_{u}dep[u]$，$\max_{u}\{dep[u]-2\min_{i=l}^{u}dep[i]\}$，$\max_{u}\{dep[u]-2\min_{i=u}^{r}dep[i]\}$。</p>
+<p>注意：该方法仅适用于边权非负，这样才能保证区间中 dep 最小的点为 lca。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/nzwod7r0">code</a></p>
+<h4 id="2-Tree-Generator™"><a href="#2-Tree-Generator™" class="headerlink" title="2.Tree Generator™"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1149C">2.Tree Generator™</a></h4><p><strong>括号序列</strong></p>
+<p>构造一棵树的括号序列：dfs，向下就加‘（’，向上就加‘）’  。长度为 $2*n-2$ ，因为每条边会被访问两次</p>
+<ul>
+<li><p><strong>性质一：</strong> 一段括号序列去掉对应的括号对应树的一条链（思考 dfs 过程）。</p>
+</li>
+<li><p><strong>性质二：</strong> 一段括号序列去掉对应的括号所得序列的长度记为树上链的长度。</p>
+</li>
+</ul>
+<p>去掉对应括号的序列只有三种</p>
+<ul>
+<li><p>))))))…</p>
+</li>
+<li><p>((((((…</p>
+</li>
+<li><p>)))…(((</p>
+</li>
+</ul>
+<p>考虑一般化，将‘（’视为 1， ‘）’视为 -1 ，则该链的长度为 $\max_{i=l-1}^{r}\{v(i+1,r)-v(l,i)\}$。直径即为最大的链长，类似最大子段和，用线段树维护。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/69grhz2s">code</a></p>
+<h3 id="维护最小连通子树"><a href="#维护最小连通子树" class="headerlink" title="维护最小连通子树"></a>维护最小连通子树</h3><p>给定 $n$ 个关键点，动态维护 $n$ 个关键点所形成的最小连通子树大小。</p>
+<p>将n个点按dfn序从小到大排序为 $0,2,…,n-1$ ，则子树大小为 $\frac{1}{2}\sum_{i=0}^{n-1}dis(i,(i+1)\%n)$。</p>
+<h4 id="1-SDOI2015-寻宝游戏"><a href="#1-SDOI2015-寻宝游戏" class="headerlink" title="1.[SDOI2015] 寻宝游戏"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3320">1.[SDOI2015] 寻宝游戏</a></h4><p><strong>线段树</strong></p>
+<p>一般用于关键点</p>
+<script type="math/tex; mode=display">\frac{1}{2}\sum_{i=0}^{n-1}dis(i,(i+1)\%n)</script><script type="math/tex; mode=display">=\sum_{i=0}^{n-1}dep[i]-\sum_{i=0}^{n-1}dep[lca(i,(i+1)\%n)]</script><p>考虑如何合并，拆一下 $\%$</p>
+<script type="math/tex; mode=display">\sum_{i=l}^{r}dep[i]-\sum_{i=l}^{r-1}dep[lca(i,(i+1)]-dep[lca(l,r)]</script><script type="math/tex; mode=display">\sum_{i=l}^{mid}dep[i]+\sum_{i=mid+1}^{r}dep[i]-\sum_{i=l}^{mid-1}dep[lca(i,i+1)]-dep[lca(mid,mid+1)]-\sum_{i=mid+1}^{r-1}dep[lca(i,i+1)]-dep[lca(l,r)]</script><script type="math/tex; mode=display">=ans[lc]+ans[rc]+dep[lca(l,mid-1)]+dep[lca(mid+1,r)]-dep[lca(l,r)]-dep[lca(mid,mid+1)]</script><p>有点麻烦，考虑不维护 $dep[lca(l,r)]$</p>
+<script type="math/tex; mode=display">\sum_{i=l}^{r}dep[i]-\sum_{i=l}^{r-1}dep[lca(i,i+1)]</script><script type="math/tex; mode=display">=ans[lc]+ans[rc]-dep[lca(mid,mid+1)]</script><p>简单多了，最后减去即可。时间复杂度 $O(n\log^2n)$ ， $O(1)$ 求 lca 可做到 $O(n\log n)$。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/dd8wtgon">code</a></p>
+<p><strong>set</strong></p>
+<p>非常简单的做法，直接维护最开始的式子，记 $ans$ 为最终答案。</p>
+<p>每次加入 $u$ ，则 $ans+=dis(pre(u),u)+dis(u,nxt(u))-dis(pre(u),nxt(u))$。</p>
+<p>每次减去 $u$ ，则 $ans+=dis(pre(u),,nxt(u))-dis(pre(u),u)-dis(u,nxt(u))$。</p>
+<p>需要加入删除一个数，求前驱后继，用平衡树维护即可（可以用 set）。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/rdtcb4fq">code</a></p>
+<h4 id="2-ZJOI2019-语言"><a href="#2-ZJOI2019-语言" class="headerlink" title="2.[ZJOI2019] 语言"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5327">2.[ZJOI2019] 语言</a></h4><p>对于两元关系的统计，先固定一点 $u$，考虑如何求出 $(u,x)/(x,u)$ 的数量。</p>
+<p>将所有经过 $u$ 的路径赋值为 1 ，统计 1 的个数，除以二即为答案。</p>
+<p>树上的若干条链，经过同一个点，那么就形成了一个连通子树。</p>
+<p>对于每个节点，我们都可以用线段树来维护最小连通子树。</p>
+<p>差分，然后线段树合并即可，时间复杂度 $O(n\log^2n)$ ，同上可以优化为 $O(n\log n)$。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/9w7w1rv6">code</a></p>
+<h2 id="线段树优化建图"><a href="#线段树优化建图" class="headerlink" title="线段树优化建图"></a>线段树优化建图</h2><p>一般优化三种连边</p>
+<ul>
+<li><p>$x \to [l,r]$</p>
+</li>
+<li><p>$[l,r] \to x$</p>
+</li>
+<li><p>$[l,r] \to [l’,r’]$</p>
+</li>
+</ul>
+<p>主要思想是建虚点代表一个区间。</p>
+<h4 id="1-Legacy"><a href="#1-Legacy" class="headerlink" title="1.Legacy"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF786B">1.Legacy</a></h4><p>建一棵根向线段树，一棵叶向线段树。</p>
+<p>我的 dij 板子怎么是错的？？？</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/786/submission/296784211">code</a></p>
+<h4 id="2-「JOISC-2020-Day4」治疗计划"><a href="#2-「JOISC-2020-Day4」治疗计划" class="headerlink" title="2.「JOISC 2020 Day4」治疗计划"></a><a target="_blank" rel="noopener" href="https://loj.ac/p/3282">2.「JOISC 2020 Day4」治疗计划</a></h4><p>$O(m^2)$ 是简单的。考虑优化，套路地想数据结构优化。拆一下绝对值，如果 $i \to j$，那么</p>
+<ul>
+<li><p>$t_j&lt;t_i: r_i-t_i+1 \ge l_j-t_j$.</p>
+</li>
+<li><p>$t_j&gt;t_i: r_i+t_i+1 \ge l_j+t_j$.</p>
+</li>
+</ul>
+<p>由于连向某个点的权值都相同，所以每个点在被枚举到时其 $dis$ 就已经确定。考虑快速找出邻点，这样均摊是对的。先按 $t$ 排序，然后线段树，时间复杂度 $O(n\log n)$。</p>
+<h2 id="单侧递归线段树"><a href="#单侧递归线段树" class="headerlink" title="单侧递归线段树"></a>单侧递归线段树</h2><p><a href="/单侧递归线段树">详见</a></p>
+<h2 id="线段树分治"><a href="#线段树分治" class="headerlink" title="线段树分治"></a>线段树分治</h2><p>不如叫基于时间的分治。</p>
+<h4 id="1-二分图-【模板】线段树分治"><a href="#1-二分图-【模板】线段树分治" class="headerlink" title="1.二分图 /【模板】线段树分治"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5787">1.二分图 /【模板】线段树分治</a></h4><h4 id="2-Painting-Edges"><a href="#2-Painting-Edges" class="headerlink" title="2.Painting Edges"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF576E">2.Painting Edges</a></h4><p>一棵树，每条边有颜色（开始没有），当加入任意一种颜色的边时，图都为二分图，则此时合法。每次操作改变某条边的颜色，只有当改变后合法才会进行，判断每次操作是否会进行。</p>
+<p>颜色很少，考虑对每个颜色开一个并查集维护。</p>
+<p>我们并不能将操作离线下来，但每个时间只有一次操作，可以按时间先后线段树分治，先将操作挂在对应的叶子节点上，递归到该点时判断是否合法，并将对应区间进行覆盖（原颜色或更改的颜色）。</p>
+<p>由于每次操作后图一定合法（不然不会操作），所以在叶子节点只需判断加入挂着的边后是否合法即可。</p>
+<p>时间复杂度 $O(m\log q\log n+nk)$。</p>
+<p>注意：不要手写栈，因为实际加入堆的元素个数为 $2(拆后的总边数)$ 而手写栈要开到 $2k(拆后的总边数)$ 空间会炸。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ky04ivij">code &amp; data_maker</a></p>
+<h2 id="线段树维护历史值-amp-segment-tree-beats"><a href="#线段树维护历史值-amp-segment-tree-beats" class="headerlink" title="线段树维护历史值 &amp; segment tree beats"></a>线段树维护历史值 &amp; segment tree beats</h2><p><a href="/seg_beats">详见</a></p>
+<h2 id="KTT"><a href="#KTT" class="headerlink" title="KTT"></a>KTT</h2><p><a href="/KTT">详见</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com/article/xjsrcztd">线段树相关技巧的小小总结（修订版）</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-wei/p/18356369/SegmentTreePart1">线段树进阶 Part 1</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categorier/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%BF%E5%AD%90"><span class="toc-number">1.</span> <span class="toc-text">板子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91-1"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.【模板】线段树 1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91-2"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.【模板】线段树 2</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%93%E6%9E%84%E5%88%86%E6%9E%90"><span class="toc-number">2.</span> <span class="toc-text">线段树结构分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-THUPC2021-%E5%88%9D%E8%B5%9B-%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">2.0.1.</span> <span class="toc-text">1.[THUPC2021 初赛] 线段树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ZJOI2017-%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.[ZJOI2017] 线段树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-ZJOI2019-%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">2.0.3.</span> <span class="toc-text">3.[ZJOI2019] 线段树</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-ZJOI2020-%E4%BC%A0%E7%BB%9F%E8%89%BA%E8%83%BD"><span class="toc-number">2.0.4.</span> <span class="toc-text">4.[ZJOI2020] 传统艺能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E7%BA%BF"><span class="toc-number">3.</span> <span class="toc-text">扫描线</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%89%AB%E6%8F%8F%E7%BA%BF"><span class="toc-number">3.0.1.</span> <span class="toc-text">1.【模板】扫描线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-IOI1998-USACO5-5-%E7%9F%A9%E5%BD%A2%E5%91%A8%E9%95%BFPicture"><span class="toc-number">3.0.2.</span> <span class="toc-text">2.[IOI1998] [USACO5.5] 矩形周长Picture</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-SDOI2009-HH%E7%9A%84%E9%A1%B9%E9%93%BE"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.[SDOI2009] HH的项链</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">4.</span> <span class="toc-text">可持久化线段树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91-2"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.【模板】可持久化线段树 2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Rmq-Problem-mex"><span class="toc-number">4.0.2.</span> <span class="toc-text">2.Rmq Problem &#x2F; mex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-CQOI2015-%E4%BB%BB%E5%8A%A1%E6%9F%A5%E8%AF%A2%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.[CQOI2015] 任务查询系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Destiny"><span class="toc-number">4.0.4.</span> <span class="toc-text">4.Destiny</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%88%E5%B9%B6"><span class="toc-number">5.</span> <span class="toc-text">线段树合并</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.</span> <span class="toc-text">树上问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%9B%A8%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4"><span class="toc-number">5.1.1.</span> <span class="toc-text">1.雨天的尾巴</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-NOIP2016-%E6%8F%90%E9%AB%98%E7%BB%84-%E5%A4%A9%E5%A4%A9%E7%88%B1%E8%B7%91%E6%AD%A5"><span class="toc-number">5.1.2.</span> <span class="toc-text">2.[NOIP2016 提高组] 天天爱跑步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93-DP"><span class="toc-number">5.2.</span> <span class="toc-text">整体 DP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-PKUWC2018-Minimax"><span class="toc-number">5.2.1.</span> <span class="toc-text">1.[PKUWC2018] Minimax</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-NOI2020-%E5%91%BD%E8%BF%90"><span class="toc-number">5.2.2.</span> <span class="toc-text">2.[NOI2020] 命运</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E8%A3%82"><span class="toc-number">6.</span> <span class="toc-text">线段树分裂</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E8%A3%82"><span class="toc-number">6.0.1.</span> <span class="toc-text">1.【模板】线段树分裂</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E5%A5%97%E6%A0%91"><span class="toc-number">7.</span> <span class="toc-text">树套树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%8E%E8%B6%85%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">8.</span> <span class="toc-text">李超线段树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E6%9D%8E%E8%B6%85%E7%BA%BF%E6%AE%B5%E6%A0%91-HEOI2013-Segment"><span class="toc-number">8.0.1.</span> <span class="toc-text">1.【模板】李超线段树 &#x2F; [HEOI2013] Segment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%B8%9D%E4%B9%8B%E5%89%B2"><span class="toc-number">8.0.2.</span> <span class="toc-text">2.丝之割</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Escape-Through-Leaf"><span class="toc-number">8.0.3.</span> <span class="toc-text">3.Escape Through Leaf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-Sum-of-Prefix-Sums"><span class="toc-number">8.0.4.</span> <span class="toc-text">4.Sum of Prefix Sums</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E7%9F%A9%E9%98%B5"><span class="toc-number">9.</span> <span class="toc-text">线段树维护矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98"><span class="toc-number">9.1.</span> <span class="toc-text">序列问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Bear-and-Cavalry"><span class="toc-number">9.1.1.</span> <span class="toc-text">1.Bear and Cavalry</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98-1"><span class="toc-number">9.2.</span> <span class="toc-text">树上问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E2%80%9D%E5%8A%A8%E6%80%81-DP%E2%80%9D-amp-%E5%8A%A8%E6%80%81%E6%A0%91%E5%88%86%E6%B2%BB"><span class="toc-number">9.2.1.</span> <span class="toc-text">1.【模板】”动态 DP”&amp;动态树分治</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ZJOI2019-Minimax%E6%90%9C%E7%B4%A2"><span class="toc-number">9.2.2.</span> <span class="toc-text">2.[ZJOI2019] Minimax搜索</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E6%A0%91%E4%B8%8A%E4%BF%A1%E6%81%AF"><span class="toc-number">10.</span> <span class="toc-text">线段树维护树上信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E7%9B%B4%E5%BE%84"><span class="toc-number">10.1.</span> <span class="toc-text">维护直径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-CEOI2019-Dynamic-Diameter"><span class="toc-number">10.1.1.</span> <span class="toc-text">1.[CEOI2019] Dynamic Diameter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Tree-Generator%E2%84%A2"><span class="toc-number">10.1.2.</span> <span class="toc-text">2.Tree Generator™</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%B4%E6%8A%A4%E6%9C%80%E5%B0%8F%E8%BF%9E%E9%80%9A%E5%AD%90%E6%A0%91"><span class="toc-number">10.2.</span> <span class="toc-text">维护最小连通子树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-SDOI2015-%E5%AF%BB%E5%AE%9D%E6%B8%B8%E6%88%8F"><span class="toc-number">10.2.1.</span> <span class="toc-text">1.[SDOI2015] 寻宝游戏</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-ZJOI2019-%E8%AF%AD%E8%A8%80"><span class="toc-number">10.2.2.</span> <span class="toc-text">2.[ZJOI2019] 语言</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%BC%98%E5%8C%96%E5%BB%BA%E5%9B%BE"><span class="toc-number">11.</span> <span class="toc-text">线段树优化建图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Legacy"><span class="toc-number">11.0.1.</span> <span class="toc-text">1.Legacy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E3%80%8CJOISC-2020-Day4%E3%80%8D%E6%B2%BB%E7%96%97%E8%AE%A1%E5%88%92"><span class="toc-number">11.0.2.</span> <span class="toc-text">2.「JOISC 2020 Day4」治疗计划</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%A7%E9%80%92%E5%BD%92%E7%BA%BF%E6%AE%B5%E6%A0%91"><span class="toc-number">12.</span> <span class="toc-text">单侧递归线段树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB"><span class="toc-number">13.</span> <span class="toc-text">线段树分治</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BA%8C%E5%88%86%E5%9B%BE-%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%86%E6%B2%BB"><span class="toc-number">13.0.1.</span> <span class="toc-text">1.二分图 &#x2F;【模板】线段树分治</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Painting-Edges"><span class="toc-number">13.0.2.</span> <span class="toc-text">2.Painting Edges</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%BB%B4%E6%8A%A4%E5%8E%86%E5%8F%B2%E5%80%BC-amp-segment-tree-beats"><span class="toc-number">14.</span> <span class="toc-text">线段树维护历史值 &amp; segment tree beats</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KTT"><span class="toc-number">15.</span> <span class="toc-text">KTT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">16.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&text=线段树进阶"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&is_video=false&description=线段树进阶"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=线段树进阶&body=Check out this article: http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&title=线段树进阶"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&name=线段树进阶&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/%E7%BA%BF%E6%AE%B5%E6%A0%91%E8%BF%9B%E9%98%B6/&t=线段树进阶"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categorier/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

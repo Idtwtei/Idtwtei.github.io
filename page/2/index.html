@@ -99,249 +99,205 @@
    --><!--
      --><li><a href="/about/">关于</a></li><!--
    --><!--
-     --><li><a href="/archives/">归档</a></li><!--
+     --><li><a href="/categories/notes/">笔记</a></li><!--
    --><!--
-     --><li><a href="/Content/">目录</a></li><!--
+     --><li><a href="/categories/solutions/">题解</a></li><!--
+   --><!--
+     --><li><a href="/categorier/others/">其他</a></li><!--
    -->
     </ul>
   </div>
 </header>
 
         
-        <section id="about" class="p-note">
-  
-  
-</section>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image</title>
+</head>
+<body>
+	<img id="randomImage" src="" alt="Random Image" style="max-width: 100%; height: auto;">
 
-<section id="writing">
-  <span class="h1"><a href="/">文章</a></span>
-  
-  <ul class="post-list">
-    
-    
-      
-    
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-09T13:16:17.818Z" class="dt-published" itemprop="datePublished">2025-01-09</time>
-        
-      
-    </div>
+	<script>
+		const images = [
+      "https://pic1.imgdb.cn/item/67b36d8dd0e0a243d4005674.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8dd0e0a243d4005673.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8dd0e0a243d4005672.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8dd0e0a243d4005671.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8dd0e0a243d4005670.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8dd0e0a243d400566f.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8cd0e0a243d400566d.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8cd0e0a243d400566c.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8cd0e0a243d400566b.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8cd0e0a243d400566a.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8cd0e0a243d4005669.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8bd0e0a243d4005668.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8bd0e0a243d4005667.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8bd0e0a243d4005666.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8ad0e0a243d4005665.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8ad0e0a243d4005664.jpg",
+      "https://pic1.imgdb.cn/item/67b36d8ad0e0a243d4005663.jpg",
+      "https://pic1.imgdb.cn/item/67b36d89d0e0a243d4005662.jpg",
+      "https://pic1.imgdb.cn/item/67b36d88d0e0a243d4005661.jpg",
+      "https://pic1.imgdb.cn/item/67b36d88d0e0a243d4005660.jpg",
+      "https://pic1.imgdb.cn/item/67b36d87d0e0a243d400565f.jpg",
+      "https://pic1.imgdb.cn/item/67b36d87d0e0a243d400565e.jpg",
+      "https://pic1.imgdb.cn/item/67b36d86d0e0a243d400565c.jpg",
+      "https://pic1.imgdb.cn/item/67b36d86d0e0a243d400565b.jpg",
+      "https://pic1.imgdb.cn/item/67b36d85d0e0a243d400565a.jpg",
+      "https://pic1.imgdb.cn/item/67b36d85d0e0a243d4005659.jpg",
+      "https://pic1.imgdb.cn/item/67b36d84d0e0a243d4005658.jpg",
+      "https://pic1.imgdb.cn/item/67b36d84d0e0a243d4005657.jpg",
+      "https://pic1.imgdb.cn/item/67b36d83d0e0a243d4005656.jpg",
+      "https://pic1.imgdb.cn/item/67b36d83d0e0a243d4005655.jpg",
+      "https://pic1.imgdb.cn/item/67b36d83d0e0a243d4005654.jpg",
+      "https://pic1.imgdb.cn/item/67b36d82d0e0a243d4005653.jpg",
+      "https://pic1.imgdb.cn/item/67b36d81d0e0a243d4005652.jpg",
+      "https://pic1.imgdb.cn/item/67b36d81d0e0a243d4005651.jpg",
+      "https://pic1.imgdb.cn/item/67b36d80d0e0a243d4005650.jpg",
+      "https://pic1.imgdb.cn/item/67b36d80d0e0a243d400564f.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7fd0e0a243d400564e.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7fd0e0a243d400564d.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7ed0e0a243d400564c.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7dd0e0a243d400564b.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7cd0e0a243d400564a.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7cd0e0a243d4005649.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7bd0e0a243d4005648.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7ad0e0a243d4005647.jpg",
+      "https://pic1.imgdb.cn/item/67b36d7ad0e0a243d4005646.jpg",
+      "https://pic1.imgdb.cn/item/67b36d79d0e0a243d4005645.jpg",
+      "https://pic1.imgdb.cn/item/67b36d78d0e0a243d4005644.jpg",
+      "https://pic1.imgdb.cn/item/67b36d78d0e0a243d4005643.jpg",
+      "https://pic1.imgdb.cn/item/67b36d77d0e0a243d4005642.jpg",
+      "https://pic1.imgdb.cn/item/67b36d77d0e0a243d4005641.jpg",
+      "https://pic1.imgdb.cn/item/67b36d76d0e0a243d4005640.jpg",
+      "https://pic1.imgdb.cn/item/67b36d76d0e0a243d400563f.jpg",
+      "https://pic1.imgdb.cn/item/67b36d75d0e0a243d400563e.jpg",
+      "https://pic1.imgdb.cn/item/67b36d74d0e0a243d400563d.jpg",
+      "https://pic1.imgdb.cn/item/67b36d74d0e0a243d400563c.jpg",
+      "https://pic1.imgdb.cn/item/67b36d73d0e0a243d400563b.jpg",
+      "https://pic1.imgdb.cn/item/67b36d72d0e0a243d4005639.jpg",
+      "https://pic1.imgdb.cn/item/67b36d72d0e0a243d4005638.jpg",
+      "https://pic1.imgdb.cn/item/67b36d71d0e0a243d4005637.jpg",
+      "https://pic1.imgdb.cn/item/67b36d70d0e0a243d4005636.jpg",
+      "https://pic1.imgdb.cn/item/67b36d6fd0e0a243d4005635.jpg",
+      "https://pic1.imgdb.cn/item/67b36d6fd0e0a243d4005634.jpg",
+      "https://pic1.imgdb.cn/item/67b36d6ed0e0a243d4005633.jpg",
+      "https://pic1.imgdb.cn/item/67b36d6dd0e0a243d4005632.jpg",
+      "https://pic1.imgdb.cn/item/67b36d6dd0e0a243d4005631.jpg",
+      "https://pic1.imgdb.cn/item/67b36d6cd0e0a243d4005630.jpg",
+      "https://pic1.imgdb.cn/item/67b36d6bd0e0a243d400562f.jpg",
+      "https://pic1.imgdb.cn/item/67b36d6ad0e0a243d400562e.jpg",
+      "https://pic1.imgdb.cn/item/67b36d69d0e0a243d400562d.jpg",
+      "https://pic1.imgdb.cn/item/67b36d69d0e0a243d400562c.jpg",
+      "https://pic1.imgdb.cn/item/67b36d68d0e0a243d400562b.jpg",
+      "https://pic1.imgdb.cn/item/67b36d67d0e0a243d400562a.jpg",
+      "https://pic1.imgdb.cn/item/67b36d66d0e0a243d4005629.jpg",
+      "https://pic1.imgdb.cn/item/67b36d65d0e0a243d4005628.jpg",
+      "https://pic1.imgdb.cn/item/67b36d64d0e0a243d4005627.jpg",
+      "https://pic1.imgdb.cn/item/67b36d63d0e0a243d4005625.jpg",
+      "https://pic1.imgdb.cn/item/67b36d62d0e0a243d4005624.jpg",
+      "https://pic1.imgdb.cn/item/67b36d61d0e0a243d4005623.jpg",
+      "https://pic1.imgdb.cn/item/67b36d61d0e0a243d4005622.jpg",
+      "https://pic1.imgdb.cn/item/67b36d60d0e0a243d4005621.jpg",
+      "https://pic1.imgdb.cn/item/67b36d5fd0e0a243d4005620.jpg",
+      "https://pic1.imgdb.cn/item/67b36d5fd0e0a243d400561f.jpg",
+      "https://pic1.imgdb.cn/item/67b36d5ed0e0a243d400561e.jpg",
+      "https://pic1.imgdb.cn/item/67b36d5dd0e0a243d400561d.jpg",
+      "https://pic1.imgdb.cn/item/67b36d5cd0e0a243d400561c.jpg",
+      "https://pic1.imgdb.cn/item/67b36d5bd0e0a243d400561b.jpg",
+      "https://pic1.imgdb.cn/item/67b36d5ad0e0a243d400561a.jpg",
+      "https://pic1.imgdb.cn/item/67b36d5ad0e0a243d4005619.jpg",
+      "https://pic1.imgdb.cn/item/67b36d59d0e0a243d4005618.jpg",
+      "https://pic1.imgdb.cn/item/67b36d58d0e0a243d4005617.jpg",
+      "https://pic1.imgdb.cn/item/67b36d57d0e0a243d4005616.jpg",
+      "https://pic1.imgdb.cn/item/67b36d57d0e0a243d4005615.jpg",
+      "https://pic1.imgdb.cn/item/67b36d56d0e0a243d4005614.jpg",
+      "https://pic1.imgdb.cn/item/67b36d55d0e0a243d4005613.jpg",
+      "https://pic1.imgdb.cn/item/67b36d55d0e0a243d4005612.jpg",
+      "https://pic1.imgdb.cn/item/67b36d54d0e0a243d4005611.jpg",
+      "https://pic1.imgdb.cn/item/67b36d00d0e0a243d400560e.jpg",
+      "https://pic1.imgdb.cn/item/67b36cdbd0e0a243d400560d.jpg",
+      "https://pic1.imgdb.cn/item/67b36cdad0e0a243d400560c.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd9d0e0a243d400560b.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd8d0e0a243d400560a.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd8d0e0a243d4005609.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd8d0e0a243d4005608.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd8d0e0a243d4005607.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd8d0e0a243d4005606.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd8d0e0a243d4005605.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d4005604.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d4005603.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d4005602.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d4005601.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d4005600.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d40055ff.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d40055fe.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d40055fd.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d40055fc.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd7d0e0a243d40055fb.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd6d0e0a243d40055fa.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd6d0e0a243d40055f9.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd6d0e0a243d40055f8.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd6d0e0a243d40055f7.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd6d0e0a243d40055f6.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd6d0e0a243d40055f5.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd5d0e0a243d40055f4.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd5d0e0a243d40055f3.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd5d0e0a243d40055f2.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd5d0e0a243d40055f1.png",
+      "https://pic1.imgdb.cn/item/67b36cd5d0e0a243d40055f0.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd5d0e0a243d40055ef.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd5d0e0a243d40055ee.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd4d0e0a243d40055ed.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd4d0e0a243d40055ec.png",
+      "https://pic1.imgdb.cn/item/67b36cd4d0e0a243d40055eb.png",
+      "https://pic1.imgdb.cn/item/67b36cd4d0e0a243d40055ea.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd3d0e0a243d40055e9.png",
+      "https://pic1.imgdb.cn/item/67b36cd3d0e0a243d40055e8.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd3d0e0a243d40055e7.png",
+      "https://pic1.imgdb.cn/item/67b36cd3d0e0a243d40055e6.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd2d0e0a243d40055e5.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd1d0e0a243d40055e4.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd1d0e0a243d40055e3.jpg",
+      "https://pic1.imgdb.cn/item/67b36cd0d0e0a243d40055e2.jpg",
+      "https://pic1.imgdb.cn/item/67b36ccfd0e0a243d40055e1.jpg",
+      "https://pic1.imgdb.cn/item/67b36ccfd0e0a243d40055e0.jpg",
+      "https://pic1.imgdb.cn/item/67b36cced0e0a243d40055df.jpg",
+      "https://pic1.imgdb.cn/item/67b36ccdd0e0a243d40055de.jpg",
+      "https://pic1.imgdb.cn/item/67b36cccd0e0a243d40055dd.jpg",
+      "https://pic1.imgdb.cn/item/67b36ccbd0e0a243d40055dc.jpg",
+      "https://pic1.imgdb.cn/item/67b36ccad0e0a243d40055db.jpg",
+      "https://pic1.imgdb.cn/item/67b36ccad0e0a243d40055da.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc9d0e0a243d40055d9.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc8d0e0a243d40055d8.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc7d0e0a243d40055d7.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc6d0e0a243d40055d6.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc5d0e0a243d40055d5.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc5d0e0a243d40055d4.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc4d0e0a243d40055d3.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc3d0e0a243d40055d2.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc2d0e0a243d40055d1.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc1d0e0a243d40055d0.png",
+      "https://pic1.imgdb.cn/item/67b36cc1d0e0a243d40055cf.jpg",
+      "https://pic1.imgdb.cn/item/67b36cc0d0e0a243d40055ce.jpg",
+      "https://pic1.imgdb.cn/item/67b36cbfd0e0a243d40055cd.jpg",
+      "https://pic1.imgdb.cn/item/67b36cbed0e0a243d40055cc.jpg",
+      "https://pic1.imgdb.cn/item/67b36cbed0e0a243d40055cb.jpg",
+      "https://pic1.imgdb.cn/item/67b36cbdd0e0a243d40055ca.jpg"
+		];
 
+		function generateRandomImage() {
+			const randomIndex = Math.floor(Math.random() * images.length);
+			document.getElementById('randomImage').src = images[randomIndex];
+		}
 
-        <span>
-    
-        <a class="" href="/%E9%A2%98%E8%A7%A3/P3214/">P3214 [HNOI2011] 卡农 题解</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-09T10:45:24.710Z" class="dt-published" itemprop="datePublished">2025-01-09</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/%E9%A2%98%E8%A7%A3/P8907/">P8907 [USACO22DEC] Making Friends P 题解</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-08T10:04:18.631Z" class="dt-published" itemprop="datePublished">2025-01-08</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/%E9%A2%98%E8%A7%A3/QOJ171/">QOJ171 Longest Shortest Path 题解</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-08T00:30:16.869Z" class="dt-published" itemprop="datePublished">2025-01-08</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/">拉格朗日乘数及其对偶</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-03T23:47:31.867Z" class="dt-published" itemprop="datePublished">2025-01-04</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-29T23:21:42.457Z" class="dt-published" itemprop="datePublished">2024-12-30</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/%E9%95%BF%E9%93%BE%E5%89%96%E5%88%86/">长链剖分</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-29T00:28:58.761Z" class="dt-published" itemprop="datePublished">2024-12-29</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/SAM/">SAM</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-27T23:42:15.001Z" class="dt-published" itemprop="datePublished">2024-12-28</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/exKMP/">exKMP</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-27T23:17:00.383Z" class="dt-published" itemprop="datePublished">2024-12-28</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/ACAM/">ACAM</a>
-    
-
-
-</span>
-      </li>
-    
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-27T01:11:39.985Z" class="dt-published" itemprop="datePublished">2024-12-27</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/%E4%B8%87%E8%83%BD%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/">万能欧几里得</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
-  
-    
-    <div class="pagination">
-        
-            <a href="/"><i class="fa-solid fa-angle-left"></i></a>
-        
-        <span class="page-number">第 2 页，共 5 页</span>
-        
-            <a href="/page/3/"><i class="fa-solid fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-
-  
-</section>
-
-
-
+		generateRandomImage();
+	</script>
+</body>
+</html>
         
         <footer id="footer">
   <div class="footer-left">
@@ -359,9 +315,11 @@
      --><!--
        --><li><a href="/about/">关于</a></li><!--
      --><!--
-       --><li><a href="/archives/">归档</a></li><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
      --><!--
-       --><li><a href="/Content/">目录</a></li><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categorier/others/">其他</a></li><!--
      -->
       </ul>
     </nav>
