@@ -9,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="概述对于有向图 $G&#x3D;(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，记作 $x&#x3D;dom(y)$。 点 $u$ 支配其支配树上子树中所有节点。被支配同理。支配边，定义与支配点类似，可以边化点求解，还有一种常数较小的做法（真的有用吗？）。对于强连通分量，有桥和割点的定义，可以支配树">
+    <meta name="description" content="概述对于有向图 $G&#x3D;(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，$x$ 是 $y$ 的支配点，记作 $x&#x3D;dom_y$。支配关系满足传递性、自反性、反对称性，是偏序关系，偏序关系可以用 DAG 刻画。 支配关系还满足若 $x &#x3D; dom_z,y &#x3D; dom_z$ 则 $x&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支配树">
 <meta property="og:url" content="http://idtwtei.github.io/notes/dom/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="概述对于有向图 $G&#x3D;(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，记作 $x&#x3D;dom(y)$。 点 $u$ 支配其支配树上子树中所有节点。被支配同理。支配边，定义与支配点类似，可以边化点求解，还有一种常数较小的做法（真的有用吗？）。对于强连通分量，有桥和割点的定义，可以支配树">
+<meta property="og:description" content="概述对于有向图 $G&#x3D;(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，$x$ 是 $y$ 的支配点，记作 $x&#x3D;dom_y$。支配关系满足传递性、自反性、反对称性，是偏序关系，偏序关系可以用 DAG 刻画。 支配关系还满足若 $x &#x3D; dom_z,y &#x3D; dom_z$ 则 $x&#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-04T23:49:20.368Z">
-<meta property="article:modified_time" content="2025-02-17T15:52:30.935Z">
+<meta property="article:modified_time" content="2025-02-18T08:10:28.746Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -139,7 +139,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAG"><span class="toc-number">2.</span> <span class="toc-text">DAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">一般图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
   </span>
@@ -184,15 +184,13 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>对于有向图 $G=(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，记作 $x=dom(y)$。</p>
-<p>点 $u$ 支配其支配树上子树中所有节点。被支配同理。<br>支配边，定义与支配点类似，可以边化点求解，还有一种常数较小的做法（真的有用吗？）。<br>对于强连通分量，有桥和割点的定义，可以支配树求解（不太会，感觉没用）。</p>
-<p><del>可以看出支配树用途广泛。</del>求解支配树尤为重要。</p>
-<p>对于 DAG，有一个简单的算法。<br>拓扑排序，按拓扑序从小到大求解。对于点 $x$，以其未终点的边有 $(s_1,x),(s_2,x)…$。则其支配点为 $LCA(idom(s_1),idom(s_2),…)$，每次需动态添加一个叶子节点，可以用倍增求 LCA，动态维护。时间复杂度 $O((n+m)logn)$。</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2597">P2597 [ZJOI2012] 灾难</a></p>
-</blockquote>
-<p>建超级源点，求出以超级源点为根的支配树后，求一下子树和即可。</p>
-<p>对于一般图。<br>引入半支配点的概念。<br>艹，好麻烦，不写了。。。</p>
+    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>对于有向图 $G=(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，$x$ 是 $y$ 的支配点，记作 $x=dom_y$。支配关系满足传递性、自反性、反对称性，是偏序关系，偏序关系可以用 DAG 刻画。</p>
+<p>支配关系还满足若 $x = dom_z,y = dom_z$ 则 $x=dom_y$ 或 $y = dom_x$。满足这个性质的偏序关系可以用树刻画。记 $idom_x$ 为 $x$ 的直接支配点（不为 $x$），满足若 $y=dom_x,y \ne x$ 那么 $y=dom_{idom_x}$，直观理解就是支配点中离 $x$ 最近的那个。$idom_x \to x$ 可以得到一棵树，称为支配树。</p>
+<p> 点 $u$ 支配其支配树上子树中所有节点。被支配同理。<br>支配边，定义与支配点类似，可以边化点求解，还有一种常数较小的做法（真的有用吗？）。<br>对于强连通分量，有桥和割点的定义，可以支配树求解（不太会，感觉没用）。</p>
+<h2 id="DAG"><a href="#DAG" class="headerlink" title="DAG"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2597">DAG</a></h2><p>求解 DAG 的支配树，有一个简单的算法。</p>
+<p>拓扑排序，按拓扑序从小到大求解。对于点 $x$，DAG 上以其为终点的边有 $(s_1,x),(s_2,x)…$，则其直接支配点为 $LCA(s_1,s_2,…)$。</p>
+<p>需要添加叶子节点求 LCA，用倍增求解，时间复杂度 $O((n+m)\log n)$。</p>
+<h2 id="一般图"><a href="#一般图" class="headerlink" title="一般图"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5180">一般图</a></h2><p>先求出 dfs 树，$x&lt;y$ 当且仅当 $dfn_x&lt;dfn_y$。</p>
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5180#submit">P5180 【模板】支配树</a></p>
 </blockquote>
@@ -204,7 +202,7 @@
 <blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7520">P7520 [省选联考 2021 A 卷] 支配</a></p>
 </blockquote>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>《浅谈支配树及其应用》</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>《浅谈支配树及其应用》</p>
 <!-- flag of hidden posts -->
   </div>
 </article>
@@ -234,7 +232,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAG"><span class="toc-number">2.</span> <span class="toc-text">DAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">一般图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
 
