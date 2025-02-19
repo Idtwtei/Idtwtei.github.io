@@ -17,7 +17,7 @@
 <meta property="og:description" content="板子1.【模板】线段树 1code 2.【模板】线段树 2code 线段树结构分析1.[THUPC2021 初赛] 线段树 $[1,n]$ 上的广义线段树内 $[l,r]$ 的最小拆分大小为 $2(r-l+1)-|S|$，其中 $S$ 为包含于 $[l,r]$ 的线段树节点。  证明 将包含于 $[l,r]$ 的线段树节点取出，形成满二叉树森林，根节点的个数为最小拆分大小。叶子节点的个数为 $r-">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-15T22:13:22.462Z">
-<meta property="article:modified_time" content="2025-02-17T15:51:54.110Z">
+<meta property="article:modified_time" content="2025-02-19T08:52:55.615Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -231,7 +231,7 @@
 <script type="math/tex; mode=display">
 f(u,i)'=f(u,i)(sum(v,dep_u)+sum(v,i))+sum(u,i-1)f(v,i)</script><p>与前缀和有关，且开始有值的点很少，用线段树合并优化。具体实现时在 <code>merge</code> 中记录两棵线段树的前缀和可以减少查询的 $\log$。对于 $sum(u,i-1)$ 在有个节点为空时不需要管，因为空节点值为 $0$。当 $l=r$ 时，需要考虑，应该后更新该节点的前缀和。时间复杂度 $O(n\log n)$。</p>
 <h2 id="线段树分裂"><a href="#线段树分裂" class="headerlink" title="线段树分裂"></a>线段树分裂</h2><h4 id="1-【模板】线段树分裂"><a href="#1-【模板】线段树分裂" class="headerlink" title="1.【模板】线段树分裂"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5494">1.【模板】线段树分裂</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/iuk6h36n">code</a> 还可以平衡树合并。</p>
-<h2 id="树套树"><a href="#树套树" class="headerlink" title="树套树"></a>树套树</h2><p><a href="/树套树">详见</a></p>
+<h2 id="树套树"><a href="#树套树" class="headerlink" title="树套树"></a>树套树</h2><p><a href="/notes/树套树">详见</a></p>
 <h2 id="李超线段树"><a href="#李超线段树" class="headerlink" title="李超线段树"></a>李超线段树</h2><p>支持插入线段，查询某位置交点最值。</p>
 <h4 id="1-【模板】李超线段树-HEOI2013-Segment"><a href="#1-【模板】李超线段树-HEOI2013-Segment" class="headerlink" title="1.【模板】李超线段树 / [HEOI2013] Segment"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4097">1.【模板】李超线段树 / [HEOI2013] Segment</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/q18lbhyl">code</a></p>
 <h4 id="2-丝之割"><a href="#2-丝之割" class="headerlink" title="2.丝之割"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6047">2.丝之割</a></h4><p>为了方便，先将第一行反转一下，并将线的位置加 $1$。一些被包含的线是没用的将其去掉。剩下的按第一行的位置排序，第二行的位置是单减的。</p>
@@ -344,7 +344,7 @@ g_u =
 </li>
 </ul>
 <p>由于连向某个点的权值都相同，所以每个点在被枚举到时其 $dis$ 就已经确定。考虑快速找出邻点，这样均摊是对的。先按 $t$ 排序，然后线段树，时间复杂度 $O(n\log n)$。</p>
-<h2 id="单侧递归线段树"><a href="#单侧递归线段树" class="headerlink" title="单侧递归线段树"></a>单侧递归线段树</h2><p><a href="/单侧递归线段树">详见</a></p>
+<h2 id="单侧递归线段树"><a href="#单侧递归线段树" class="headerlink" title="单侧递归线段树"></a>单侧递归线段树</h2><p><a href="/notes/单侧递归线段树">详见</a></p>
 <h2 id="线段树分治"><a href="#线段树分治" class="headerlink" title="线段树分治"></a>线段树分治</h2><p>不如叫基于时间的分治。</p>
 <h4 id="1-二分图-【模板】线段树分治"><a href="#1-二分图-【模板】线段树分治" class="headerlink" title="1.二分图 /【模板】线段树分治"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5787">1.二分图 /【模板】线段树分治</a></h4><h4 id="2-Painting-Edges"><a href="#2-Painting-Edges" class="headerlink" title="2.Painting Edges"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF576E">2.Painting Edges</a></h4><p>一棵树，每条边有颜色（开始没有），当加入任意一种颜色的边时，图都为二分图，则此时合法。每次操作改变某条边的颜色，只有当改变后合法才会进行，判断每次操作是否会进行。</p>
 <p>颜色很少，考虑对每个颜色开一个并查集维护。</p>
@@ -353,8 +353,8 @@ g_u =
 <p>时间复杂度 $O(m\log q\log n+nk)$。</p>
 <p>注意：不要手写栈，因为实际加入堆的元素个数为 $2(拆后的总边数)$ 而手写栈要开到 $2k(拆后的总边数)$ 空间会炸。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/ky04ivij">code &amp; data_maker</a></p>
-<h2 id="线段树维护历史值-amp-segment-tree-beats"><a href="#线段树维护历史值-amp-segment-tree-beats" class="headerlink" title="线段树维护历史值 &amp; segment tree beats"></a>线段树维护历史值 &amp; segment tree beats</h2><p><a href="/seg_beats">详见</a></p>
-<h2 id="KTT"><a href="#KTT" class="headerlink" title="KTT"></a>KTT</h2><p><a href="/KTT">详见</a></p>
+<h2 id="线段树维护历史值-amp-segment-tree-beats"><a href="#线段树维护历史值-amp-segment-tree-beats" class="headerlink" title="线段树维护历史值 &amp; segment tree beats"></a>线段树维护历史值 &amp; segment tree beats</h2><p><a href="/notes/seg_beats">详见</a></p>
+<h2 id="KTT"><a href="#KTT" class="headerlink" title="KTT"></a>KTT</h2><p><a href="notes/KTT">详见</a></p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com/article/xjsrcztd">线段树相关技巧的小小总结（修订版）</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-wei/p/18356369/SegmentTreePart1">线段树进阶 Part 1</a></p>
 
