@@ -17,7 +17,7 @@
 <meta property="og:description" content="概述对于有向图 $G&#x3D;(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，$x$ 是 $y$ 的支配点，记作 $x&#x3D;dom_y$。支配关系满足传递性、自反性、反对称性，是偏序关系，偏序关系可以用 DAG 刻画。 支配关系还满足若 $x &#x3D; dom_z,y &#x3D; dom_z$ 则 $x&#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-04T23:49:20.368Z">
-<meta property="article:modified_time" content="2025-02-19T08:49:10.907Z">
+<meta property="article:modified_time" content="2025-02-19T13:04:07.540Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -231,7 +231,7 @@ idom_x =
 <p>证明显然。</p>
 </blockquote>
 <p>支配边显然是树边，对于树边 $(u,v)$，若 $u=idom_v$ 且 $u$ 到 $v$ 只有一条简单路径，那么 $(u,v)$ 支配 $v$ 支配的所有点。</p>
-<p>对于树边 $(u,v)$ 且 $u=idom_v$，$u$ 到 $v$ 只有一条简单路径当且仅当计算 $sdom_v$ 时不存在第二种候选点。</p>
+<p>对于树边 $(u,v)$ 且 $u=idom_v$，$u$ 到 $v$ 只有一条简单路径当且仅当计算 $sdom_v$ 时只有一种情况使得 $sdom=u$（注意重边）。</p>
 <h4 id="3-有向图的割点和割边"><a href="#3-有向图的割点和割边" class="headerlink" title="3.有向图的割点和割边"></a>3.有向图的割点和割边</h4><p>类似无向图，有向图的割点和割边为删去后强连通分量增加的点和边，称为强割点和强割边。</p>
 <p>可以对每个强连通分量分别考虑，因此以下讨论均基于强连通图。</p>
 <blockquote>
@@ -249,7 +249,7 @@ idom_x =
 </blockquote>
 <p>记 $DT(G,s)$ 为图 $G$ 以 $s$ 为源点的支配树。</p>
 <p>任取一点 $s$，并判断它是否为强割点。根据条件 1，$DT(G,s)$ 除 $s$ 外的非叶子节点都是强割点，根据条件 2，$DT(G^{-1},s)$ 除 $s$ 外的非叶子节点都是强割点。</p>
-<p>强割边求解类似支配边。</p>
+<p>强割边判断同支配边。</p>
 <h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-Team-Rocket-Rises-Again"><a href="#1-Team-Rocket-Rises-Again" class="headerlink" title="1.Team Rocket Rises Again"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF757F">1.Team Rocket Rises Again</a></h4><p>先求最短路 DAG，再求支配树即可。</p>
 <h4 id="2-省选联考-2021-A-卷-支配"><a href="#2-省选联考-2021-A-卷-支配" class="headerlink" title="2.[省选联考 2021 A 卷] 支配"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7520">2.[省选联考 2021 A 卷] 支配</a></h4><p>先求支配树，只需判断是否存在 $1 \leadsto x \to y \leadsto p$ 且不经过 $idom_p$ 的路径即可，时间复杂度 $O(n^2+nq)$。</p>
 <h4 id="3-【R1-B】地铁线路"><a href="#3-【R1-B】地铁线路" class="headerlink" title="3.【R1-B】地铁线路"></a>3.【R1-B】地铁线路</h4><p>求强割边。</p>
