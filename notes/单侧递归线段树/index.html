@@ -76,7 +76,9 @@
 	
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
 
 <body class="max-width mx-auto px3 ltr">
     
@@ -227,7 +229,7 @@
 <p>需要查询某个节点前 $k$ 个左括号（和后 $k$ 个右括号）的信息。</p>
 <p>这个单侧递归可以做到 $O(\log n)$。</p>
 <p>对于 $\texttt{NAND}$ 的信息合并，维护全 $0$ 和全 $1$ 经过操作后得到的结果，$O(1)$ 合并</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ans_0 = (~l_0 &amp; r_0) | (l_0 &amp; r_1)</span><br><span class="line">ans_1 = (~l_1 &amp; r_0) | (l_1 &amp; r_1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ans_0 = (~l_0 &amp; r_0) | (l_0 &amp; r_1)</span><br><span class="line">ans_1 = (~l_1 &amp; r_0) | (l_1 &amp; r_1)</span><br></pre></td></tr></tbody></table></figure>
 <p>特殊之处在于每个节点需要维护两个儿子合并后中间剩下那段的信息。</p>
 <h2 id="杂题"><a href="#杂题" class="headerlink" title="杂题"></a>杂题</h2><h4 id="1-PKUSC2021-D1T2-逛街"><a href="#1-PKUSC2021-D1T2-逛街" class="headerlink" title="1.[PKUSC2021 D1T2] 逛街"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/T240056">1.[PKUSC2021 D1T2] 逛街</a></h4><p>考虑用平衡树维护连续段段，开始每个数为一个连续段（值相同的排在后面的小）。</p>
 <p>每次操作，连续段的长度可能 $+1/-1/不变$。需要快速找到原序列对应的位置和要删除哪些点。</p>
