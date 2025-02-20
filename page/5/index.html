@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta property="og:type" content="website">
 <meta property="og:title" content="Idtwtei">
-<meta property="og:url" content="http://idtwtei.github.io/archives/page/2/index.html">
+<meta property="og:url" content="http://idtwtei.github.io/page/5/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Idtwtei">
@@ -41,7 +41,7 @@
       
     
     <!-- title -->
-    <title>归档</title>
+    <title>Idtwtei</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -78,7 +78,7 @@
 
 <body class="max-width mx-auto px3 ltr">
     
-    <div class="content index py4 ">
+    <div class="content index py4 h-card">
         
           <header id="header">
   <a class="u-url u-uid" href="/">
@@ -112,271 +112,35 @@
 </header>
 
         
-        <div id="archive">
-  <ul class="post-list">
-    
-    
-    
-    
-      
-      
-      
-      
-        <li class="post-year"><h2>2025</h2></li>
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-09T13:16:17.818Z" class="dt-published" itemprop="datePublished">2025-01-09</time>
-        
-      
-    </div>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image</title>
+</head>
+<body>
+    <img id="Image" src="" alt="Image" style="max-width: 100%; height: auto;">
 
+    <script>
+        // 从 JSON 文件中获取所有图片路径
+        fetch('/images.json')
+            .then(response => response.json())
+            .then(images => {
+                function generateRandomImage() {
+                    const Index = Math.floor(Math.random() * images.length);
+                    document.getElementById('Image').src = images[Index];
+                }
 
-        <span>
-    
-        <a class="" href="/solutions/P3214/">😎⚡⭕ P3214 [HNOI2011] 卡农</a>
-    
+                generateRandomImage();  // 加载首页随机图片
+            })
+            .catch(error => {
+                console.error('Error loading images:', error);
+            });
+    </script>
+</body>
+</html>
 
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-09T10:45:24.710Z" class="dt-published" itemprop="datePublished">2025-01-09</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/solutions/P8907/">😴⚡⭕ P8907 [USACO22DEC] Making Friends P</a>
-    
-
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-08T10:04:18.631Z" class="dt-published" itemprop="datePublished">2025-01-08</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/solutions/QOJ171/">😱❄️⭕ QOJ171 Longest Shortest Path</a>
-    
-
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2025-01-08T00:30:16.869Z" class="dt-published" itemprop="datePublished">2025-01-08</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/notes/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%95%B0%E5%8F%8A%E5%85%B6%E5%AF%B9%E5%81%B6/">拉格朗日乘数及其对偶</a>
-    
-
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-        <li class="post-year"><h2>2024</h2></li>
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-29T23:21:42.457Z" class="dt-published" itemprop="datePublished">2024-12-30</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/notes/%E9%95%BF%E9%93%BE%E5%89%96%E5%88%86/">长链剖分</a>
-    
-
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-29T00:28:58.761Z" class="dt-published" itemprop="datePublished">2024-12-29</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/notes/SAM/">SAM</a>
-    
-
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-27T23:42:15.001Z" class="dt-published" itemprop="datePublished">2024-12-28</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/notes/exKMP/">exKMP</a>
-    
-
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-27T23:17:00.383Z" class="dt-published" itemprop="datePublished">2024-12-28</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/notes/ACAM/">ACAM</a>
-    
-
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-27T01:11:39.985Z" class="dt-published" itemprop="datePublished">2024-12-27</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/notes/%E4%B8%87%E8%83%BD%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97/">万能欧几里得</a>
-    
-
-
-</span>
-      </li>
-    
-      
-      
-      
-      
-      <li class="post-item">
-        
-    <div class="meta">
-      
-        
-          <time datetime="2024-12-27T01:10:58.681Z" class="dt-published" itemprop="datePublished">2024-12-27</time>
-        
-      
-    </div>
-
-
-        <span>
-    
-        <a class="" href="/notes/%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E5%9B%BE%E4%B8%8A%E9%97%AE%E9%A2%98/">矩阵加速图上问题</a>
-    
-
-
-</span>
-      </li>
-    
-  </ul>
-  
-    <div class="pagination">
-        
-            <a href="/archives/"><i class="fa-solid fa-angle-left"></i></a>
-        
-        <span class="page-number">第 2 页，共 5 页</span>
-        
-            <a href="/archives/page/3/"><i class="fa-solid fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-
-</div>
         
         <footer id="footer">
   <div class="footer-left">

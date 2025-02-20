@@ -9,20 +9,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="此处提交。  交互题，有一个 $n \times m$ 的 $01$ 矩阵，你可以询问一个矩形内是否有 $1$，你需要找到 $(x,y)&#x3D;1$ 且满足 $x+y$ 最大，输出最大的 $x+y$。有询问次数和询问矩形大小和的限制，其中询问矩形大小和由 $\sum \max(xr-xl+1,yr-yl+1)$ 定义。 三种数据：  $n&#x3D;m&#x3D;2$，询问次数限制为 $2$，询问矩形大小和限制为 $3$。">
+    <meta name="description" content="upd: 图挂了，但懒得补了，将就着看。  此处提交。  交互题，有一个 $n \times m$ 的 $01$ 矩阵，你可以询问一个矩形内是否有 $1$，你需要找到 $(x,y)&#x3D;1$ 且满足 $x+y$ 最大，输出最大的 $x+y$。有询问次数和询问矩形大小和的限制，其中询问矩形大小和由 $\sum \max(xr-xl+1,yr-yl+1)$ 定义。 三种数据：  $n&#x3D;m&#x3D;2$，询问次数限">
 <meta property="og:type" content="article">
-<meta property="og:title" content="THUWC2024 小C的矩阵">
+<meta property="og:title" content="😨❤️⭕ THUWC2024 小C的矩阵">
 <meta property="og:url" content="http://idtwtei.github.io/solutions/THUWC2024C/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="此处提交。  交互题，有一个 $n \times m$ 的 $01$ 矩阵，你可以询问一个矩形内是否有 $1$，你需要找到 $(x,y)&#x3D;1$ 且满足 $x+y$ 最大，输出最大的 $x+y$。有询问次数和询问矩形大小和的限制，其中询问矩形大小和由 $\sum \max(xr-xl+1,yr-yl+1)$ 定义。 三种数据：  $n&#x3D;m&#x3D;2$，询问次数限制为 $2$，询问矩形大小和限制为 $3$。">
+<meta property="og:description" content="upd: 图挂了，但懒得补了，将就着看。  此处提交。  交互题，有一个 $n \times m$ 的 $01$ 矩阵，你可以询问一个矩形内是否有 $1$，你需要找到 $(x,y)&#x3D;1$ 且满足 $x+y$ 最大，输出最大的 $x+y$。有询问次数和询问矩形大小和的限制，其中询问矩形大小和由 $\sum \max(xr-xl+1,yr-yl+1)$ 定义。 三种数据：  $n&#x3D;m&#x3D;2$，询问次数限">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/67b36127d0e0a243d40054ba.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/6780ff88d0e0a243d4f31589.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b3ebc8d0e0a243d4005d32.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/67b3ebc8d0e0a243d4005d32.png">
 <meta property="article:published_time" content="2025-01-10T10:34:09.141Z">
-<meta property="article:modified_time" content="2025-02-19T08:55:05.291Z">
+<meta property="article:modified_time" content="2025-02-20T15:29:59.792Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67b36127d0e0a243d40054ba.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/67b3ebc8d0e0a243d4005d32.png">
     
     
       
@@ -48,7 +48,7 @@
       
     
     <!-- title -->
-    <title>THUWC2024 小C的矩阵</title><meta name="robots" content="noindex">
+    <title>😨❤️⭕ THUWC2024 小C的矩阵</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -110,6 +110,10 @@
       <ul>
         <!--
         
+        <li><a class="icon" aria-label="上一篇" href="/solutions/CF1086F/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/solutions/AGC018E/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         -->
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -127,16 +131,16 @@
       
 <!-- <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/solutions/THUWC2024C/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/THUWC2024C/&text=THUWC2024 小C的矩阵"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/THUWC2024C/&is_video=false&description=THUWC2024 小C的矩阵"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=THUWC2024 小C的矩阵&body=Check out this article: http://idtwtei.github.io/solutions/THUWC2024C/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/THUWC2024C/&name=THUWC2024 小C的矩阵&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/THUWC2024C/&t=THUWC2024 小C的矩阵"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/THUWC2024C/&text=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/THUWC2024C/&is_video=false&description=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=😨❤️⭕ THUWC2024 小C的矩阵&body=Check out this article: http://idtwtei.github.io/solutions/THUWC2024C/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/THUWC2024C/&name=😨❤️⭕ THUWC2024 小C的矩阵&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/THUWC2024C/&t=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul> -->
 
 
@@ -157,7 +161,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        THUWC2024 小C的矩阵
+        😨❤️⭕ THUWC2024 小C的矩阵
     </h1>
 
 
@@ -189,7 +193,9 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U401797">此处</a>提交。</p>
+    <p>upd: 图挂了，但懒得补了，将就着看。</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U401797">此处</a>提交。</p>
 <blockquote>
 <p>交互题，有一个 $n \times m$ 的 $01$ 矩阵，你可以询问一个矩形内是否有 $1$，你需要找到 $(x,y)=1$ 且满足 $x+y$ 最大，输出最大的 $x+y$。有询问次数和询问矩形大小和的限制，其中询问矩形大小和由 $\sum \max(xr-xl+1,yr-yl+1)$ 定义。</p>
 <p>三种数据：</p>
@@ -230,13 +236,13 @@
 <h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>二分即可，当递归到 $[l,r]$ 时，查询 $[mid+1,r]$，若为 $1$ 则递归 $[mid+1,r]$ 否则递归 $[l,mid]$。</p>
 <p>次数为 $12$，大小为 $2^{12}-1$。</p>
 <h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><p>$x+y$ 相等的格子形成了一条从左下到右上的线。仍然考虑二分答案。套用法一，分为 $4$ 个边长为 $2^6$ 的正方形，发现可以将答案的范围缩小一半（有三种情况），这是很好的。只需要递归解决下图的问题。</p>
-<p><img src="https://pic1.imgdb.cn/item/67b36127d0e0a243d40054ba.png" alt=""></p>
+<p><img src="https://pic1.imgdb.cn/item/67b3ebc8d0e0a243d4005d32.png" alt=""></p>
 <p>将 LR 夹着的正方形取出来（下图红色的部分）。</p>
-<p><img src="https://pic1.imgdb.cn/item/6780ff88d0e0a243d4f31589.png" alt=""></p>
+<p><img src="https://pic1.imgdb.cn/item/67b3ebc8d0e0a243d4005d32.png" alt=""></p>
 <p>其中灰色的部分是没有 $1$ 的，不然不会递归到 LR。对每个红色的正方形使用法一，三种情况取最优递归下去即可。</p>
 <p>总共递归了 $12$ 次，标号 $0,1,2,..,11$，第 $i$ 次递归中间最多有 $2^{i}$ 个正方形。总次数最多为 $2\sum_{i=0}^{11}2^i = 2^{13}-2$，总大小最多为为 $\frac{3}{2}\sum_{i=0}^{11} 2^{i} \times \frac{2^{12}}{2^{i}} = 18 \times 2^{12} =  73728$。</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">4096</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span>{</span><br><span class="line">    <span class="function"><span class="keyword">extern</span> <span class="type">bool</span> <span class="title">Ask</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> u,<span class="type">int</span> v)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">Solve</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> m,<span class="type">int</span> id)</span></span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> A{</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Ask</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>)==<span class="number">1</span>) <span class="keyword">return</span> <span class="built_in">Ask</span>(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>)==<span class="number">1</span>?<span class="number">4</span>:<span class="number">3</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">Ask</span>(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)==<span class="number">1</span>?<span class="number">3</span>:<span class="number">2</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="keyword">namespace</span> B{</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">sol</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(l==r) <span class="keyword">return</span> l;</span><br><span class="line">        <span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Ask</span>(<span class="number">1</span>,<span class="number">1</span>,mid<span class="number">+1</span>,r)==<span class="number">1</span>?<span class="built_in">sol</span>(mid<span class="number">+1</span>,r):<span class="built_in">sol</span>(l,mid);</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sol</span>(<span class="number">1</span>,N)<span class="number">+1</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="keyword">namespace</span> C{</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">calc</span><span class="params">(<span class="type">int</span> xl,<span class="type">int</span> xr,<span class="type">int</span> yl,<span class="type">int</span> yr)</span></span>{</span><br><span class="line">        <span class="type">int</span> xm=xl+xr&gt;&gt;<span class="number">1</span>,ym=yl+yr&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Ask</span>(xl,xr,ym<span class="number">+1</span>,yr)==<span class="number">1</span>) <span class="keyword">return</span> <span class="built_in">Ask</span>(xm<span class="number">+1</span>,xr,ym<span class="number">+1</span>,yr)==<span class="number">1</span>?<span class="number">3</span>:<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">Ask</span>(xm<span class="number">+1</span>,xr,yl,ym)==<span class="number">1</span>?<span class="number">2</span>:<span class="number">1</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">sol</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(r-l==<span class="number">2</span>) <span class="keyword">return</span> l<span class="number">+1</span>;</span><br><span class="line">        <span class="type">int</span> res=<span class="number">0</span>,mid=l+r&gt;&gt;<span class="number">1</span>,L=r-l&gt;&gt;<span class="number">1</span>,x,y;</span><br><span class="line">        <span class="keyword">if</span>(mid&lt;=N) x=mid<span class="number">-1</span>,y=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> x=N,y=mid-N;</span><br><span class="line">        <span class="keyword">for</span>(;x-L<span class="number">+1</span>&gt;=<span class="number">1</span>&amp;&amp;y+L<span class="number">-1</span>&lt;=N;x-=L,y+=L) res=<span class="built_in">max</span>(res,<span class="built_in">calc</span>(x-L<span class="number">+1</span>,x,y,y+L<span class="number">-1</span>));</span><br><span class="line">        <span class="keyword">return</span> res==<span class="number">1</span>?<span class="built_in">sol</span>(l,mid):res==<span class="number">2</span>?<span class="built_in">sol</span>(l+mid&gt;&gt;<span class="number">1</span>,mid+r&gt;&gt;<span class="number">1</span>):<span class="built_in">sol</span>(mid,r);</span><br><span class="line">    }</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">()</span></span>{</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sol</span>(<span class="number">1</span>,<span class="number">2</span>*N<span class="number">+1</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Solve</span><span class="params">(<span class="type">int</span> n , <span class="type">int</span> m , <span class="type">int</span> id)</span></span>{</span><br><span class="line">    <span class="keyword">if</span>(id==<span class="number">1</span>) <span class="keyword">return</span> A::<span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(id==<span class="number">2</span>) <span class="keyword">return</span> B::<span class="built_in">solve</span>();</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> C::<span class="built_in">solve</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<!-- flag of hidden posts -->
+
   </div>
 </article>
 
@@ -273,16 +279,16 @@
       
 <!-- <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/solutions/THUWC2024C/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/THUWC2024C/&text=THUWC2024 小C的矩阵"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/THUWC2024C/&is_video=false&description=THUWC2024 小C的矩阵"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=THUWC2024 小C的矩阵&body=Check out this article: http://idtwtei.github.io/solutions/THUWC2024C/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=THUWC2024 小C的矩阵"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/THUWC2024C/&name=THUWC2024 小C的矩阵&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/THUWC2024C/&t=THUWC2024 小C的矩阵"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/THUWC2024C/&text=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/THUWC2024C/&is_video=false&description=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=😨❤️⭕ THUWC2024 小C的矩阵&body=Check out this article: http://idtwtei.github.io/solutions/THUWC2024C/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/THUWC2024C/&title=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/THUWC2024C/&name=😨❤️⭕ THUWC2024 小C的矩阵&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/THUWC2024C/&t=😨❤️⭕ THUWC2024 小C的矩阵"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
 
