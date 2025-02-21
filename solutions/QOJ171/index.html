@@ -11,13 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="将最短路写成线性规划形式。  \begin{align} \max \quad &amp; p_t-p_s \\  \texttt{s.t.} \quad &amp; p_v-p_u \le d_e+x_e \\ &amp; \sum_{e} c_ex_e \le P \\ &amp; x_e,p_u \ge 0  \end{align}线性规划对偶，记 $out_u,in_u$ 分别为 $u$ 的出、入边集合。那么等价于  \">
 <meta property="og:type" content="article">
-<meta property="og:title" content="😱❄️⭕ QOJ171 Longest Shortest Path">
+<meta property="og:title" content="😱❄️❌ QOJ171 Longest Shortest Path">
 <meta property="og:url" content="http://idtwtei.github.io/solutions/QOJ171/index.html">
 <meta property="og:site_name" content="Idtwtei">
 <meta property="og:description" content="将最短路写成线性规划形式。  \begin{align} \max \quad &amp; p_t-p_s \\  \texttt{s.t.} \quad &amp; p_v-p_u \le d_e+x_e \\ &amp; \sum_{e} c_ex_e \le P \\ &amp; x_e,p_u \ge 0  \end{align}线性规划对偶，记 $out_u,in_u$ 分别为 $u$ 的出、入边集合。那么等价于  \">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-08T10:04:18.631Z">
-<meta property="article:modified_time" content="2025-02-20T15:25:52.491Z">
+<meta property="article:modified_time" content="2025-02-21T02:44:33.955Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -45,7 +45,7 @@
       
     
     <!-- title -->
-    <title>😱❄️⭕ QOJ171 Longest Shortest Path</title>
+    <title>😱❄️❌ QOJ171 Longest Shortest Path</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -128,16 +128,16 @@
       
 <!-- <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/solutions/QOJ171/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/QOJ171/&text=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/QOJ171/&is_video=false&description=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=😱❄️⭕ QOJ171 Longest Shortest Path&body=Check out this article: http://idtwtei.github.io/solutions/QOJ171/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/QOJ171/&name=😱❄️⭕ QOJ171 Longest Shortest Path&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/QOJ171/&t=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/QOJ171/&text=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/QOJ171/&is_video=false&description=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=😱❄️❌ QOJ171 Longest Shortest Path&body=Check out this article: http://idtwtei.github.io/solutions/QOJ171/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/QOJ171/&name=😱❄️❌ QOJ171 Longest Shortest Path&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/QOJ171/&t=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul> -->
 
 
@@ -154,7 +154,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        😱❄️⭕ QOJ171 Longest Shortest Path
+        😱❄️❌ QOJ171 Longest Shortest Path
     </h1>
 
 
@@ -255,16 +255,16 @@
       
 <!-- <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/solutions/QOJ171/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/QOJ171/&text=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/QOJ171/&is_video=false&description=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=😱❄️⭕ QOJ171 Longest Shortest Path&body=Check out this article: http://idtwtei.github.io/solutions/QOJ171/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/QOJ171/&name=😱❄️⭕ QOJ171 Longest Shortest Path&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/QOJ171/&t=😱❄️⭕ QOJ171 Longest Shortest Path"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/QOJ171/&text=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/QOJ171/&is_video=false&description=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=😱❄️❌ QOJ171 Longest Shortest Path&body=Check out this article: http://idtwtei.github.io/solutions/QOJ171/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/QOJ171/&title=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/QOJ171/&name=😱❄️❌ QOJ171 Longest Shortest Path&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/QOJ171/&t=😱❄️❌ QOJ171 Longest Shortest Path"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
 
