@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="给你一个长为 $n$ 的序列 $a$ 和一个常数 $x$。 $m$ 次询问，每次询问给出区间 $[l,r]$，查询区间中满足 $i &lt; j \wedge (a_i \oplus a_j) \le x$ 的 $(i,j)$ 个数。 $1 \le n,a_i,x \le 2 \times 10^5,1 \le m \le 10^6$。  莫队二次离线需要会莫队二次离线，于是学一下，看 板子。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P7906 [Ynoi2005] rpxleqxq">
+<meta property="og:url" content="http://idtwtei.github.io/solutions/P7906/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="给你一个长为 $n$ 的序列 $a$ 和一个常数 $x$。 $m$ 次询问，每次询问给出区间 $[l,r]$，查询区间中满足 $i &lt; j \wedge (a_i \oplus a_j) \le x$ 的 $(i,j)$ 个数。 $1 \le n,a_i,x \le 2 \times 10^5,1 \le m \le 10^6$。  莫队二次离线需要会莫队二次离线，于是学一下，看 板子。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-18T11:09:50.701Z">
+<meta property="article:modified_time" content="2025-03-18T13:33:54.554Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>P7906 [Ynoi2005] rpxleqxq</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        <li><a class="icon" aria-label="上一篇" href="/solutions/P5405/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/others/mouse/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/solutions/P7906/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/P7906/&text=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/P7906/&is_video=false&description=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P7906 [Ynoi2005] rpxleqxq&body=Check out this article: http://idtwtei.github.io/solutions/P7906/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/P7906/&name=P7906 [Ynoi2005] rpxleqxq&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/P7906/&t=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF"><span class="toc-number">1.</span> <span class="toc-text">莫队二次离线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0%E6%9C%AC%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">回到本题</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        P7906 [Ynoi2005] rpxleqxq
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-03-18T11:09:50.701Z" class="dt-published" itemprop="datePublished">2025-03-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/solutions/">solutions</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <blockquote>
+<p>给你一个长为 $n$ 的序列 $a$ 和一个常数 $x$。</p>
+<p>$m$ 次询问，每次询问给出区间 $[l,r]$，查询区间中满足 $i &lt; j \wedge (a_i \oplus a_j) \le x$ 的 $(i,j)$ 个数。</p>
+<p>$1 \le n,a_i,x \le 2 \times 10^5,1 \le m \le 10^6$。</p>
+</blockquote>
+<h2 id="莫队二次离线"><a href="#莫队二次离线" class="headerlink" title="莫队二次离线"></a>莫队二次离线</h2><p>需要会莫队二次离线，于是学一下，看 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4887">板子</a>。</p>
+<blockquote>
+<p>给你长为 $n$ 的序列 $a$ 和一个常数 $k$。</p>
+<p>$m$ 次询问，每次询问给出区间 $[l,r]$，查询区间中满足 $i &lt; j \wedge \texttt{popcount}(a_i \oplus a_j) = k$ 的 $(i,j)$ 个数。</p>
+<p>$1 \le n,m \le 10^5$，$0 \le a_i,k &lt; 2^{14}$。</p>
+</blockquote>
+<p>莫队，但直接做移动端点复杂度过高，不可接受。</p>
+<p>考虑端点移动对当前答案造成的影响，记 $f(j,[l,r])$ 为 $i \in [l,r]$ 的合法 $(i,j)$ 数量，那么 $[l,r] \to [l,r+\Delta]$ 时，当前答案增加</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum_{i=r+1}^{r+\Delta} f(i,[l,i-1]) &= \sum_{i=r+1}^{r+\Delta} f(i,[1,i-1]) - f(i,[1,l-1])
+\end{aligned}</script><p>同理，$[l,r-\Delta],[l+\Delta,r],[l-\Delta,r]$ 答案分别增加</p>
+<script type="math/tex; mode=display">
+\sum_{i=r-\Delta+1}^{r} - f(i,[1,i-1]) + f(i,[1,l-1]) \\
+\sum_{i=l}^{l+\Delta-1} -f(i,[i+1,r]) = \sum_{i=l}^{l+\Delta -1} f(i,[1,i])-f(i,[1,r]) \\
+\sum_{i=l-\Delta}^{l-1} -f(i,[1,i])+f(i,[1,r])</script><p>有两个和式组成，前者直接预处理即可，时空复杂度均为 $O(n)$。对于后者，可以直接记录所有需计算的 $f$，扫描线计算，时空复杂度均为 $O(n\sqrt{n})$。发现只需记录 $i$ 的区间，这样空间复杂度就是 $O(n)$ 了。</p>
+<p>时间复杂度 $O(\binom{14}{k}n+n\sqrt{m})$，空间复杂度 $O(n)$。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> ll=<span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ar(x) array<span class="string">&lt;int,x&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e5</span><span class="number">+10</span>,B=<span class="number">316</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gc getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rd read()</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>{</span><br><span class="line">    <span class="type">int</span> x=<span class="number">0</span>,f=<span class="number">0</span>; <span class="type">char</span> c=gc;</span><br><span class="line">    <span class="keyword">for</span>(;c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>;c=gc) f|=(c==<span class="string">'-'</span>);</span><br><span class="line">    <span class="keyword">for</span>(;c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>;c=gc) x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+(c^<span class="number">48</span>);</span><br><span class="line">    <span class="keyword">return</span> f?-x:x;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m,k,a[N],idx[N],cnt[N],pre[N];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; buc; vector&lt;ar(3)&gt; vc[N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">QRY</span>{ <span class="type">int</span> l,r,id; }Q[N]; ll ans[N],_ans[N];</span><br><span class="line"><span class="keyword">inline</span> <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> QRY &amp;x,<span class="type">const</span> QRY &amp;y){ <span class="keyword">return</span> idx[x.l]!=idx[y.l]?x.l&lt;y.l:x.r&lt;y.r; }</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line"></span><br><span class="line">    n=rd,m=rd,k=rd;</span><br><span class="line">    <span class="keyword">if</span>(k&gt;<span class="number">14</span>){ <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) <span class="built_in">puts</span>(<span class="string">"0"</span>); <span class="keyword">return</span> <span class="number">0</span>; }</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;<span class="number">14</span>);++i) <span class="keyword">if</span>(__builtin_popcount(i)==k) buc.<span class="built_in">pb</span>(i);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) a[i]=rd,idx[i]=(i<span class="number">-1</span>)/B<span class="number">+1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) Q[i]={rd,rd,i};</span><br><span class="line">    <span class="built_in">sort</span>(Q<span class="number">+1</span>,Q+m<span class="number">+1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i){ pre[i]=cnt[a[i]]; <span class="keyword">for</span>(<span class="type">int</span> v:buc) ++cnt[a[i]^v]; }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,L=<span class="number">1</span>,R=<span class="number">0</span>;i&lt;=m;++i){</span><br><span class="line">        <span class="keyword">auto</span> [l,r,id]=Q[i];</span><br><span class="line">        <span class="keyword">if</span>(L&gt;l) vc[R].<span class="built_in">pb</span>({l,L<span class="number">-1</span>,i});</span><br><span class="line">        <span class="keyword">for</span>(;L&gt;l;--L) ans[i]-=pre[L<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span>(R&lt;r) vc[L<span class="number">-1</span>].<span class="built_in">pb</span>({R<span class="number">+1</span>,r,-i});</span><br><span class="line">        <span class="keyword">for</span>(;R&lt;r;++R) ans[i]+=pre[R<span class="number">+1</span>];</span><br><span class="line">        <span class="keyword">if</span>(L&lt;l) vc[R].<span class="built_in">pb</span>({L,l<span class="number">-1</span>,-i});</span><br><span class="line">        <span class="keyword">for</span>(;L&lt;l;++L) ans[i]+=pre[L]; </span><br><span class="line">        <span class="keyword">if</span>(R&gt;r) vc[L<span class="number">-1</span>].<span class="built_in">pb</span>({r<span class="number">+1</span>,R,i});</span><br><span class="line">        <span class="keyword">for</span>(;R&gt;r;--R) ans[i]-=pre[R];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="built_in">sizeof</span>(cnt));</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i){</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> v:buc) ++cnt[a[i]^v];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> [l,r,id]:vc[i]){</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=l,cur=<span class="number">0</span>;j&lt;=r;++j){</span><br><span class="line">                cur=cnt[a[j]]-(j&lt;=i&amp;&amp;k==<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">if</span>(id&lt;<span class="number">0</span>) ans[-id]-=cur;</span><br><span class="line">                <span class="keyword">else</span> ans[id]+=cur;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) ans[i]+=ans[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) _ans[Q[i].id]=ans[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, _ans[i]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="回到本题"><a href="#回到本题" class="headerlink" title="回到本题"></a>回到本题</h2><p>先莫队二次离线。需要维护一个集合 $S$，对于数 $v$，快速查询 $i \in S,i \oplus v \le x$ 的 $i$ 的个数。</p>
+<p>考虑维护一个桶 buc，插入 $v$ 时，令 $\forall 0 \le i \le x, buc_{i \oplus v} \gets buc_{i \oplus v}+1$。</p>
+<p>若 $x$ 形如 $2^k - 1$，可以简单处理，否则可以从高到低按位考虑，需要进行区间加，按 $2^9$ 分块即可。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> ll=<span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ar(x) array<span class="string">&lt;int,x&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pb push_back</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">2e5</span><span class="number">+10</span>,B=<span class="number">447</span>,M=<span class="number">1e6</span><span class="number">+10</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">in</span><span class="params">(<span class="type">int</span> S,<span class="type">int</span> i)</span></span>{ <span class="keyword">return</span> (S&gt;&gt;i)&amp;<span class="number">1</span>; }</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gc getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rd read()</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>{</span><br><span class="line">    <span class="type">int</span> x=<span class="number">0</span>,f=<span class="number">0</span>; <span class="type">char</span> c=gc;</span><br><span class="line">    <span class="keyword">for</span>(;c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>;c=gc) f|=(c==<span class="string">'-'</span>);</span><br><span class="line">    <span class="keyword">for</span>(;c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>;c=gc) x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+(c^<span class="number">48</span>);</span><br><span class="line">    <span class="keyword">return</span> f?-x:x;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m,k,a[N],idx[N],pre[N];</span><br><span class="line">vector&lt;ar(3)&gt; vc[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">QRY</span>{ <span class="type">int</span> l,r,id; }Q[M]; ll ans[M],_ans[M];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">const</span> QRY &amp;x,<span class="type">const</span> QRY &amp;y)</span></span>{ <span class="keyword">return</span> idx[x.l]!=idx[y.l]?x.l&lt;y.l:x.r&lt;y.r; }</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> tag1[N],tag2[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">ask</span><span class="params">(<span class="type">int</span> v)</span></span>{ <span class="keyword">return</span> tag1[v]+tag2[v&gt;&gt;<span class="number">9</span>]; }</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ins</span><span class="params">(<span class="type">int</span> v)</span></span>{</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">17</span>,l,r;i&gt;=<span class="number">9</span>;--i) <span class="keyword">if</span>(<span class="built_in">in</span>(k<span class="number">+1</span>,i)){</span><br><span class="line">        l=(v&gt;&gt;i)&lt;&lt;i,r=l+(<span class="number">1</span>&lt;&lt;i),l&gt;&gt;=<span class="number">9</span>,r&gt;&gt;=<span class="number">9</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=l;j&lt;r;++j) ++tag2[j];</span><br><span class="line">        v^=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">8</span>,l,r;i&gt;=<span class="number">0</span>;--i) <span class="keyword">if</span>(<span class="built_in">in</span>(k<span class="number">+1</span>,i)){</span><br><span class="line">        l=(v&gt;&gt;i)&lt;&lt;i,r=l+(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=l;j&lt;r;++j) ++tag1[j];</span><br><span class="line">        v^=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line"></span><br><span class="line">    n=rd,k=rd;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) a[i]=rd,idx[i]=(i<span class="number">-1</span>)/B<span class="number">+1</span>;</span><br><span class="line">    m=rd; <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) Q[i]={rd,rd,i};</span><br><span class="line">    <span class="built_in">sort</span>(Q<span class="number">+1</span>,Q+m<span class="number">+1</span>,cmp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) pre[i]=<span class="built_in">ask</span>(a[i]),<span class="built_in">ins</span>(a[i]);</span><br><span class="line">    <span class="built_in">memset</span>(tag1,<span class="number">0</span>,<span class="built_in">sizeof</span>(tag1)),<span class="built_in">memset</span>(tag2,<span class="number">0</span>,<span class="built_in">sizeof</span>(tag2));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,L=<span class="number">1</span>,R=<span class="number">0</span>;i&lt;=m;++i){</span><br><span class="line">        <span class="keyword">auto</span> [l,r,id]=Q[i];</span><br><span class="line">        <span class="keyword">if</span>(L&gt;l) vc[R].<span class="built_in">pb</span>({l,L<span class="number">-1</span>,i});</span><br><span class="line">        <span class="keyword">for</span>(;L&gt;l;--L) ans[i]-=pre[L<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span>(R&lt;r) vc[L<span class="number">-1</span>].<span class="built_in">pb</span>({R<span class="number">+1</span>,r,-i});</span><br><span class="line">        <span class="keyword">for</span>(;R&lt;r;++R) ans[i]+=pre[R<span class="number">+1</span>];</span><br><span class="line">        <span class="keyword">if</span>(L&lt;l) vc[R].<span class="built_in">pb</span>({L,l<span class="number">-1</span>,-i});</span><br><span class="line">        <span class="keyword">for</span>(;L&lt;l;++L) ans[i]+=pre[L]; </span><br><span class="line">        <span class="keyword">if</span>(R&gt;r) vc[L<span class="number">-1</span>].<span class="built_in">pb</span>({r<span class="number">+1</span>,R,i});</span><br><span class="line">        <span class="keyword">for</span>(;R&gt;r;--R) ans[i]-=pre[R];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i){</span><br><span class="line">        <span class="built_in">ins</span>(a[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> [l,r,id]:vc[i]){</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=l,cur;j&lt;=r;++j){</span><br><span class="line">                cur=<span class="built_in">ask</span>(a[j])-(j&lt;=i);</span><br><span class="line">                <span class="keyword">if</span>(id&lt;<span class="number">0</span>) ans[-id]-=cur;</span><br><span class="line">                <span class="keyword">else</span> ans[id]+=cur;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) ans[i]+=ans[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) _ans[Q[i].id]=ans[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, _ans[i]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categories/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF"><span class="toc-number">1.</span> <span class="toc-text">莫队二次离线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E5%88%B0%E6%9C%AC%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">回到本题</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/solutions/P7906/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/solutions/P7906/&text=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/solutions/P7906/&is_video=false&description=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=P7906 [Ynoi2005] rpxleqxq&body=Check out this article: http://idtwtei.github.io/solutions/P7906/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/solutions/P7906/&title=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/solutions/P7906/&name=P7906 [Ynoi2005] rpxleqxq&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/solutions/P7906/&t=P7906 [Ynoi2005] rpxleqxq"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
