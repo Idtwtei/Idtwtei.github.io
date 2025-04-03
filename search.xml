@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>凸性相关</title>
+      <link href="/notes/%E5%87%B8%E6%80%A7%E7%9B%B8%E5%85%B3/"/>
+      <url>/notes/%E5%87%B8%E6%80%A7%E7%9B%B8%E5%85%B3/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://pic1.imgdb.cn/item/67ee29bb0ba3d5a1d7eba186.png=" style="zoom:50%;"></p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li>2023《浅谈函数的凸性在OI中的应用》</li><li><a href="https://www.cnblogs.com/Jue-Fan/articles/18116265">从带权二分到闵可夫斯基和与凸生成函数</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> notes </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>P9339 [JOISC 2023] Cookies</title>
       <link href="/solutions/P9339/"/>
       <url>/solutions/P9339/</url>
