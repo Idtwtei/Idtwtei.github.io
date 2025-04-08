@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="CFTracker，都说刷这个比较好？加 ❄ 的是现在不会的，加​ 🅰 ​的是字符串题。 ​ 4.4 CF526F Pudding Monsters 转化为 $\max_{i&#x3D;l}^{r}\{a_i\}-\min_{i&#x3D;l}^{r}\{a_i\}&#x3D;r-l$ 的个数，扫描线，维护最小值及其个数即可。  CF487E Tourists 圆方树板子。  CF739E Gosha is hunting">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF3000+ 数据结构">
+<meta property="og:url" content="http://idtwtei.github.io/notes/CF3000+/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="CFTracker，都说刷这个比较好？加 ❄ 的是现在不会的，加​ 🅰 ​的是字符串题。 ​ 4.4 CF526F Pudding Monsters 转化为 $\max_{i&#x3D;l}^{r}\{a_i\}-\min_{i&#x3D;l}^{r}\{a_i\}&#x3D;r-l$ 的个数，扫描线，维护最小值及其个数即可。  CF487E Tourists 圆方树板子。  CF739E Gosha is hunting">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="article:published_time" content="2025-04-04T09:50:03.458Z">
+<meta property="article:modified_time" content="2025-04-08T13:07:54.065Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>CF3000+ 数据结构</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        <li><a class="icon" aria-label="上一篇" href="/notes/%E7%8F%82%E6%9C%B5%E8%8E%89%E6%A0%91/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/solutions/P9339/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/CF3000+/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/CF3000+/&text=CF3000+ 数据结构"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/CF3000+/&is_video=false&description=CF3000+ 数据结构"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF3000+ 数据结构&body=Check out this article: http://idtwtei.github.io/notes/CF3000+/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/CF3000+/&name=CF3000+ 数据结构&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/CF3000+/&t=CF3000+ 数据结构"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        CF3000+ 数据结构
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-04-04T09:50:03.458Z" class="dt-published" itemprop="datePublished">2025-04-04</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/notes/">notes</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p><a target="_blank" rel="noopener" href="https://cftracker.netlify.app/problems">CFTracker</a>，都说刷这个比较好？加 <span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 的是现在不会的，加​ <span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​的是字符串题。 ​</p>
+<h2 id="4-4"><a href="#4-4" class="headerlink" title="4.4"></a>4.4</h2><ol>
+<li><p>CF526F Pudding Monsters</p>
+<p>转化为 $\max_{i=l}^{r}\{a_i\}-\min_{i=l}^{r}\{a_i\}=r-l$ 的个数，扫描线，维护最小值及其个数即可。</p>
+</li>
+<li><p>CF487E Tourists</p>
+<p>圆方树板子。</p>
+</li>
+<li><p>CF739E Gosha is hunting</p>
+<p>wqs 二分 + 贪心，我数据结构呢？？？</p>
+</li>
+<li><p>CF765F Souvenirs</p>
+<p>扫描线，类似找支配对，发现每次减半。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF896E Welcome home, Chtholly</p>
+<p>分块，块内用平衡树维护，每次减 $-x$ 将数分成 $[1,x),[x,2x],(2x,\max)$，第一段不用动，第二段暴力合并，第三段打标记。</p>
+<p>时间复杂度 $O(n^2\log n+n\sqrt{n}\log n)$，不知道能不能过。</p>
+<p>突刺贯穿的第二分块，过不了，怎么成废物了？分块，记最大值为 $v$，分讨</p>
+<ul>
+<li>$x &lt; v$，不用管。</li>
+<li>$v \le 2x$，将 $[x+1,v]$ 的减 $x$。</li>
+<li>$2x &lt; v$，将 $[1,x]$ 的加 $x$，再打一个全局标记。</li>
+</ul>
+<p>加减可以并查集维护，时间复杂度 $O(n\sqrt{n})$，优化空间复杂度可以逐块枚举。</p>
+</li>
+<li><p><span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF914F Substrings in a String</p>
+<p>好像可以 <code>bitset</code> 暴力，时间复杂度 $O(\frac{n^2}{\omega})$。确实可以。</p>
+<p>SAM + 分块 + 根号分治，小的部分就考虑块内和块间。</p>
+</li>
+<li><p>CF464E The Classic Problem</p>
+<p>线段树维护二进制距离，线段树二分比较大小。</p>
+</li>
+<li><p>CF1446D2 Frequency Problem (Hard Version)</p>
+<p>众数一定出现，然后根号分治。</p>
+</li>
+<li><p><span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​​CF666E Forensic Examination</p>
+<p>字符串越来越多，我该怎么办？？？</p>
+<p>对模板串建立广义 SAM，预处理匹配串的前缀能匹配到的点，倍增找 $[l,r]$ 对应节点，找到第一个满足 $len_u \ge r-l+1$ 的点。</p>
+<p>需要查询模板串的区间信息，用权值线段树维护 endpos，合并时线段树合并。</p>
+<p>什么时候学字符串？？？</p>
+</li>
+<li><p>CF997E Good Subsegments</p>
+<p>见第一题。还有析合树做法？​</p>
+</li>
+<li><p>CF603E Pastoral Oddities</p>
+<p>$n$ 是偶数。唉唉唉。。。</p>
+<p>存在合法方案当且仅当连通块大小为偶数。</p>
+<p>整体二分，答案有单调性，求出 $mid$ 的答案然后分治。</p>
+</li>
+<li><p>CF576E Painting Edges</p>
+<p>怎么降紫了，线段树分治。</p>
+</li>
+</ol>
+<p>感觉一直在刷水题？？？</p>
+<h2 id="4-5"><a href="#4-5" class="headerlink" title="4.5"></a>4.5</h2><ol>
+<li><p>CF176E Archaeology</p>
+<p>支持单点修改，维护最大连通子树，用 <code>set</code> 就行。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1458D Flip and Reverse</p>
+<p>画出折线图，发现相当于找一段区间进行翻转，建出图来就是一个环逆方向走，求出字典序最小的欧拉路径即可。</p>
+<p>关于字典序最小的欧拉路径，排序后直接做就行了，题解都在干什么？？？</p>
+<p>srds，我的数据结构呢？？？</p>
+</li>
+<li><p><span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF587F Duff is Mad</p>
+<p>字符串越来越多，我该怎么办？？？</p>
+<p>SAM + 根号分治，我不会字符串啊。</p>
+</li>
+<li><p><span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1037H Security</p>
+<p>字符串越来越多，我该怎么办？？？</p>
+</li>
+<li><p>CF1616H Keep XOR Low</p>
+<p>字典树上 DP</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF1491H Yuezheng Ling and Dynamic Tree</p>
+<p>弹飞绵羊，分块每个点维护第一次跳出块后达到的点 $to$。</p>
+<p>考虑修改，散块直接 $O(\sqrt{n})$ 重构，整块发现减 $O(\sqrt{n})$ 次后第一次就会跳出块，此时打标记即可。</p>
+<p>考虑查询，先跳到同一块，若 LCA 在这个块中那么 $to_i=to_j$，此时暴力跳即可，否则跳到下一个块。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1844G Tree Weights</p>
+<p>并非水题，这就是数据结构吗？</p>
+<p>以 $1$ 为根，记 $a_i$ 为点 $i$ 的深度，有 $a_1=0$。根据限制有 $a_i+a_{i+1}-2a_{LCA(i,i+1)}=d_i$，恰好 $n-1$ 个方程。</p>
+<p>shenmi，先计算 $a’_i=a_i\%2$ 的值，有 $a’_{i+1}=d_i-a’_{i}$，再考虑 $a_i \% 4$，有 $a’’_{i+1}=a’’_i-a’_{LCA(i,i+1)}$，以此类推。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>CF1017G The Tree</p>
+<p>初始点权为 $-1$，操作一单点加 $1$，查询询问点到根节点的最大后缀和即可，对于操作二，即令最大后缀和为 $-1$，单点减 $qry+1$ 即可。</p>
+</li>
+</ol>
+<h2 id="4-6"><a href="#4-6" class="headerlink" title="4.6"></a>4.6</h2><ol>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1628E Groceries in Meteor Town</p>
+<p>kruskal 重构树，找所有白点和给定点的 LCA。</p>
+</li>
+<li><p><span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1063F String Journey</p>
+</li>
+<li><p>CF150E Freezing with Style</p>
+<p>显然二分，权值 $&gt; 0$。树上路径你不想点分治想啥？</p>
+<p>单调队列可以去掉一个 $\log$。</p>
+</li>
+<li><p>CF1320E Treeland and Viruses</p>
+<p>建虚树然后 dij。</p>
+</li>
+<li><p>CF1476F Lanterns</p>
+<p>数据结构是吧？</p>
+</li>
+<li><p>CF407E k-d-sequence</p>
+<p>不重，同余，$\frac{mx-mn}{d}-(r-l) \le k$。扫描线。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1707E Replace</p>
+<script type="math/tex; mode=display">
+f(l,r)=\cup_{i=l}^{r-1} f(i,i+1) \\
+f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1270H Number of Components</p>
+<p>发现若 $i,j(i&lt;j)$ 连通，那么它们中间的点也和它们连通，于是连通块是一段区间，连通块数量相当于计算 $[1,p],[p+1,n]$ 没有连边的 $p$ 的数量。</p>
+<p>考虑切片，枚举 $v$，将 $a_i$ 变为 $[a_i \ge v]$，相当于计算形如 $0…01…1$ 的数量，令 $a_0=\infty,a_{n+1}=-\infty$ 那么至少有一个 $01$，线段树维护 $01$ 的最小值及其个数即可。</p>
+</li>
+</ol>
+<h2 id="4-7"><a href="#4-7" class="headerlink" title="4.7"></a>4.7</h2><p>tag 很牛啊，我去回答几个问题，都提的什么抽象问题，一个都看不懂啊。</p>
+<ol>
+<li><p>CF453E Little Pony and Lord Tirek</p>
+<p>相当于对时间进行推平，分块能做到 $O(n\sqrt{n\log n})$，能过吗？</p>
+<p>可以离线下来，相当于二维偏序，时间复杂度 $O(n\log n)$。</p>
+<p>哦，分块可以做到 $O(n\sqrt{n})$。</p>
+<p>哦，主席树可以做到在线 $O(n\log n)$。</p>
+</li>
+<li><p>CF1119F Niyaz and Small Degrees</p>
+<p>建虚树，贪心选点 DP 即可，时间复杂度 $O(n\log n)$。</p>
+<p>所以虚树为啥是数据结构？</p>
+</li>
+<li><p>CF679E Bear and Bad Powers of 42</p>
+<p>直接做，均摊是对的。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF571D Campus</p>
+<p>好可以分块，块大小 $\le \sqrt{n}$ 时暴力，大于后不合并直接打标记，时间复杂度 $O(n\sqrt{n})$，不知道能不能过。过不了吧，不过可以支持复杂操作。</p>
+<p>把合并离线下来，形成两棵树，每次进行子树叶子加和赋值为 $0$。求最后一次赋值的时间可以 DFS + <code>set</code>，求值可以 DFS + 树状数组，时间复杂度 $O(n\log n)$。</p>
+</li>
+<li><p>CF319E Ping-Pong</p>
+<p>将相交不包含的区间合并，最终 $u$ 能到 $v$ 当且仅当 $(L_{S_u},R_{S_u})$ 与 $(L_{S_v},R_{S_v})$ 包含。插入一个区间后查询包含 $l,r$ 的区间进行合并即可，实现类似线段数分治。</p>
+</li>
+</ol>
+<h2 id="4-8"><a href="#4-8" class="headerlink" title="4.8"></a>4.8</h2><ol>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1621G Weighted Increasing Subsequences</p>
+<p>先求逆排列，然后正难则反，最后正着反着分别 DP 一次即可。</p>
+</li>
+<li><p>CF793F Julia the snail</p>
+<p>扫描线，这是经典的吉司机线段树。还能回滚莫队？</p>
+</li>
+<li><p>CF786E ALT</p>
+<p>唐氏树链剖分优化网络流建图。</p>
+</li>
+<li><p>CF1286D LCC</p>
+<p>可能的答案只有 $O(n)$ 种，枚举答案可以 $O(n)$ DP，动态 DP 即可。</p>
+</li>
+<li><p>CF1076G Array Game</p>
+<p>动态 DP。</p>
+</li>
+<li><p>CF1368G Shifting Dominoes</p>
+<p>建图，然后矩形并。</p>
+</li>
+<li><p>CF1476G Minimum Difference</p>
+<p>就莫队吧，时间复杂度 $O(n^{\frac{2}{3}}m)$。</p>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categories/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/CF3000+/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/CF3000+/&text=CF3000+ 数据结构"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/CF3000+/&is_video=false&description=CF3000+ 数据结构"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CF3000+ 数据结构&body=Check out this article: http://idtwtei.github.io/notes/CF3000+/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/CF3000+/&title=CF3000+ 数据结构"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/CF3000+/&name=CF3000+ 数据结构&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/CF3000+/&t=CF3000+ 数据结构"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
