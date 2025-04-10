@@ -33,8 +33,14 @@
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="article:published_time" content="2025-04-04T09:50:03.458Z">
-<meta property="article:modified_time" content="2025-04-08T13:07:54.065Z">
+<meta property="article:modified_time" content="2025-04-10T14:57:42.598Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -163,7 +169,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9"><span class="toc-number">6.</span> <span class="toc-text">4.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10"><span class="toc-number">7.</span> <span class="toc-text">4.10</span></a></li></ol>
       </div>
     
   </span>
@@ -369,6 +375,52 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <p>就莫队吧，时间复杂度 $O(n^{\frac{2}{3}}m)$。</p>
 </li>
 </ol>
+<h2 id="4-9"><a href="#4-9" class="headerlink" title="4.9"></a>4.9</h2><ol>
+<li><p>CF650E Clockwork Bomb</p>
+<p>好像直接做就是对的？</p>
+<p>还真是，可以 LCT，不过我不会 LCT 啊。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF633H Fibonacci-ish II</p>
+<p>$O(n^2)$ 桶排就行了。</p>
+<p>可以莫队 + 线段树维护矩乘。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF1656H Equal LCM Subsets</p>
+<p>$\gcd$ 就是全选。</p>
+<p>先质因数分解，若存在 $a$ 中的某个数，使得其质因数分解的某个质数的次幂大于 $b$ 中该质数次幂的 $\max$，那么这个数不能选，将其删去。如果 $a,b$ 中都不存在这样的数且均非空，那么选择这两个集合合法。</p>
+<p>如果下式成立，那么 $a_j$ 要删去</p>
+<script type="math/tex; mode=display">
+\gcd_{i=1}^{m} \frac{a_j}{\gcd(b_i,a_j)} > 1</script><p>需要单点修改求全局 $\gcd$，线段树维护，时间复杂度 $O(n^2\log n\log V)$。</p>
+</li>
+<li><p><span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1286E Fedya the Potter Strikes Back</p>
+</li>
+<li><p>CF696E …Wait for it…</p>
+<p>树剖板子。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1920F2 Smooth Sailing (Hard Version)</p>
+<p>考虑立一条从岛屿到边缘的线，那么路线合法当且仅当路线穿过线奇数次。</p>
+<p>建出 kruskal 重构树即可。</p>
+</li>
+</ol>
+<h2 id="4-10"><a href="#4-10" class="headerlink" title="4.10"></a>4.10</h2><ol>
+<li><p>CF1340F Nastya and CBS</p>
+<p>维护右括号左括号的哈希值，单侧递归线段树。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF1175G Yet Another Partiton Problem</p>
+<p>cdq 分治 + 斜率优化。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF757G Can Bash Save the Day?</p>
+<p>主席树 + 树链剖分，每次交换只需重构一棵主席树。</p>
+</li>
+<li><p>CF626G Raffles</p>
+<p>不带修直接贪就是对的，因为函数单调递减。</p>
+<p>猜测加减 $1$ 变化不大，堆？两个堆就行。</p>
+<p>可以证明最多变化 $1$。</p>
+</li>
+<li><p>CF1172F Nauuo and Bug</p>
+<p>扫描线 + 平衡树。可以直接合并，不用势能分析，势能分析是 $\log^2$。势能分析好像不对，错误的。是低贱的离线做法。<br>有在线版本（P5609 [Ynoi2013] 对数据结构的爱）</p>
+</li>
+<li></li>
+</ol>
 
   </div>
 </article>
@@ -398,7 +450,7 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9"><span class="toc-number">6.</span> <span class="toc-text">4.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10"><span class="toc-number">7.</span> <span class="toc-text">4.10</span></a></li></ol>
       </div>
     
 
