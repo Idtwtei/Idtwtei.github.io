@@ -43,8 +43,9 @@
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="article:published_time" content="2025-04-04T09:50:03.458Z">
-<meta property="article:modified_time" content="2025-04-10T14:57:42.598Z">
+<meta property="article:modified_time" content="2025-04-12T07:03:17.767Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -180,7 +181,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9"><span class="toc-number">6.</span> <span class="toc-text">4.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10"><span class="toc-number">7.</span> <span class="toc-text">4.10</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9"><span class="toc-number">6.</span> <span class="toc-text">4.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10"><span class="toc-number">7.</span> <span class="toc-text">4.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-11"><span class="toc-number">8.</span> <span class="toc-text">4.11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-12"><span class="toc-number">9.</span> <span class="toc-text">4.12</span></a></li></ol>
       </div>
     
   </span>
@@ -430,7 +431,31 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <li><p>CF1172F Nauuo and Bug</p>
 <p>扫描线 + 平衡树。可以直接合并，不用势能分析，势能分析是 $\log^2$。势能分析好像不对，错误的。是低贱的离线做法。<br>有在线版本（P5609 [Ynoi2013] 对数据结构的爱）</p>
 </li>
-<li></li>
+</ol>
+<h2 id="4-11"><a href="#4-11" class="headerlink" title="4.11"></a>4.11</h2><p>溶解氧区域性那首歌改变</p>
+<ol>
+<li><p>CF1936D Bitwise Paradox</p>
+<p>经典只有 $O(\log V)$ 个有用的。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1610H Squid Game</p>
+<p>先不考虑非祖先后代链，对于祖先后代链，选择一个子树-子树的点可以将该点对覆盖。</p>
+<p>贪心选择最深链的最浅点，用树状数组维护，然后判断是否非的都被覆盖然后加 $1$ 即可。</p>
+</li>
+<li><p>CF1763F Edge Queries</p>
+<p>圆方树。</p>
+</li>
+</ol>
+<h2 id="4-12"><a href="#4-12" class="headerlink" title="4.12"></a>4.12</h2><ol>
+<li><p>CF1178G The Awesomest Vertex</p>
+<p>显然可以转化为序列上的问题。可以求 $\max(\sum a,-\sum a) \times |\sum b|$。然后随便做吧？KTT？分块维护凸包？</p>
+<p>哦，还可以分块套李超。还会 KTT 吗？？？</p>
+<p>其实有 $|a||b| = |ab|$，更自然点？</p>
+</li>
+<li><p>CF1458E Nim Shortcuts</p>
+<p>不屑了。</p>
+</li>
+<li><p>CF1495E Qingshan and Daniel</p>
+</li>
 </ol>
 
   </div>
@@ -461,7 +486,7 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9"><span class="toc-number">6.</span> <span class="toc-text">4.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10"><span class="toc-number">7.</span> <span class="toc-text">4.10</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9"><span class="toc-number">6.</span> <span class="toc-text">4.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10"><span class="toc-number">7.</span> <span class="toc-text">4.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-11"><span class="toc-number">8.</span> <span class="toc-text">4.11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-12"><span class="toc-number">9.</span> <span class="toc-text">4.12</span></a></li></ol>
       </div>
     
 
