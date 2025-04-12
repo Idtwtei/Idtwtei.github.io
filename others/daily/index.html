@@ -22,7 +22,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="article:published_time" content="2025-03-12T09:58:25.177Z">
-<meta property="article:modified_time" content="2025-04-07T07:41:37.566Z">
+<meta property="article:modified_time" content="2025-04-12T14:43:40.254Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -154,7 +154,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-16"><span class="toc-number">1.</span> <span class="toc-text">3.16</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-17"><span class="toc-number">2.</span> <span class="toc-text">3.17</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-18"><span class="toc-number">3.</span> <span class="toc-text">3.18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-20"><span class="toc-number">4.</span> <span class="toc-text">3.20</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-21"><span class="toc-number">5.</span> <span class="toc-text">3.21</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-22"><span class="toc-number">6.</span> <span class="toc-text">3.22</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-31"><span class="toc-number">7.</span> <span class="toc-text">3.31</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-number">8.</span> <span class="toc-text">4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">9.</span> <span class="toc-text">4.7</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-16"><span class="toc-number">1.</span> <span class="toc-text">3.16</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-17"><span class="toc-number">2.</span> <span class="toc-text">3.17</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-18"><span class="toc-number">3.</span> <span class="toc-text">3.18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-20"><span class="toc-number">4.</span> <span class="toc-text">3.20</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-21"><span class="toc-number">5.</span> <span class="toc-text">3.21</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-22"><span class="toc-number">6.</span> <span class="toc-text">3.22</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-31"><span class="toc-number">7.</span> <span class="toc-text">3.31</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-number">8.</span> <span class="toc-text">4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">9.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%90%E5%A4%A9"><span class="toc-number">10.</span> <span class="toc-text">某天</span></a></li></ol>
       </div>
     
   </span>
@@ -363,7 +363,7 @@
 </li>
 </ul>
 <h2 id="4-7"><a href="#4-7" class="headerlink" title="4.7"></a>4.7</h2><ul>
-<li><p>​P9530 [JOISC 2022] 鱼 2</p>
+<li><p>P9530 [JOISC 2022] 鱼 2</p>
 <p>首先判断可以每次取最大值分治。那么限制 $i$ 不能存活到最后的就是存在包含 $i$ 的区间 $[l,r]$ 使得 $\sum_{i=l}^{r} a_i &lt; \min(a_{l-1},a_{r+1})$。</p>
 <p>发现这样的区间个数为 $O(n)$，区间不会有交叉，考虑找这样的区间，线段树维护区间答案，那么只需要考虑如何合并。</p>
 <p>发现只有满足 $a_{i-1} &gt; \sum_{j=i}^{r}$ 的 $i$ 才有可能作为左端点，右端点类似，个数为 $O(\log V)$，合并时双指针即可，由于有区间不交叉的性质，比较好做。</p>
@@ -372,6 +372,14 @@
 <li><p>P9528 [JOISC 2022] 蚂蚁与方糖</p>
 <p>考虑 hall 定理，只需考虑区间，区间的邻点区间不连续一定不会被考虑到，不用管。要求一个类似区间最大子段和的东西。</p>
 <p>把式子分到每个点中，拆出来一个常数，修改就是单点修改和答案区间加。</p>
+</li>
+</ul>
+<h2 id="某天"><a href="#某天" class="headerlink" title="某天"></a>某天</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P12038">P12038 [USTCPC 2025] 送温暖</a></p>
+<p>树上 meet in the middle，有最大集合大小为 $\frac{2}{3}n$ 的结论。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_tenka1_2015_qualA_d">AT_tenka1_2015_qualA_d ハシポン</a></p>
+<p>对于加多少边使其成为边双，答案是 $\left \lceil \frac{k}{2} \right \rceil$，然后枚举留下的边计算一度点即可。</p>
 </li>
 <li></li>
 </ul>
@@ -404,7 +412,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-16"><span class="toc-number">1.</span> <span class="toc-text">3.16</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-17"><span class="toc-number">2.</span> <span class="toc-text">3.17</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-18"><span class="toc-number">3.</span> <span class="toc-text">3.18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-20"><span class="toc-number">4.</span> <span class="toc-text">3.20</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-21"><span class="toc-number">5.</span> <span class="toc-text">3.21</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-22"><span class="toc-number">6.</span> <span class="toc-text">3.22</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-31"><span class="toc-number">7.</span> <span class="toc-text">3.31</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-number">8.</span> <span class="toc-text">4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">9.</span> <span class="toc-text">4.7</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-16"><span class="toc-number">1.</span> <span class="toc-text">3.16</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-17"><span class="toc-number">2.</span> <span class="toc-text">3.17</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-18"><span class="toc-number">3.</span> <span class="toc-text">3.18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-20"><span class="toc-number">4.</span> <span class="toc-text">3.20</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-21"><span class="toc-number">5.</span> <span class="toc-text">3.21</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-22"><span class="toc-number">6.</span> <span class="toc-text">3.22</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-31"><span class="toc-number">7.</span> <span class="toc-text">3.31</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1"><span class="toc-number">8.</span> <span class="toc-text">4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">9.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%90%E5%A4%A9"><span class="toc-number">10.</span> <span class="toc-text">某天</span></a></li></ol>
       </div>
     
 

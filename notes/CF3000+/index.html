@@ -44,8 +44,12 @@
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="article:published_time" content="2025-04-04T09:50:03.458Z">
-<meta property="article:modified_time" content="2025-04-12T07:03:17.767Z">
+<meta property="article:modified_time" content="2025-04-12T16:23:02.224Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -454,8 +458,31 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <li><p>CF1458E Nim Shortcuts</p>
 <p>不屑了。</p>
 </li>
-<li><p>CF1495E Qingshan and Daniel</p>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1495E Qingshan and Daniel</p>
+<p>不是，我在干啥啊？</p>
+<p>最后一定有一个队伍出完，对出完的每个人先前找与之匹配的另一个队的人即可，用并查集维护。</p>
 </li>
+<li><p>CF798E Mike and code of a permutation</p>
+<p>这个翻译我不好评价。。。</p>
+<p>直接线段树求拓扑排序就行了。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1034D Intervals of Intervals</p>
+<p>二分，然后双指针，线段树维护类似扫描线。</p>
+<p>求出最小值 mn，然后求大于 mn 的和及个数，最后加上缺少个数个的 mn。</p>
+<p><del>哥哥，要进来吗 QAQ</del></p>
+<p>还是扫描线啊，对每个位置维护 $lst_i$ 表示最后加入的位置，每次进行区间覆盖，$lst_i$ 会造成 $\min(lst_i,lim)$ 的贡献。直接 ODT + 树状数组 就行了吧。</p>
+</li>
+<li><p>CF1548E Gregor and the Two Painters</p>
+<p>找那个啥，代表元。</p>
+</li>
+<li><p><span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1482H Exam</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF1774G Segment Covering</p>
+<p>让你求减是有原因的。</p>
+<p>若线段 X 包含线段 Y，那么 X 选择的贡献为 $0$，可以将其删去。</p>
+<p>对于询问 $[l,r]$，先找出 $[l,r]$ 内的线段，左端点最小的是一定要选的，然后若 $l_1 &lt; l_2 &lt; l_3 &lt; r_1$，那么 $3$ 也是不能选的，以此类推，倍增维护。</p>
+</li>
+<li></li>
 </ol>
 
   </div>
