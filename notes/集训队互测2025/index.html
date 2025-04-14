@@ -13,15 +13,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="IOI 2025 中国国家集训队互测 - QOJ     场次（2025） A 完成情况 B 完成情况 C 完成情况     Round 1 基础 ABC 练习题  基础 01? 练习题  基础 01 练习题    Round 2 生命的循环  树上简单求和  路径计数    Round 3 环上排序信息最优分割  研心  无限地狱    Round 4 Désive  分道扬镳  观虫我">
+    <meta name="description" content="IOI 2025 中国国家集训队互测 - QOJ R1 A.基础 ABC 练习题[AGC055D] ABC Ultimatum 加强。 先考虑没有 ? 的情况，即如何判定。考虑枚举最后得到的 ABC,BCA,CAB 的数量，从左到右遍历 s，以 A 为例，那么可以使 ABC,AB,A 去掉一个开头，发现去掉后都以 B 开头，那么贪心去掉最长的即可。总时间复杂度 $O(n^3)$。 记 $x_a,x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="集训队互测 2025">
 <meta property="og:url" content="http://idtwtei.github.io/notes/%E9%9B%86%E8%AE%AD%E9%98%9F%E4%BA%92%E6%B5%8B2025/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="IOI 2025 中国国家集训队互测 - QOJ     场次（2025） A 完成情况 B 完成情况 C 完成情况     Round 1 基础 ABC 练习题  基础 01? 练习题  基础 01 练习题    Round 2 生命的循环  树上简单求和  路径计数    Round 3 环上排序信息最优分割  研心  无限地狱    Round 4 Désive  分道扬镳  观虫我">
+<meta property="og:description" content="IOI 2025 中国国家集训队互测 - QOJ R1 A.基础 ABC 练习题[AGC055D] ABC Ultimatum 加强。 先考虑没有 ? 的情况，即如何判定。考虑枚举最后得到的 ABC,BCA,CAB 的数量，从左到右遍历 s，以 A 为例，那么可以使 ABC,AB,A 去掉一个开头，发现去掉后都以 B 开头，那么贪心去掉最长的即可。总时间复杂度 $O(n^3)$。 记 $x_a,x">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-12T00:24:24.976Z">
-<meta property="article:modified_time" content="2025-04-12T08:31:33.601Z">
+<meta property="article:modified_time" content="2025-04-14T06:05:32.017Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -152,7 +152,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#R1-A-%E5%9F%BA%E7%A1%80-ABC-%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">R1 A.基础 ABC 练习题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
   </span>
@@ -198,175 +198,17 @@
 
   <div class="content e-content" itemprop="articleBody">
     <p><a target="_blank" rel="noopener" href="https://qoj.ac/category/376">IOI 2025 中国国家集训队互测 - QOJ</a></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">场次（2025）</th>
-<th style="text-align:center">A</th>
-<th style="text-align:center">完成情况</th>
-<th style="text-align:center">B</th>
-<th style="text-align:center">完成情况</th>
-<th style="text-align:center">C</th>
-<th style="text-align:center">完成情况</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Round 1</td>
-<td style="text-align:center">基础 ABC 练习题</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">基础 01? 练习题</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">基础 01 练习题</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 2</td>
-<td style="text-align:center">生命的循环</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">树上简单求和</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">路径计数</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 3</td>
-<td style="text-align:center">环上排序信息最优分割</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">研心</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">无限地狱</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 4</td>
-<td style="text-align:center">Désive</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">分道扬镳</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">观虫我</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 5</td>
-<td style="text-align:center">长野原龙势流星群</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">Classical Counting Problem</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">运筹帷幄</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 6</td>
-<td style="text-align:center">树数叔术</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">欧伊昔</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">人间应又雪</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 7</td>
-<td style="text-align:center">Cyberangel</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">新生舞会</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">PM 大师</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 8</td>
-<td style="text-align:center">熟练</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">皮鞋的多项式</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">幽默还是夢</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 9</td>
-<td style="text-align:center">游戏</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">木桶效应</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">月亮的背面是粉红色的</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 10</td>
-<td style="text-align:center">计算几何</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">分治</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">骨牌覆盖</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 11</td>
-<td style="text-align:center">联通块</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">轮盘赌游戏</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">序列</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 12</td>
-<td style="text-align:center">(LIS, LDS) - Coordinates</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">签到题</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">S&gt;a&lt;M</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 13</td>
-<td style="text-align:center">线段树与区间加</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">字符串</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">格雷码</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 14</td>
-<td style="text-align:center">Two permutations</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">冲刺</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">串联</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 15</td>
-<td style="text-align:center">药水</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">字符游戏</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">子集和</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 16</td>
-<td style="text-align:center">数位 DP</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">数据结构</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">problem</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:left">Round 17</td>
-<td style="text-align:center">链覆盖</td>
-<td style="text-align:center"></td>
-<td style="text-align:center">又一个欧拉数问题</td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
-</div>
+<h2 id="R1-A-基础-ABC-练习题"><a href="#R1-A-基础-ABC-练习题" class="headerlink" title="R1 A.基础 ABC 练习题"></a>R1 A.基础 ABC 练习题</h2><p>[AGC055D] ABC Ultimatum 加强。</p>
+<p>先考虑没有 ? 的情况，即如何判定。考虑枚举最后得到的 ABC,BCA,CAB 的数量，从左到右遍历 s，以 A 为例，那么可以使 ABC,AB,A 去掉一个开头，发现去掉后都以 B 开头，那么贪心去掉最长的即可。总时间复杂度 $O(n^3)$。</p>
+<p>记 $x_a,x_b,x_c$ 为当前前缀 A,B,C 的数量，$a,b,c$ 为枚举的 ABC,BCA,CAB 的数量（$a+b+c=n$），需要满足 $x_a+b \ge x_b$，其他同理。大胆猜测这是充要的，即字符串可以被划分为 $a,b,c$ 个 ABC,BCA,CAB 当且仅当 $b \ge \max(x_b-x_a),…,…$。接下来有两种计数方法</p>
+<ul>
+<li><p>先不考虑 S1,S2 的限制，可以直接记录三个差的最大值和 $x_a,…$，时间复杂度 $O(n^6)$。考虑枚举两个 $\max$ 最后的值，那么第三个的上界可以确定，$f(x_a,x_b,x_c,0/1,0/1)$ 进行 DP 即可，时间复杂度 $O(n^5)$。</p>
+<p>考虑 S1,S2 的限制，任考虑枚举两个 $\max$ 最后的值 $x,y$，找到它俩在 S1,S2 的后继 $X,Y$，那么按 $(X,Y,n-X-Y)$ 进行 DP 即可。</p>
+</li>
+<li><p>前面的分析和上面类似，最后考虑容斥，只限制上界可以做到 $O(n^3)$，然后可以简单算出钦定前两个 $\max$ 的方案数，时间复杂度 $O(n^5)$。</p>
+</li>
+</ul>
+<p>官解还给了一种做法。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yyyyxh/p/18468085/huce">IOI2025 集训队互测记录 - yyyyxh</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Xun-Xiaoyao/p/18475375">IOI2025集训队互测 W1 - Xun_Xiaoyao</a></li>
@@ -400,7 +242,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#R1-A-%E5%9F%BA%E7%A1%80-ABC-%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">R1 A.基础 ABC 练习题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
 
