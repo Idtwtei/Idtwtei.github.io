@@ -22,8 +22,10 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f620.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
 <meta property="article:published_time" content="2025-03-12T09:58:25.177Z">
-<meta property="article:modified_time" content="2025-04-14T14:11:33.744Z">
+<meta property="article:modified_time" content="2025-04-15T07:37:18.555Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -429,6 +431,22 @@
 <p>直接 DP 是 $O(nm)$ 的，记 $f_{i,j}$ 为 $i,j$ 前缀的编辑距离，插入没用？那这有点怪啊。</p>
 <p>$s_i=t_j$ 那么 $f_{i,j}=f_{i-1,j-1}$，否则 $f_{i,j}=1+\min(f_{i-1,j},f_{i,j-1},f_{i-1,j-1})$。</p>
 <p>记 $f_{i,j}$ 为操作 $i$ 次，T 比 S 多删除 $j$ 次能匹配到的最大长度，然后随便 DP，求 LCP 用 hash 即可。</p>
+</li>
+<li><p>Chefbook</p>
+<p>官方中文翻译是错的，逆天，亏我那么信任你 <span class="github-emoji"><span>😠</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f620.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。又读错了，绷 <span class="github-emoji"><span>😅</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。这么牛，原谅你了。</p>
+<p>先写出线性规划形式，然后公式对偶，得到</p>
+<script type="math/tex; mode=display">
+\sum_{e \in out_u} (f_e-g_e) \ge out_u \\
+\sum_{e \in in_u} (g_e-f_e) \ge -in_u</script><p>最优化的函数形如 $\sum_{e} a_ef_e + b_eg_e$，然后比较牛，考虑往费用流上靠，$f_e,g_e$ 抽象成边，费用就是 $a_e,b_e$，那么两个限制需要转化为流量守恒，用辅助变量 $p_u,q_u$，得到</p>
+<script type="math/tex; mode=display">
+\sum_{e \in out_u} (f_e-g_e) - p_u - out_u = 0 \\
+\sum_{e \in in_u} (g_e-f_e) - q_u + in_u =0</script><p>建 $2n$ 个点 $u,u’$。$f_e$ 连 $u’ \to u$，$g_e$ 同理。$out_u$ 连 $u \to T$，$in_u$ 同理。$p_u$ 连 $u \to T$，$q_u$ 同理。这里需要满足 $out_u,in_u$ 的边均满流，可以上下界网络流，但是由于不考虑辅助边后 $S,T$ 流量相等，因此可以直接去掉辅助边跑费用流。</p>
+<p>最后构造答案，限制除了一开始的限制，还需要满足</p>
+<ul>
+<li>若 $f_e &gt; 0$，$f_e$ 对应的限制等于 $0$。</li>
+<li>若 $g_e&gt;0$，$g_e$ 对应的限制等于 $0$。</li>
+</ul>
+<p>差分约束解决即可。</p>
 </li>
 </ul>
 <h2 id="ABC311Ex-Many-Illumination-Plans"><a href="#ABC311Ex-Many-Illumination-Plans" class="headerlink" title="[ABC311Ex] Many Illumination Plans"></a>[ABC311Ex] Many Illumination Plans</h2><p>$O(nm^2)$ 是简单的，转移就是一个 max+ 卷积，下面给出伪代码</p>
