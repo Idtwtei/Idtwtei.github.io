@@ -13,15 +13,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="100 + 100 + 0 &#x3D; 200, rk 27. T1.让别人修答案非常小，考虑枚举答案所处的格子。需要做的就是，给你两个集合，判断能否分别抽出一个数使得或起来为给定的数。可以判定转计数，计数就是容斥，实现可以 FMT。时间复杂度 $O(m^2n2^n)$。 发现值相同的格子的计数可以同时进行，于是时间复杂度变为 $O(mn2^n)$。 T2.飞机趁机可以对每个格子预处理选择哪些格子可以使该">
+    <meta name="description" content="100 + 100 + 0 &#x3D; 200, 27&#x2F;53. T1.让别人修答案非常小，考虑枚举答案所处的格子。需要做的就是，给你两个集合，判断能否分别抽出一个数使得或起来为给定的数。可以判定转计数，计数就是容斥，实现可以 FMT。时间复杂度 $O(m^2n2^n)$。 发现值相同的格子的计数可以同时进行，于是时间复杂度变为 $O(mn2^n)$。 T2.飞机趁机可以对每个格子预处理选择哪些格子可以使该">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NOI2025模拟赛23">
 <meta property="og:url" content="http://idtwtei.github.io/contests/NOI23/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="100 + 100 + 0 &#x3D; 200, rk 27. T1.让别人修答案非常小，考虑枚举答案所处的格子。需要做的就是，给你两个集合，判断能否分别抽出一个数使得或起来为给定的数。可以判定转计数，计数就是容斥，实现可以 FMT。时间复杂度 $O(m^2n2^n)$。 发现值相同的格子的计数可以同时进行，于是时间复杂度变为 $O(mn2^n)$。 T2.飞机趁机可以对每个格子预处理选择哪些格子可以使该">
+<meta property="og:description" content="100 + 100 + 0 &#x3D; 200, 27&#x2F;53. T1.让别人修答案非常小，考虑枚举答案所处的格子。需要做的就是，给你两个集合，判断能否分别抽出一个数使得或起来为给定的数。可以判定转计数，计数就是容斥，实现可以 FMT。时间复杂度 $O(m^2n2^n)$。 发现值相同的格子的计数可以同时进行，于是时间复杂度变为 $O(mn2^n)$。 T2.飞机趁机可以对每个格子预处理选择哪些格子可以使该">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-15T03:52:46.421Z">
-<meta property="article:modified_time" content="2025-04-15T08:50:20.600Z">
+<meta property="article:modified_time" content="2025-04-15T11:14:56.078Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -199,7 +199,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>100 + 100 + 0 = 200, rk 27.</p>
+    <p>100 + 100 + 0 = 200, 27/53.</p>
 <h2 id="T1-让别人修"><a href="#T1-让别人修" class="headerlink" title="T1.让别人修"></a>T1.让别人修</h2><p>答案非常小，考虑枚举答案所处的格子。需要做的就是，给你两个集合，判断能否分别抽出一个数使得或起来为给定的数。可以判定转计数，计数就是容斥，实现可以 FMT。时间复杂度 $O(m^2n2^n)$。</p>
 <p>发现值相同的格子的计数可以同时进行，于是时间复杂度变为 $O(mn2^n)$。</p>
 <h2 id="T2-飞机趁机"><a href="#T2-飞机趁机" class="headerlink" title="T2.飞机趁机"></a>T2.飞机趁机</h2><p>可以对每个格子预处理选择哪些格子可以使该格子计入答案，之后相当于每个点选或不选，若选择就需要让其指向一个点，被指向的点需要开商店。</p>

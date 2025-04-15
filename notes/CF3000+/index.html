@@ -56,8 +56,9 @@
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f613.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="article:published_time" content="2025-04-04T09:50:03.458Z">
-<meta property="article:modified_time" content="2025-04-14T15:27:08.542Z">
+<meta property="article:modified_time" content="2025-04-15T12:22:54.906Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -537,7 +538,15 @@ f_i = 1 + \sum_{j \in  T(i)} f_j</script><p>对于集合 $S$，找到右端点�
 <p>奇偶拆点，考虑 dij，状态相当于 $(u,l,r)$ 表示 $[l,r]$ 可以到达这个点（奇偶意义下），然后枚举出边按 $l$ 从小到大枚举，每条边只用枚举一次，时间复杂度 $O(m\log m)$。</p>
 </li>
 </ol>
-<h2 id="4-15"><a href="#4-15" class="headerlink" title="4.15"></a>4.15</h2>
+<h2 id="4-15"><a href="#4-15" class="headerlink" title="4.15"></a>4.15</h2><ol>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1209G2 Into Blocks (hard version)</p>
+<p>相当于找一些总长度最长的不交的颜色段。DP 可以单次 $O(n)$。</p>
+<p>相当于将序列分为尽可能多的段，使得每种颜色只出现在一段中，然后答案就是 $\sum len_i - (众数数量)$。</p>
+<p>因为一种颜色出现在一段中，那么可以将个数挂到左端点上，然后就是求 $\max$。对于分段，若染色左右端点为 $L,R$，那么 $[L,R)$ 不能分段，区间加，然后为 $0$ 的就是分段点，线段树随便做。</p>
+</li>
+<li></li>
+</ol>
+
   </div>
 </article>
 
