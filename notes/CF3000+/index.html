@@ -13,12 +13,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="CFTracker，都说刷这个比较好？加 ❄ 的是现在不会的，加​ 🅰 ​的是字符串题。 ​ 4.4 CF526F Pudding Monsters 转化为 $\max_{i&#x3D;l}^{r}\{a_i\}-\min_{i&#x3D;l}^{r}\{a_i\}&#x3D;r-l$ 的个数，扫描线，维护最小值及其个数即可。  CF487E Tourists 圆方树板子。  CF739E Gosha is hunting">
+    <meta name="description" content="CFTracker，都说刷这个比较好？加 ❄ 的是现在不会的，加​ 🅰 ​的是字符串题。 ​  CF526F Pudding Monsters 转化为 $\max_{i&#x3D;l}^{r}\{a_i\}-\min_{i&#x3D;l}^{r}\{a_i\}&#x3D;r-l$ 的个数，扫描线，维护最小值及其个数即可。  CF487E Tourists 圆方树板子。  CF739E Gosha is hunting wqs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CF3000+ 数据结构">
 <meta property="og:url" content="http://idtwtei.github.io/notes/CF3000+/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="CFTracker，都说刷这个比较好？加 ❄ 的是现在不会的，加​ 🅰 ​的是字符串题。 ​ 4.4 CF526F Pudding Monsters 转化为 $\max_{i&#x3D;l}^{r}\{a_i\}-\min_{i&#x3D;l}^{r}\{a_i\}&#x3D;r-l$ 的个数，扫描线，维护最小值及其个数即可。  CF487E Tourists 圆方树板子。  CF739E Gosha is hunting">
+<meta property="og:description" content="CFTracker，都说刷这个比较好？加 ❄ 的是现在不会的，加​ 🅰 ​的是字符串题。 ​  CF526F Pudding Monsters 转化为 $\max_{i&#x3D;l}^{r}\{a_i\}-\min_{i&#x3D;l}^{r}\{a_i\}&#x3D;r-l$ 的个数，扫描线，维护最小值及其个数即可。  CF487E Tourists 圆方树板子。  CF739E Gosha is hunting wqs">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
@@ -58,7 +58,7 @@
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="article:published_time" content="2025-04-04T09:50:03.458Z">
-<meta property="article:modified_time" content="2025-04-15T12:22:54.906Z">
+<meta property="article:modified_time" content="2025-04-16T13:49:20.374Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -195,10 +195,6 @@
     </div>
     
     
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9"><span class="toc-number">6.</span> <span class="toc-text">4.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10"><span class="toc-number">7.</span> <span class="toc-text">4.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-11"><span class="toc-number">8.</span> <span class="toc-text">4.11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-12"><span class="toc-number">9.</span> <span class="toc-text">4.12</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-13"><span class="toc-number">10.</span> <span class="toc-text">4.13</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-14"><span class="toc-number">11.</span> <span class="toc-text">4.14</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-15"><span class="toc-number">12.</span> <span class="toc-text">4.15</span></a></li></ol>
-      </div>
-    
   </span>
 </div>
 
@@ -242,7 +238,7 @@
 
   <div class="content e-content" itemprop="articleBody">
     <p><a target="_blank" rel="noopener" href="https://cftracker.netlify.app/problems">CFTracker</a>，都说刷这个比较好？加 <span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 的是现在不会的，加​ <span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​的是字符串题。 ​</p>
-<h2 id="4-4"><a href="#4-4" class="headerlink" title="4.4"></a>4.4</h2><ol>
+<ol>
 <li><p>CF526F Pudding Monsters</p>
 <p>转化为 $\max_{i=l}^{r}\{a_i\}-\min_{i=l}^{r}\{a_i\}=r-l$ 的个数，扫描线，维护最小值及其个数即可。</p>
 </li>
@@ -295,7 +291,7 @@
 </li>
 </ol>
 <p>感觉一直在刷水题？？？</p>
-<h2 id="4-5"><a href="#4-5" class="headerlink" title="4.5"></a>4.5</h2><ol>
+<ol>
 <li><p>CF176E Archaeology</p>
 <p>支持单点修改，维护最大连通子树，用 <code>set</code> 就行。</p>
 </li>
@@ -327,8 +323,6 @@
 <li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>CF1017G The Tree</p>
 <p>初始点权为 $-1$，操作一单点加 $1$，查询询问点到根节点的最大后缀和即可，对于操作二，即令最大后缀和为 $-1$，单点减 $qry+1$ 即可。</p>
 </li>
-</ol>
-<h2 id="4-6"><a href="#4-6" class="headerlink" title="4.6"></a>4.6</h2><ol>
 <li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1628E Groceries in Meteor Town</p>
 <p>kruskal 重构树，找所有白点和给定点的 LCA。</p>
 </li>
@@ -356,7 +350,7 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <p>考虑切片，枚举 $v$，将 $a_i$ 变为 $[a_i \ge v]$，相当于计算形如 $0…01…1$ 的数量，令 $a_0=\infty,a_{n+1}=-\infty$ 那么至少有一个 $01$，线段树维护 $01$ 的最小值及其个数即可。</p>
 </li>
 </ol>
-<h2 id="4-7"><a href="#4-7" class="headerlink" title="4.7"></a>4.7</h2><p>tag 很牛啊，我去回答几个问题，都提的什么抽象问题，一个都看不懂啊。</p>
+<p>tag 很牛啊，我去回答几个问题，都提的什么抽象问题，一个都看不懂啊。</p>
 <ol>
 <li><p>CF453E Little Pony and Lord Tirek</p>
 <p>相当于对时间进行推平，分块能做到 $O(n\sqrt{n\log n})$，能过吗？</p>
@@ -378,8 +372,6 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <li><p>CF319E Ping-Pong</p>
 <p>将相交不包含的区间合并，最终 $u$ 能到 $v$ 当且仅当 $(L_{S_u},R_{S_u})$ 与 $(L_{S_v},R_{S_v})$ 包含。插入一个区间后查询包含 $l,r$ 的区间进行合并即可，实现类似线段数分治。</p>
 </li>
-</ol>
-<h2 id="4-8"><a href="#4-8" class="headerlink" title="4.8"></a>4.8</h2><ol>
 <li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1621G Weighted Increasing Subsequences</p>
 <p>先求逆排列，然后正难则反，最后正着反着分别 DP 一次即可。</p>
 </li>
@@ -401,8 +393,6 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <li><p>CF1476G Minimum Difference</p>
 <p>就莫队吧，时间复杂度 $O(n^{\frac{2}{3}}m)$。</p>
 </li>
-</ol>
-<h2 id="4-9"><a href="#4-9" class="headerlink" title="4.9"></a>4.9</h2><ol>
 <li><p>CF650E Clockwork Bomb</p>
 <p>好像直接做就是对的？</p>
 <p>还真是，可以 LCT，不过我不会 LCT 啊。</p>
@@ -427,8 +417,6 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <p>考虑立一条从岛屿到边缘的线，那么路线合法当且仅当路线穿过线奇数次。</p>
 <p>建出 kruskal 重构树即可。</p>
 </li>
-</ol>
-<h2 id="4-10"><a href="#4-10" class="headerlink" title="4.10"></a>4.10</h2><ol>
 <li><p>CF1340F Nastya and CBS</p>
 <p>维护右括号左括号的哈希值，单侧递归线段树。</p>
 </li>
@@ -447,7 +435,7 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <p>扫描线 + 平衡树。可以直接合并，不用势能分析，势能分析是 $\log^2$。势能分析好像不对，错误的。是低贱的离线做法。<br>有在线版本（P5609 [Ynoi2013] 对数据结构的爱）</p>
 </li>
 </ol>
-<h2 id="4-11"><a href="#4-11" class="headerlink" title="4.11"></a>4.11</h2><p>溶解氧区域性那首歌改变</p>
+<p>溶解氧区域性那首歌改变</p>
 <ol>
 <li><p>CF1936D Bitwise Paradox</p>
 <p>经典只有 $O(\log V)$ 个有用的。</p>
@@ -459,8 +447,6 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <li><p>CF1763F Edge Queries</p>
 <p>圆方树。</p>
 </li>
-</ol>
-<h2 id="4-12"><a href="#4-12" class="headerlink" title="4.12"></a>4.12</h2><ol>
 <li><p>CF1178G The Awesomest Vertex</p>
 <p>显然可以转化为序列上的问题。可以求 $\max(\sum a,-\sum a) \times |\sum b|$。然后随便做吧？KTT？分块维护凸包？</p>
 <p>哦，还可以分块套李超。还会 KTT 吗？？？</p>
@@ -494,7 +480,7 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <p>对于询问 $[l,r]$，先找出 $[l,r]$ 内的线段，左端点最小的是一定要选的，然后若 $l_1 &lt; l_2 &lt; l_3 &lt; r_1$，那么 $3$ 也是不能选的，以此类推，倍增维护。</p>
 </li>
 </ol>
-<h2 id="4-13"><a href="#4-13" class="headerlink" title="4.13"></a>4.13</h2><p>素质有点低下了。</p>
+<p>素质有点低下了。</p>
 <ol>
 <li><p>CF855F Nagini</p>
 <p>Segment Tree Beats</p>
@@ -526,7 +512,7 @@ f_i = 1 + \sum_{j \in  T(i)} f_j</script><p>对于集合 $S$，找到右端点�
 </li>
 </ol>
 <p>素质有点高上了。</p>
-<h2 id="4-14"><a href="#4-14" class="headerlink" title="4.14"></a>4.14</h2><p><span class="github-emoji"><span>😓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f613.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><span class="github-emoji"><span>😓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f613.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
 <ol>
 <li><p>CF1787G Colorful Tree Again</p>
 <p>艹艹艹，读错题了。</p>
@@ -537,14 +523,17 @@ f_i = 1 + \sum_{j \in  T(i)} f_j</script><p>对于集合 $S$，找到右端点�
 <li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF827F Dirty Arkady’s Kitchen</p>
 <p>奇偶拆点，考虑 dij，状态相当于 $(u,l,r)$ 表示 $[l,r]$ 可以到达这个点（奇偶意义下），然后枚举出边按 $l$ 从小到大枚举，每条边只用枚举一次，时间复杂度 $O(m\log m)$。</p>
 </li>
-</ol>
-<h2 id="4-15"><a href="#4-15" class="headerlink" title="4.15"></a>4.15</h2><ol>
 <li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1209G2 Into Blocks (hard version)</p>
 <p>相当于找一些总长度最长的不交的颜色段。DP 可以单次 $O(n)$。</p>
 <p>相当于将序列分为尽可能多的段，使得每种颜色只出现在一段中，然后答案就是 $\sum len_i - (众数数量)$。</p>
 <p>因为一种颜色出现在一段中，那么可以将个数挂到左端点上，然后就是求 $\max$。对于分段，若染色左右端点为 $L,R$，那么 $[L,R)$ 不能分段，区间加，然后为 $0$ 的就是分段点，线段树随便做。</p>
 </li>
-<li></li>
+<li><p>CF799F Beautiful fountains rows</p>
+<p>第一个条件可以容斥掉。可以按 $l,r$ 的奇偶性分讨，然后就是二维求交？扫描线，合法的是一段区间。</p>
+<p>还可以随机化？！扫描线右端点赋值为 $0$，那么若区间 $[l,r]$ 满足 $[l,r)$ 中 $1$ 的个数为偶数，那么合法。然后随机化 hash，map 记录一下就行。</p>
+</li>
+<li><p>CF1693E Outermost Maximums</p>
+</li>
 </ol>
 
   </div>
@@ -576,10 +565,6 @@ f_i = 1 + \sum_{j \in  T(i)} f_j</script><p>对于集合 $S$，找到右端点�
 
     
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4"><span class="toc-number">1.</span> <span class="toc-text">4.4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5"><span class="toc-number">2.</span> <span class="toc-text">4.5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6"><span class="toc-number">3.</span> <span class="toc-text">4.6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7"><span class="toc-number">4.</span> <span class="toc-text">4.7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-8"><span class="toc-number">5.</span> <span class="toc-text">4.8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-9"><span class="toc-number">6.</span> <span class="toc-text">4.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-10"><span class="toc-number">7.</span> <span class="toc-text">4.10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-11"><span class="toc-number">8.</span> <span class="toc-text">4.11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-12"><span class="toc-number">9.</span> <span class="toc-text">4.12</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-13"><span class="toc-number">10.</span> <span class="toc-text">4.13</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-14"><span class="toc-number">11.</span> <span class="toc-text">4.14</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-15"><span class="toc-number">12.</span> <span class="toc-text">4.15</span></a></li></ol>
-      </div>
-    
 
     <div id="share-footer" style="display: none">
       
@@ -602,8 +587,6 @@ f_i = 1 + \sum_{j \in  T(i)} f_j</script><p>对于集合 $S$，找到右端点�
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>

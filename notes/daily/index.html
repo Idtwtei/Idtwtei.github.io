@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/67fe3abf88c538a9b5d1c297.png">
 <meta property="article:published_time" content="2025-03-12T09:58:25.177Z">
-<meta property="article:modified_time" content="2025-04-15T11:09:16.408Z">
+<meta property="article:modified_time" content="2025-04-15T14:40:31.747Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -481,6 +481,16 @@
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1060G">CF1060G Balls and Pockets</a></p>
 </li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_agc034_c">[AGC034C] Tests - 洛谷</a></p>
+<p>可以二分 $s$，只有一个 $a_i$ 会取 $0,X$ 之外的数，枚举那个数，贪心即可。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT_agc061_c">[AGC061C] First Come First Serve</a></p>
+<p>容斥，会算重是因为出现某个人选前选后都一样，此时当且仅当 $[a_i,b_i]$ 中间没有选择的点，$f_i$ 表示前缀的方案数，那么 $f_i \gets 2f_{i-1}$，然后找到可以在 $[a_i,b_i]$ 中出现的人的区间 $[l,r]$，算重则这些点的选择方式确定，那么 $f_r \gets -f_{l-1}$。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7429">P7429 [THUPC 2017] 气氛</a></p>
+<p>艹，高维凸包面积可以行列式，然后有结论，$n−1$ 维空间中 $n+1$ 个点构成的凸包的体积等于所有选 $n$ 个点构成的凸包体积之和的一半。</p>
+</li>
+<li></li>
 </ul>
 <h2 id="ABC311Ex-Many-Illumination-Plans"><a href="#ABC311Ex-Many-Illumination-Plans" class="headerlink" title="[ABC311Ex] Many Illumination Plans"></a>[ABC311Ex] Many Illumination Plans</h2><p>$O(nm^2)$ 是简单的，转移就是一个 max+ 卷积，下面给出伪代码</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">dfs</span><span class="params">(c)</span>:返回的两个数组同上面分别是 dp[c][<span class="number">0</span>] 和 dp[c][<span class="number">1</span>]</span></span><br><span class="line"><span class="function">Dp[<span class="number">0</span>] &lt;- (DP table corresponding to empty set) 初始值</span></span><br><span class="line"><span class="function">Dp[<span class="number">1</span>] &lt;- (DP table corresponding to empty set) 初始值</span></span><br><span class="line"><span class="function">for d in {</span>children of c} <span class="keyword">do</span> 枚举儿子</span><br><span class="line">    ep = <span class="built_in">dfs</span>(d)</span><br><span class="line">    Dp[<span class="number">0</span>] &lt;- <span class="built_in">max_plus_convolution</span>(Dp[<span class="number">0</span>], ep[<span class="number">0</span>]) max+ 卷积</span><br><span class="line">    Dp[<span class="number">1</span>] &lt;- <span class="built_in">max_plus_convolution</span>(Dp[<span class="number">1</span>], ep[<span class="number">1</span>]) max+ 卷积</span><br><span class="line">end <span class="keyword">for</span></span><br><span class="line"><span class="keyword">for</span> i = <span class="number">0</span> to X - W[c] <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">chmax</span>(Dp[C[c]][i + W[c]], Dp[<span class="number">1</span> - C[c]][i] + B[c]) 加入点 c</span><br><span class="line">end <span class="keyword">for</span></span><br><span class="line"><span class="keyword">return</span> Dp</span><br></pre></td></tr></tbody></table></figure>
