@@ -22,7 +22,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
 <meta property="article:published_time" content="2025-04-16T04:49:50.703Z">
-<meta property="article:modified_time" content="2025-04-16T12:12:07.835Z">
+<meta property="article:modified_time" content="2025-04-17T12:42:39.910Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
@@ -194,7 +194,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/constests/">constests</a>
+        <a class="category-link" href="/categories/contests/">contests</a>
     </div>
 
 
@@ -218,7 +218,11 @@
 <p><strong>另解</strong></p>
 <p>欧拉定理 $|V|-|E|+|F| = |C|+1$，图为连通图，只需求出面数和边数。</p>
 <p>平面图转对偶图，对偶图删掉环对应的边，环围成的点所在连通块的点数为面数，边数为边数，线段树分治 + 可撤销并查集解决。</p>
-<p>平面图转对偶图 见 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3249">[HNOI2016] 矿区</a>。</p>
+<blockquote>
+<p><strong>平面图转对偶图</strong></p>
+<p> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3249">[HNOI2016] 矿区</a>。</p>
+<p>将无向边拆为两条有向边，那么一条边对应一个面，对于边 $(u,v)$，将 $v$ 的所有出边按终点极角排序，找到 $(v,u)$ 的前一条边，那么 $(u,v)$ 和这条边同为下面面的边界，继续知道找到一个面即可，每条边标记所在面，对每个面建点，链接一条边和其反向边所在的面。判断是否为无界面可以叉积求面积。</p>
+</blockquote>
 <h2 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h2><p><strong>有向图</strong>，构造方案就是枚举边使得边的编号序列有连续的 $uv$，然后左右扩展。</p>
 <p>考虑继续扩展合法路径，那么可以两条合法的通过 $0$ 拼一起，合法的和只缺一个的拼一起（可能顺序相反），只缺一个的也可以先初步预处理，然后就是只缺一个的和只缺一个的拼一起，相当于将初步的链视为边，然后边上转移。考虑 DP，$f_{i,j,0/1}$ 表示长度为 $i$，结尾为 $j$，缺不缺。按长度从小到大 DP，转移就是枚举初步的链，预处理出来即可，时间复杂度 $O(n^4)$。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>

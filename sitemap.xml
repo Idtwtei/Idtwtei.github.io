@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://idtwtei.github.io/notes/CF3000+/</loc>
+    <loc>http://idtwtei.github.io/contests/MXNOI11/</loc>
     
     <lastmod>2025-04-17</lastmod>
     
@@ -20,9 +20,9 @@
   </url>
   
   <url>
-    <loc>http://idtwtei.github.io/contests/MXNOI11/</loc>
+    <loc>http://idtwtei.github.io/notes/CF3000+/</loc>
     
-    <lastmod>2025-04-16</lastmod>
+    <lastmod>2025-04-17</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -505,13 +505,6 @@
   
   <url>
     <loc>http://idtwtei.github.io/categories/contests/</loc>
-    <lastmod>2025-04-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://idtwtei.github.io/categories/constests/</loc>
     <lastmod>2025-04-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
