@@ -53,12 +53,11 @@
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
-<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f613.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="article:published_time" content="2025-04-04T09:50:03.458Z">
-<meta property="article:modified_time" content="2025-04-16T13:49:20.374Z">
+<meta property="article:modified_time" content="2025-04-17T00:12:56.897Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -289,9 +288,6 @@
 <li><p>CF576E Painting Edges</p>
 <p>怎么降紫了，线段树分治。</p>
 </li>
-</ol>
-<p>感觉一直在刷水题？？？</p>
-<ol>
 <li><p>CF176E Archaeology</p>
 <p>支持单点修改，维护最大连通子树，用 <code>set</code> 就行。</p>
 </li>
@@ -349,9 +345,6 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <p>发现若 $i,j(i&lt;j)$ 连通，那么它们中间的点也和它们连通，于是连通块是一段区间，连通块数量相当于计算 $[1,p],[p+1,n]$ 没有连边的 $p$ 的数量。</p>
 <p>考虑切片，枚举 $v$，将 $a_i$ 变为 $[a_i \ge v]$，相当于计算形如 $0…01…1$ 的数量，令 $a_0=\infty,a_{n+1}=-\infty$ 那么至少有一个 $01$，线段树维护 $01$ 的最小值及其个数即可。</p>
 </li>
-</ol>
-<p>tag 很牛啊，我去回答几个问题，都提的什么抽象问题，一个都看不懂啊。</p>
-<ol>
 <li><p>CF453E Little Pony and Lord Tirek</p>
 <p>相当于对时间进行推平，分块能做到 $O(n\sqrt{n\log n})$，能过吗？</p>
 <p>可以离线下来，相当于二维偏序，时间复杂度 $O(n\log n)$。</p>
@@ -434,9 +427,6 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <li><p>CF1172F Nauuo and Bug</p>
 <p>扫描线 + 平衡树。可以直接合并，不用势能分析，势能分析是 $\log^2$。势能分析好像不对，错误的。是低贱的离线做法。<br>有在线版本（P5609 [Ynoi2013] 对数据结构的爱）</p>
 </li>
-</ol>
-<p>溶解氧区域性那首歌改变</p>
-<ol>
 <li><p>CF1936D Bitwise Paradox</p>
 <p>经典只有 $O(\log V)$ 个有用的。</p>
 </li>
@@ -479,9 +469,6 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <p>若线段 X 包含线段 Y，那么 X 选择的贡献为 $0$，可以将其删去。</p>
 <p>对于询问 $[l,r]$，先找出 $[l,r]$ 内的线段，左端点最小的是一定要选的，然后若 $l_1 &lt; l_2 &lt; l_3 &lt; r_1$，那么 $3$ 也是不能选的，以此类推，倍增维护。</p>
 </li>
-</ol>
-<p>素质有点低下了。</p>
-<ol>
 <li><p>CF855F Nagini</p>
 <p>Segment Tree Beats</p>
 </li>
@@ -510,10 +497,6 @@ f^k(l,r) = \cup_{i=l}^{r-1} f^k(i,i+1)</script></li>
 <script type="math/tex; mode=display">
 f_i = 1 + \sum_{j \in  T(i)} f_j</script><p>对于集合 $S$，找到右端点最靠右的区间 $x$，那么 $l_i &lt; l_x \wedge r_i &lt; r_x$ 的 $k$ 变为必须走的，形成子问题。扫描线树状数组维护即可。</p>
 </li>
-</ol>
-<p>素质有点高上了。</p>
-<p><span class="github-emoji"><span>😓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f613.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ol>
 <li><p>CF1787G Colorful Tree Again</p>
 <p>艹艹艹，读错题了。</p>
 <p>一个点最多在一种路径的中间，其他都是 LCA。于是变成区间加减找最小值对应的最大值。</p>
