@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <!-- 引入字体 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic"> <!-- 中文 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold"> <!-- 代码 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Consolas&display=swap"> <!-- 英文和数字 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Microsoft+YaHei&display=swap"> <!-- 微软雅黑中文 -->
+
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="【模板】后缀排序对于后缀 $[i,n]$，记其编号为 $i$，$sa_i$ 表示将所有后缀按字典序排序后的第 $i$ 个后缀的编号，$rk_i$ 表示编号为 $i$ 的后缀的排名。本题要求求出 $sa$。 考虑倍增，先将第一个字母进行排序，然后令 $s_i$ 与 $s_{i+1}$ 组成一个二元组 $(rk_i,rk_{i+1})$（$rk_{i} &#x3D; 0(i &gt; n)$），将二元组排序得到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后缀数组">
+<meta property="og:url" content="http://idtwtei.github.io/notes/SA/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="【模板】后缀排序对于后缀 $[i,n]$，记其编号为 $i$，$sa_i$ 表示将所有后缀按字典序排序后的第 $i$ 个后缀的编号，$rk_i$ 表示编号为 $i$ 的后缀的排名。本题要求求出 $sa$。 考虑倍增，先将第一个字母进行排序，然后令 $s_i$ 与 $s_{i+1}$ 组成一个二元组 $(rk_i,rk_{i+1})$（$rk_{i} &#x3D; 0(i &gt; n)$），将二元组排序得到">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-19T06:45:14.767Z">
+<meta property="article:modified_time" content="2025-04-22T03:13:20.616Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+
+    <!-- title -->
+    <title>后缀数组</title><meta name="robots" content="noindex">
+
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- persian styles -->
+    
+
+    <!-- rss -->
+    
+    
+
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/SA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/SA/&text=后缀数组"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/SA/&is_video=false&description=后缀数组"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=后缀数组&body=Check out this article: http://idtwtei.github.io/notes/SA/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/SA/&name=后缀数组&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/SA/&t=后缀数组"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%90%8E%E7%BC%80%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">【模板】后缀排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSOI2007-%E5%AD%97%E7%AC%A6%E5%8A%A0%E5%AF%86"><span class="toc-number">2.</span> <span class="toc-text">[JSOI2007] 字符加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E5%AD%90%E4%B8%B2"><span class="toc-number">3.</span> <span class="toc-text">寻找子串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#USACO07DEC-Best-Cow-Line-G"><span class="toc-number">4.</span> <span class="toc-text">[USACO07DEC] Best Cow Line G</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#height-%E6%95%B0%E7%BB%84"><span class="toc-number">5.</span> <span class="toc-text">height 数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#height-%E6%95%B0%E7%BB%84%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">height 数组的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E4%B8%A4%E4%B8%AA%E5%90%8E%E7%BC%80%E7%9A%84-LCP"><span class="toc-number">6.1.</span> <span class="toc-text">求两个后缀的 LCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E5%AD%90%E4%B8%B2%E7%9A%84%E6%95%B0%E7%9B%AE"><span class="toc-number">6.2.</span> <span class="toc-text">不同子串的数目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91-k-%E6%AC%A1%E5%AD%90%E4%B8%B2%E7%9A%84%E6%9C%80%E5%A4%A7%E9%95%BF%E5%BA%A6"><span class="toc-number">6.3.</span> <span class="toc-text">出现至少 k 次子串的最大长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E6%9C%80%E9%95%BF%E7%9A%84%E5%AD%90%E4%B8%B2%E4%BD%BF%E5%85%B6%E4%B8%8D%E9%87%8D%E5%8F%A0%E5%9C%B0%E5%87%BA%E7%8E%B0%E4%BA%86%E4%B8%A4%E6%AC%A1"><span class="toc-number">6.4.</span> <span class="toc-text">求最长的子串使其不重叠地出现了两次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOI2016-%E4%BC%98%E7%A7%80%E7%9A%84%E6%8B%86%E5%88%86"><span class="toc-number">6.5.</span> <span class="toc-text">[NOI2016] 优秀的拆分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOI2015-%E5%93%81%E9%85%92%E5%A4%A7%E4%BC%9A"><span class="toc-number">6.6.</span> <span class="toc-text">[NOI2015] 品酒大会</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF822E-Liar"><span class="toc-number">6.7.</span> <span class="toc-text">CF822E Liar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8CJZOI-1%E3%80%8D%E6%8B%9C%E7%A5%9E"><span class="toc-number">6.8.</span> <span class="toc-text">「JZOI-1」拜神</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        后缀数组
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-04-19T06:45:14.767Z" class="dt-published" itemprop="datePublished">2025-04-19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="【模板】后缀排序"><a href="#【模板】后缀排序" class="headerlink" title="【模板】后缀排序"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3809">【模板】后缀排序</a></h2><p>对于后缀 $[i,n]$，记其编号为 $i$，$sa_i$ 表示将所有后缀按字典序排序后的第 $i$ 个后缀的编号，$rk_i$ 表示编号为 $i$ 的后缀的排名。本题要求求出 $sa$。</p>
+<p>考虑倍增，先将第一个字母进行排序，然后令 $s_i$ 与 $s_{i+1}$ 组成一个二元组 $(rk_i,rk_{i+1})$（$rk_{i} = 0(i &gt; n)$），将二元组排序得到新的 $rk$，然后组成二元组 $(rk_i,rk_{i+2})$，接着排序，直到长度超过 $n$，共进行 $O(\log n)$ 轮，排序用基数排序（就是低位到高位进行桶排），时间复杂度 $O(n\log n)$。下面是加了一些常数优化的代码。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e6</span><span class="number">+10</span>,INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gc getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rd read()</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">read</span><span class="params">()</span></span>{</span><br><span class="line">	<span class="type">int</span> x=<span class="number">0</span>,f=<span class="number">0</span>; <span class="type">char</span> c=gc;</span><br><span class="line">	<span class="keyword">for</span>(;c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>;c=gc) f|=(c==<span class="string">'-'</span>);</span><br><span class="line">	<span class="keyword">for</span>(;c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>;c=gc) x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+(c^<span class="number">48</span>);</span><br><span class="line">	<span class="keyword">return</span> f?-x:x;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n,m; <span class="type">char</span> s[N];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> sa[N],_sa[N],rk[N&lt;&lt;<span class="number">1</span>],_rk[N&lt;&lt;<span class="number">1</span>],cnt[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">eq</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y,<span class="type">int</span> w)</span></span>{ <span class="keyword">return</span> _rk[x]==_rk[y]&amp;&amp;_rk[x+w]==_rk[y+w]; }</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SA</span><span class="params">()</span></span>{</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) ++cnt[rk[i]=s[i]];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) cnt[i]+=cnt[i<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=n;i&gt;=<span class="number">1</span>;--i) sa[cnt[rk[i]]--]=i;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> w=<span class="number">1</span>,p=<span class="number">0</span>;w==<span class="number">1</span>||m!=n;w&lt;&lt;=<span class="number">1</span>,m=p,p=<span class="number">0</span>){</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=n-w<span class="number">+1</span>;i&lt;=n;++i) _sa[++p]=i;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="keyword">if</span>(sa[i]&gt;w) _sa[++p]=sa[i]-w;</span><br><span class="line">		<span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="number">4</span>*(m<span class="number">+1</span>));</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) ++cnt[rk[i]];</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;++i) cnt[i]+=cnt[i<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=n;i&gt;=<span class="number">1</span>;--i) sa[cnt[rk[_sa[i]]]--]=_sa[i];</span><br><span class="line">		<span class="built_in">swap</span>(rk,_rk),p=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) rk[sa[i]]=<span class="built_in">eq</span>(sa[i],sa[i<span class="number">-1</span>],w)?p:++p;</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>, s<span class="number">+1</span>),n=<span class="built_in">strlen</span>(s<span class="number">+1</span>),m=<span class="string">'z'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">SA</span>();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">printf</span>(<span class="string">"%d "</span>, sa[i]);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="JSOI2007-字符加密"><a href="#JSOI2007-字符加密" class="headerlink" title="[JSOI2007] 字符加密"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4051">[JSOI2007] 字符加密</a></h2><p>拼两遍然后求出 $sa$ 即可。</p>
+<h2 id="寻找子串"><a href="#寻找子串" class="headerlink" title="寻找子串"></a>寻找子串</h2><p>在 T 中找 S 出现的位置，T 后缀排序后，S 出现的位置是一段区间，二分查找左右端点。比较可以 hash？</p>
+<h2 id="USACO07DEC-Best-Cow-Line-G"><a href="#USACO07DEC-Best-Cow-Line-G" class="headerlink" title="[USACO07DEC] Best Cow Line G"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2870">[USACO07DEC] Best Cow Line G</a></h2><p>当左右两端字符不同时可以直接贪心，相同就找到第一个不同的位置，取最小的，hash + 二分寻找即可。</p>
+<p>可以用 SA 找，将正串反串拼在一起后缀排序，然后比较 $rk$ 即可。</p>
+<h2 id="height-数组"><a href="#height-数组" class="headerlink" title="height 数组"></a>height 数组</h2><p>LCP 即 Longest Common Prefix（最长公共前缀），记 $LCP(i,j)$ 为 $i,j$ 后缀的 LCP。</p>
+<p>height 数组 $h_i = LCP(sa_{i-1},sa_{i})$，特别地，有 $h_1=0$。</p>
+<p>考虑如何求 height 数组，有一个性质</p>
+<script type="math/tex; mode=display">
+h_{rk_i} \ge h_{rk_{i-1}} - 1</script><p>$i-1$ 后缀对应的 LCP 去掉第一个字符是 $i$ 后缀的前缀，$h_{rk_i}$ 应比这个更大。</p>
+<p>利用上述引理即可 $O(n)$ 求 height 数组，下面是代码</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,k=<span class="number">0</span>;i&lt;=n;++i){</span><br><span class="line">	<span class="keyword">for</span>(k=<span class="built_in">max</span>(<span class="number">0</span>,k<span class="number">-1</span>);s[i+k]==s[sa[rk[i]<span class="number">-1</span>]+k];++k);</span><br><span class="line">	h[rk[i]]=k;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>注意是 h[rk[i]]=k。</li>
+</ul>
+<h2 id="height-数组的应用"><a href="#height-数组的应用" class="headerlink" title="height 数组的应用"></a>height 数组的应用</h2><h3 id="求两个后缀的-LCP"><a href="#求两个后缀的-LCP" class="headerlink" title="求两个后缀的 LCP"></a>求两个后缀的 LCP</h3><script type="math/tex; mode=display">
+LCP(sa_i,sa_j) = \min_{k=i+1}^{j}\{h_k\}</script><h3 id="不同子串的数目"><a href="#不同子串的数目" class="headerlink" title="不同子串的数目"></a>不同子串的数目</h3><script type="math/tex; mode=display">
+\binom{n}{2} - \sum_{i=2}^{n} h_i</script><h3 id="出现至少-k-次子串的最大长度"><a href="#出现至少-k-次子串的最大长度" class="headerlink" title="出现至少 k 次子串的最大长度"></a>出现至少 k 次子串的最大长度</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2852">[USACO06DEC] Milk Patterns G</a></p>
+<p>相当于求长为 $k-1$ 的区间 $h$ 最小值的最大值，可以二分或者直接单调队列。</p>
+<h3 id="求最长的子串使其不重叠地出现了两次"><a href="#求最长的子串使其不重叠地出现了两次" class="headerlink" title="求最长的子串使其不重叠地出现了两次"></a>求最长的子串使其不重叠地出现了两次</h3><p>二分长度 $len$，按 $h \ge len$ 分段，每段分别判断，只需找到最大最小的下标。</p>
+<h3 id="NOI2016-优秀的拆分"><a href="#NOI2016-优秀的拆分" class="headerlink" title="[NOI2016] 优秀的拆分"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1117">[NOI2016] 优秀的拆分</a></h3><p>$O(n^2)$ 是简单的。枚举 A 的长度 $len$，将序列按 $len$ 分块，那么 A 就是一段前缀和一段后缀构成，令对应前后缀分别相等才行，求出 LCP 和 LCS 然后贡献是一段区间加 $1$，差分即可。时间复杂度 $O(n\log n)$。</p>
+<h3 id="NOI2015-品酒大会"><a href="#NOI2015-品酒大会" class="headerlink" title="[NOI2015] 品酒大会"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2178">[NOI2015] 品酒大会</a></h3><p>SA 后并查集随便维护。</p>
+<h3 id="CF822E-Liar"><a href="#CF822E-Liar" class="headerlink" title="CF822E Liar"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF822E">CF822E Liar</a></h3><p>贪心 + DP + SA/二分hash</p>
+<h3 id="「JZOI-1」拜神"><a href="#「JZOI-1」拜神" class="headerlink" title="「JZOI-1」拜神"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7361">「JZOI-1」拜神</a></h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/string/sa/">后缀数组简介 - OI Wiki</a></li>
+</ul>
+<!-- flag of hidden posts -->
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categories/contests/">比赛</a></li>
+        
+          <li><a href="/categories/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E3%80%90%E6%A8%A1%E6%9D%BF%E3%80%91%E5%90%8E%E7%BC%80%E6%8E%92%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">【模板】后缀排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSOI2007-%E5%AD%97%E7%AC%A6%E5%8A%A0%E5%AF%86"><span class="toc-number">2.</span> <span class="toc-text">[JSOI2007] 字符加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E5%AD%90%E4%B8%B2"><span class="toc-number">3.</span> <span class="toc-text">寻找子串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#USACO07DEC-Best-Cow-Line-G"><span class="toc-number">4.</span> <span class="toc-text">[USACO07DEC] Best Cow Line G</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#height-%E6%95%B0%E7%BB%84"><span class="toc-number">5.</span> <span class="toc-text">height 数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#height-%E6%95%B0%E7%BB%84%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">height 数组的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E4%B8%A4%E4%B8%AA%E5%90%8E%E7%BC%80%E7%9A%84-LCP"><span class="toc-number">6.1.</span> <span class="toc-text">求两个后缀的 LCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%90%8C%E5%AD%90%E4%B8%B2%E7%9A%84%E6%95%B0%E7%9B%AE"><span class="toc-number">6.2.</span> <span class="toc-text">不同子串的数目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91-k-%E6%AC%A1%E5%AD%90%E4%B8%B2%E7%9A%84%E6%9C%80%E5%A4%A7%E9%95%BF%E5%BA%A6"><span class="toc-number">6.3.</span> <span class="toc-text">出现至少 k 次子串的最大长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E6%9C%80%E9%95%BF%E7%9A%84%E5%AD%90%E4%B8%B2%E4%BD%BF%E5%85%B6%E4%B8%8D%E9%87%8D%E5%8F%A0%E5%9C%B0%E5%87%BA%E7%8E%B0%E4%BA%86%E4%B8%A4%E6%AC%A1"><span class="toc-number">6.4.</span> <span class="toc-text">求最长的子串使其不重叠地出现了两次</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOI2016-%E4%BC%98%E7%A7%80%E7%9A%84%E6%8B%86%E5%88%86"><span class="toc-number">6.5.</span> <span class="toc-text">[NOI2016] 优秀的拆分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOI2015-%E5%93%81%E9%85%92%E5%A4%A7%E4%BC%9A"><span class="toc-number">6.6.</span> <span class="toc-text">[NOI2015] 品酒大会</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CF822E-Liar"><span class="toc-number">6.7.</span> <span class="toc-text">CF822E Liar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%8CJZOI-1%E3%80%8D%E6%8B%9C%E7%A5%9E"><span class="toc-number">6.8.</span> <span class="toc-text">「JZOI-1」拜神</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/SA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/SA/&text=后缀数组"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/SA/&is_video=false&description=后缀数组"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=后缀数组&body=Check out this article: http://idtwtei.github.io/notes/SA/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/SA/&title=后缀数组"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/SA/&name=后缀数组&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/SA/&t=后缀数组"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -13,15 +13,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="100 + 100 + 60 &#x3D; 260, 18&#x2F;66. 不是，怎么又是两道简单题 + 一道字符串。 T1.数据结构训练中心Exchange Argument，用平衡树支持加点删点，答案为 $\max_{i} (\sum_{j&#x3D;1}^{i} a_j + \sum_{j&#x3D;i}^{n} b_j)$，证明就是考虑最后一个在 $a_i$ 后立马出现的 $b_i$。还可以动态 DP。 T2.机器人李超线段树">
+    <meta name="description" content="越来越水了。。。 100 + 100 + 100 &#x3D; 300, rk 1&#x2F;?, 应该不少人 AK 吧（30 个。。。）。 T1.A树上随机游走板子。 T2.B线段树板子。直接矩乘加个火车头就过了（不卡常好评）。 T3.C这个不是众所周知题吗？ upd通知：近两场苍穹模拟赛题目难度过低，出题人已经被永久禁用。后续会进一步加强题目审核强度，提升题目质量。 预计于五月和六月各附送一场模拟赛。另外，除了奖">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NOI2025模拟赛24">
-<meta property="og:url" content="http://idtwtei.github.io/contests/NOI24/index.html">
+<meta property="og:title" content="MXNOI13">
+<meta property="og:url" content="http://idtwtei.github.io/contests/MXNOI13/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="100 + 100 + 60 &#x3D; 260, 18&#x2F;66. 不是，怎么又是两道简单题 + 一道字符串。 T1.数据结构训练中心Exchange Argument，用平衡树支持加点删点，答案为 $\max_{i} (\sum_{j&#x3D;1}^{i} a_j + \sum_{j&#x3D;i}^{n} b_j)$，证明就是考虑最后一个在 $a_i$ 后立马出现的 $b_i$。还可以动态 DP。 T2.机器人李超线段树">
+<meta property="og:description" content="越来越水了。。。 100 + 100 + 100 &#x3D; 300, rk 1&#x2F;?, 应该不少人 AK 吧（30 个。。。）。 T1.A树上随机游走板子。 T2.B线段树板子。直接矩乘加个火车头就过了（不卡常好评）。 T3.C这个不是众所周知题吗？ upd通知：近两场苍穹模拟赛题目难度过低，出题人已经被永久禁用。后续会进一步加强题目审核强度，提升题目质量。 预计于五月和六月各附送一场模拟赛。另外，除了奖">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-18T04:51:14.753Z">
-<meta property="article:modified_time" content="2025-04-18T12:15:40.068Z">
+<meta property="article:published_time" content="2025-04-24T01:33:28.028Z">
+<meta property="article:modified_time" content="2025-04-24T13:42:37.418Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -51,7 +51,7 @@
     
 
     <!-- title -->
-    <title>NOI2025模拟赛24</title>
+    <title>MXNOI13</title>
 
     <!-- async scripts -->
     <!-- Google Analytics -->
@@ -120,10 +120,8 @@
       <ul>
         <!--
         
-        <li><a class="icon" aria-label="上一篇" href="/notes/trick/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" aria-label="下一篇" href="/notes/%E6%A0%91%E5%BD%A2DP/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/notes/APIO/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         -->
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -140,17 +138,17 @@
     <div id="share" style="display: none">
       
 <!-- <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/contests/NOI24/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/contests/NOI24/&text=NOI2025模拟赛24"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/contests/NOI24/&is_video=false&description=NOI2025模拟赛24"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=NOI2025模拟赛24&body=Check out this article: http://idtwtei.github.io/contests/NOI24/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/contests/NOI24/&name=NOI2025模拟赛24&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/contests/NOI24/&t=NOI2025模拟赛24"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/contests/MXNOI13/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/contests/MXNOI13/&text=MXNOI13"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/contests/MXNOI13/&is_video=false&description=MXNOI13"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MXNOI13&body=Check out this article: http://idtwtei.github.io/contests/MXNOI13/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/contests/MXNOI13/&name=MXNOI13&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/contests/MXNOI13/&t=MXNOI13"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul> -->
 
 
@@ -158,7 +156,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AE%AD%E7%BB%83%E4%B8%AD%E5%BF%83"><span class="toc-number">1.</span> <span class="toc-text">T1.数据结构训练中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2-%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="toc-number">2.</span> <span class="toc-text">T2.机器人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3-%E6%88%91%E8%BF%98%E6%B2%A1%E6%9C%89%E6%83%B3%E5%A5%BD%E6%A0%87%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">T3.我还没有想好标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1-A"><span class="toc-number">1.</span> <span class="toc-text">T1.A</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2-B"><span class="toc-number">2.</span> <span class="toc-text">T2.B</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3-C"><span class="toc-number">3.</span> <span class="toc-text">T3.C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upd"><span class="toc-number">4.</span> <span class="toc-text">upd</span></a></li></ol>
       </div>
     
   </span>
@@ -171,7 +169,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        NOI2025模拟赛24
+        MXNOI13
     </h1>
 
 
@@ -183,7 +181,7 @@
       
     <div class="postdate">
       
-        <time datetime="2025-04-18T04:51:14.753Z" class="dt-published" itemprop="datePublished">2025-04-18</time>
+        <time datetime="2025-04-24T01:33:28.028Z" class="dt-published" itemprop="datePublished">2025-04-24</time>
         
       
     </div>
@@ -192,7 +190,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/contests/">contests</a>
+        <a class="category-link" href="/categories/notes/">notes</a>
     </div>
 
 
@@ -203,15 +201,13 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>100 + 100 + 60 = 260, 18/66.</p>
-<p>不是，怎么又是两道简单题 + 一道字符串。</p>
-<h2 id="T1-数据结构训练中心"><a href="#T1-数据结构训练中心" class="headerlink" title="T1.数据结构训练中心"></a>T1.数据结构训练中心</h2><p>Exchange Argument，用平衡树支持加点删点，答案为 $\max_{i} (\sum_{j=1}^{i} a_j + \sum_{j=i}^{n} b_j)$，证明就是考虑最后一个在 $a_i$ 后立马出现的 $b_i$。还可以动态 DP。</p>
-<h2 id="T2-机器人"><a href="#T2-机器人" class="headerlink" title="T2.机器人"></a>T2.机器人</h2><p>李超线段树板子。</p>
-<h2 id="T3-我还没有想好标题"><a href="#T3-我还没有想好标题" class="headerlink" title="T3.我还没有想好标题"></a>T3.我还没有想好标题</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1043G">CF1043G Speckled Band</a></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>zfc</li>
-<li>感觉还是写的有点慢的，多写写代码吧。</li>
-</ul>
+    <p>越来越水了。。。</p>
+<p>100 + 100 + 100 = 300, rk 1/?, 应该不少人 AK 吧（30 个。。。）。</p>
+<h2 id="T1-A"><a href="#T1-A" class="headerlink" title="T1.A"></a>T1.A</h2><p>树上随机游走板子。</p>
+<h2 id="T2-B"><a href="#T2-B" class="headerlink" title="T2.B"></a>T2.B</h2><p>线段树板子。直接矩乘加个火车头就过了（不卡常好评）。</p>
+<h2 id="T3-C"><a href="#T3-C" class="headerlink" title="T3.C"></a>T3.C</h2><p>这个不是众所周知题吗？</p>
+<h2 id="upd"><a href="#upd" class="headerlink" title="upd"></a>upd</h2><p>通知：近两场苍穹模拟赛题目难度过低，出题人已经被永久禁用。后续会进一步加强题目审核强度，提升题目质量。 预计于五月和六月各附送一场模拟赛。另外，除了奖金之外，参与近2场的选手每人领取2场比赛补偿，50元/场。感谢大家的积极反馈，你们的监督和建议是我们发展的最大动力！</p>
+<p>这么良心！其实上场还行吧，这场确实烂。</p>
 
   </div>
 </article>
@@ -243,24 +239,24 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AE%AD%E7%BB%83%E4%B8%AD%E5%BF%83"><span class="toc-number">1.</span> <span class="toc-text">T1.数据结构训练中心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2-%E6%9C%BA%E5%99%A8%E4%BA%BA"><span class="toc-number">2.</span> <span class="toc-text">T2.机器人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3-%E6%88%91%E8%BF%98%E6%B2%A1%E6%9C%89%E6%83%B3%E5%A5%BD%E6%A0%87%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">T3.我还没有想好标题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1-A"><span class="toc-number">1.</span> <span class="toc-text">T1.A</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2-B"><span class="toc-number">2.</span> <span class="toc-text">T2.B</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3-C"><span class="toc-number">3.</span> <span class="toc-text">T3.C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upd"><span class="toc-number">4.</span> <span class="toc-text">upd</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       
 <!-- <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/contests/NOI24/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/contests/NOI24/&text=NOI2025模拟赛24"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/contests/NOI24/&is_video=false&description=NOI2025模拟赛24"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=NOI2025模拟赛24&body=Check out this article: http://idtwtei.github.io/contests/NOI24/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/contests/NOI24/&title=NOI2025模拟赛24"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/contests/NOI24/&name=NOI2025模拟赛24&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/contests/NOI24/&t=NOI2025模拟赛24"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/contests/MXNOI13/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/contests/MXNOI13/&text=MXNOI13"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/contests/MXNOI13/&is_video=false&description=MXNOI13"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MXNOI13&body=Check out this article: http://idtwtei.github.io/contests/MXNOI13/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/contests/MXNOI13/&title=MXNOI13"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/contests/MXNOI13/&name=MXNOI13&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/contests/MXNOI13/&t=MXNOI13"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
 

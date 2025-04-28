@@ -57,8 +57,14 @@
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
 <meta property="article:published_time" content="2025-04-04T09:50:03.458Z">
-<meta property="article:modified_time" content="2025-04-18T14:40:59.445Z">
+<meta property="article:modified_time" content="2025-04-27T13:12:05.634Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
@@ -530,6 +536,53 @@ f_i = 1 + \sum_{j \in  T(i)} f_j</script><p>对于集合 $S$，找到右端点�
 <p>从小到大枚举 $i$，黑白的变化是 $O(1)$ 的，用线段树维护跳入区间是黑/白，跳出区间是黑/白的最少步数即可。</p>
 </li>
 </ul>
+</li>
+<li><p><span class="github-emoji"><span>🅰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f170.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​CF1801G A task for substrings</p>
+</li>
+<li><p>CF1408H Rainbow Triples</p>
+<p>答案上界为 $\frac{cnt_0}{2}$ 所以每个点左右两边只有一个是紧的，相当于二分图匹配，然后求最小割。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF1648E Air Reform</p>
+<p>先用 B 找补图最小生成树，然后建 kruskal 重构树。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF983D Arkady and Rectangle</p>
+<p>扫描线，建线段树，标记永久化，线段树每个节点开一个 set，将区间下放到 $O(\log n)$ 个节点的 set 上。</p>
+<p>图上某个点的颜色就是对应叶子节点到根的路径上时间最大的颜色。</p>
+<p>若没有删除，那么可以对每个节点维护其到其子树叶子节点路径最大值的最小值，那么可以在插入时简单判断是否被看到。</p>
+<p>考虑删除，每个颜色只需被看到一次，在这均摊一下，对每个节点维护子树中没有被看到的颜色的时间最大值，找到后暴力更新即可。</p>
+<p>时间复杂度 $O(n\log^2n)$。</p>
+</li>
+<li><p>CF264E Roadside Trees</p>
+<p>可以倒着 DP，这样砍树就暴力做就行了。</p>
+<p>暴力进行几轮，这样新加入的树就非常矮了。</p>
+<p>比新加入的树矮的树很少，还是暴力。</p>
+<p>对横纵坐标分别开一棵线段树即可。</p>
+</li>
+<li><p>CF1930G Prefix Max Set Counting</p>
+</li>
+<li><p>CF671E Organizing a Race</p>
+</li>
+<li><p>CF639F Bear and Chemistry</p>
+</li>
+<li><p>CF1609G A Stroll Around the Matrix</p>
+</li>
+<li><p>CF1859F Teleportation in Byteland</p>
+<p>方案是先到路径的一个点，然后到离这个点最近的 $1$，倍增维护，时间复杂度 $O(n\log n\log V)$/</p>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF773E Blog Post Rating</p>
+<p>平衡树二分？也可以求 $\min(s+n,a_1+n-1,a_2+n-2,…,a_n)$。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF1558F Strange Sort</p>
+<p>切片转化为 01 序列。每次的答案就是最右边的 $0$ 走到对应位置的时间，枚举最后一个没有和 $0$ 相撞的位置取 $\max$ 即可，线段树维护。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> CF533A Berland Miners</p>
+<p>wc，我怎么又，注意到最多改变一个点。</p>
+</li>
+<li><p>CF536E Tavas on the Path</p>
+<p>离线，从小到大枚举 $l$，树剖维护答案。</p>
+</li>
+<li><p>CF436F Banners</p>
+<p>分块。</p>
 </li>
 <li></li>
 </ol>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <!-- 引入字体 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic"> <!-- 中文 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold"> <!-- 代码 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Consolas&display=swap"> <!-- 英文和数字 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Microsoft+YaHei&display=swap"> <!-- 微软雅黑中文 -->
+
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="树状数组倍增，就是 $t_i &#x3D; \sum_{j&#x3D;i-lowbit(i)+1}^{i} a_j$，这与倍增每次增加的贡献是符合的，可以去一个 $\log$。冰火战士。  cdq 分治，每个位置要计算一个前缀的贡献，相当于对等腰直角三角形分治。 条状 cdq，比如位置 $i$ 要计算 $[i-d+1,i]$ 的贡献，可以先分为等腰直角三角形再 cdq 分治。实际意义就是序列按 $d$ 分块，然后正">
+<meta property="og:type" content="article">
+<meta property="og:title" content="trick 选记">
+<meta property="og:url" content="http://idtwtei.github.io/notes/trick/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="树状数组倍增，就是 $t_i &#x3D; \sum_{j&#x3D;i-lowbit(i)+1}^{i} a_j$，这与倍增每次增加的贡献是符合的，可以去一个 $\log$。冰火战士。  cdq 分治，每个位置要计算一个前缀的贡献，相当于对等腰直角三角形分治。 条状 cdq，比如位置 $i$ 要计算 $[i-d+1,i]$ 的贡献，可以先分为等腰直角三角形再 cdq 分治。实际意义就是序列按 $d$ 分块，然后正">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-19T11:48:25.255Z">
+<meta property="article:modified_time" content="2025-04-28T10:16:50.108Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+    
+
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+
+    <!-- title -->
+    <title>trick 选记</title>
+
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- persian styles -->
+    
+
+    <!-- rss -->
+    
+    
+
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        <li><a class="icon" aria-label="上一篇" href="/contests/MXNOI12/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/contests/NOI24/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/trick/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/trick/&text=trick 选记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/trick/&is_video=false&description=trick 选记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=trick 选记&body=Check out this article: http://idtwtei.github.io/notes/trick/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/trick/&name=trick 选记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/trick/&t=trick 选记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        trick 选记
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-04-19T11:48:25.255Z" class="dt-published" itemprop="datePublished">2025-04-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/notes/">notes</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <ul>
+<li><p>树状数组倍增，就是 $t_i = \sum_{j=i-lowbit(i)+1}^{i} a_j$，这与倍增每次增加的贡献是符合的，可以去一个 $\log$。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6619">冰火战士</a>。</p>
+</li>
+<li><p>cdq 分治，每个位置要计算一个前缀的贡献，相当于对等腰直角三角形分治。</p>
+<p>条状 cdq，比如位置 $i$ 要计算 $[i-d+1,i]$ 的贡献，可以先分为等腰直角三角形再 cdq 分治。实际意义就是序列按 $d$ 分块，然后正反各算一遍。好处是贡献不用支持减？还没见过例题。</p>
+</li>
+<li><p>想倒流时间~ <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1954">航空管制</a></p>
+</li>
+<li><p>动态维护贪心方案，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2048">超级钢琴</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6646">Shopping Plans</a></p>
+</li>
+<li><p>min-max 容斥</p>
+<script type="math/tex; mode=display">
+\texttt{Kthmax}(S) = \sum_{T \subseteq S} (-1)^{T-k} \binom{|T-1|}{k-1} \texttt{min}(T)</script></li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/patricky/p/linear-permutation-parity.html">线性判定排列逆序数的奇偶性</a>。</p>
+<ul>
+<li>排列两元素对换逆序对奇偶性改变。</li>
+<li>排列逆序对奇偶性同余 $n-#环$。</li>
+</ul>
+</li>
+<li><p>记树的入栈序 in，出栈序 out，若 $v$ 在 $u$ 到根的路径上，那么 $in_v \le in_u \wedge out_v \ge out_u$。 </p>
+</li>
+<li><p>无根树可以尝试以重心/中心为根。</p>
+</li>
+<li><p>点减边容斥。</p>
+</li>
+<li><p>树上路径相交</p>
+<ul>
+<li><p>点相交：一条路径的 LCA 在另一条路径上。</p>
+</li>
+<li><p>边相交：交链的长度为 $\frac{1}{2}|dis(u_1,u_2) + dis(v_1,v_2) - dis(u_1,v_2) - dis(u_2,v_1)|$，为零则不相交。</p>
+</li>
+</ul>
+</li>
+<li><p>树上连通块求交，始终保留一个子集使得子集的最小连通子树为该连通块，建虚树然后保留虚树上同时在两个连通块的点。</p>
+</li>
+<li><p>求序列两两或的最大值，枚举 $a_i$，从大到小枚举其补集的每一位，能选则选，判断能否选择可以高维后缀和。</p>
+</li>
+<li><p>三角形数点</p>
+<ul>
+<li>普通三角形可以差分为直角三角形，正方形可以差分为直角三角形（弦图）。</li>
+<li>三角形相似就是三维偏序 $O(n\log^2n)$，差分一下（每次选两条线）变成三次二维偏序 $O(n\log n)$。</li>
+<li>斜率不固定，若判断是否存在可以点化线然后李超线段树 $O(n\log^2n)$，数点则不弱于半平面数点。<ul>
+<li><a target="_blank" rel="noopener" href="https://uoj.ac/contest/56/problem/553">半平面数点</a>，点化线，分块每个块内有 $O(B^2)$ 个交点，离线然后模拟，时间复杂度 $O(\frac{n}{B}(B^2+m)\log B^2)$，$B=\sqrt{m}$ 时间复杂度 $O(n\sqrt{m}\log m)$，所以直角三角形数点可能不如暴力。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>删除 $[l,r]$ 的信息可能等于序列复制一遍后 $[r+1,l+n-1]$ 的信息。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6684">[BalticOI 2020] 小丑</a></p>
+</li>
+<li><p>$O(n)/O(1)$ RMQ：按 $\log n$ 分块对块建 ST 表，块内每个点用 int 记录单调栈的情况，查询时位移即可。</p>
+</li>
+<li><p>不带删双指针（baka’s trick）需要支持快速合并两个信息。</p>
+<p>维护中间指针 $mid=1$，类似回滚莫队，左指针不断向左走直到 $[l,mid]$ 不合法，并维护每一个位置到中间指针的信息，然后右指针向右走并且左指针向右走直到合法，当左指针超过 $mid$ 那么 $mid=r$ 并重新预处理左边的答案。由于每次左指针不会超过上一次的 $mid$，所以时间复杂度线性。</p>
+</li>
+<li><p>主席树是黄嘉泰发明的，简写 hjt，然后他是远古选手。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/6i7m4hr6">Super Piano’s Trick</a> 大概就是选点过程可以看成 dij，dij 需要满足边权为正，如果形成的图为外向树那么不需要记录 vis。然后每个状态可以是多个选择的集合，每次取出最优的将集合分开。</p>
+</li>
+<li><p>$a &lt; b &lt; c \to \min(a \oplus b,b \oplus c) &lt; a \oplus c$。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5952">[POI 2018] 水箱</a> 求最小生成树，记录每个连通块的答案，合并是简单的。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1365G">CF1365G Secure Password</a> $\binom{13}{6} &gt; 10^3$。不能存在包含关系。</p>
+</li>
+<li><p>重心在以根为顶点的重链上。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5540">[BalkanOI 2011] timeismoney</a></p>
+<p>看成点 $(\sum a,\sum b)$，然后只需要考虑凸包上的点，开始有 $\sum a,\sum b$ 最小的两个点 $A,B$，然后求出距 $AB$ 最远的点 $C$，递归下去。</p>
+<p>有结论 $n \times n$ 的平面上的整点形成的凸包最多有 $n^{\frac{2}{3}}$ 个点。</p>
+</li>
+<li><script type="math/tex; mode=display">
+\begin{aligned}
+(A)(B) \times (C)(D) &= (AC)(AD+BC)(BD) \\
+&= (AC)((A+B)(C+D) - AC - BD)(BD)
+\end{aligned}</script></li>
+<li><p>遇到 mex 的时候可以往二进制上想（不明）。</p>
+</li>
+<li><p>$\binom{n+m}{n}$ $p$ 的次幂为 $n+m$ 在 $p$ 进制下的进位次数。</p>
+</li>
+<li></li>
+</ul>
+<hr>
+<ul>
+<li>二进制分组。</li>
+<li>LGV 引理，矩阵树定理。</li>
+<li>全局平衡二叉树。</li>
+<li>减半报警器，二进制报警器。</li>
+<li>树分块。</li>
+<li>分散层叠。</li>
+<li>top tree</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.me/paste/0gpoxjrr">云剪贴板 0gpoxjrr</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.me/article/xz8gvlhk">一些（可能？）有用的东西 &amp; 思想和二级结论</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com/article/2buhtf2w">一些常见套路</a></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categories/contests/">比赛</a></li>
+        
+          <li><a href="/categories/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.</span> <span class="toc-text">参考</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/trick/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/trick/&text=trick 选记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/trick/&is_video=false&description=trick 选记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=trick 选记&body=Check out this article: http://idtwtei.github.io/notes/trick/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/trick/&title=trick 选记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/trick/&name=trick 选记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/trick/&t=trick 选记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
