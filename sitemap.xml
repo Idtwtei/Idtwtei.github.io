@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://idtwtei.github.io/notes/PA2024/</loc>
+    
+    <lastmod>2025-06-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://idtwtei.github.io/notes/Misc/</loc>
     
     <lastmod>2025-06-11</lastmod>
@@ -12,15 +21,6 @@
   
   <url>
     <loc>http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/</loc>
-    
-    <lastmod>2025-06-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://idtwtei.github.io/notes/PA2024/</loc>
     
     <lastmod>2025-06-11</lastmod>
     

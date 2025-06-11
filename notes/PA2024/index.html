@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6848e7d158cb8da5c842f14d.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6848e7e258cb8da5c842f159.png">
 <meta property="article:published_time" content="2025-06-09T07:08:43.534Z">
-<meta property="article:modified_time" content="2025-06-11T03:15:31.345Z">
+<meta property="article:modified_time" content="2025-06-11T03:41:52.399Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
@@ -324,7 +324,7 @@ f(a+1,b)+f(a,b+1) &= f(a+1,X)+f(X,b)+f(a,X)+f(X,b+1) \\
 </li>
 <li><p>可持久化线段树</p>
 <p>对每个点 $X$ 开一棵线段树维护 $s_i$ 到 $X$ 的最短路 $f(i,X)$。</p>
-<p>$f(<em>,X)$ 来自 $f(</em>,Z)$ 的一段前缀和 $f(*,Y)$ 的一段后缀，用可持久化线段树维护。</p>
+<p>$f(*,X)$ 来自 $f(*,Z)$ 的一段前缀和 $f(*,Y)$ 的一段后缀，用可持久化线段树维护。</p>
 <p>查询分界点可以线段树二分。</p>
 </li>
 </ul>
@@ -332,9 +332,9 @@ f(a+1,b)+f(a,b+1) &= f(a+1,X)+f(X,b)+f(a,X)+f(X,b+1) \\
 <p>考虑从下往上从左往右依次填权值，初始权值如下，这时满足了 $f(*,n)$ 的限制。</p>
 <p><img src="https://pic1.imgdb.cn/item/6848e7d158cb8da5c842f14d.png" alt=""></p>
 <p>有结论，对于当前枚举到的边，在考虑了所有填过的边和 $f$ 的限制后，边权取最大值最优。</p>
-<p>如下图，枚举到黄色的边，那么该边受到的限制来自 $f(<em>,t_4)$ 和 $B_i$。考虑求出 $f(</em>,C_1)$，那么黄色边的边权 $W = f(s_4,C_1) - f(s_4,A_2)$。</p>
+<p>如下图，枚举到黄色的边，那么该边受到的限制来自 $f(*,t_4)$ 和 $B_i$。考虑求出 $f(*,C_1)$，那么黄色边的边权 $W = f(s_4,C_1) - f(s_4,A_2)$。</p>
 <p><img src="https://pic1.imgdb.cn/item/6848e7e258cb8da5c842f159.png" alt=""></p>
-<p>直接考虑 $f(<em>,C_1)$ 并不方便，将 $f(</em>,C_1)$ 差分得到 $g(*,C_1)$。</p>
+<p>直接考虑 $f(*,C_1)$ 并不方便，将 $f(*,C_1)$ 差分得到 $g(*,C_1)$。</p>
 <ul>
 <li>来自 $t_4$ 的限制：$g(i,C_1) \le g(i,t_4)$，证明类似四边形不等式的证明。</li>
 <li>来自 $B_i$ 的限制：记 $p_{B_i}$ 为 $B_i$ 的分界点，对于 $a \le p_{B_i}$ 有 $g(a,C_1) = g(a,B_i)$。</li>
