@@ -13,15 +13,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[WC2025] 猫粮 简单分析  [WC2025] 士兵 线段树优化 DP，结论是 $\sum \max(0,a_i-a_{i-1})$，或者直接思考。  CF1158F Density of subarrays 一个 $O(\frac{n^3}{c})$ 的普通 DP，一个 $O(\frac{n^22^c}{c})$ 的状压 DP，拼一下得到 $O(\frac{n^3}{\log n})$。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="loser">
-<meta property="og:url" content="http://idtwtei.github.io/others/loser/index.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="构造lca">
+<meta property="og:url" content="http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="[WC2025] 猫粮 简单分析  [WC2025] 士兵 线段树优化 DP，结论是 $\sum \max(0,a_i-a_{i-1})$，或者直接思考。  CF1158F Density of subarrays 一个 $O(\frac{n^3}{c})$ 的普通 DP，一个 $O(\frac{n^22^c}{c})$ 的状压 DP，拼一下得到 $O(\frac{n^3}{\log n})$。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-22T12:49:51.342Z">
-<meta property="article:modified_time" content="2025-05-13T06:37:43.070Z">
+<meta property="article:published_time" content="2025-06-11T03:23:46.567Z">
+<meta property="article:modified_time" content="2025-06-11T03:24:47.693Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -51,7 +49,7 @@
     
 
     <!-- title -->
-    <title>loser</title><meta name="robots" content="noindex">
+    <title>构造lca</title>
 
     <!-- async scripts -->
     <!-- Google Analytics -->
@@ -121,6 +119,8 @@
         <!--
         
         
+        <li><a class="icon" aria-label="下一篇" href="/notes/PA2024/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
         -->
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
@@ -136,17 +136,17 @@
     <div id="share" style="display: none">
       
 <!-- <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/others/loser/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/others/loser/&text=loser"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/others/loser/&is_video=false&description=loser"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=loser&body=Check out this article: http://idtwtei.github.io/others/loser/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/others/loser/&name=loser&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/others/loser/&t=loser"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&text=构造lca"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&is_video=false&description=构造lca"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=构造lca&body=Check out this article: http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&name=构造lca&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&t=构造lca"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul> -->
 
 
@@ -163,7 +163,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        loser
+        构造lca
     </h1>
 
 
@@ -175,7 +175,7 @@
       
     <div class="postdate">
       
-        <time datetime="2025-04-22T12:49:51.342Z" class="dt-published" itemprop="datePublished">2025-04-22</time>
+        <time datetime="2025-06-11T03:23:46.567Z" class="dt-published" itemprop="datePublished">2025-06-11</time>
         
       
     </div>
@@ -184,7 +184,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/others/">others</a>
+        <a class="category-link" href="/categories/notes/">notes</a>
     </div>
 
 
@@ -195,19 +195,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <ul>
-<li><p>[WC2025] 猫粮</p>
-<p>简单分析</p>
-</li>
-<li><p>[WC2025] 士兵</p>
-<p>线段树优化 DP，结论是 $\sum \max(0,a_i-a_{i-1})$，或者直接思考。</p>
-</li>
-<li><p>CF1158F Density of subarrays</p>
-<p>一个 $O(\frac{n^3}{c})$ 的普通 DP，一个 $O(\frac{n^22^c}{c})$ 的状压 DP，拼一下得到 $O(\frac{n^3}{\log n})$。</p>
-</li>
-<li></li>
-</ul>
-<!-- flag of hidden posts -->
+    
   </div>
 </article>
 
@@ -241,17 +229,17 @@
     <div id="share-footer" style="display: none">
       
 <!-- <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/others/loser/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/others/loser/&text=loser"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/others/loser/&is_video=false&description=loser"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=loser&body=Check out this article: http://idtwtei.github.io/others/loser/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/others/loser/&title=loser"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/others/loser/&name=loser&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/others/loser/&t=loser"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&text=构造lca"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&is_video=false&description=构造lca"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=构造lca&body=Check out this article: http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&title=构造lca"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&name=构造lca&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/&t=构造lca"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
 

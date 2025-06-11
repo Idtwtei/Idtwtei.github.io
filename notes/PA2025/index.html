@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <!-- 引入字体 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic"> <!-- 中文 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold"> <!-- 代码 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Consolas&display=swap"> <!-- 英文和数字 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Microsoft+YaHei&display=swap"> <!-- 微软雅黑中文 -->
+
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[PA 2025] 水族馆 &#x2F; Akwarium注意到 $1 \le a,b,h \le n$，然后用桶记录 $a^2+b^2&#x3D;x$ 的 $(a,b)$ 数量，枚举 $\sqrt{a^2+b^2+h^2}$ 和 $h$ 计算答案即可，时间复杂度 $O(n^2)$。 [PA 2025] 显像管 &#x2F; Migawka然后我们会发现它是蛇形变换的，每次到最后一列时都会开始逆向折回，而第一列出现数字时又会成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PA2025">
+<meta property="og:url" content="http://idtwtei.github.io/notes/PA2025/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="[PA 2025] 水族馆 &#x2F; Akwarium注意到 $1 \le a,b,h \le n$，然后用桶记录 $a^2+b^2&#x3D;x$ 的 $(a,b)$ 数量，枚举 $\sqrt{a^2+b^2+h^2}$ 和 $h$ 计算答案即可，时间复杂度 $O(n^2)$。 [PA 2025] 显像管 &#x2F; Migawka然后我们会发现它是蛇形变换的，每次到最后一列时都会开始逆向折回，而第一列出现数字时又会成">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="article:published_time" content="2025-06-05T11:40:12.125Z">
+<meta property="article:modified_time" content="2025-06-10T02:54:48.836Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+    
+
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+
+    <!-- title -->
+    <title>PA2025</title>
+
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- persian styles -->
+    
+
+    <!-- rss -->
+    
+    
+
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        <li><a class="icon" aria-label="上一篇" href="/notes/PA2024/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/notes/Misc/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/PA2025/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/PA2025/&text=PA2025"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/PA2025/&is_video=false&description=PA2025"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PA2025&body=Check out this article: http://idtwtei.github.io/notes/PA2025/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/PA2025/&name=PA2025&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/PA2025/&t=PA2025"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PA-2025-%E6%B0%B4%E6%97%8F%E9%A6%86-Akwarium"><span class="toc-number">1.</span> <span class="toc-text">[PA 2025] 水族馆 &#x2F; Akwarium</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PA-2025-%E6%98%BE%E5%83%8F%E7%AE%A1-Migawka"><span class="toc-number">2.</span> <span class="toc-text">[PA 2025] 显像管 &#x2F; Migawka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PA-2025-%E4%B9%98%E6%95%B0-Mnozenie-cyfr"><span class="toc-number">3.</span> <span class="toc-text">[PA 2025] 乘数 &#x2F; Mnożenie cyfr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#snowflake-PA-2025-%E9%87%8D%E9%87%91%E5%B1%9E-Heavy-Metal"><span class="toc-number">4.</span> <span class="toc-text">❄[PA 2025] 重金属 &#x2F; Heavy Metal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PA-2025-%E4%B8%89%E4%BA%BA%E8%B5%9B-Turniej-trojek"><span class="toc-number">5.</span> <span class="toc-text">[PA 2025] 三人赛 &#x2F; Turniej trójek</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#snowflake-PA-2025-%E7%A0%96%E5%9D%97%E6%94%B6%E9%9B%86-Zbieranie-klockow"><span class="toc-number">6.</span> <span class="toc-text">❄[PA 2025] 砖块收集 &#x2F; Zbieranie klocków</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        PA2025
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-06-05T11:40:12.125Z" class="dt-published" itemprop="datePublished">2025-06-05</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/notes/">notes</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="PA-2025-水族馆-Akwarium"><a href="#PA-2025-水族馆-Akwarium" class="headerlink" title="[PA 2025] 水族馆 / Akwarium"></a>[PA 2025] 水族馆 / Akwarium</h2><p>注意到 $1 \le a,b,h \le n$，然后用桶记录 $a^2+b^2=x$ 的 $(a,b)$ 数量，枚举 $\sqrt{a^2+b^2+h^2}$ 和 $h$ 计算答案即可，时间复杂度 $O(n^2)$。</p>
+<h2 id="PA-2025-显像管-Migawka"><a href="#PA-2025-显像管-Migawka" class="headerlink" title="[PA 2025] 显像管 / Migawka"></a>[PA 2025] 显像管 / Migawka</h2><p>然后我们会发现它是蛇形变换的，每次到最后一列时都会开始逆向折回，而第一列出现数字时又会成为下一轮的启动点。</p>
+<p>然后我们会发现它是蛇形变换的，每次到最后一列时都会开始逆向折回，而第一列出现数字时又会成为下一轮的启动点。</p>
+<p>然后我们会发现它是蛇形变换的，每次到最后一列时都会开始逆向折回，而第一列出现数字时又会成为下一轮的启动点。</p>
+<h2 id="PA-2025-乘数-Mnozenie-cyfr"><a href="#PA-2025-乘数-Mnozenie-cyfr" class="headerlink" title="[PA 2025] 乘数 / Mnożenie cyfr"></a>[PA 2025] 乘数 / Mnożenie cyfr</h2><p>进行一次操作后剩下的数只有 $\binom{17}{8}$ 种左右，除去非零的再进行数位 DP 即可。</p>
+<h2 id="snowflake-PA-2025-重金属-Heavy-Metal"><a href="#snowflake-PA-2025-重金属-Heavy-Metal" class="headerlink" title=":snowflake:[PA 2025] 重金属 / Heavy Metal"></a><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>[PA 2025] 重金属 / Heavy Metal</h2><p>meet in the middle！</p>
+<p>设 $f_{i,j}$ 为是否有 $1 \to i$ 的路径满足乘积为 $j$，按 $j$ 从小到大 DP，时间复杂度 $O(mV)$。</p>
+<p>设 $g_{i,j}$ 为 $i \to n$ 乘积为 $j$ 的路径能接受的最大乘积是多少，dij 求出，合并双指针即可。</p>
+<h2 id="PA-2025-三人赛-Turniej-trojek"><a href="#PA-2025-三人赛-Turniej-trojek" class="headerlink" title="[PA 2025] 三人赛 / Turniej trójek"></a>[PA 2025] 三人赛 / Turniej trójek</h2><p>二分完直接贪就对了，因为在前面放人来满足后面的不如直接放后面。</p>
+<h2 id="snowflake-PA-2025-砖块收集-Zbieranie-klockow"><a href="#snowflake-PA-2025-砖块收集-Zbieranie-klockow" class="headerlink" title=":snowflake:[PA 2025] 砖块收集 / Zbieranie klocków"></a><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>[PA 2025] 砖块收集 / Zbieranie klocków</h2><p>发现一个点最终被保留当且仅当其形成一个 $2 \times 2$ 的方块或在连接两个 $2 \times 2$ 方块的阶梯状路径上。</p>
+<p>记颜色 $0,1,2$ 表示可以删、上下左右各至少存在一个、形成 $2 \times 2$ 的方块。发现阶梯状路径只有平行主对角线和副对角线两种情况，且一个点不能同时在两种对角线上，那么被保留的情况就是 $211…112$，线段树维护即可（这里通过标颜色使得只用考虑一条线，大大简化代码量）。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categories/contests/">比赛</a></li>
+        
+          <li><a href="/categories/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#PA-2025-%E6%B0%B4%E6%97%8F%E9%A6%86-Akwarium"><span class="toc-number">1.</span> <span class="toc-text">[PA 2025] 水族馆 &#x2F; Akwarium</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PA-2025-%E6%98%BE%E5%83%8F%E7%AE%A1-Migawka"><span class="toc-number">2.</span> <span class="toc-text">[PA 2025] 显像管 &#x2F; Migawka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PA-2025-%E4%B9%98%E6%95%B0-Mnozenie-cyfr"><span class="toc-number">3.</span> <span class="toc-text">[PA 2025] 乘数 &#x2F; Mnożenie cyfr</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#snowflake-PA-2025-%E9%87%8D%E9%87%91%E5%B1%9E-Heavy-Metal"><span class="toc-number">4.</span> <span class="toc-text">❄[PA 2025] 重金属 &#x2F; Heavy Metal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PA-2025-%E4%B8%89%E4%BA%BA%E8%B5%9B-Turniej-trojek"><span class="toc-number">5.</span> <span class="toc-text">[PA 2025] 三人赛 &#x2F; Turniej trójek</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#snowflake-PA-2025-%E7%A0%96%E5%9D%97%E6%94%B6%E9%9B%86-Zbieranie-klockow"><span class="toc-number">6.</span> <span class="toc-text">❄[PA 2025] 砖块收集 &#x2F; Zbieranie klocków</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/PA2025/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/PA2025/&text=PA2025"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/PA2025/&is_video=false&description=PA2025"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PA2025&body=Check out this article: http://idtwtei.github.io/notes/PA2025/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/PA2025/&title=PA2025"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/PA2025/&name=PA2025&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/PA2025/&t=PA2025"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

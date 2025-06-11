@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <!-- 引入字体 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic"> <!-- 中文 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold"> <!-- 代码 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Consolas&display=swap"> <!-- 英文和数字 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Microsoft+YaHei&display=swap"> <!-- 微软雅黑中文 -->
+
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Kto wygrał? 就是按 $(\sum,cnt_{10},cnt_{9},…,cnt_{0})$ 比较。  Liderzy 之根每种颜色的数量有关，每次选一个最多的尽可能将少的抵消即可。实现可以维护两个指针做到 $O(n)$。 还可以维护剩余数的个数，每次减去 $2 \times cnt-1$，因为只会选择少的数，所以多的数的个数不会受影响。 证明：每个集合的绝对众数一定是原本个数就最多的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PA2024">
+<meta property="og:url" content="http://idtwtei.github.io/notes/PA2024/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="Kto wygrał? 就是按 $(\sum,cnt_{10},cnt_{9},…,cnt_{0})$ 比较。  Liderzy 之根每种颜色的数量有关，每次选一个最多的尽可能将少的抵消即可。实现可以维护两个指针做到 $O(n)$。 还可以维护剩余数的个数，每次减去 $2 \times cnt-1$，因为只会选择少的数，所以多的数的个数不会受影响。 证明：每个集合的绝对众数一定是原本个数就最多的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f36c.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f36c.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f494.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6848e7b058cb8da5c842f0e7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6848e7c358cb8da5c842f142.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6848e7eb58cb8da5c842f15d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6848e7d158cb8da5c842f14d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6848e7e258cb8da5c842f159.png">
+<meta property="article:published_time" content="2025-06-09T07:08:43.534Z">
+<meta property="article:modified_time" content="2025-06-11T03:15:31.345Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+    
+
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+
+    <!-- title -->
+    <title>PA2024</title>
+
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- persian styles -->
+    
+
+    <!-- rss -->
+    
+    
+
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        <li><a class="icon" aria-label="上一篇" href="/notes/%E6%9E%84%E9%80%A0lca/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/notes/PA2025/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/PA2024/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/PA2024/&text=PA2024"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/PA2024/&is_video=false&description=PA2024"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PA2024&body=Check out this article: http://idtwtei.github.io/notes/PA2024/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/PA2024/&name=PA2024&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/PA2024/&t=PA2024"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        PA2024
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-06-09T07:08:43.534Z" class="dt-published" itemprop="datePublished">2025-06-09</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/notes/">notes</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <ul>
+<li><p>Kto wygrał?</p>
+<p>就是按 $(\sum,cnt_{10},cnt_{9},…,cnt_{0})$ 比较。</p>
+</li>
+<li><p>Liderzy</p>
+<p>之根每种颜色的数量有关，每次选一个最多的尽可能将少的抵消即可。实现可以维护两个指针做到 $O(n)$。</p>
+<p>还可以维护剩余数的个数，每次减去 $2 \times cnt-1$，因为只会选择少的数，所以多的数的个数不会受影响。</p>
+<p>证明：每个集合的绝对众数一定是原本个数就最多的，所以是一段后缀。</p>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> Modernizacja Bajtocji</p>
+<p>操作一涉及两个元素，启示我们进行连边。先不考虑操作二，发现连通块只会是树或基环树，树就是有一个没有，基环树就是全都有，并查集维护即可。</p>
+<p>加上操作二，发现树和基环树删掉一个点后都不会改变剩下的点的状态，那么建虚点即可。</p>
+</li>
+<li><p><span class="github-emoji"><span>🍬</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f36c.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> Znaczki pocztowe</p>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> Alchemik Bajtazar</p>
+<p>操作是可逆的，那么可以构造一个中间状态，只需考虑如何从中间状态达到某个状态（次数限制减半）。</p>
+<p>菊花图是极好的，可以先将需要加的边加上。再考虑删边，对于加边 $(x,y)$，可以将 $(1,x)(1,y)$ 连起来，最后得到一张新图，需要将新图上的某些点删点，满足删某个点时该点存在邻点，按 dfs 序倒序删除即可。</p>
+<p>操作次数大概为 $2n+2m$。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> Grupa permutacji</p>
+<p>不会群论。</p>
+<p>题中置换复合形成的结果可以看成置换群的子群，有个很好的性质，对于所有能得到得排列第 $i$ 位上的值，第 $i$ 位为该值得方案数是相同的，对于多元组也成立。</p>
+<blockquote>
+<p><strong>证明</strong> 大概就是存在逆元，然后形成双射。</p>
+</blockquote>
+<p>然后我们可以将所有给定的置换环的二元组 $(i,j),(p_i,p_j)$ 连边。对每个连通块，记 $a,b$ 分别为 $i<j,i>j$ 的 $(i,j)$ 数量，那么对答案的贡献为 $\frac{ab}{a+b}$。得到 $O(n^3)$ 做法。</j,i></p>
+<p>由于只需关注连通性，所以可以随机找一个子集的复合连边，随机 $O(\log n)$ 就可以了，时间复杂度 $O(n^2\log n)$。</p>
+<blockquote>
+<p> <a target="_blank" rel="noopener" href="https://loj.ac/p/177">生成子群阶数</a> 计算生成子群元素个数。</p>
+<p>可以先用上述方法计算 $p_1$ 的取值个数，然后计算 $p_1=1$ 的元素个数。</p>
+<p>发现每个环都对应一个 $p_1=1$ 的置换，于是对于边 $u,v$ 加入 $1 \leadsto u \circ u \to v \circ v \leadsto 1$，用上述方法将生成元缩减到 $O(n)$ 即可。</p>
+</blockquote>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Obrazy</p>
+<p>由于满足整除限制，所以先用最小的判是否合法，合法后贪心用最大的显然是对的，直接做是 $O(n^2)$ 的，因为两块某边的长度为 $d_i$ 的倍数，只会递归一边。</p>
+<p>可以做到 $O(n)$，就是从小到大用正方形，每次占据的都是一个矩形。</p>
+</li>
+<li><p><span class="github-emoji"><span>🍬</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f36c.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Żelki</p>
+<p>注意到一颗糖豆能买多次。然后跑同余最短路就行了。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Splatanie ciągów</p>
+<p>先考虑都是单调递增区间的最小稳定性，设 $|A| \ge |B|$，发现可以通过调整使得 $B$ 中元素不会出现在最长得递增区间中，那么相当于将 $|A|$ 分成 $|B|+1$ 份。</p>
+<p>对于一般情况，记 $A$ 中极长单调区间的长度为 $a_i$，相当于将所有 $a_i$ 分成总共 $|B|+1$ 份（$B$ 同理，就是反过来）。</p>
+<p>考虑枚举 $x$ 做，发现两种限制至少满足一个，所以可以分别统计，加起来再减总数。然后发现有用的 $a_i$ 需要满足 $a_i-2 \ge x$，于是只有 $O(\frac{n}{x})$ 段，枚举再用数据结构优化即可。时间复杂度 $O(n\log^2n)$。</p>
+</li>
+<li><p>Łamigłówka 3</p>
+<p>就是每次找到可以最后一个涂的就行吧。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Desant 3</p>
+<p>Nep？！算搜索吗，感觉。</p>
+<p>有 $O(2^nm)$ 暴力，然后特殊之处在于答案对 $2$ 取模。</p>
+<p>感觉很难想啊，每个位置标 $1,0,-1$ 表示准备好了，没准备好，不确定。对于操作 $(x,y)$</p>
+<ul>
+<li>$a_x=a_y=-1$，$x,y$ 选择 $(0,1)/(1,0)$ 会得到同样的结果，就抵消了，所以选择 $(0,0)/(1,1)$ 递归下去。</li>
+<li>$a_x,a_y$ 都确定，直接模拟。</li>
+<li>$a_x,a_y$ 有一个不确定，发现根据确定的位置和 $0/1$，操作后只会进行交换或不变。</li>
+</ul>
+<p>得到最终序列后 $O(n^2)$ 统计答案即可。</p>
+<p>每次递归会删两个 $-1$，所以时间复杂度 $O(2^{\frac{n}{2}}(m+n^2))$。</p>
+</li>
+<li><p><span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Kolorowy las 需要 LCT，我不会啊。</p>
+</li>
+<li><p><span class="github-emoji"><span>💔</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f494.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Bardzo Ulubiony Ciąg</p>
+<p>发现求前缀和后相当于六个点的和，可以做到 $O(n^3)$，实现就是枚举中间的区间的左端点和左边的区间，然后枚举右端点和右边的区间。有一些细节。</p>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Żarówki</p>
+<p>不存在奇环就黑白染色，操作变为交换。存在感觉方案数是 $2^{n-1}$ 因为异或和不变。确实是，可以先将奇环上的一条边删掉，然后其他边可以使得颜色随意交换，删掉的边可以控制 $0,1$ 的数量。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Kraniki</p>
+<p>可以简单 $O(\frac{n^2}{w})$。然后发现能到达某个区间的区间是一段阶梯状的，高度最高的就是直接支配点，倍增维护。</p>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Dzielniki</p>
+<p>这集我看过。可以先变成随机数，然后二进制按位确定，不确定就递归下去。记忆化搜索就过了。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Monety</p>
+<p>不知道怎么想到的，将极长同色后缀的元素的权值设为 $2^{m-1}$，其他元素的权值为后面元素权值的 $\frac{1}{2}$，当且仅当两个颜色的权值和相同时后手必胜，否则权值大的始终胜利。</p>
+<p>然后数位 DP，由于是要确定一段后缀，所以再记录 $\ge 2^{m-2}$ 的数的和。 </p>
+<p>证明就是考虑权值最小的点。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Autostrada 2</p>
+<p>可以建出下图</p>
+<p><img src="https://pic1.imgdb.cn/item/6848e7b058cb8da5c842f0e7.png" alt=""></p>
+<p>$f(i,j)$ 即为图上 $s_i$ 到 $t_j$ 的最短路。</p>
+<p>先考虑如何求出 $f$。$f$ 是满足四边形不等式的，即 $f(a+1,b)+f(a,b+1) \ge f(a,b)+f(a+1,b+1)$。</p>
+<blockquote>
+<p><strong>证明</strong></p>
+<p>$a+1 \leadsto b$ 与 $a \leadsto b+1$ 必然存在交点，取某个交点 $X$，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(a+1,b)+f(a,b+1) &= f(a+1,X)+f(X,b)+f(a,X)+f(X,b+1) \\
+&\ge f(a,b)+f(a+1,b+1)
+\end{aligned}</script><p><img src="https://pic1.imgdb.cn/item/6848e7c358cb8da5c842f142.png" alt=""></p>
+</blockquote>
+<p>通过四边形不等式可以得到，对于下图的点 $X$，存在一个分界点 $p_X$ 使得 $a \le p_X$ 的 $s_a$ 到 $X$ 的路径经过 $Z$，$a &gt; p_X$ 的 $s_a$ 到 $X$ 的最短路径路径经过 $Y$。</p>
+<p><img src="https://pic1.imgdb.cn/item/6848e7eb58cb8da5c842f15d.png" alt=""></p>
+<p>有三种方法可以求得 $f$</p>
+<ul>
+<li><p>分治。显然。</p>
+</li>
+<li><p>LCT。好像是动态维护最短路树，很可惜我并不会 LCT。</p>
+</li>
+<li><p>可持久化线段树</p>
+<p>对每个点 $X$ 开一棵线段树维护 $s_i$ 到 $X$ 的最短路 $f(i,X)$。</p>
+<p>$f(<em>,X)$ 来自 $f(</em>,Z)$ 的一段前缀和 $f(*,Y)$ 的一段后缀，用可持久化线段树维护。</p>
+<p>查询分界点可以线段树二分。</p>
+</li>
+</ul>
+<p>如果某一列上的路径权值均为 $0$，那么可以将该列整体删除。考虑先重构边权使其在满足所有 $f$ 的条件下产生尽可能多的全 $0$ 列。</p>
+<p>考虑从下往上从左往右依次填权值，初始权值如下，这时满足了 $f(*,n)$ 的限制。</p>
+<p><img src="https://pic1.imgdb.cn/item/6848e7d158cb8da5c842f14d.png" alt=""></p>
+<p>有结论，对于当前枚举到的边，在考虑了所有填过的边和 $f$ 的限制后，边权取最大值最优。</p>
+<p>如下图，枚举到黄色的边，那么该边受到的限制来自 $f(<em>,t_4)$ 和 $B_i$。考虑求出 $f(</em>,C_1)$，那么黄色边的边权 $W = f(s_4,C_1) - f(s_4,A_2)$。</p>
+<p><img src="https://pic1.imgdb.cn/item/6848e7e258cb8da5c842f159.png" alt=""></p>
+<p>直接考虑 $f(<em>,C_1)$ 并不方便，将 $f(</em>,C_1)$ 差分得到 $g(*,C_1)$。</p>
+<ul>
+<li>来自 $t_4$ 的限制：$g(i,C_1) \le g(i,t_4)$，证明类似四边形不等式的证明。</li>
+<li>来自 $B_i$ 的限制：记 $p_{B_i}$ 为 $B_i$ 的分界点，对于 $a \le p_{B_i}$ 有 $g(a,C_1) = g(a,B_i)$。</li>
+</ul>
+<p>可以用可持久化线段树维护 $g$。</p>
+<p>需要找到分界点，找到最小的 $i$ 满足 $f(i,A_2)+W=f(i,C_1)$ 的 $i$ 即可，可以线段树二分实现。</p>
+<ul>
+<li><p>LeafSeek orz</p>
+</li>
+<li><p>LCT 也是可以做的，好像是延续官解 II 做法。</p>
+</li>
+<li><p>类似题目：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9109">[PA 2020] Tekstówka</a>。</p>
+</li>
+<li>图片来自官解。</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categories/contests/">比赛</a></li>
+        
+          <li><a href="/categories/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/PA2024/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/PA2024/&text=PA2024"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/PA2024/&is_video=false&description=PA2024"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=PA2024&body=Check out this article: http://idtwtei.github.io/notes/PA2024/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/PA2024/&title=PA2024"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/PA2024/&name=PA2024&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/PA2024/&t=PA2024"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

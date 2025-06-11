@@ -2,6 +2,60 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://idtwtei.github.io/notes/%E6%9E%84%E9%80%A0lca/</loc>
+    
+    <lastmod>2025-06-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.io/notes/PA2024/</loc>
+    
+    <lastmod>2025-06-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.io/notes/PA2025/</loc>
+    
+    <lastmod>2025-06-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.io/notes/NOI/</loc>
+    
+    <lastmod>2025-06-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.io/notes/Misc/</loc>
+    
+    <lastmod>2025-06-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://idtwtei.github.io/notes/APIO2025/</loc>
+    
+    <lastmod>2025-05-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://idtwtei.github.io/contests/MXNOI13/</loc>
     
     <lastmod>2025-04-28</lastmod>
@@ -326,15 +380,6 @@
   </url>
   
   <url>
-    <loc>http://idtwtei.github.io/notes/FWT/</loc>
-    
-    <lastmod>2025-02-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://idtwtei.github.io/notes/exKMP/</loc>
     
     <lastmod>2025-02-17</lastmod>
@@ -508,7 +553,7 @@
 
   <url>
     <loc>http://idtwtei.github.io/</loc>
-    <lastmod>2025-04-28</lastmod>
+    <lastmod>2025-06-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -518,21 +563,21 @@
   
   <url>
     <loc>http://idtwtei.github.io/categories/notes/</loc>
-    <lastmod>2025-04-28</lastmod>
+    <lastmod>2025-06-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://idtwtei.github.io/categories/solutions/</loc>
-    <lastmod>2025-04-28</lastmod>
+    <lastmod>2025-06-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://idtwtei.github.io/categories/contests/</loc>
-    <lastmod>2025-04-28</lastmod>
+    <lastmod>2025-06-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

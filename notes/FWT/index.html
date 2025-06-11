@@ -13,15 +13,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="概述 (x \oplus y) \&amp; z &#x3D; (x \&amp; z) \oplus (y \&amp; z) \frac{1}{2^{n}} \sum_{T &lt; 2^n} (-1)^{|S \&amp; T|} &#x3D; [S&#x3D;0]得到  \begin{aligned} h_{S} &amp;&#x3D; \sum_{L \oplus R &#x3D; S} f_{L}g_{R} \\ &amp;&#x3D; \sum [L \oplus R \oplus S &#x3D; 0]">
+    <meta name="description" content="or&#x2F;and&#x2F;xor 卷积对于序列 $A_{0,1,…,2^n-1},B_{0,1,…,2^n-1}$ ，其 or&#x2F;and&#x2F;xor 卷积 $C &#x3D; A * B$ 定义为  C_{x} &#x3D; \sum_{i \oplus j&#x3D;x} A_i B_j其中 $\oplus$ 分别为 or&#x2F;and&#x2F;xor 三种运算。 or&#x2F;and 也可以看成两个集合的并&#x2F;交，xor 是集合的对称差。 记多项式 $F(x) &#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="集合幂级数">
 <meta property="og:url" content="http://idtwtei.github.io/notes/FWT/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="概述 (x \oplus y) \&amp; z &#x3D; (x \&amp; z) \oplus (y \&amp; z) \frac{1}{2^{n}} \sum_{T &lt; 2^n} (-1)^{|S \&amp; T|} &#x3D; [S&#x3D;0]得到  \begin{aligned} h_{S} &amp;&#x3D; \sum_{L \oplus R &#x3D; S} f_{L}g_{R} \\ &amp;&#x3D; \sum [L \oplus R \oplus S &#x3D; 0]">
+<meta property="og:description" content="or&#x2F;and&#x2F;xor 卷积对于序列 $A_{0,1,…,2^n-1},B_{0,1,…,2^n-1}$ ，其 or&#x2F;and&#x2F;xor 卷积 $C &#x3D; A * B$ 定义为  C_{x} &#x3D; \sum_{i \oplus j&#x3D;x} A_i B_j其中 $\oplus$ 分别为 or&#x2F;and&#x2F;xor 三种运算。 or&#x2F;and 也可以看成两个集合的并&#x2F;交，xor 是集合的对称差。 记多项式 $F(x) &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-03T09:48:08.826Z">
-<meta property="article:modified_time" content="2025-02-17T15:52:37.037Z">
+<meta property="article:modified_time" content="2025-05-13T12:36:01.440Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -51,7 +51,7 @@
     
 
     <!-- title -->
-    <title>集合幂级数</title>
+    <title>集合幂级数</title><meta name="robots" content="noindex">
 
     <!-- async scripts -->
     <!-- Google Analytics -->
@@ -120,10 +120,6 @@
       <ul>
         <!--
         
-        <li><a class="icon" aria-label="上一篇" href="/solutions/P3175/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="下一篇" href="/solutions/P6631/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         -->
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -158,7 +154,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nim"><span class="toc-number">2.</span> <span class="toc-text">Nim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E9%80%9A%E7%94%9F%E6%88%90%E5%AD%90%E5%9B%BE%E8%AE%A1%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">连通生成子图计数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9F%BA"><span class="toc-number">4.</span> <span class="toc-text">线性基</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#or-and-xor-%E5%8D%B7%E7%A7%AF"><span class="toc-number">1.</span> <span class="toc-text">or&#x2F;and&#x2F;xor 卷积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast-Mobius-Transform"><span class="toc-number">2.</span> <span class="toc-text">Fast Mobius Transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast-Walsh-Transform"><span class="toc-number">3.</span> <span class="toc-text">Fast Walsh Transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E9%9B%86%E5%8D%B7%E7%A7%AF"><span class="toc-number">5.</span> <span class="toc-text">子集卷积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">6.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nim"><span class="toc-number">7.</span> <span class="toc-text">Nim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E9%80%9A%E7%94%9F%E6%88%90%E5%AD%90%E5%9B%BE%E8%AE%A1%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">连通生成子图计数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9F%BA"><span class="toc-number">9.</span> <span class="toc-text">线性基</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E9%80%86-exp-ln-%E5%BC%80%E6%A0%B9"><span class="toc-number">10.</span> <span class="toc-text">求逆&#x2F;exp&#x2F;ln&#x2F;开根</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E9%80%86"><span class="toc-number">10.1.</span> <span class="toc-text">求逆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exp"><span class="toc-number">10.2.</span> <span class="toc-text">exp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln"><span class="toc-number">10.3.</span> <span class="toc-text">ln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%A0%B9"><span class="toc-number">10.4.</span> <span class="toc-text">开根</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A2%98"><span class="toc-number">11.</span> <span class="toc-text">杂题</span></a></li></ol>
       </div>
     
   </span>
@@ -203,7 +199,56 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><script type="math/tex; mode=display">
+    <h2 id="or-and-xor-卷积"><a href="#or-and-xor-卷积" class="headerlink" title="or/and/xor 卷积"></a>or/and/xor 卷积</h2><p>对于序列 $A_{0,1,…,2^n-1},B_{0,1,…,2^n-1}$ ，其 or/and/xor 卷积 $C = A * B$ 定义为</p>
+<script type="math/tex; mode=display">
+C_{x} = \sum_{i \oplus j=x} A_i B_j</script><p>其中 $\oplus$ 分别为 or/and/xor 三种运算。</p>
+<p>or/and 也可以看成两个集合的并/交，xor 是集合的对称差。</p>
+<p>记多项式 $F(x) = \sum_{S \subseteq U} f_Sx^S $，那么 or/and/xor 卷积可以看成多项式乘法，这样的多项式叫集合幂级数。</p>
+<h2 id="Fast-Mobius-Transform"><a href="#Fast-Mobius-Transform" class="headerlink" title="Fast Mobius Transform"></a>Fast Mobius Transform</h2><p>对于 or 卷积，枚举子集可以简单做到 $O(3^n)$。</p>
+<p>可以先考虑一维的情况，即 $C_x = \sum_{ \max(i,j) = x} A_iB_j$。这个可以先求出 $C$ 前缀和的结果，然后差分得到 $C$。</p>
+<p>类似地</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum _{k \subseteq x} C_k &= \sum_{i \cup j \subseteq x} A_iB_j \\
+&= \sum_{i \subseteq x} A_i \sum_{j \subseteq x} B_j \\
+\end{aligned}</script><p>那么只需要计算高位前缀和和高维差分即可，时间复杂度 $O(n2^n)$。</p>
+<p>and 卷积只需要将高维前缀和改为高维后缀和。</p>
+<p>下面是另一种写法，做的事情是一样的。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">OR</span><span class="params">(<span class="type">int</span> A[N],<span class="type">int</span> op)</span></span>{</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> mid=<span class="number">1</span>;mid&lt;(<span class="number">1</span>&lt;&lt;n);mid&lt;&lt;=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;n);i+=(mid&lt;&lt;<span class="number">1</span>))</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;i+mid;++j)</span><br><span class="line">                <span class="built_in">mod</span>(A[j+mid]=op*A[j]+A[j+mid]);</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AND</span><span class="params">(<span class="type">int</span> A[N],<span class="type">int</span> op)</span></span>{</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> mid=<span class="number">1</span>;mid&lt;(<span class="number">1</span>&lt;&lt;n);mid&lt;&lt;=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;n);i+=(mid&lt;&lt;<span class="number">1</span>))</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;i+mid;++j)</span><br><span class="line">                <span class="built_in">mod</span>(A[j]=A[j]+op*A[j+mid]);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="Fast-Walsh-Transform"><a href="#Fast-Walsh-Transform" class="headerlink" title="Fast Walsh Transform"></a>Fast Walsh Transform</h2><p>xor 卷积也可以做到 $O(n2^n)$。</p>
+<p>or/and 卷积相当于构造一个矩阵 $T$，满足 $T(A * B) = (TA) \cdot (TB)$，且 $T$ 可逆。由于 $T$ 的特殊性，$TA$ 是可以简单计算的。</p>
+<p>推式子得到 $T$ 需要满足 $T(k,i) T(k,j) = T(k,i \oplus j)$ 且可逆。</p>
+<p>位运算每一位是独立的，若能求出 $2 \times 2$ 的矩阵 $T’$ 满足上述限制，那么对于长为 $2^n$ 的序列，只需令 $T(i,j) = \prod_{x=0}^{n-1} T’(i_x,j_x)$ 即可。</p>
+<p>最后得到</p>
+<script type="math/tex; mode=display">
+T' =
+\begin{bmatrix}
+1 & 1 \\
+1 & -1 \\
+\end{bmatrix}
+,\quad
+T'^{-1} =
+\begin{bmatrix}
+\frac{1}{2} & \frac{1}{2} \\
+\frac{1}{2} & -\frac{1}{2} \\
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\mathrm{FWT}(A)[i] = \sum_{j} (-1)^{|i \cap j|} A_j \\
+\mathrm{FWT}^{-1}(A) [i] = \frac{1}{2^n} \sum_{j} (-1)^{|i \cap j|} A_j</script><p>代码如下</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">XOR</span><span class="params">(<span class="type">int</span> A[N],<span class="type">int</span> op)</span></span>{</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> mid=<span class="number">1</span>,A0,A1;mid&lt;(<span class="number">1</span>&lt;&lt;n);mid&lt;&lt;=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;n);i+=(mid&lt;&lt;<span class="number">1</span>))</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=i;j&lt;i+mid;++j){</span><br><span class="line">                A0=A[j],A1=A[j+mid];</span><br><span class="line">                <span class="built_in">mod</span>(A[j]=A0+A1),<span class="built_in">mod</span>(A[j+mid]=A0-A1);</span><br><span class="line">                <span class="keyword">if</span>(op==<span class="number">-1</span>) A[j]=<span class="number">1ll</span>*A[j]*inv2%MOD,A[j+mid]=<span class="number">1ll</span>*A[j+mid]*inv2%MOD;</span><br><span class="line">            }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ul>
+<li><p>求 $\prod_i (1 + 2x^{a_i}) [0]$（黎明巧克力）</p>
+<p>每一位只能是 $-1/3$，考虑求出每一位上 $-1/3$ 的个数，设分别为 $x,y$。</p>
+<p>求出 $\sum_i \mathrm{FWT} (A_i)$，记该位的和为 $s$，有 $x+y = n,-x+3y = s$，解出来即可。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1119H">CF1119H Triple</a></p>
+<p>求 $\prod_{i=1}^{n} \sum_{j=0}^{m} w_jx^{a_{i,j}}$，$a \in [0,2^k)$。</p>
+<p>可以做到 $O(nm2^m+(m+k)2^{m+k})$。</p>
+<p>就是 FWT 求 $\sum_i x^{\oplus_{j \in T} a_{i,j}}$，然后解方程，解方程这一步可以用 FWT 做。</p>
+</li>
+</ul>
+<h2 id="子集卷积"><a href="#子集卷积" class="headerlink" title="子集卷积"></a>子集卷积</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6097">【模板】子集卷积</a></p>
+<p>就是多记一维为 $1$ 的个数。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><script type="math/tex; mode=display">
 (x \oplus y) \& z = (x \& z) \oplus (y \& z)</script><script type="math/tex; mode=display">
 \frac{1}{2^{n}} \sum_{T < 2^n} (-1)^{|S \& T|} = [S=0]</script><p>得到</p>
 <script type="math/tex; mode=display">
@@ -239,7 +284,48 @@ f_{S} = \sum_{T < 2^n} (-1)^{|S \& T|} f_{T}</script><figure class="highlight cp
 \prod \mathrm{FWT} (a_i + b_ix^i) &= \prod_{i} \sum_{j < 2^n} (a_i+(-1)^{|j \& i|} b_i)x^j \\
 &= \sum_{j < 2^n} x^j \prod_{i} (a_i + (-1)^{|j \& i|}b_i)
 \end{aligned}</script><p>即对每个 $S \in [0,2^n)$ 求出 $\prod_{i}(a_i + (-1)^{|S \&amp; i|}b_i)$。按位考虑，记 $f_{k,S}$ 为满足 $i \oplus S \in [0,2^k)$ 的 $i$ 的上式的值。</p>
-
+<h2 id="求逆-exp-ln-开根"><a href="#求逆-exp-ln-开根" class="headerlink" title="求逆/exp/ln/开根"></a>求逆/exp/ln/开根</h2><script type="math/tex; mode=display">
+\frac{1}{1-f} = \sum_{i=0}^{\infty} f^i \\
+e^f = \sum_{i=0}^{\infty} \frac{f^i}{i!}</script><p>求逆相当于有序组合，exp 相当于无序组合，ln 是 exp 的逆，开根目前不会用。</p>
+<h3 id="求逆"><a href="#求逆" class="headerlink" title="求逆"></a>求逆</h3><p>乘法定义为子集卷积，若 $f \times g = \epsilon$ 那么有</p>
+<script type="math/tex; mode=display">
+\sum_{i=0}^{n} f_i g_{n-i} = [n=0] \\
+g_i =
+\begin{cases}
+\frac{1}{f_0} & i=0 \\
+-\frac{1}{f_0}\sum_{j=0}^{i-1} f_{i-j}g_j & \mathrm{otherwise}
+\end{cases}</script><h3 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h3><p>$g = e^f$，为使结果收敛，需要有 $f_0=0$，那么 $g_0=1$。组合意义上也可解释，如果空集方案数不为 $0$，那么可以组合无限个空集。</p>
+<p>两边求导得到 $g’ = f’g$，那么</p>
+<script type="math/tex; mode=display">
+(i+1)g_{i+1} = g'_{i} = \sum_{j} f'_{j}g_{i-j} \\
+g_{i+1} = \frac{1}{i+1} \sum_{j=0}^{i} (j+1)f_{j+1}g_{i-j}</script><h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h3><p>$f = \ln g$，同样需要有 $f_0 = 0,g_0 = 1$。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+g_{i+1} &= \frac{1}{i+1} \sum_{j=0}^{i} (j+1) f_{j+1} g_{i-j} \\
+f_{i+1} &= g_{i+1} - \frac{1}{i+1} \sum_{j=0}^{i-1} (j+1)f_{j+1} g_{i-j} (i \ge 0) \\
+f_{i} &= g_{i} - \frac{1}{i} \sum_{j=0}^{i-1} jf_jg_{i-j} (i \ge 1)
+\end{aligned}</script><h3 id="开根"><a href="#开根" class="headerlink" title="开根"></a>开根</h3><p>$g = \sqrt{f}$，那么有 $g_0 = \sqrt{f_0}$</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+g^2 &= f \\
+\sum_{j=0}^{i} g_{j}g_{i-j} &= f_i \\
+2g_{i}g_{0} &= f_i - \sum_{j=1}^{i-1} g_jg_{i-j} \\
+g_{i} &= \frac{1}{2g_0}(f_i - \sum_{j=1}^{i-1}g_jg_{i-j})
+\end{aligned}</script><h2 id="杂题"><a href="#杂题" class="headerlink" title="杂题"></a>杂题</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8970">宿命 | Regulation of Destiny</a></p>
+<p>类三/四进制 FWT（改成 $\sum *$ 也可以做，矩阵是前缀和的形式，可能吧）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://qoj.ac/problem/9562">欧伊昔</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF449D">CF449D Jzzhu and Numbers</a></p>
+<ul>
+<li>容斥 + 高维后缀和。</li>
+<li>答案即为 $\prod_{i} (x^{U} + x^{a_i})[0]$，$(x^{U} + x^{a_i})$ FMT 后得到的值只有 $1,2$，于是可以一起 FMT，然后变成 $2^c$。</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<!-- flag of hidden posts -->
   </div>
 </article>
 
@@ -270,7 +356,7 @@ f_{S} = \sum_{T < 2^n} (-1)^{|S \& T|} f_{T}</script><figure class="highlight cp
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nim"><span class="toc-number">2.</span> <span class="toc-text">Nim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E9%80%9A%E7%94%9F%E6%88%90%E5%AD%90%E5%9B%BE%E8%AE%A1%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">连通生成子图计数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9F%BA"><span class="toc-number">4.</span> <span class="toc-text">线性基</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#or-and-xor-%E5%8D%B7%E7%A7%AF"><span class="toc-number">1.</span> <span class="toc-text">or&#x2F;and&#x2F;xor 卷积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast-Mobius-Transform"><span class="toc-number">2.</span> <span class="toc-text">Fast Mobius Transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fast-Walsh-Transform"><span class="toc-number">3.</span> <span class="toc-text">Fast Walsh Transform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E9%9B%86%E5%8D%B7%E7%A7%AF"><span class="toc-number">5.</span> <span class="toc-text">子集卷积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">6.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nim"><span class="toc-number">7.</span> <span class="toc-text">Nim</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E9%80%9A%E7%94%9F%E6%88%90%E5%AD%90%E5%9B%BE%E8%AE%A1%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">连通生成子图计数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9F%BA"><span class="toc-number">9.</span> <span class="toc-text">线性基</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E9%80%86-exp-ln-%E5%BC%80%E6%A0%B9"><span class="toc-number">10.</span> <span class="toc-text">求逆&#x2F;exp&#x2F;ln&#x2F;开根</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E9%80%86"><span class="toc-number">10.1.</span> <span class="toc-text">求逆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exp"><span class="toc-number">10.2.</span> <span class="toc-text">exp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln"><span class="toc-number">10.3.</span> <span class="toc-text">ln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%A0%B9"><span class="toc-number">10.4.</span> <span class="toc-text">开根</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%82%E9%A2%98"><span class="toc-number">11.</span> <span class="toc-text">杂题</span></a></li></ol>
       </div>
     
 
