@@ -21,7 +21,7 @@
 <meta property="og:description" content="算法有个建反向边的反悔思想。 FF 算法（指用 dfs 实现的 FF）dfs 找增广路。 每次增广当前流量至少加 $1$，单次增广时间复杂度 $O(m)$。记 $F$ 为最大流，时间复杂度为 $O(Fm)$。 EK 算法bfs 找到增广路。 时间复杂度为 $O(nm^2)$。 下面是证明。  每次增广后 $s$ 到除 $s$ 外每个点的最短路单调不降。  反证法，记 $d_u$ 为原最短路，$d’">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-22T23:24:54.194Z">
-<meta property="article:modified_time" content="2025-02-17T15:51:50.474Z">
+<meta property="article:modified_time" content="2025-07-12T01:15:24.909Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -221,8 +221,8 @@
 </blockquote>
 <p>若 $(u,v)$ 作为关键边，其再次出现需要 $(v,u)$ 作为关键边。那么 $ d_u = d_v-1 \le d’_v-1 = d’_u-2 $，而 $d$ 最小为 $1$ 最大为 $n-1$，最多出现 $\frac{n}{2}-1$ 次。</p>
 <p>那么总增广次数为 $O(nm)$，单次增广时间复杂度 $O(m)$，总时间复杂度 $O(nm^2)$。</p>
-<h3 id="dinic"><a href="#dinic" class="headerlink" title="dinic"></a>dinic</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3376">1.【模板】网络最大流</a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/n5dv07nc">dinic</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3381">2.【模板】最小费用最大流</a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/dcnzzkwo">dinic</a></p>
+<h3 id="dinic"><a href="#dinic" class="headerlink" title="dinic"></a>dinic</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3376">【模板】网络最大流</a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/n5dv07nc">dinic</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3381">【模板】最小费用最大流</a> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/dcnzzkwo">dinic</a></p>
 <ul>
 <li><p>对于一般网络，时间复杂度为 $O(n^2m)$。</p>
 </li>
@@ -233,7 +233,7 @@
 <li><p>增广轮数为 $O(\sqrt{\sum_{i}\min(d_i^{in},d_i^{out})})$。</p>
 </li>
 </ul>
-<p>下面是证明。</p>
+<p>下面是证明。<del>不是，我写的时候 oiwiki 还没有证明啊，我还找了半天资料。</del></p>
 <blockquote>
 <p>每次增广后到 $t$ 的最短路单调不减。</p>
 </blockquote>
@@ -270,7 +270,7 @@
 <p>单位网络的增广轮数为 $O(\sqrt{n})$。</p>
 </blockquote>
 <p>$S=O(n)$。</p>
-<h2 id="最大流最小割定理"><a href="#最大流最小割定理" class="headerlink" title="最大流最小割定理"></a>最大流最小割定理</h2><p>即 最大流 $=$ 最小割。</p>
+<h2 id="最大流最小割定理"><a href="#最大流最小割定理" class="headerlink" title="最大流最小割定理"></a>最大流最小割定理</h2><p>即 最大流 = 最小割。</p>
 <p>最大流 $\le$ 最小割，只需证明最大流 $\ge$ 最小割。</p>
 <p>只需证明存在一个流等于一个割即可，最终的残余网络显然符合条件。</p>
 <p>其实是对偶。</p>
@@ -358,12 +358,12 @@ mn+C[V,V']+2g|V|-\sum_{u \in V}out_u = mn+2gn-2m</script><p>所以 $m-gn=\frac{(
 <p>由鸽巢原理可知，最长反链 $\le$ 最小链覆盖。只需构造方案即可。</p>
 <p>将原图传递闭包后拆点建出二分图，标记最大独立集中的点，若原图中点的入点与出点均被标记，则该点属于最长反链。</p>
 <p>一个点的入点与出点均在独立集中，反映到原图上，则它与其他反链上的点均未直接相连，所以选出的点一定为反链。</p>
-<p>由于最小链覆盖 $=n-$ 最大匹配数、最大独立集 $=2n-$ 最大匹配数，所以最小链覆盖 $=$ 最大独立集 $-n$。</p>
+<p>由于最小链覆盖 = n-最大匹配数、最大独立集 = 2n-最大匹配数，所以最小链覆盖 = 最大独立集-n。</p>
 <p>那么只要每个点至少有一个入点或出点被标记，则选出的方案为最大反链。可以反证法证明。</p>
-<p>若点 $i$ 的入点（$i’$）与出点（ $i’’$ ）均未被标记，则必有 $j’’$ 与 $i’$ 相连，$k’$ 与 $i’’$ 相连，且 $j’’,k’$ 均被标记。</p>
+<p>若点 $i$ 的入点（$i’$）与出点（$i’’$）均未被标记，则必有 $j’’$ 与 $i’$ 相连，$k’$ 与 $i’’$ 相连，且 $j’’,k’$ 均被标记。</p>
 <p>由于原图为 DAG 所以 $j,k$ 不为同一点。</p>
 <p>由于先进行了传递闭包，所以若 $j \to i$ 且 $i \to k$ ，则必有 $j \to k$ ，即 $j’’$ 与 $k’$ 相连，此时不满足独立集的条件，故该情况不成立。</p>
-<p>对于第三问，枚举每个点，将与它相连的点删去，再计算最长反链。若此时的最长反链 $=ans-1$，则该点可选，反之不可选。</p>
+<p>对于第三问，枚举每个点，将与它相连的点删去，再计算最长反链。若此时的最长反链 = ans-1，则该点可选，反之不可选。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/uog5xvyx">code</a></p>
 <h4 id="11-最长k可重区间集问题"><a href="#11-最长k可重区间集问题" class="headerlink" title="11.最长k可重区间集问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3358">11.最长k可重区间集问题</a></h4><p>限制是 $\le k$ 考虑网络流，建图看看得了，感觉就是妙手偶得啊，不会讲。</p>
 <h4 id="12-CTSC1999-家园-星际转移问题"><a href="#12-CTSC1999-家园-星际转移问题" class="headerlink" title="12.[CTSC1999] 家园/星际转移问题"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2754">12.[CTSC1999] 家园/星际转移问题</a></h4><p>太空船只可容纳 $h$ 个人，即太空船最多容纳 $h$ 个人，可以发现是容量的定义，用网络流求解</p>
@@ -378,7 +378,7 @@ mn+C[V,V']+2g|V|-\sum_{u \in V}out_u = mn+2gn-2m</script><p>所以 $m-gn=\frac{(
 <p>对于最上侧和最右侧的边，将它看作 $s$ 与所在平面的边。</p>
 <p>对于最下侧和最左侧的边，将它看作 $t$ 与所在平面的边。</p>
 <p>例如，$i$ 与 $j$ 平面上下相邻，对于中间从西到东的邻边，将其转化为 $i \to j$。</p>
-<p>因为若该边计入答案，则西边的节点为 $0$ ，东边的节点为 $1$，所以转化为从上到下的边</p>
+<p>因为若该边计入答案，则西边的节点为 $0$ ，东边的节点为 $1$，所以转化为从上到下的边。</p>
 <p>将其他情况都推一遍，可以发现是将原图中的边顺时针旋转 $90$ 度。</p>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/pssi03u7">code</a></p>
 <h4 id="14-AHOI2009-最小割"><a href="#14-AHOI2009-最小割" class="headerlink" title="14.[AHOI2009] 最小割"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4126">14.[AHOI2009] 最小割</a></h4><ul>
@@ -416,7 +416,7 @@ mn+C[V,V']+2g|V|-\sum_{u \in V}out_u = mn+2gn-2m</script><p>所以 $m-gn=\frac{(
 <p>对于 $C(i,j)$，由于要强制选择，连 $(i,j,1,\infty)$。</p>
 <p>所以题目就转化为一个最大费用可行流问题，除去 $\infty$ 的费用和即为添加的部件个数。</p>
 <p>再考虑 $A/B$ 这个限制。由于 $N$ 较小，可以考虑枚举行或列最多的部件数 $k$。拆点，连 $(i’,i’’,k,0)$。 </p>
-<p>如果 $当前C的个数 \times A&gt;=Bk$ 则合法，取最大值即为 $ans$。</p>
+<p>如果 $当前C的个数 \times A \ge Bk$ 则合法，取最大值即为 $ans$。</p>
 <p>对于最大费用可行流问题，我们先将边权取反，转化为最小费用可行流。</p>
 <p>自己推一下即可得到如下连边方式</p>
 <ul>
@@ -432,14 +432,22 @@ mn+C[V,V']+2g|V|-\sum_{u \in V}out_u = mn+2gn-2m</script><p>所以 $m-gn=\frac{(
 <h4 id="8-ZJOI2011-营救皮卡丘"><a href="#8-ZJOI2011-营救皮卡丘" class="headerlink" title="8.[ZJOI2011] 营救皮卡丘"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4542">8.[ZJOI2011] 营救皮卡丘</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/wrbsbni5">code</a></p>
 <h4 id="9-无限之环"><a href="#9-无限之环" class="headerlink" title="9.无限之环"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4003">9.无限之环</a></h4><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/js4jzhd0">code</a></p>
 <h4 id="10-WC2007-剪刀石头布"><a href="#10-WC2007-剪刀石头布" class="headerlink" title="10.[WC2007] 剪刀石头布"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4249">10.[WC2007] 剪刀石头布</a></h4><p>每个点的贡献可以写成等差数列形式，依次连边即可。</p>
-<h2 id="zkw-费用流"><a href="#zkw-费用流" class="headerlink" title="zkw 费用流"></a>zkw 费用流</h2><p>貌似就是倒着跑 spfa 的 dinic？</p>
+<h2 id="zkw-费用流"><a href="#zkw-费用流" class="headerlink" title="zkw 费用流"></a>zkw 费用流</h2><p>貌似就是 dinic 跑费用流？</p>
 <h2 id="最大流唯一性判定"><a href="#最大流唯一性判定" class="headerlink" title="最大流唯一性判定"></a>最大流唯一性判定</h2><p>跑出残量网络，相当于判断混合图是否有环，将无向边缩点跑拓扑排序即可。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/uid001/p/10465580.html">EK 时间复杂度证明</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/myee/p/dinic-algorithm.html">Dinic的几种复杂度</a></p>
-<p><a target="_blank" rel="noopener" href="https://web.eecs.umich.edu/~pettie/matching/Karzanov-unit-flow-msqrtm-mntwothirds-msqrtn-matching-ENGLISH.pdf">On finding a maximum flow in a network with special structureand some applications 1</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/li2xfw2r">EK不够快？再学个Dinic吧</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/k2hh2bok">网络流</a></p>
-<p>某课件</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/uid001/p/10465580.html">EK 时间复杂度证明</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/myee/p/dinic-algorithm.html">Dinic的几种复杂度</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://web.eecs.umich.edu/~pettie/matching/Karzanov-unit-flow-msqrtm-mntwothirds-msqrtn-matching-ENGLISH.pdf">On finding a maximum flow in a network with special structureand some applications 1</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/li2xfw2r">EK不够快？再学个Dinic吧</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/k2hh2bok">网络流</a></p>
+</li>
+<li><p>某课件</p>
+</li>
+</ul>
 
   </div>
 </article>

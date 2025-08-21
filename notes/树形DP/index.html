@@ -13,19 +13,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="CF1394D Boboniu and Jianghu一条边一划的话每个点会计算度数次，可以进行合并。树形 DP，记 $f_{i,0&#x2F;1}$ 为考虑 $i$ 的子树，$i$ 向上引出单增&#x2F;降的链的最小代价。 合并一次代价减 $a_u$，先儿子先都取最小，然后贪心选能变化且代价最小的。如果非根的话，那么向上引也会减一次。 哦，也可以看成给高度相同的链确定方向，这个理解好。可以儿子先全取 $0$。可以">
+    <meta name="description" content="CF1394D Boboniu and Jianghu 一条边一划的话每个点会计算度数次，可以进行合并。树形 DP，记 $f_{i,0&#x2F;1}$ 为考虑 $i$ 的子树，$i$ 向上引出单增&#x2F;降的链的最小代价。 合并一次代价减 $a_u$，先儿子先都取最小，然后贪心选能变化且代价最小的。如果非根的话，那么向上引也会减一次。 哦，也可以看成给高度相同的链确定方向，这个理解好。可以儿子先全取 $0$。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="随便找的树形 DP 题">
 <meta property="og:url" content="http://idtwtei.github.io/notes/%E6%A0%91%E5%BD%A2DP/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="CF1394D Boboniu and Jianghu一条边一划的话每个点会计算度数次，可以进行合并。树形 DP，记 $f_{i,0&#x2F;1}$ 为考虑 $i$ 的子树，$i$ 向上引出单增&#x2F;降的链的最小代价。 合并一次代价减 $a_u$，先儿子先都取最小，然后贪心选能变化且代价最小的。如果非根的话，那么向上引也会减一次。 哦，也可以看成给高度相同的链确定方向，这个理解好。可以儿子先全取 $0$。可以">
+<meta property="og:description" content="CF1394D Boboniu and Jianghu 一条边一划的话每个点会计算度数次，可以进行合并。树形 DP，记 $f_{i,0&#x2F;1}$ 为考虑 $i$ 的子树，$i$ 向上引出单增&#x2F;降的链的最小代价。 合并一次代价减 $a_u$，先儿子先都取最小，然后贪心选能变化且代价最小的。如果非根的话，那么向上引也会减一次。 哦，也可以看成给高度相同的链确定方向，这个理解好。可以儿子先全取 $0$。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
 <meta property="article:published_time" content="2025-04-16T13:50:57.032Z">
-<meta property="article:modified_time" content="2025-04-17T08:11:20.388Z">
+<meta property="article:modified_time" content="2025-07-11T14:42:41.326Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
     
 
     
@@ -122,10 +120,10 @@
       <ul>
         <!--
         
-        <li><a class="icon" aria-label="上一篇" href="/contests/NOI24/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/notes/NOI2021/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="下一篇" href="/contests/MXNOI11/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/notes/%E5%A5%87%E6%80%AA%E5%BC%8F%E5%AD%90/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         -->
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -158,10 +156,6 @@
 
     </div>
     
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CF1394D-Boboniu-and-Jianghu"><span class="toc-number">1.</span> <span class="toc-text">CF1394D Boboniu and Jianghu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF1179D-Fedor-Runs-for-President"><span class="toc-number">2.</span> <span class="toc-text">CF1179D Fedor Runs for President</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF1626E-Black-and-White-Tree"><span class="toc-number">3.</span> <span class="toc-text">CF1626E Black and White Tree</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF1016F-Road-Projects"><span class="toc-number">4.</span> <span class="toc-text">CF1016F Road Projects</span></a></li></ol>
-      </div>
     
   </span>
 </div>
@@ -205,21 +199,30 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="CF1394D-Boboniu-and-Jianghu"><a href="#CF1394D-Boboniu-and-Jianghu" class="headerlink" title="CF1394D Boboniu and Jianghu"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1394D">CF1394D Boboniu and Jianghu</a></h2><p>一条边一划的话每个点会计算度数次，可以进行合并。树形 DP，记 $f_{i,0/1}$ 为考虑 $i$ 的子树，$i$ 向上引出单增/降的链的最小代价。</p>
+    <ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1394D">CF1394D Boboniu and Jianghu</a></p>
+<p>一条边一划的话每个点会计算度数次，可以进行合并。树形 DP，记 $f_{i,0/1}$ 为考虑 $i$ 的子树，$i$ 向上引出单增/降的链的最小代价。</p>
 <p>合并一次代价减 $a_u$，先儿子先都取最小，然后贪心选能变化且代价最小的。如果非根的话，那么向上引也会减一次。</p>
 <p>哦，也可以看成给高度相同的链确定方向，这个理解好。可以儿子先全取 $0$。可以将第二维意义改为父亲的边指什么。</p>
 <p>树形 DP 是这样的，分析性质就比较好做。</p>
-<h2 id="CF1179D-Fedor-Runs-for-President"><a href="#CF1179D-Fedor-Runs-for-President" class="headerlink" title="CF1179D Fedor Runs for President"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1179D">CF1179D Fedor Runs for President</a></h2><p>选 $u,v$，增加的就是选两个点分别到 $u,v$ 使得路径的点无交。将 $u,v$ 路径上的边删掉，形成森林，记每棵树点数为 $a_i$，增加的是 $\frac{n^2 - \sum a_i^2}{2}$。需要最小化 $\sum a_i^2$。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1179D">CF1179D Fedor Runs for President</a></p>
+<p>选 $u,v$，增加的就是选两个点分别到 $u,v$ 使得路径的点无交。将 $u,v$ 路径上的边删掉，形成森林，记每棵树点数为 $a_i$，增加的是 $\frac{n^2 - \sum a_i^2}{2}$。需要最小化 $\sum a_i^2$。</p>
 <p>树形 DP，$f_{i}$ 表示考虑 $i$ 的子树，$i$ 到父亲的边断掉的最小值，不断就是 $siz_u^2$。合并形如求 $\max(f_1 + f_2 + 2siz_1 \times siz_2)$ 需要斜率优化，单调栈维护下凸壳。桶排就 $O(n)$ 了吧。</p>
 <p>不是这为啥黑啊？*2700。</p>
-<h2 id="CF1626E-Black-and-White-Tree"><a href="#CF1626E-Black-and-White-Tree" class="headerlink" title="CF1626E Black and White Tree"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1626E">CF1626E Black and White Tree</a></h2><p>？？？显然不会来回走，然后就是一个类似最近点的东西，换根就做完了吧。呵呵，读错题了 <span class="github-emoji"><span>😅</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1626E">CF1626E Black and White Tree</a></p>
 <p>注意到是不能与上一次选择的相同，记 $f_i$ 为 $i$ 能否到子树的黑点，满足以下三个条件之一即可</p>
 <ul>
 <li>$c_i=1$。</li>
 <li>$\exists son,c_{son}$。</li>
 <li>$\exists son, f_{son}=1,siz_{son} \ge 2$。</li>
 </ul>
-<h2 id="CF1016F-Road-Projects"><a href="#CF1016F-Road-Projects" class="headerlink" title="CF1016F Road Projects"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1016F">CF1016F Road Projects</a></h2><p>类似第二道，把 $1 \to n$ 的链抽出来，然后就。哦，能在子树中连就在子树中连。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1016F">CF1016F Road Projects</a></p>
+<p>类似第二道，把 $1 \to n$ 的链抽出来，然后就。哦，能在子树中连就在子树中连。</p>
+</li>
+</ul>
 <hr>
 <p>质量好低。​</p>
 
@@ -252,10 +255,6 @@
 
     
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CF1394D-Boboniu-and-Jianghu"><span class="toc-number">1.</span> <span class="toc-text">CF1394D Boboniu and Jianghu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF1179D-Fedor-Runs-for-President"><span class="toc-number">2.</span> <span class="toc-text">CF1179D Fedor Runs for President</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF1626E-Black-and-White-Tree"><span class="toc-number">3.</span> <span class="toc-text">CF1626E Black and White Tree</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CF1016F-Road-Projects"><span class="toc-number">4.</span> <span class="toc-text">CF1016F Road Projects</span></a></li></ol>
-      </div>
-    
 
     <div id="share-footer" style="display: none">
       
@@ -278,8 +277,6 @@
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>

@@ -21,7 +21,7 @@
 <meta property="og:description" content="楼房重建转化为单点修改，求前缀最大值的数量。 分块可以做到 $O(n\sqrt{n\log n})$。 建线段树，对于每个节点维护区间前缀最大值的数量 $len$ 和区间最大值 $mx$。考虑节点的合并，只要能快速求出 $calc(id,v)$ 表示在节点 $id$ 中，以 $v$ 开始的前缀最大值的数量即可。  若 $id$ 为叶子节点，判断 $mx$ 与 $v$ 的大小即可。 若 $id$ 不">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-14T01:12:15.974Z">
-<meta property="article:modified_time" content="2025-02-17T15:50:54.865Z">
+<meta property="article:modified_time" content="2025-07-12T01:22:52.723Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -205,8 +205,8 @@
 <ul>
 <li>若 $id$ 为叶子节点，判断 $mx$ 与 $v$ 的大小即可。</li>
 <li>若 $id$ 不为叶子节点<ul>
-<li>若 $v&gt;=mx(id)$ 那么答案为 $0$。</li>
-<li>若 $v&gt;=mx(lc)$ 那么答案为 $calc(rc,v)$。</li>
+<li>若 $v \ge \max(id)$ 那么答案为 $0$。</li>
+<li>若 $v \ge \max(lc)$ 那么答案为 $calc(rc,v)$。</li>
 <li>否则答案为 $calc(lc,v)+len(id)-len(lc)$。</li>
 </ul>
 </li>

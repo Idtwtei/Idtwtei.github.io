@@ -13,19 +13,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="[NOI2021] 路径交点n&#x3D;2 和 A 性质就是行列式。$n_i$ 不同就是某个形如 $\det(AB) &#x3D; \sum_{S} \det(A_S)\det(B_S)$ 的公式，将 $k-1$ 个邻接矩阵乘起来，时间复杂度 $O(kn^3+n^3)$。 为啥叫这个 LGV 引理？？？ [NOI2021] 庆典考虑反图（直接考虑应该也行），发现 $m&#x3D;n-1$ 是根向树，分讨即可。对于一般无向图缩">
+    <meta name="description" content="\gcd(x,y) &#x3D; \gcd(y,x \% y) 求解 $ax+by &#x3D; \gcd(a,b)$。 1234void exgcd(int &amp;x,int &amp;y,int a,int b){	if(!b) return x&#x3D;1,y&#x3D;0,void();	exgcd(y,x,b,a%b),y-&#x3D;a&#x2F;b*x;}   \begin{cases}x\equiv b_1\pmod{a_1}\\">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NOI">
-<meta property="og:url" content="http://idtwtei.github.io/notes/NOI/index.html">
+<meta property="og:title" content="数论">
+<meta property="og:url" content="http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/index.html">
 <meta property="og:site_name" content="Idtwtei">
-<meta property="og:description" content="[NOI2021] 路径交点n&#x3D;2 和 A 性质就是行列式。$n_i$ 不同就是某个形如 $\det(AB) &#x3D; \sum_{S} \det(A_S)\det(B_S)$ 的公式，将 $k-1$ 个邻接矩阵乘起来，时间复杂度 $O(kn^3+n^3)$。 为啥叫这个 LGV 引理？？？ [NOI2021] 庆典考虑反图（直接考虑应该也行），发现 $m&#x3D;n-1$ 是根向树，分讨即可。对于一般无向图缩">
+<meta property="og:description" content="\gcd(x,y) &#x3D; \gcd(y,x \% y) 求解 $ax+by &#x3D; \gcd(a,b)$。 1234void exgcd(int &amp;x,int &amp;y,int a,int b){	if(!b) return x&#x3D;1,y&#x3D;0,void();	exgcd(y,x,b,a%b),y-&#x3D;a&#x2F;b*x;}   \begin{cases}x\equiv b_1\pmod{a_1}\\">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
-<meta property="article:published_time" content="2025-06-05T08:04:10.260Z">
-<meta property="article:modified_time" content="2025-06-08T06:43:50.285Z">
+<meta property="article:published_time" content="2025-06-12T00:41:06.927Z">
+<meta property="article:modified_time" content="2025-07-11T14:44:21.484Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
     
 
     
@@ -53,7 +51,7 @@
     
 
     <!-- title -->
-    <title>NOI</title>
+    <title>数论</title>
 
     <!-- async scripts -->
     <!-- Google Analytics -->
@@ -122,10 +120,10 @@
       <ul>
         <!--
         
-        <li><a class="icon" aria-label="上一篇" href="/notes/Misc/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="上一篇" href="/notes/%E8%93%9D%E6%A1%A5%E6%9D%AF2024%E5%9B%BDA/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="下一篇" href="/contests/MXNOI13/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="下一篇" href="/notes/NOI2019/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         -->
         <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -142,26 +140,22 @@
     <div id="share" style="display: none">
       
 <!-- <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/NOI/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/NOI/&text=NOI"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/NOI/&is_video=false&description=NOI"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=NOI&body=Check out this article: http://idtwtei.github.io/notes/NOI/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/NOI/&name=NOI&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/NOI/&t=NOI"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&text=数论"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&is_video=false&description=数论"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=数论&body=Check out this article: http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&name=数论&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&t=数论"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul> -->
 
 
     </div>
     
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NOI2021-%E8%B7%AF%E5%BE%84%E4%BA%A4%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">[NOI2021] 路径交点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOI2021-%E5%BA%86%E5%85%B8"><span class="toc-number">2.</span> <span class="toc-text">[NOI2021] 庆典</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#snowflake-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81"><span class="toc-number">3.</span> <span class="toc-text">❄[NOI2020] 制作菜品</span></a></li></ol>
-      </div>
     
   </span>
 </div>
@@ -173,7 +167,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        NOI
+        数论
     </h1>
 
 
@@ -185,7 +179,7 @@
       
     <div class="postdate">
       
-        <time datetime="2025-06-05T08:04:10.260Z" class="dt-published" itemprop="datePublished">2025-06-05</time>
+        <time datetime="2025-06-12T00:41:06.927Z" class="dt-published" itemprop="datePublished">2025-06-12</time>
         
       
     </div>
@@ -205,14 +199,27 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="NOI2021-路径交点"><a href="#NOI2021-路径交点" class="headerlink" title="[NOI2021] 路径交点"></a>[NOI2021] 路径交点</h2><p>n=2 和 A 性质就是行列式。$n_i$ 不同就是某个形如 $\det(AB) = \sum_{S} \det(A_S)\det(B_S)$ 的公式，将 $k-1$ 个邻接矩阵乘起来，时间复杂度 $O(kn^3+n^3)$。</p>
-<p>为啥叫这个 LGV 引理？？？</p>
-<h2 id="NOI2021-庆典"><a href="#NOI2021-庆典" class="headerlink" title="[NOI2021] 庆典"></a>[NOI2021] 庆典</h2><p>考虑反图（直接考虑应该也行），发现 $m=n-1$ 是根向树，分讨即可。对于一般无向图缩点得到 DAG，考虑神秘性质，发现可以去掉一些边，最后得到根向树。去边方式就是按拓扑序从小到大连边。</p>
-<h2 id="snowflake-NOI2020-制作菜品"><a href="#snowflake-NOI2020-制作菜品" class="headerlink" title=":snowflake:[NOI2020] 制作菜品"></a><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>[NOI2020] 制作菜品</h2><p>？？？？？？？</p>
-<p>当 $m = n-1$ 时，始终有 $\min + \max \ge k$。</p>
-<p>当 $m \ge n$ 时，始终有 $\max \ge k$。</p>
-<p>当 $m=n-2$ 时，图不可能连通，所以可以分为两个 $m=n-1$ 的情况（一定存在一个连通块是树）。</p>
-<p>可以推广到 $m=n-p$。</p>
+    <ul>
+<li><script type="math/tex; mode=display">
+\gcd(x,y) = \gcd(y,x \% y)</script></li>
+<li><p>求解 $ax+by = \gcd(a,b)$。</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">exgcd</span><span class="params">(<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y,<span class="type">int</span> a,<span class="type">int</span> b)</span></span>{</span><br><span class="line">	<span class="keyword">if</span>(!b) <span class="keyword">return</span> x=<span class="number">1</span>,y=<span class="number">0</span>,<span class="built_in">void</span>();</span><br><span class="line">	<span class="built_in">exgcd</span>(y,x,b,a%b),y-=a/b*x;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><script type="math/tex; mode=display">
+\begin{cases}x\equiv b_1\pmod{a_1}\\x\equiv b_2\pmod{a_2}\\\dots\\x\equiv b_n\pmod{a_n}\end{cases}</script><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a1,b1;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sol</span><span class="params">(<span class="type">int</span> a2,<span class="type">int</span> b2)</span></span>{</span><br><span class="line">	<span class="type">int</span> x,y,d=__gcd(a1,a2),na; <span class="built_in">exgcd</span>(a1,a2,x,y);</span><br><span class="line">	x=(x*(b2-b1)/d%a2+a2)%a2;</span><br><span class="line">	na=a1/d*a2,b1=((x*a1%na+b1)%na+na)%na,a1=na;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><script type="math/tex; mode=display">
+a^b \equiv a^{b \% \varphi(p) + [b \ge \varphi(p)]\varphi(p)} \mod p</script></li>
+<li><p>exBSGS，每次除去 $\gcd$ 递归下去直到互质。</p>
+</li>
+<li><p>满足 $a^x \equiv 1 \mod m$ 的最小正整数 $x$，叫做 $a$ 模 $m$ 的阶，记作 $\delta_m(a)$。$a$ 与 $m$ 互质是阶存在的充要条件。可以用 BSGS 求解。</p>
+</li>
+<li><p>满足 $\delta_m(g) = \varphi(m)$ 的 $g$ 称为 $m$ 的原根。</p>
+<p>原根判定可以枚举 $\varphi(m)$ 的质因数 $p$，看是否有 $g^{\frac{\varphi(m)}{p}} \equiv 1 \mod m$。</p>
+<p>最小的原根很小，可以枚举求解。</p>
+<p>原根满足 $g^0,g^1,…,g^{\varphi(m)-1}$ 在模 $m$ 意义下互不相同，$m$ 是质数的话可以乘法转加法。</p>
+</li>
+</ul>
 
   </div>
 </article>
@@ -243,25 +250,21 @@
 
     
     
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NOI2021-%E8%B7%AF%E5%BE%84%E4%BA%A4%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">[NOI2021] 路径交点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NOI2021-%E5%BA%86%E5%85%B8"><span class="toc-number">2.</span> <span class="toc-text">[NOI2021] 庆典</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#snowflake-NOI2020-%E5%88%B6%E4%BD%9C%E8%8F%9C%E5%93%81"><span class="toc-number">3.</span> <span class="toc-text">❄[NOI2020] 制作菜品</span></a></li></ol>
-      </div>
-    
 
     <div id="share-footer" style="display: none">
       
 <!-- <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/NOI/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/NOI/&text=NOI"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/NOI/&is_video=false&description=NOI"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=NOI&body=Check out this article: http://idtwtei.github.io/notes/NOI/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/NOI/&title=NOI"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/NOI/&name=NOI&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/NOI/&t=NOI"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&text=数论"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&is_video=false&description=数论"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=数论&body=Check out this article: http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&title=数论"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&name=数论&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/%E6%95%B0%E8%AE%BA/&t=数论"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul> -->
 
 
@@ -269,8 +272,6 @@
 
     <div id="actions-footer">
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
-        
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>

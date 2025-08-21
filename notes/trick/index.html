@@ -21,7 +21,7 @@
 <meta property="og:description" content="树状数组倍增，就是 $t_i &#x3D; \sum_{j&#x3D;i-lowbit(i)+1}^{i} a_j$，这与倍增每次增加的贡献是符合的，可以去一个 $\log$。冰火战士。  cdq 分治，每个位置要计算一个前缀的贡献，相当于对等腰直角三角形分治。 条状 cdq，比如位置 $i$ 要计算 $[i-d+1,i]$ 的贡献，可以先分为等腰直角三角形再 cdq 分治。实际意义就是序列按 $d$ 分块，然后正">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-19T11:48:25.255Z">
-<meta property="article:modified_time" content="2025-04-28T14:01:52.380Z">
+<meta property="article:modified_time" content="2025-07-12T06:03:16.014Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -207,7 +207,7 @@
 </li>
 <li><p>想倒流时间~ <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1954">航空管制</a></p>
 </li>
-<li><p>动态维护贪心方案，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2048">超级钢琴</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6646">Shopping Plans</a></p>
+<li><p>动态维护贪心方案，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2048">超级钢琴</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6646">Shopping Plans</a>（<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/6i7m4hr6">Super Piano’s Trick</a> 写的很好）</p>
 </li>
 <li><p>min-max 容斥</p>
 <script type="math/tex; mode=display">
@@ -222,7 +222,7 @@
 </li>
 <li><p>无根树可以尝试以重心/中心为根。</p>
 </li>
-<li><p>点减边容斥。</p>
+<li><p>点边容斥。</p>
 </li>
 <li><p>树上路径相交</p>
 <ul>
@@ -241,19 +241,19 @@
 <li>普通三角形可以差分为直角三角形，正方形可以差分为直角三角形（弦图）。</li>
 <li>三角形相似就是三维偏序 $O(n\log^2n)$，差分一下（每次选两条线）变成三次二维偏序 $O(n\log n)$。</li>
 <li>斜率不固定，若判断是否存在可以点化线然后李超线段树 $O(n\log^2n)$，数点则不弱于半平面数点。<ul>
-<li><a target="_blank" rel="noopener" href="https://uoj.ac/contest/56/problem/553">半平面数点</a>，点化线，分块每个块内有 $O(B^2)$ 个交点，离线然后模拟，时间复杂度 $O(\frac{n}{B}(B^2+m)\log B^2)$，$B=\sqrt{m}$ 时间复杂度 $O(n\sqrt{m}\log m)$，所以直角三角形数点可能不如暴力。</li>
+<li><a target="_blank" rel="noopener" href="https://uoj.ac/contest/56/problem/553">半平面数点</a>，点化线，分块每个块内有 $O(B^2)$ 个交点，离线然后模拟，时间复杂度 $O(\frac{n}{B}(B^2+m)\log B^2)$，$B=\sqrt{m}$ 时间复杂度 $O(n\sqrt{m}\log m)$，所以直角三角形数点可能不如暴力。（upd：这个 n^2 分块很典啊）</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>删除 $[l,r]$ 的信息可能等于序列复制一遍后 $[r+1,l+n-1]$ 的信息。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6684">[BalticOI 2020] 小丑</a></p>
+<li><p>删除 $[l,r]$ 的信息可能等于序列复制一遍后 $[r+1,l+n-1]$ 的信息。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6684">[BalticOI 2020] 小丑</a>。</p>
 </li>
 <li><p>$O(n)/O(1)$ RMQ：按 $\log n$ 分块对块建 ST 表，块内每个点用 int 记录单调栈的情况，查询时位移即可。</p>
 </li>
 <li><p>不带删双指针（baka’s trick）需要支持快速合并两个信息。</p>
 <p>维护中间指针 $mid=1$，类似回滚莫队，左指针不断向左走直到 $[l,mid]$ 不合法，并维护每一个位置到中间指针的信息，然后右指针向右走并且左指针向右走直到合法，当左指针超过 $mid$ 那么 $mid=r$ 并重新预处理左边的答案。由于每次左指针不会超过上一次的 $mid$，所以时间复杂度线性。</p>
 </li>
-<li><p>主席树是黄嘉泰发明的，简写 hjt，然后他是远古选手。</p>
+<li><p>主席树是黄嘉泰发明（）的，简写 hjt，然后他是远古选手。</p>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/6i7m4hr6">Super Piano’s Trick</a> 大概就是选点过程可以看成 dij，dij 需要满足边权为正，如果形成的图为外向树那么不需要记录 vis。然后每个状态可以是多个选择的集合，每次取出最优的将集合分开。</p>
 </li>

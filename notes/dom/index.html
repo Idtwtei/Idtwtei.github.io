@@ -21,7 +21,7 @@
 <meta property="og:description" content="概述对于有向图 $G&#x3D;(V,E)$，在给定源点 $s \in V$（$s$ 可达 $V$ 中其他节点）的情况下，若任意 $s \to y$ 的路径都经过 $x$，则称 $x$ 支配 $y$，$x$ 是 $y$ 的支配点，记作 $x&#x3D;dom_y$。支配关系满足传递性、自反性、反对称性，是偏序关系，偏序关系可以用 DAG 刻画。 支配关系还满足若 $x &#x3D; dom_z,y &#x3D; dom_z$ 则 $x&#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-04T23:49:20.368Z">
-<meta property="article:modified_time" content="2025-02-19T13:04:07.540Z">
+<meta property="article:modified_time" content="2025-07-12T05:11:27.508Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -158,7 +158,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAG"><span class="toc-number">2.</span> <span class="toc-text">DAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">一般图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%82%B9%E9%9B%86%E7%9A%84%E6%94%AF%E9%85%8D%E7%82%B9"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.点集的支配点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%94%AF%E9%85%8D%E8%BE%B9"><span class="toc-number">4.0.2.</span> <span class="toc-text">2.支配边</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%89%E5%90%91%E5%9B%BE%E7%9A%84%E5%89%B2%E7%82%B9%E5%92%8C%E5%89%B2%E8%BE%B9"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.有向图的割点和割边</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Team-Rocket-Rises-Again"><span class="toc-number">5.0.1.</span> <span class="toc-text">1.Team Rocket Rises Again</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%9C%81%E9%80%89%E8%81%94%E8%80%83-2021-A-%E5%8D%B7-%E6%94%AF%E9%85%8D"><span class="toc-number">5.0.2.</span> <span class="toc-text">2.[省选联考 2021 A 卷] 支配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E3%80%90R1-B%E3%80%91%E5%9C%B0%E9%93%81%E7%BA%BF%E8%B7%AF"><span class="toc-number">5.0.3.</span> <span class="toc-text">3.【R1-B】地铁线路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAG"><span class="toc-number">2.</span> <span class="toc-text">DAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">一般图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
   </span>
@@ -211,14 +211,13 @@
 <h2 id="一般图"><a href="#一般图" class="headerlink" title="一般图"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5180">一般图</a></h2><p>先求出 dfs 树，$x&lt;y$ 当且仅当 $dfn_x&lt;dfn_y$，记 $[x,y]$ 为树上 $x$ 到 $y$ 路径上的点（$(x,y)$ 同理）。</p>
 <blockquote>
 <p><strong>引理 1</strong> $idom_u$ 是 $u$ 的真祖先（不含 $u$ 的祖先）。</p>
-<p>证明显然。</p>
 </blockquote>
 <p>记 $lca$ 为 $lca(u,v)$。</p>
 <blockquote>
-<p><strong>引理 2</strong> 若 $u &lt; v$，那么任意 $u$ 到 $v$ 的路径一定经过 $lca$ 的祖先。</p>
+<p><strong>引理 2</strong> 若 $u &lt; v$，那么原图任意 $u$ 到 $v$ 的路径一定经过 $lca$ 的祖先。</p>
 <p>横叉边满足从大到小，可以感性理解。</p>
 </blockquote>
-<p>那么一定存在祖先节点使得其可以通过大于 $x$ 的节点到达 $x$，记为 $y$，而 $(y,x)$ 都不能作为 $idom_x$。只需要考虑满足该性质的最小的祖先即可。</p>
+<p>那么一定存在祖先节点 $y$ 使得其可以通过大于 $x$ 的节点到达 $x$，而 $(y,x)$ 都不能作为 $idom_x$。只需要考虑满足该性质的最小的祖先即可。</p>
 <blockquote>
 <p><strong>半支配点</strong> 存在路径 $y \to p_1 \to p_2 \to … \to x,p_i &gt; x$ 的最小的 $x$ 的祖先 $y$ 称为 $x$ 的半支配点，记作 $sdom_x$。</p>
 </blockquote>
@@ -228,28 +227,34 @@ idom_x =
 \begin{cases}
   sdom_x  & \text{ if } sdom_{p_x} > sdom_x\\
   idom_{p_x}  & \text{ otherwise }
-\end{cases}</script><p>考虑将 $idom_x$ 的求解挂在 $sdom_x$ 上。遍历 dfs 树，用带权并查集维护每个点到当前节点 $sdom$ 最小的点，直接查询即可。最后按 $dfs$ 序从大到小计算 $idom$。时间复杂度 $O(n \log n)$。</p>
+\end{cases}</script><p>考虑将 $idom_x$ 的求解挂在 $sdom_x$ 上。遍历 dfs 树，用带权并查集维护每个点到当前节点 $sdom$ 最小的点，直接查询即可。最后按 $dfs$ 序从小到大计算 $idom$。时间复杂度 $O(n \log n)$。</p>
 <p>考虑求解半支配点。设求解 $sdom_x$，分类讨论</p>
 <ul>
 <li><p>对于树边或前向边 $y \to x$，用 $y$ 更新 $sdom_x$。</p>
 </li>
 <li><p>对于中间有点的路径，枚举 $y \to x$ 作为最后一条边。</p>
 <p>直接用 $sdom_y$ 更新是不对的，因为 $sdom_x$ 到 $x$ 可能存在点 $p$ 满足 $x &lt; p &lt; y$。</p>
-<p>记 $z$ 为 $sdom_x$ 到 $x$ 上最小的点，根据引理 2，$z$ 一定是 $y$ 的祖先。只需考虑 $z$ 在 $[lca(x,y),y)$ 上的情况即可，否则可以通过树边到达 $x$。用 $sdom_z$ 更新 $sdom_x$ 即可。</p>
+<p>记 $z$ 为 $sdom_x$ 到 $x$ 上最小的点，根据引理 2，$z$ 一定是 $y$ 的祖先。只需考虑 $z$ 在 $[lca(x,y),y)$ 上的情况即可，否则不满足 $z &gt; x$。用 $sdom_z$ 更新 $sdom_x$ 即可。</p>
 <p>实现与求解直接支配点相同，用一个并查集即可，具体见代码。</p>
 </li>
 </ul>
 <p>时间复杂度 $O(n \log n)$。</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n,m;</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; G[N],FG[N],TG[N],vc[N];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> dfn[N],d_c=<span class="number">0</span>,fdfn[N],vis[N],sdom[N],idom[N],pos[N],siz[N];     </span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fu)</span></span>{ fdfn[dfn[u]=++d_c]=u,vis[u]=<span class="number">1</span>; <span class="keyword">for</span>(<span class="type">int</span> v:G[u]) <span class="keyword">if</span>(!vis[v]) <span class="built_in">dfs</span>(v,u),TG[u].<span class="built_in">pb</span>(v); }</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">DSU</span>{</span><br><span class="line">    <span class="type">int</span> fa[N],mn[N];</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> n)</span></span>{ <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) fa[i]=i,mn[i]=i; }</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>{</span><br><span class="line">        <span class="keyword">if</span>(x==fa[x]) <span class="keyword">return</span> x; <span class="type">int</span> res=<span class="built_in">find</span>(fa[x]);</span><br><span class="line">        <span class="keyword">if</span>(dfn[sdom[mn[fa[x]]]]&lt;dfn[sdom[mn[x]]]) mn[x]=mn[fa[x]];</span><br><span class="line">        <span class="keyword">return</span> fa[x]=res;</span><br><span class="line">    }</span><br><span class="line">}D;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">sol</span><span class="params">(<span class="type">int</span> u)</span></span>{</span><br><span class="line">    dfn[sdom[u]]=INF;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:FG[u]){</span><br><span class="line">        <span class="keyword">if</span>(dfn[v]&lt;dfn[u]){ <span class="keyword">if</span>(dfn[v]&lt;dfn[sdom[u]]) sdom[u]=v; }</span><br><span class="line">        <span class="keyword">else</span>{ D.<span class="built_in">find</span>(v); <span class="keyword">if</span>(dfn[sdom[D.mn[v]]]&lt;dfn[sdom[u]]) sdom[u]=sdom[D.mn[v]]; }</span><br><span class="line">    }</span><br><span class="line">    vc[sdom[u]].<span class="built_in">pb</span>(u);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:vc[u]) D.<span class="built_in">find</span>(v),pos[v]=D.mn[v];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> v:TG[u]) D.fa[v]=u; </span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>{</span><br><span class="line"></span><br><span class="line">    n=rd,m=rd,D.<span class="built_in">init</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,x,y;i&lt;=m;++i) G[x=rd].<span class="built_in">pb</span>(y=rd),FG[y].<span class="built_in">pb</span>(x);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>,<span class="number">0</span>); <span class="keyword">for</span>(<span class="type">int</span> i=n;i&gt;=<span class="number">1</span>;--i) <span class="built_in">sol</span>(fdfn[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;++i){</span><br><span class="line">        <span class="keyword">if</span>(pos[fdfn[i]]==fdfn[i]) idom[fdfn[i]]=sdom[fdfn[i]];</span><br><span class="line">        <span class="keyword">else</span> idom[fdfn[i]]=idom[pos[fdfn[i]]];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h4 id="1-点集的支配点"><a href="#1-点集的支配点" class="headerlink" title="1.点集的支配点"></a>1.点集的支配点</h4><p>求点集在支配树上的 LCA 即可。</p>
-<h4 id="2-支配边"><a href="#2-支配边" class="headerlink" title="2.支配边"></a>2.支配边</h4><p>显然可以可以对每条边建立虚点。但此方法常数较大，有常数更小的做法。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ul>
+<li><p>点集的支配点</p>
+<p>求点集在支配树上的 LCA 即可。</p>
+</li>
+<li><p>支配边</p>
+<p>显然可以可以对每条边建立虚点。但此方法常数较大，有常数更小的做法。</p>
 <blockquote>
 <p><strong>引理 3</strong> $(u,v)$ 是点 $x$ 的支配边当且仅当 $u,v$ 都是 $x$ 的支配点且 $u$ 到 $v$ 只有一条简单路径。</p>
 <p>证明显然。</p>
 </blockquote>
 <p>支配边显然是树边，对于树边 $(u,v)$，若 $u=idom_v$ 且 $u$ 到 $v$ 只有一条简单路径，那么 $(u,v)$ 支配 $v$ 支配的所有点。</p>
 <p>对于树边 $(u,v)$ 且 $u=idom_v$，$u$ 到 $v$ 只有一条简单路径当且仅当计算 $sdom_v$ 时只有一种情况使得 $sdom=u$（注意重边）。</p>
-<h4 id="3-有向图的割点和割边"><a href="#3-有向图的割点和割边" class="headerlink" title="3.有向图的割点和割边"></a>3.有向图的割点和割边</h4><p>类似无向图，有向图的割点和割边为删去后强连通分量增加的点和边，称为强割点和强割边。</p>
+</li>
+<li><p>有向图的割点和割边</p>
+<p>类似无向图，有向图的割点和割边为删去后强连通分量增加的点和边，称为强割点和强割边。</p>
 <p>可以对每个强连通分量分别考虑，因此以下讨论均基于强连通图。</p>
 <blockquote>
 <p><strong>引理 4.1</strong> 点 $x$ 是强割点当且仅当对于任意 $u \ne x$，都存在点 $v \ne x$，使得以下之一成立：</p>
@@ -267,10 +272,22 @@ idom_x =
 <p>记 $DT(G,s)$ 为图 $G$ 以 $s$ 为源点的支配树。</p>
 <p>任取一点 $s$，并判断它是否为强割点。根据条件 1，$DT(G,s)$ 除 $s$ 外的非叶子节点都是强割点，根据条件 2，$DT(G^{-1},s)$ 除 $s$ 外的非叶子节点都是强割点。</p>
 <p>强割边判断同支配边。</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h4 id="1-Team-Rocket-Rises-Again"><a href="#1-Team-Rocket-Rises-Again" class="headerlink" title="1.Team Rocket Rises Again"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF757F">1.Team Rocket Rises Again</a></h4><p>先求最短路 DAG，再求支配树即可。</p>
-<h4 id="2-省选联考-2021-A-卷-支配"><a href="#2-省选联考-2021-A-卷-支配" class="headerlink" title="2.[省选联考 2021 A 卷] 支配"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7520">2.[省选联考 2021 A 卷] 支配</a></h4><p>先求支配树，只需判断是否存在 $1 \leadsto x \to y \leadsto p$ 且不经过 $idom_p$ 的路径即可，时间复杂度 $O(n^2+nq)$。</p>
-<h4 id="3-【R1-B】地铁线路"><a href="#3-【R1-B】地铁线路" class="headerlink" title="3.【R1-B】地铁线路"></a>3.【R1-B】地铁线路</h4><p>求强割边。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>《浅谈支配树及其应用》</p>
+</li>
+</ul>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF757F">Team Rocket Rises Again</a></p>
+<p>先求最短路 DAG，再求支配树即可。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7520">[省选联考 2021 A 卷] 支配</a></p>
+<p>先求支配树，只需判断是否存在 $1 \leadsto x \to y \leadsto p$ 且不经过 $idom_p$ 的路径即可，时间复杂度 $O(n^2+nq)$。</p>
+</li>
+<li><p>【R1-B】地铁线路</p>
+<p>求强割边。</p>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>《浅谈支配树及其应用》</li>
+</ul>
 
   </div>
 </article>
@@ -302,7 +319,7 @@ idom_x =
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAG"><span class="toc-number">2.</span> <span class="toc-text">DAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">一般图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%82%B9%E9%9B%86%E7%9A%84%E6%94%AF%E9%85%8D%E7%82%B9"><span class="toc-number">4.0.1.</span> <span class="toc-text">1.点集的支配点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%94%AF%E9%85%8D%E8%BE%B9"><span class="toc-number">4.0.2.</span> <span class="toc-text">2.支配边</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%89%E5%90%91%E5%9B%BE%E7%9A%84%E5%89%B2%E7%82%B9%E5%92%8C%E5%89%B2%E8%BE%B9"><span class="toc-number">4.0.3.</span> <span class="toc-text">3.有向图的割点和割边</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Team-Rocket-Rises-Again"><span class="toc-number">5.0.1.</span> <span class="toc-text">1.Team Rocket Rises Again</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%9C%81%E9%80%89%E8%81%94%E8%80%83-2021-A-%E5%8D%B7-%E6%94%AF%E9%85%8D"><span class="toc-number">5.0.2.</span> <span class="toc-text">2.[省选联考 2021 A 卷] 支配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E3%80%90R1-B%E3%80%91%E5%9C%B0%E9%93%81%E7%BA%BF%E8%B7%AF"><span class="toc-number">5.0.3.</span> <span class="toc-text">3.【R1-B】地铁线路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAG"><span class="toc-number">2.</span> <span class="toc-text">DAG</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">一般图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
       </div>
     
 

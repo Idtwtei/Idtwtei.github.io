@@ -21,7 +21,7 @@
 <meta property="og:description" content="[AGC010C] Cleaning快进一下，相当于给定若干个数，开始有 $k$ 次减 $1$，剩下的数每次选两个减 $1$，判断是否能减完。 有 $k$ 次减 $1$ 相当于增加 $k$ 个虚点，后面就是摩尔投票，判断总点数是否为偶数和是否存在绝对众数即可。 [AGC010D] Decrementingai。。。 [AGC010E] Rearranging结论就是如果不互质，那么相对位置不会改变">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-26T06:07:05.040Z">
-<meta property="article:modified_time" content="2024-12-27T09:44:45.801Z">
+<meta property="article:modified_time" content="2025-07-12T13:36:24.719Z">
 <meta property="article:author" content="Idtwtei">
 <meta name="twitter:card" content="summary">
     
@@ -197,7 +197,7 @@
     <h2 id="AGC010C-Cleaning"><a href="#AGC010C-Cleaning" class="headerlink" title="[AGC010C] Cleaning"></a>[AGC010C] Cleaning</h2><p>快进一下，相当于给定若干个数，开始有 $k$ 次减 $1$，剩下的数每次选两个减 $1$，判断是否能减完。</p>
 <p>有 $k$ 次减 $1$ 相当于增加 $k$ 个虚点，后面就是摩尔投票，判断总点数是否为偶数和是否存在绝对众数即可。</p>
 <h2 id="AGC010D-Decrementing"><a href="#AGC010D-Decrementing" class="headerlink" title="[AGC010D] Decrementing"></a>[AGC010D] Decrementing</h2><p>ai。。。</p>
-<h2 id="AGC010E-Rearranging"><a href="#AGC010E-Rearranging" class="headerlink" title="[AGC010E] Rearranging"></a>[AGC010E] Rearranging</h2><p>结论就是如果不互质，那么相对位置不会改变，且只要满足这个条件排列就一定合法。这个可以推广到一般，<a target="_blank" rel="noopener" href="https://www.luogu.com/discuss/457117">证明</a></p>
+<h2 id="AGC010E-Rearranging"><a href="#AGC010E-Rearranging" class="headerlink" title="[AGC010E] Rearranging"></a>[AGC010E] Rearranging</h2><p>结论就是如果不互质，那么相对位置不会改变，且只要满足这个条件排列就一定合法。这个可以推广到一般，<a target="_blank" rel="noopener" href="https://www.luogu.com/discuss/457117">证明</a>。</p>
 <p>那么问题转化为给一张无向图，将边定向成 DAG，使其最大字典序拓扑序最小。</p>
 <p>按权值从小到大枚举 $u$，按权值从小到大枚举邻点 $v$，只要 $v$ 没有被遍历过，就定向 $u \to v$，并遍历 $v$。</p>
 <!-- flag of hidden posts -->

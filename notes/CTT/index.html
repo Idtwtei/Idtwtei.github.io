@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+
+    <!-- 引入字体 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Noto+Sans+SC:normal,bold,italic"> <!-- 中文 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.font.im/css?family=Fira+Code:normal,bold"> <!-- 代码 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Consolas&display=swap"> <!-- 英文和数字 -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Microsoft+YaHei&display=swap"> <!-- 微软雅黑中文 -->
+
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="2021 ❤ ​末日魔法少女计划 类似百万富翁。  💔 ​魔塔 OL 首先这是个经典贪心，做法就是先按 $b-a$ 从大到小排序，然后 $b-a&gt;0$ 按 $a$ 从小到大排序，$b-a&#x3D;0$ 随意，$b-a&lt;0$ 按 $b$ 从大到小排序。 然后发现题目让你求一个四维偏序的东西，于是考虑 bitset。离线按上述方案排序，每个询问都对应一个 01 序列。按 $B$ 分块，可以 $O">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTT">
+<meta property="og:url" content="http://idtwtei.github.io/notes/CTT/index.html">
+<meta property="og:site_name" content="Idtwtei">
+<meta property="og:description" content="2021 ❤ ​末日魔法少女计划 类似百万富翁。  💔 ​魔塔 OL 首先这是个经典贪心，做法就是先按 $b-a$ 从大到小排序，然后 $b-a&gt;0$ 按 $a$ 从小到大排序，$b-a&#x3D;0$ 随意，$b-a&lt;0$ 按 $b$ 从大到小排序。 然后发现题目让你求一个四维偏序的东西，于是考虑 bitset。离线按上述方案排序，每个询问都对应一个 01 序列。按 $B$ 分块，可以 $O">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f494.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f62a.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f36c.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f62a.png?v8">
+<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f62a.png?v8">
+<meta property="article:published_time" content="2025-06-12T01:50:01.175Z">
+<meta property="article:modified_time" content="2025-07-12T02:12:02.616Z">
+<meta property="article:author" content="Idtwtei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8">
+    
+
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=192" sizes="192x192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="https://www.gravatar.com/avatar/7e03e3f8af7eb53c6404c71e9c8c2111?s=180">
+          
+        
+      
+    
+
+    <!-- title -->
+    <title>CTT</title>
+
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- persian styles -->
+    
+
+    <!-- rss -->
+    
+    
+
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!--
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/notes/%E8%93%9D%E6%A1%A5%E6%9D%AF2024%E5%9B%BDA/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        -->
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <!--
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      -->
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <!-- <span id="i-share" class="info" style="display:none;">分享文章</span> -->
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/CTT/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/CTT/&text=CTT"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/CTT/&is_video=false&description=CTT"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CTT&body=Check out this article: http://idtwtei.github.io/notes/CTT/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/CTT/&name=CTT&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/CTT/&t=CTT"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2021"><span class="toc-number">1.</span> <span class="toc-text">2021</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2025"><span class="toc-number">2.</span> <span class="toc-text">2025</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        CTT
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Idtwtei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2025-06-12T01:50:01.175Z" class="dt-published" itemprop="datePublished">2025-06-12</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/notes/">notes</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="2021"><a href="#2021" class="headerlink" title="2021"></a>2021</h2><ul>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​末日魔法少女计划</p>
+<p>类似百万富翁。</p>
+</li>
+<li><p><span class="github-emoji"><span>💔</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f494.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​魔塔 OL</p>
+<p>首先这是个经典贪心，做法就是先按 $b-a$ 从大到小排序，然后 $b-a&gt;0$ 按 $a$ 从小到大排序，$b-a=0$ 随意，$b-a&lt;0$ 按 $b$ 从大到小排序。</p>
+<p>然后发现题目让你求一个四维偏序的东西，于是考虑 bitset。离线按上述方案排序，每个询问都对应一个 01 序列。按 $B$ 分块，可以 $O(\frac{n}{B})$ 求出对应 01 序列。考虑预处理 $2^B$ 个状态的方案，时间复杂度 $O(\frac{n2^B}{B})$。每次询问 $O(\frac{n}{B})$ 求得答案。$B$ 取 $\log n$，最终时间复杂度为 $O(\frac{n^2}{\log n})$。</p>
+</li>
+<li><p>基因编辑</p>
+<p>若不合法，那么必有 $x’=x$ 或 $y’=y$，最终答案一定是 $x,y$ 都对应它能取到的最优解。</p>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​简单数据结构</p>
+<p>发现经过一次操作一后的位置永远满足单调不降，操作一可以线段树二分加区间修改实现。其他位置对答案的贡献可以简单维护。找到这个时刻可以整体二分加凸包。时间复杂度 $O(n\log n)$。</p>
+<p>还有一种不用整体二分的做法？算了，不懂。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​Datalab</p>
+<p>可以做到两次询问。</p>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​随机游走</p>
+<p>允许自环重边，那么肯定是加一条到 $1$ 的边，记每个点的出度为 $d_i$，最终答案为</p>
+<script type="math/tex; mode=display">
+d_1d_2...d_{n-1} + d_2d_3...d_{n-1} + ... + d_{n-1}</script><p>有 $O(nm^2)$ 的简单 DP。打表发现极差 $\le 2$。</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​小明的树</p>
+<p>将点亮的点记为黑点，考虑白点，由于根一定是白点，该树完美当且仅当白点形成一个连通块，此时贡献为相邻颜色不同的边的数量。这些信息都和根无关，可以简单维护。</p>
+</li>
+<li><p><span class="github-emoji"><span>❤</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 出题高手</p>
+<p>注意到 $a$ 随机生成，猜测最终答案的区间长度为根号级别，然后就可以做到 $O(n\sqrt{n})$。</p>
+<p>类似随机游走，单调栈大小期望为 $O(\sqrt{n})$，考虑分治，处理 $[l,r]$ 求出 $mid$ 前后缀的单调栈，期望大小 $O(\sqrt{r-l+1})$，即有用的区间个数为 $O(r-l+1)$，即支配对总数为 $O(n\log n)$。然后扫描线可以做到 $O(\min(mn\log n,n\log^2n+m\log n))$。</p>
+<blockquote>
+<p><strong>分析</strong></p>
+<p>好像可以用 Sparre Andersen Theorem 转化为 $[-1,1]$ 的情况，然后直接算。</p>
+</blockquote>
+</li>
+<li><p><span class="github-emoji"><span>😪</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62a.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​扑克比大小</p>
+</li>
+<li><p><span class="github-emoji"><span>❄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2744.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 算术</p>
+<p>考虑段数为 $2$ 的情况，最终得到 $k$ 合法当且仅当 $\gcd(b,p)=1$ 且 $b^{k+1} \equiv -1 \mod p$。这也是最终的充要条件。</p>
+<p>$\gcd(b,p)=1$ 是好考虑的。同余 $1$ 是好考虑的，于是转化为 $b^{2k+2} \equiv 1 \mod p$，这是必要条件，这等价于 $\delta_p(b) | 2k+2$。</p>
+<blockquote>
+<p><strong>求阶</strong></p>
+<p>$\delta_p(a)$ 即为满足 $a^{x} \equiv 1 \mod p$ 的最小的正整数 $x$。</p>
+<p>记当前为 $x$ 初始为 $\varphi(p)$， 枚举质因子 $v$，若 $a^{\frac{x}{v}} \equiv 1 \mod p$，那么 $x \gets \frac{x}{v}$，最终得到的 $x$ 即为 $\delta_p(a)$。</p>
+<p>时间复杂度 $O(\log^2p)$。</p>
+</blockquote>
+<p>那么需要满足 $\delta_p(b) | 2k+2,b^{k+1} \equiv -1 \mod p$。</p>
+<ul>
+<li>$\delta_p(b)$ 为奇数，$p=2$ 则答案为 $1$，否则无解。</li>
+<li>$\delta_p(b)$ 为偶数，$\delta_p(b)=2$ 则答案为 $2$，否则判断是否有 $b^{\frac{\delta_p(b)}{2}-1} \equiv -1 \mod p$ 得到答案。</li>
+</ul>
+<p>时间复杂度 $O(\sqrt{p} + T \log^2 p)$。</p>
+</li>
+</ul>
+<h2 id="2025"><a href="#2025" class="headerlink" title="2025"></a>2025</h2><ul>
+<li><p><span class="github-emoji"><span>🍬</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f36c.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​阿尔塔尔 2</p>
+<p>答案 $\le 2$，证明就是找到出度最大的点 $a$，其出点集合为 $S$，入点集合为 $T$，若 $T$ 中存在点 $x$ 使得 $a$ 不能 $\le 2$ 步到达，那么 $x$ 出度至少为 $|S|+1$。</p>
+<p>显然要随机，随机找到一个点 $a$，划分为 $S,T$，如果 $|T|=0$ 那么 $a$ 即为答案，否则答案一定在 $|T|$ 中，因为 $T$ 中的点可以 $\le 2$ 步达到 $a$ 和 $S$ 中的点，而前面证明一定有解，所以递归到 $T$ 即可。期望 $2n$ 次询问。</p>
+</li>
+<li><p><span class="github-emoji"><span>😪</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62a.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 颠倒歌</p>
+</li>
+<li><p><span class="github-emoji"><span>😪</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62a.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> ​路南柯</p>
+</li>
+<li></li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+          <li><a href="/categories/notes/">笔记</a></li>
+        
+          <li><a href="/categories/solutions/">题解</a></li>
+        
+          <li><a href="/categories/contests/">比赛</a></li>
+        
+          <li><a href="/categories/others/">其他</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2021"><span class="toc-number">1.</span> <span class="toc-text">2021</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2025"><span class="toc-number">2.</span> <span class="toc-text">2025</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      
+<!-- <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://idtwtei.github.io/notes/CTT/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://idtwtei.github.io/notes/CTT/&text=CTT"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://idtwtei.github.io/notes/CTT/&is_video=false&description=CTT"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CTT&body=Check out this article: http://idtwtei.github.io/notes/CTT/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://idtwtei.github.io/notes/CTT/&title=CTT"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://idtwtei.github.io/notes/CTT/&name=CTT&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://idtwtei.github.io/notes/CTT/&t=CTT"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul> -->
+
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024-2025
+    Idtwtei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/categories/notes/">笔记</a></li><!--
+     --><!--
+       --><li><a href="/categories/solutions/">题解</a></li><!--
+     --><!--
+       --><li><a href="/categories/contests/">比赛</a></li><!--
+     --><!--
+       --><li><a href="/categories/others/">其他</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
